@@ -1,3 +1,3 @@
-export * from "./drawer-list";
-export * from "./drawer";
-export * from "./drawer-root";
+export { DrawerList } from "./drawer-list";
+export { Drawer } from "./drawer";
+export { DrawerRoot } from "./drawer-root";

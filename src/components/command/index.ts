@@ -1,2 +1,2 @@
-export * from './command';
-export * from './item';
+export { Command } from "./command";
+export { CommandItem } from "./item";

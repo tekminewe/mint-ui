@@ -1,2 +1,2 @@
-export * from './text-area';
-export * from './controlled-text-area';
+export { TextArea } from "./text-area";
+export { ControlledTextArea } from "./controlled-text-area";

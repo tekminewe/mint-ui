@@ -1,2 +1,2 @@
-export * from './switch';
-export * from './controlled-switch';
+export { Switch } from "./switch";
+export { ControlledSwitch } from "./controlled-switch";

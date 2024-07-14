@@ -1,2 +1,2 @@
-export * from './select';
-export * from './controlled-select';
+export { Select } from "./select";
+export { ControlledSelect } from "./controlled-select";

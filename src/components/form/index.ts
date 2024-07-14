@@ -1,2 +1,2 @@
-export * from './label';
-export * from './controlled-form';
+export { FormLabel } from "./label";
+export { ControlledForm } from "./controlled-form";

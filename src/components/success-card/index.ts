@@ -1,1 +1,1 @@
-export * from './success-card';
+export { SuccessCard } from "./success-card";

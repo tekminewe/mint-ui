@@ -1,1 +1,1 @@
-export * from './small-text';
+export { SmallText } from "./small-text";

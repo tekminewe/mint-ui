@@ -1,1 +1,1 @@
-export * from './grid';
+export { Grid } from "./grid";

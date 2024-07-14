@@ -1,2 +1,2 @@
-export * from './text-input';
-export * from './controlled-text-input';
+export { TextInput } from "./text-input";
+export { ControlledTextInput } from "./controlled-text-input";
