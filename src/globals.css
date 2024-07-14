@@ -1,9 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@import "@radix-ui/themes/styles.css";
-@import "react-toastify/dist/ReactToastify.css";
+@import "tailwindcss/base" layer(Base);
+@import "@radix-ui/themes/styles.css" layer(Base);
+@import "tailwindcss/components" layer(Components);
+@import "tailwindcss/utilities" layer(Utilities);
+@import "react-toastify/dist/ReactToastify.css" layer(Components);
 
 :root {
   --toastify-text-color-light: rgb(0.113 0.125 0.14);

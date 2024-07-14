@@ -18,8 +18,10 @@ export const Navbar = ({
     <Flex
       align="center"
       px="4"
+      width="100%"
+      height="4rem"
       {...props}
-      className={cn(className, "border-b h-16 w-full")}
+      className={cn(className, "border-b")}
     >
       <Drawer.Root>
         <Drawer.Trigger className="xl:hidden">
