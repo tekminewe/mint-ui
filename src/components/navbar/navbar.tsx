@@ -1,7 +1,7 @@
 import { HTMLAttributes, ReactNode } from "react";
 import { Drawer } from "../drawer";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { cn } from "../../utils";
+import { cn } from "../utils";
 import { Flex } from "../flex";
 
 export interface INavbarProps extends HTMLAttributes<HTMLDivElement> {

@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { MixerHorizontalIcon } from '@radix-ui/react-icons';
-import { Button } from '../button';
-import { Flex } from '../flex';
-import { Drawer } from '../drawer';
-import { Select } from '../select';
-import { FormEvent, useState } from 'react';
-import { useMediaQuery } from 'usehooks-ts';
-import { DatePicker } from '../date-picker';
-import { cn } from '../../utils';
-import { Badge } from '../badge';
+import { MixerHorizontalIcon } from "@radix-ui/react-icons";
+import { Button } from "../button";
+import { Flex } from "../flex";
+import { Drawer } from "../drawer";
+import { Select } from "../select";
+import { FormEvent, useState } from "react";
+import { useMediaQuery } from "usehooks-ts";
+import { DatePicker } from "../date-picker";
+import { cn } from "../utils";
+import { Badge } from "../badge";
 
 interface IDataTableFilterColumnOption {
   value: string;
@@ -18,20 +18,22 @@ interface IDataTableFilterColumnOption {
 
 interface IDataTableFilterColumn<T> {
   label: string;
-  type: 'date';
+  type: "date";
   key: keyof T;
   value?: string;
 }
 
 interface IDataTableFilterColumnSelect<T> {
   label: string;
-  type: 'select';
+  type: "select";
   key: keyof T;
   value?: string;
   options: IDataTableFilterColumnOption[];
 }
 
-type DataTableFilterColumnsType<T> = IDataTableFilterColumnSelect<T> | IDataTableFilterColumn<T>;
+type DataTableFilterColumnsType<T> =
+  | IDataTableFilterColumnSelect<T>
+  | IDataTableFilterColumn<T>;
 
 export interface IDataTableFilterState {
   [name: string]: string | undefined;
@@ -42,7 +44,10 @@ export interface IDataTableFilterProps<T> {
   onSubmit?: (data: T) => void;
 }
 
-export const Filter = <T extends IDataTableFilterState>({ columns, onSubmit }: IDataTableFilterProps<T>) => {
+export const Filter = <T extends IDataTableFilterState>({
+  columns,
+  onSubmit,
+}: IDataTableFilterProps<T>) => {
   const [filterState, setFilterState] = useState(() => {
     return columns.reduce((state, column) => {
       state[column.key] = column.value as T[keyof T];
@@ -50,8 +55,10 @@ export const Filter = <T extends IDataTableFilterState>({ columns, onSubmit }: I
     }, {} as T);
   });
   const [open, setOpen] = useState(false);
-  const isDesktop = useMediaQuery('(min-width: 768px)');
-  const filterCount = columns.filter((column) => column.value !== undefined).length;
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const filterCount = columns.filter(
+    (column) => column.value !== undefined
+  ).length;
   const hasFilter = filterCount > 0;
 
   const handleSubmit = (e: FormEvent) => {
@@ -61,13 +68,17 @@ export const Filter = <T extends IDataTableFilterState>({ columns, onSubmit }: I
   };
 
   return (
-    <Drawer.Root open={open} onOpenChange={setOpen} direction={isDesktop ? 'right' : 'bottom'}>
+    <Drawer.Root
+      open={open}
+      onOpenChange={setOpen}
+      direction={isDesktop ? "right" : "bottom"}
+    >
       <Flex>
         <Drawer.Trigger asChild>
           <Button
             variant="ghost"
             className={cn({
-              '!bg-[--focus-a3] ': hasFilter,
+              "!bg-[--focus-a3] ": hasFilter,
             })}
           >
             <MixerHorizontalIcon /> Filter
@@ -86,7 +97,7 @@ export const Filter = <T extends IDataTableFilterState>({ columns, onSubmit }: I
         <form className="space-y-4" onSubmit={handleSubmit}>
           {columns.map((column, index) => {
             switch (column.type) {
-              case 'select':
+              case "select":
                 return (
                   <Select
                     onChange={(value) =>
@@ -102,7 +113,7 @@ export const Filter = <T extends IDataTableFilterState>({ columns, onSubmit }: I
                   />
                 );
 
-              case 'date':
+              case "date":
                 return (
                   <DatePicker
                     onChange={(value) =>
@@ -111,7 +122,11 @@ export const Filter = <T extends IDataTableFilterState>({ columns, onSubmit }: I
                         [String(column.key)]: value?.toISOString(),
                       }))
                     }
-                    value={filterState[column.key] ? new Date(filterState[column.key] ?? '') : undefined}
+                    value={
+                      filterState[column.key]
+                        ? new Date(filterState[column.key] ?? "")
+                        : undefined
+                    }
                     label={column.label}
                     key={index}
                   />

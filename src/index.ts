@@ -31,5 +31,4 @@ export * from "./components/form";
 export * from "./components/box";
 export * from "./components/switch";
 export * from "./components/link";
-
-export * from "./utils";
+export * from "./components/utils";

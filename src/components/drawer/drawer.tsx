@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { Drawer as Vaul } from 'vaul';
-import { DrawerRoot } from './drawer-root';
-import { cn } from '../../utils';
-import { CSSProperties } from 'react';
+import { Drawer as Vaul } from "vaul";
+import { DrawerRoot } from "./drawer-root";
+import { cn } from "../utils";
+import { CSSProperties } from "react";
 
 export interface IDrawerProps {
   children: React.ReactNode;
@@ -13,11 +13,20 @@ export interface IDrawerProps {
   showOverlay?: boolean;
 }
 
-export const Drawer = ({ children, container, className, style, showOverlay = true }: IDrawerProps) => {
+export const Drawer = ({
+  children,
+  container,
+  className,
+  style,
+  showOverlay = true,
+}: IDrawerProps) => {
   return (
     <Vaul.Portal container={container}>
       {showOverlay && <Vaul.Overlay className="fixed inset-0 bg-black/40" />}
-      <Vaul.Content style={style} className={cn('bg-white flex flex-col', className)}>
+      <Vaul.Content
+        style={style}
+        className={cn("bg-white flex flex-col", className)}
+      >
         {children}
       </Vaul.Content>
     </Vaul.Portal>

@@ -1,12 +1,8 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+"use client";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues, useForm as useHookForm } from "react-hook-form";
 import { ZodSchema } from "zod";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 
 type UseFormOptionsType<T extends FieldValues> = Parameters<
   typeof useHookForm<T>
