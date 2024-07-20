@@ -3,8 +3,9 @@ import { Drawer } from "../drawer";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { cn } from "../utils";
 import { Flex } from "../flex";
+import { NavbarItem } from "./item";
 
-export interface INavbarProps extends HTMLAttributes<HTMLDivElement> {
+export interface NavbarProps extends HTMLAttributes<HTMLDivElement> {
   drawerContent?: ReactNode;
 }
 
@@ -13,7 +14,7 @@ export const Navbar = ({
   className,
   drawerContent,
   ...props
-}: INavbarProps) => {
+}: NavbarProps) => {
   return (
     <Flex
       align="center"
@@ -35,3 +36,5 @@ export const Navbar = ({
     </Flex>
   );
 };
+
+Navbar.Item = NavbarItem;
