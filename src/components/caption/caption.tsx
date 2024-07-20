@@ -1,11 +1,12 @@
 import { Text } from "@radix-ui/themes";
-import type { TextProps } from "@radix-ui/themes";
+import { TextProps } from "@radix-ui/themes";
 
-export interface ICaptionProps extends Omit<TextProps, "size"> {}
+export type CaptionProps = TextProps;
 
-export const Caption = ({ as = "span", ...props }: ICaptionProps) => {
-  // TODO: Fix this type error
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  return <Text as={as} size="2" color="gray" {...props} />;
+export const Caption = ({
+  size = "2",
+  color = "gray",
+  ...props
+}: CaptionProps) => {
+  return <Text as={props.as ?? "span"} size={size} color={color} {...props} />;
 };

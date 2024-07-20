@@ -7,6 +7,7 @@ export const DrawerListIcon = ({
   children: React.ReactNode;
 }) => {
   return (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     <Slot width={24} height={24} {...props}>
       {children}
