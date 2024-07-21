@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Navbar } from "./navbar";
-import { Container } from "../container";
 import { Box } from "../box";
-import { Flex } from "../flex";
+import { NavigationMenu } from "../navigation-menu/navigation-menu";
+import { NavigationMenuVertical } from "../navigation-menu-vertical";
 
 const meta = {
   title: "Navbar",
@@ -15,30 +15,39 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
+    drawerContent: (
+      <NavigationMenuVertical>
+        <NavigationMenuVertical.Item href="/">Home</NavigationMenuVertical.Item>
+        <NavigationMenuVertical.Item href="/blog">
+          Blog
+        </NavigationMenuVertical.Item>
+        <NavigationMenuVertical.Item href="/about">
+          About
+        </NavigationMenuVertical.Item>
+      </NavigationMenuVertical>
+    ),
     children: (
-      <Container>
-        <Flex align="center">
-          <Box
-            asChild
-            ml={{
-              initial: "2",
-              xl: "0",
-            }}
-          >
-            <img
-              src="../assets/logo.webp"
-              alt="tekminewe.com"
-              width={150}
-              height={150}
-            />
-          </Box>
-          <Flex className="flex-1" justify="end" gap="4">
-            <Navbar.Item href="/about">Home</Navbar.Item>
-            <Navbar.Item href="/about">Blog</Navbar.Item>
-            <Navbar.Item href="/about">About</Navbar.Item>
-          </Flex>
-        </Flex>
-      </Container>
+      <>
+        <Box
+          asChild
+          ml={{
+            initial: "2",
+            xl: "0",
+          }}
+        >
+          <img
+            src="../assets/logo.webp"
+            alt="tekminewe.com"
+            width={150}
+            height={150}
+          />
+        </Box>
+        <NavigationMenu>
+          <NavigationMenu.Item href="/">Home</NavigationMenu.Item>
+          <NavigationMenu.Item href="/blog">Blog</NavigationMenu.Item>
+          <NavigationMenu.Item href="/about">About</NavigationMenu.Item>
+        </NavigationMenu>
+      </>
     ),
   },
 };

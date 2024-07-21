@@ -77,7 +77,7 @@ export default defineConfig({
     lib: {
       entry: {
         ...entryFiles,
-        // plugin: path.resolve(__dirname, "./plugin.cjs"),
+        "tailwind-plugin": path.resolve(__dirname, "./plugin.ts"),
       },
       fileName(format, entryName) {
         if (entryName === "plugin" || entryName === "index") {
@@ -94,7 +94,22 @@ export default defineConfig({
           "react/jsx-runtime": "jsxRuntime",
         },
       },
-      plugins: [...subFolderJsonConfigs.map(generatePackageJson)],
+      plugins: [
+        [
+          ...subFolderJsonConfigs,
+          {
+            outputFolder: `./dist/tailwind-plugin`,
+            baseContents: {
+              name: `${packageJson.name}/tailwind-plugin`,
+              main: packageJson.main,
+              module: packageJson.module,
+              types: packageJson.types,
+              sideEffects: packageJson.sideEffects,
+              exports: packageJson.exports,
+            },
+          },
+        ].map(generatePackageJson),
+      ],
     },
   },
 });

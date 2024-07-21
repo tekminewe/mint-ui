@@ -22,11 +22,14 @@ export const Drawer = ({
 }: IDrawerProps) => {
   return (
     <Vaul.Portal container={container}>
-      {showOverlay && <Vaul.Overlay className="fixed inset-0 bg-black/40" />}
+      {showOverlay && (
+        <Vaul.Overlay className="fixed inset-0 bg-[var(--black-a6)]" />
+      )}
       <Vaul.Content
         style={style}
-        className={cn("bg-white flex flex-col", className)}
+        className={cn("bg-accent-12 flex flex-col", className)}
       >
+        <Vaul.Title className="hidden">Sidebar</Vaul.Title>
         {children}
       </Vaul.Content>
     </Vaul.Portal>

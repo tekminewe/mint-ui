@@ -7,3 +7,7 @@
 :root {
   --toastify-text-color-light: rgb(0.113 0.125 0.14);
 }
+
+* {
+  border-color: var(--gray-a6);
+}

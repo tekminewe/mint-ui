@@ -14,7 +14,7 @@ const preview: Preview = {
   decorators: [
     (Story) => {
       return (
-        <Theme>
+        <Theme accentColor="ruby">
           <Story />
         </Theme>
       );
