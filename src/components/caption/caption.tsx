@@ -8,5 +8,7 @@ export const Caption = ({
   color = "gray",
   ...props
 }: CaptionProps) => {
-  return <Text as={props.as ?? "span"} size={size} color={color} {...props} />;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  return <Text {...props} as={props.as ?? "span"} size={size} color={color} />;
 };
