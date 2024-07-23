@@ -35,22 +35,28 @@ export const PostItem = forwardRef<HTMLDivElement, PostItemProps>(
         className={cn(props.className, "cursor-pointer")}
         ref={ref}
       >
-        <Flex gap="4">
-          <Box className="flex-shrink-0" height="256px" width="256px">
+        <Flex gap="4" className="relative md:static">
+          <Box className="relative flex-shrink-0 w-full aspect-[1] md:w-[256px] overflow-hidden rounded-lg border">
             <img
               src={imageUrl}
               alt={title}
-              width="100%"
-              height="100%"
-              className="object-cover w-full h-full rounded-lg border"
+              className="object-cover w-full h-full"
             />
+            <div className="absolute md:hidden top-0 bottom-0 left-0 right-0 bg-[linear-gradient(to_bottom,transparent_0%,black_100%)]" />
           </Box>
-          <div>
-            <Caption>{date}</Caption>
-            <Text size="5" weight="bold" my="4">
+          <div className="absolute bottom-0 p-4 md:p-0 md:static">
+            <Caption className="text-gray-contrast md:text-[unset]">
+              {date}
+            </Caption>
+            <Text
+              size="5"
+              weight="bold"
+              my="4"
+              className="text-gray-contrast md:text-[unset]"
+            >
               {title}
             </Text>
-            <Text>{summary}</Text>
+            <Text className="hidden md:block">{summary}</Text>
           </div>
         </Flex>
       </div>
