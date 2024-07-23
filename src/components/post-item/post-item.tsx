@@ -12,12 +12,7 @@ export interface PostItemProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * A summary of the blog post.
    */
-  summary?: string;
-
-  /**
-   * An HTML summary of the blog post.
-   */
-  htmlSummary?: string;
+  summary: string;
 
   /**
    * The URL of the image to display for the blog post.
@@ -35,7 +30,6 @@ export const PostItem = ({
   summary,
   imageUrl,
   date,
-  htmlSummary,
   ...props
 }: PostItemProps) => {
   return (
@@ -55,14 +49,7 @@ export const PostItem = ({
           <Text size="5" weight="bold" my="4">
             {title}
           </Text>
-          {summary && <Text>{summary}</Text>}
-          {htmlSummary && (
-            <Text
-              dangerouslySetInnerHTML={{
-                __html: htmlSummary,
-              }}
-            />
-          )}
+          <Text>{summary}</Text>
         </div>
       </Flex>
     </div>
