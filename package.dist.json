@@ -1,5 +1,5 @@
 {
-  "name": "mint-ui",
+  "name": "@tekminewe/mint-ui",
   "sideEffects": false,
   "type": "module",
   "module": "./index.js",
