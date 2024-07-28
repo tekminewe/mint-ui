@@ -1,5 +1,5 @@
 {
-  "name": "@mint/ui",
+  "name": "mint-ui",
   "sideEffects": false,
   "type": "module",
   "module": "./index.js",
