@@ -53,6 +53,7 @@ export default defineConfig({
   plugins: [
     react(),
     dts({
+      tsconfigPath: "./tsconfig.build.json",
       beforeWriteFile: (filePath: string) => {
         return { filePath: filePath.replace("/components", "") };
       },
@@ -74,11 +75,13 @@ export default defineConfig({
     },
   },
   build: {
+    emptyOutDir: true,
+    copyPublicDir: false,
     lib: {
       entry: {
         ...entryFiles,
-        "tailwind-plugin": path.resolve(__dirname, "./plugin.ts"),
       },
+      formats: ["es", "cjs"],
       fileName(format, entryName) {
         if (entryName === "plugin" || entryName === "index") {
           return `${entryName}.${format === "es" ? "js" : "cjs"}`;
@@ -87,29 +90,14 @@ export default defineConfig({
       },
     },
     rollupOptions: {
-      external: ["react", "react/jsx-runtime", "@radix-ui/themes"],
+      external: ["react", "react/jsx-runtime"],
       output: {
         globals: {
           react: "React",
           "react/jsx-runtime": "jsxRuntime",
         },
       },
-      plugins: [
-        [
-          ...subFolderJsonConfigs,
-          {
-            outputFolder: `./dist/tailwind-plugin`,
-            baseContents: {
-              name: `${packageJson.name}/tailwind-plugin`,
-              main: packageJson.main,
-              module: packageJson.module,
-              types: packageJson.types,
-              sideEffects: packageJson.sideEffects,
-              exports: packageJson.exports,
-            },
-          },
-        ].map(generatePackageJson),
-      ],
+      plugins: [[...subFolderJsonConfigs].map(generatePackageJson)],
     },
   },
 });

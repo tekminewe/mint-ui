@@ -1,5 +1,5 @@
-'use client';
+"use client";
 
-import { Command as Cmdk } from 'cmdk';
+import { Command as Cmdk } from "cmdk";
 
-export const Command = Cmdk;
+export const Command: typeof Cmdk = Cmdk;
