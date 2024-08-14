@@ -86,6 +86,13 @@ export default () => {
           8: "calc(3rem * var(--scaling))",
           9: "calc(4rem * var(--scaling))",
         },
+        screens: {
+          xs: "520px",
+          sm: "768px",
+          md: "1024px",
+          lg: "1280px",
+          xl: "1640px",
+        },
       },
     }
   );
