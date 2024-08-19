@@ -15,8 +15,10 @@ import { defaultExtensions } from "./extension";
 import { slashCommand, suggestionItems } from "./suggestion";
 import { useDebouncedCallback } from "use-debounce";
 
+export type OnChangeHandler = (params: { content: JSONContent }) => void;
+
 export interface RichTextEditorProps {
-  onChange?: (params: { content: JSONContent }) => void;
+  onChange?: OnChangeHandler;
 
   /**
    * The time to wait in miliseconds before updating the editor content
