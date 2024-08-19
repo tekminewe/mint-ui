@@ -1,29 +1,29 @@
 import {
-  CheckSquare,
-  Code,
+  // CheckSquare,
+  // Code,
   Heading1,
   Heading2,
   Heading3,
-  List,
-  ListOrdered,
-  MessageSquarePlus,
+  // List,
+  // ListOrdered,
+  // MessageSquarePlus,
   Text,
-  TextQuote,
+  // TextQuote,
 } from "lucide-react";
 import { createSuggestionItems } from "novel/extensions";
 // import { startImageUpload } from "novel/plugins";
 import { Command, renderItems } from "novel/extensions";
 
 export const suggestionItems = createSuggestionItems([
-  {
-    title: "Send Feedback",
-    description: "Let us know how we can improve.",
-    icon: <MessageSquarePlus size={18} />,
-    command: ({ editor, range }) => {
-      editor.chain().focus().deleteRange(range).run();
-      window.open("/feedback", "_blank");
-    },
-  },
+  // {
+  //   title: "Send Feedback",
+  //   description: "Let us know how we can improve.",
+  //   icon: <MessageSquarePlus size={18} />,
+  //   command: ({ editor, range }) => {
+  //     editor.chain().focus().deleteRange(range).run();
+  //     window.open("/feedback", "_blank");
+  //   },
+  // },
   {
     title: "Text",
     description: "Just start typing with plain text.",
@@ -38,15 +38,15 @@ export const suggestionItems = createSuggestionItems([
         .run();
     },
   },
-  {
-    title: "To-do List",
-    description: "Track tasks with a to-do list.",
-    searchTerms: ["todo", "task", "list", "check", "checkbox"],
-    icon: <CheckSquare size={18} />,
-    command: ({ editor, range }) => {
-      editor.chain().focus().deleteRange(range).toggleTaskList().run();
-    },
-  },
+  // {
+  //   title: "To-do List",
+  //   description: "Track tasks with a to-do list.",
+  //   searchTerms: ["todo", "task", "list", "check", "checkbox"],
+  //   icon: <CheckSquare size={18} />,
+  //   command: ({ editor, range }) => {
+  //     editor.chain().focus().deleteRange(range).toggleTaskList().run();
+  //   },
+  // },
   {
     title: "Heading 1",
     description: "Big section heading.",
@@ -89,46 +89,46 @@ export const suggestionItems = createSuggestionItems([
         .run();
     },
   },
-  {
-    title: "Bullet List",
-    description: "Create a simple bullet list.",
-    searchTerms: ["unordered", "point"],
-    icon: <List size={18} />,
-    command: ({ editor, range }) => {
-      editor.chain().focus().deleteRange(range).toggleBulletList().run();
-    },
-  },
-  {
-    title: "Numbered List",
-    description: "Create a list with numbering.",
-    searchTerms: ["ordered"],
-    icon: <ListOrdered size={18} />,
-    command: ({ editor, range }) => {
-      editor.chain().focus().deleteRange(range).toggleOrderedList().run();
-    },
-  },
-  {
-    title: "Quote",
-    description: "Capture a quote.",
-    searchTerms: ["blockquote"],
-    icon: <TextQuote size={18} />,
-    command: ({ editor, range }) =>
-      editor
-        .chain()
-        .focus()
-        .deleteRange(range)
-        .toggleNode("paragraph", "paragraph")
-        .toggleBlockquote()
-        .run(),
-  },
-  {
-    title: "Code",
-    description: "Capture a code snippet.",
-    searchTerms: ["codeblock"],
-    icon: <Code size={18} />,
-    command: ({ editor, range }) =>
-      editor.chain().focus().deleteRange(range).toggleCodeBlock().run(),
-  },
+  // {
+  //   title: "Bullet List",
+  //   description: "Create a simple bullet list.",
+  //   searchTerms: ["unordered", "point"],
+  //   icon: <List size={18} />,
+  //   command: ({ editor, range }) => {
+  //     editor.chain().focus().deleteRange(range).toggleBulletList().run();
+  //   },
+  // },
+  // {
+  //   title: "Numbered List",
+  //   description: "Create a list with numbering.",
+  //   searchTerms: ["ordered"],
+  //   icon: <ListOrdered size={18} />,
+  //   command: ({ editor, range }) => {
+  //     editor.chain().focus().deleteRange(range).toggleOrderedList().run();
+  //   },
+  // },
+  // {
+  //   title: "Quote",
+  //   description: "Capture a quote.",
+  //   searchTerms: ["blockquote"],
+  //   icon: <TextQuote size={18} />,
+  //   command: ({ editor, range }) =>
+  //     editor
+  //       .chain()
+  //       .focus()
+  //       .deleteRange(range)
+  //       .toggleNode("paragraph", "paragraph")
+  //       .toggleBlockquote()
+  //       .run(),
+  // },
+  // {
+  //   title: "Code",
+  //   description: "Capture a code snippet.",
+  //   searchTerms: ["codeblock"],
+  //   icon: <Code size={18} />,
+  //   command: ({ editor, range }) =>
+  //     editor.chain().focus().deleteRange(range).toggleCodeBlock().run(),
+  // },
 ]);
 
 export const slashCommand = Command.configure({

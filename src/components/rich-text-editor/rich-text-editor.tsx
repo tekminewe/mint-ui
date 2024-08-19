@@ -6,31 +6,66 @@ import {
   EditorCommandItem,
   EditorCommandList,
   EditorContent,
+  EditorInstance,
   EditorRoot,
+  JSONContent,
 } from "novel";
 import { handleCommandNavigation } from "novel/extensions";
 import { defaultExtensions } from "./extension";
 import { slashCommand, suggestionItems } from "./suggestion";
+import { useDebouncedCallback } from "use-debounce";
+
+export interface RichTextEditorProps {
+  onChange?: (params: { content: JSONContent }) => void;
+
+  /**
+   * The time to wait in miliseconds before updating the editor content
+   * @default 3000
+   * @example 5000
+   */
+  debounceTime?: number;
+
+  /**
+   * The maximum time to wait in miliseconds before updating the editor content
+   * @example 10000
+   * @default 10000
+   */
+  maxWait?: number;
+}
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 export const extensions = [...defaultExtensions, slashCommand];
 
-export const RichTextEditor = () => {
+export const RichTextEditor = ({
+  onChange,
+  debounceTime = 3000,
+  maxWait = 10000,
+}: RichTextEditorProps) => {
+  const debouncedUpdates = useDebouncedCallback(
+    async (editor: EditorInstance) => {
+      const content = editor.getJSON();
+      onChange?.({ content });
+    },
+    debounceTime,
+    { maxWait: maxWait }
+  );
   return (
     <EditorRoot>
       <EditorContent
+        className="p-2"
         extensions={extensions}
+        onUpdate={({ editor }) => debouncedUpdates(editor)}
         editorProps={{
           handleDOMEvents: {
             keydown: (_view, event) => handleCommandNavigation(event),
           },
           attributes: {
-            class: `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full`,
+            class: `prose prose-headings:font-title font-default focus:outline-none max-w-full`,
           },
         }}
       ></EditorContent>
-      <EditorCommand className="z-50 h-auto max-h-[330px]  w-72 overflow-y-auto rounded-md border border-muted bg-background px-1 py-2 shadow-md transition-all">
+      <EditorCommand className="z-50 h-auto max-h-[330px] w-72 overflow-y-auto rounded-md border border-muted bg-background px-1 py-2 shadow-md transition-all">
         <EditorCommandEmpty className="px-2 text-muted-foreground">
           No results
         </EditorCommandEmpty>

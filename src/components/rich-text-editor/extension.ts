@@ -9,7 +9,9 @@ import {
 } from "novel/extensions";
 import { cn } from "../utils";
 
-const placeholder = Placeholder;
+const placeholder = Placeholder.configure({
+  placeholder: "Write something..., '/' for commands",
+});
 const tiptapLink = TiptapLink.configure({
   HTMLAttributes: {
     class: cn(
