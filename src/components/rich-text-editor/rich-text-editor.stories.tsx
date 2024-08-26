@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { RichTextEditor } from "./rich-text-editor";
+import { RichTextEditor } from "./rich-text-editor.v2";
 
 const meta = {
   title: "Smart Component / Rich Text Editor",
