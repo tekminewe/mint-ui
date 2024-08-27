@@ -7,11 +7,16 @@ import {
   JSONContent,
   useEditor,
   EditorContent,
+  Editor,
 } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import "./rich-text-editor.module.scss";
 import { NodeCommand, OnItemClickHandler } from "./node-command";
+import { Figure } from "./figure-extensions";
+import { useDebouncedCallback } from "use-debounce";
+
+export type OnChangeHandler = (params: { content: JSONContent }) => void;
 
 export interface RichTextEditorProps {
   /**
@@ -26,13 +31,54 @@ export interface RichTextEditorProps {
    * @example "Write a blog post..."
    */
   placeholder?: string;
+
+  /**
+   * Callback function that is called when the editor content changes.
+   * @example ({ content }) => console.log(content)
+   */
+  onChange?: OnChangeHandler;
+
+  /**
+   * The time to wait in miliseconds before updating the editor content
+   * @default 2000
+   * @example 5000
+   */
+  debounceTime?: number;
+
+  /**
+   * The maximum time to wait in miliseconds before updating the editor content
+   * @example 5000
+   * @default 10000
+   */
+  maxWait?: number;
+
+  /**
+   * Callback function that is called when an image is uploaded.
+   * @param file
+   * @returns
+   */
+  onImageUpload?: (file: File) => Promise<{ url: string; caption?: string }>;
 }
 
 export const RichTextEditor = ({
+  onChange,
+  maxWait = 5000,
+  debounceTime = 2000,
   content,
   placeholder = "Write something...",
+  onImageUpload,
 }: RichTextEditorProps) => {
+  const debouncedUpdates = useDebouncedCallback(
+    async ({ editor }: { editor: Editor }) => {
+      const content = editor.getJSON();
+      onChange?.({ content });
+    },
+    debounceTime,
+    { maxWait: maxWait }
+  );
+
   const editor = useEditor({
+    onUpdate: debouncedUpdates,
     extensions: [
       StarterKit as AnyExtension,
       Placeholder.configure({
@@ -44,6 +90,7 @@ export const RichTextEditor = ({
           return placeholder;
         },
       }) as AnyExtension,
+      Figure as AnyExtension,
     ],
     content,
   });
@@ -62,6 +109,30 @@ export const RichTextEditor = ({
       case "heading-3":
         editor.chain().focus().toggleHeading({ level: 4 }).run();
         break;
+      case "image": {
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = "image/*";
+        input.onchange = async () => {
+          if (input.files?.length) {
+            const file = input.files[0];
+            try {
+              const { url } = (await onImageUpload?.(file)) ?? {
+                url: undefined,
+              };
+              if (!url) {
+                return;
+              }
+              editor.chain().focus().setFigure({ src: url, caption: "" }).run();
+            } catch (e) {
+              console.error(e);
+              // Silent error
+            }
+          }
+        };
+        input.click();
+        break;
+      }
     }
   };
 

@@ -23,7 +23,7 @@ export const NodeCommandItem = ({
         align="center"
         px="2"
         py="2"
-        className="cursor-pointer hover:bg-gray-4"
+        className="cursor-pointer hover:bg-gray-4 bg-gray-1"
       >
         {icon}
         <div>
