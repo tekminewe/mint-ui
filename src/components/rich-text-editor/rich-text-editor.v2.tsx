@@ -138,7 +138,10 @@ export const RichTextEditor = ({
 
   return (
     <div className="p-8">
-      <EditorContent className="prose" editor={editor} />
+      <EditorContent
+        className="prose prose-figcaption:text-center"
+        editor={editor}
+      />
       <FloatingMenu
         shouldShow={({ editor }) => editor.isActive("paragraph")}
         editor={editor}
