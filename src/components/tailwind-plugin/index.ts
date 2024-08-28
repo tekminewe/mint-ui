@@ -9,7 +9,13 @@ export default () => {
 
   return plugin(
     (args) => {
-      const { addComponents } = args;
+      const { addComponents, addBase, theme } = args;
+      addBase({
+        body: {
+          fontSize: theme("fontSize.base"),
+          lineHeight: theme("leading.5"),
+        },
+      });
       addComponents({
         ".radix-themes": {
           borderColor: "var(--accent-a6)",

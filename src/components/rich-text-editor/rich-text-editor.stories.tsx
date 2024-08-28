@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     onImageUpload: async (file: File) => {
-      return { url: URL.createObjectURL(file) };
+      return { src: URL.createObjectURL(file) };
     },
     onChange: ({ content }) => console.log(content),
   },

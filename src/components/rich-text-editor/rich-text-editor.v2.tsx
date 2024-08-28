@@ -11,10 +11,12 @@ import {
 } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
+import CodeBlock from "@tiptap/extension-code-block-lowlight";
 import "./rich-text-editor.module.scss";
 import { NodeCommand, OnItemClickHandler } from "./node-command";
 import { Figure } from "./figure-extensions";
 import { useDebouncedCallback } from "use-debounce";
+import { all, createLowlight } from "lowlight";
 
 export type OnChangeHandler = (params: { content: JSONContent }) => void;
 
@@ -57,8 +59,10 @@ export interface RichTextEditorProps {
    * @param file
    * @returns
    */
-  onImageUpload?: (file: File) => Promise<{ url: string; caption?: string }>;
+  onImageUpload?: (file: File) => Promise<{ src: string; caption?: string }>;
 }
+
+const lowlight = createLowlight(all);
 
 export const RichTextEditor = ({
   onChange,
@@ -91,6 +95,9 @@ export const RichTextEditor = ({
         },
       }) as AnyExtension,
       Figure as AnyExtension,
+      CodeBlock.configure({
+        lowlight,
+      }) as AnyExtension,
     ],
     content,
   });
@@ -117,13 +124,13 @@ export const RichTextEditor = ({
           if (input.files?.length) {
             const file = input.files[0];
             try {
-              const { url } = (await onImageUpload?.(file)) ?? {
-                url: undefined,
+              const { src } = (await onImageUpload?.(file)) ?? {
+                src: undefined,
               };
-              if (!url) {
+              if (!src) {
                 return;
               }
-              editor.chain().focus().setFigure({ src: url, caption: "" }).run();
+              editor.chain().focus().setFigure({ src, caption: "" }).run();
             } catch (e) {
               console.error(e);
               // Silent error
@@ -133,6 +140,9 @@ export const RichTextEditor = ({
         input.click();
         break;
       }
+      case "code-block":
+        editor.chain().focus().toggleCodeBlock().run();
+        break;
     }
   };
 

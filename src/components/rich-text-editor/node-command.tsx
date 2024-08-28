@@ -2,7 +2,12 @@ import { Command } from "cmdk";
 import { Heading1, Heading2, Heading3, Image } from "lucide-react";
 import { NodeCommandItem } from "./node-command-item";
 
-export type ItemType = "heading-1" | "heading-2" | "heading-3" | "image";
+export type ItemType =
+  | "heading-1"
+  | "heading-2"
+  | "heading-3"
+  | "image"
+  | "code-block";
 export type OnItemClickHandler = ({ id }: { id: ItemType }) => void;
 
 interface NodeCommandProps {
@@ -37,6 +42,12 @@ export const NodeCommand = ({ onItemClick }: NodeCommandProps) => {
             title="Image"
             description="Upload an image"
             onClick={() => onItemClick?.({ id: "image" })}
+          />
+          <NodeCommandItem
+            icon={<Image size={24} />}
+            title="Code Block"
+            description="Insert a code snippet"
+            onClick={() => onItemClick?.({ id: "code-block" })}
           />
         </Command.Group>
       </Command.List>
