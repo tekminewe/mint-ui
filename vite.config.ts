@@ -65,6 +65,11 @@ export default defineConfig({
           dest: path.resolve(__dirname, "./dist"),
           rename: () => "styles.css",
         },
+        {
+          src: path.resolve(__dirname, "./src/prosemirror.css"),
+          dest: path.resolve(__dirname, "./dist"),
+          rename: () => "prosemirror.css",
+        },
       ],
     }),
   ],

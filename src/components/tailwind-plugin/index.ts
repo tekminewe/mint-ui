@@ -1,18 +1,37 @@
 import plugin from "tailwindcss/plugin";
+import typography from "@tailwindcss/typography";
 
 /** @type {import('./src/components/types').PluginCreator} */
 export default () => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const { handler, config } = typography();
+
   return plugin(
-    ({ addComponents }) => {
+    (args) => {
+      const { addComponents, addBase, theme } = args;
+      addBase({
+        body: {
+          fontSize: theme("fontSize.base"),
+          lineHeight: theme("leading.5"),
+        },
+      });
       addComponents({
         ".radix-themes": {
           borderColor: "var(--accent-a6)",
         },
       });
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      handler(args);
     },
     {
+      ...config,
       theme: {
+        ...config.theme,
         colors: {
+          ...config.colors,
           accent: {
             1: "var(--accent-1)",
             2: "var(--accent-2)",
@@ -75,6 +94,7 @@ export default () => {
           },
         },
         spacing: {
+          ...config.spacing,
           0: "0",
           1: "calc(0.25rem * var(--scaling))",
           2: "calc(0.5rem * var(--scaling))",

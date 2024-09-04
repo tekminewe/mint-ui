@@ -40,3 +40,4 @@ export { ProductList } from "./components/product-list";
 export { Skeleton } from "./components/skeleton";
 export { PostItem } from "./components/post-item";
 export { Caption } from "./components/caption";
+export { RichTextEditor } from "./components/rich-text-editor";
