@@ -69,7 +69,20 @@ export const Primary: Story = {
             },
             {
               type: "text",
-              text: " adipiscing elit. Vestibulum cursus fermentum justo eget congue. Fusce lorem elit, pharetra at mauris sed, tempus pellentesque odio. Etiam ullamcorper enim vitae nulla egestas faucibus. Nam lacinia, magna sed pharetra condimentum, nunc tellus tincidunt libero, quis venenatis tortor sem quis quam. Phasellus vitae risus vitae arcu ullamcorper tincidunt. Suspendisse efficitur ullamcorper lectus, quis imperdiet sem volutpat nec. Donec blandit, dolor at semper ultrices, nunc nisi venenatis lorem, et aliquet justo risus id leo. Integer dictum lorem in metus interdum facilisis. In tristique sed leo vel tincidunt.",
+              text: " adipiscing elit. ",
+            },
+            {
+              type: "text",
+              marks: [
+                {
+                  type: "italic",
+                },
+              ],
+              text: "Vestibulum",
+            },
+            {
+              type: "text",
+              text: " cursus fermentum justo eget congue. Fusce lorem elit, pharetra at mauris sed, tempus pellentesque odio. Etiam ullamcorper enim vitae nulla egestas faucibus. Nam lacinia, magna sed pharetra condimentum, nunc tellus tincidunt libero, quis venenatis tortor sem quis quam. Phasellus vitae risus vitae arcu ullamcorper tincidunt. Suspendisse efficitur ullamcorper lectus, quis imperdiet sem volutpat nec. Donec blandit, dolor at semper ultrices, nunc nisi venenatis lorem, et aliquet justo risus id leo. Integer dictum lorem in metus interdum facilisis. In tristique sed leo vel tincidunt.",
             },
           ],
         },
