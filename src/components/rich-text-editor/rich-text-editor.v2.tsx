@@ -3,20 +3,15 @@
 import {
   FloatingMenu,
   // BubbleMenu,
-  AnyExtension,
   JSONContent,
   useEditor,
   EditorContent,
   Editor,
 } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import Placeholder from "@tiptap/extension-placeholder";
-import CodeBlock from "@tiptap/extension-code-block-lowlight";
 import "./rich-text-editor.module.scss";
 import { NodeCommand, OnItemClickHandler } from "./node-command";
-import { Figure } from "./figure-extensions";
 import { useDebouncedCallback } from "use-debounce";
-import { all, createLowlight } from "lowlight";
+import { useExtensions } from "./use-extensions";
 
 export type OnChangeHandler = (params: { content: JSONContent }) => void;
 
@@ -62,8 +57,6 @@ export interface RichTextEditorProps {
   onImageUpload?: (file: File) => Promise<{ src: string; caption?: string }>;
 }
 
-const lowlight = createLowlight(all);
-
 export const RichTextEditor = ({
   onChange,
   maxWait = 5000,
@@ -81,24 +74,10 @@ export const RichTextEditor = ({
     { maxWait: maxWait }
   );
 
+  const extensions = useExtensions({ defaultPlaceholder: placeholder });
   const editor = useEditor({
     onUpdate: debouncedUpdates,
-    extensions: [
-      StarterKit as AnyExtension,
-      Placeholder.configure({
-        placeholder: ({ node }) => {
-          if (node.type.name === "heading") {
-            return `Heading ${node.attrs.level - 1}`;
-          }
-
-          return placeholder;
-        },
-      }) as AnyExtension,
-      Figure as AnyExtension,
-      CodeBlock.configure({
-        lowlight,
-      }) as AnyExtension,
-    ],
+    extensions,
     content,
   });
 
