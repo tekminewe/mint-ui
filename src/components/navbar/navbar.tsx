@@ -19,6 +19,13 @@ export interface NavbarProps extends HTMLAttributes<HTMLDivElement> {
    * @default "md"
    */
   mobileBreakpoint?: "xl" | "lg" | "md" | "sm" | "xs";
+
+  /**
+   * Class name for the container element.
+   * @default undefined
+   * @example "border-b"
+   */
+  containerClassName?: string;
 }
 
 const hideOnMobileClassName = (
@@ -60,6 +67,7 @@ export const Navbar = ({
   className,
   drawerContent,
   mobileBreakpoint = "md",
+  containerClassName,
   ...props
 }: NavbarProps) => {
   return (
@@ -72,7 +80,7 @@ export const Navbar = ({
         width="100%"
         height="4rem"
         {...props}
-        className={cn(className, "border-b")}
+        className={cn(containerClassName, "border-b")}
       >
         <DrawerRoot>
           <DrawerTrigger className={showOnMobileClassName(mobileBreakpoint)}>
@@ -83,7 +91,9 @@ export const Navbar = ({
           </Drawer>
         </DrawerRoot>
         <Container>
-          <Flex align="center">{children}</Flex>
+          <Flex align="center" className={className}>
+            {children}
+          </Flex>
         </Container>
       </Flex>
     </NavbarContext.Provider>
