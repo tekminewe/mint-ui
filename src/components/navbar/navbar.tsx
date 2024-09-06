@@ -1,7 +1,7 @@
 "use client";
 
 import { HTMLAttributes, ReactNode } from "react";
-import { Drawer } from "../drawer";
+import { Drawer, DrawerRoot, DrawerTrigger } from "../drawer";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { cn } from "../utils";
 import { Flex } from "../flex";
@@ -19,6 +19,13 @@ export interface NavbarProps extends HTMLAttributes<HTMLDivElement> {
    * @default "md"
    */
   mobileBreakpoint?: "xl" | "lg" | "md" | "sm" | "xs";
+
+  /**
+   * Class name for the container element.
+   * @default undefined
+   * @example "border-b"
+   */
+  containerClassName?: string;
 }
 
 const hideOnMobileClassName = (
@@ -60,6 +67,7 @@ export const Navbar = ({
   className,
   drawerContent,
   mobileBreakpoint = "md",
+  containerClassName,
   ...props
 }: NavbarProps) => {
   return (
@@ -72,18 +80,20 @@ export const Navbar = ({
         width="100%"
         height="4rem"
         {...props}
-        className={cn(className, "border-b")}
+        className={cn(containerClassName, "border-b")}
       >
-        <Drawer.Root>
-          <Drawer.Trigger className={showOnMobileClassName(mobileBreakpoint)}>
+        <DrawerRoot>
+          <DrawerTrigger className={showOnMobileClassName(mobileBreakpoint)}>
             <HamburgerMenuIcon width={28} height={28} />
-          </Drawer.Trigger>
+          </DrawerTrigger>
           <Drawer className="bg-accent-1 text-gray-11 fixed top-0 bottom-0 h-screen w-80">
             {drawerContent}
           </Drawer>
-        </Drawer.Root>
+        </DrawerRoot>
         <Container>
-          <Flex align="center">{children}</Flex>
+          <Flex align="center" className={className}>
+            {children}
+          </Flex>
         </Container>
       </Flex>
     </NavbarContext.Provider>

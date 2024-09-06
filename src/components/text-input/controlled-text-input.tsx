@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { ITextInputProps, TextInput } from './text-input';
-import { Controller, FieldValues, UseControllerProps } from 'react-hook-form';
+import { TextInputProps, TextInput } from "./text-input";
+import { Controller, FieldValues, UseControllerProps } from "react-hook-form";
 
 interface IControlledTextInputProps<T extends FieldValues>
-  extends Omit<ITextInputProps, 'name' | 'defaultValue'>,
+  extends Omit<TextInputProps, "name" | "defaultValue">,
     UseControllerProps<T> {}
 
 export const ControlledTextInput = <T extends FieldValues>({
@@ -17,7 +17,9 @@ export const ControlledTextInput = <T extends FieldValues>({
       name={name}
       control={control}
       render={({ field, fieldState }) => {
-        return <TextInput {...props} {...field} error={fieldState.error?.message} />;
+        return (
+          <TextInput {...props} {...field} error={fieldState.error?.message} />
+        );
       }}
     />
   );

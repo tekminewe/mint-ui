@@ -11,6 +11,9 @@ export default () => {
     (args) => {
       const { addComponents, addBase, theme } = args;
       addBase({
+        ":root": {
+          "--mt-w-drawer": "350px",
+        },
         body: {
           fontSize: theme("fontSize.base"),
           lineHeight: theme("leading.5"),
@@ -20,6 +23,23 @@ export default () => {
         ".radix-themes": {
           borderColor: "var(--accent-a6)",
         },
+        "[vaul-drawer][vaul-drawer-visible=true][vaul-drawer-direction=right]":
+          {
+            right: "0",
+            top: "0",
+            height: "100vh",
+          },
+        "[vaul-drawer][vaul-drawer-visible=true][vaul-drawer-direction=left]": {
+          left: "0",
+          top: "0",
+          height: "100vh",
+        },
+        "[vaul-drawer][vaul-drawer-visible=true][vaul-drawer-direction=bottom]":
+          {
+            left: "0",
+            bottom: "0",
+            width: "100vw",
+          },
       });
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -105,6 +125,7 @@ export default () => {
           7: "calc(2.5rem * var(--scaling))",
           8: "calc(3rem * var(--scaling))",
           9: "calc(4rem * var(--scaling))",
+          drawer: "var(--mt-w-drawer)",
         },
         screens: {
           xs: "520px",
