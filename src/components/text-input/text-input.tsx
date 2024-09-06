@@ -5,7 +5,7 @@ import { Flex, TextField } from "@radix-ui/themes";
 import { Text } from "../text";
 import { FormLabel } from "../form";
 
-export interface ITextInputProps extends TextField.RootProps {
+export interface TextInputProps extends TextField.RootProps {
   icon?: React.ReactNode;
   label?: string;
   error?: string;
@@ -14,7 +14,7 @@ export interface ITextInputProps extends TextField.RootProps {
   labelClassName?: string;
 }
 
-export const TextInput = forwardRef<HTMLInputElement, ITextInputProps>(
+export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   (
     {
       containerClassName,
