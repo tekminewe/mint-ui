@@ -1,10 +1,4 @@
-import {
-  forwardRef,
-  InputHTMLAttributes,
-  useId,
-  useImperativeHandle,
-  useRef,
-} from "react";
+import { forwardRef, InputHTMLAttributes, useId } from "react";
 import { Flex } from "../flex";
 import { FormLabel } from "../form";
 import { TextField } from "@radix-ui/themes";
@@ -81,8 +75,6 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
   ) => {
     const customId = useId();
     const inputId = id ?? customId;
-    const inputRef = useRef<HTMLInputElement>(null);
-    useImperativeHandle(ref, () => inputRef.current!);
 
     const renderDescription = () => {
       if (error) {
@@ -124,7 +116,7 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
             type="file"
             accept={accept}
             id={inputId}
-            ref={inputRef}
+            ref={ref}
             className="hidden"
             {...props}
           />
@@ -139,7 +131,6 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
               justify="center"
               align="center"
               className="w-full cursor-pointer h-9 text-gray-8 bg-gray-2 border-dashed border rounded-md"
-              onClick={() => inputRef.current?.click()}
             >
               Upload an image
             </Flex>
