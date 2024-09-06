@@ -1,25 +1,53 @@
 "use client";
 
 import { Drawer as Vaul } from "vaul";
-import { DrawerRoot } from "./drawer-root";
 import { cn } from "../utils";
 import { CSSProperties } from "react";
 
-export interface IDrawerProps {
-  children: React.ReactNode;
+export interface DrawerProps {
+  /**
+   * Content of the drawer
+   * @default undefined
+   * @example "Drawer Content"
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Custom class name
+   * @default undefined
+   * @example "text-white"
+   */
   className?: string;
+
+  /**
+   * Custom style
+   * @default undefined
+   * @example { maxWidth: "80%" }
+   */
   style?: CSSProperties;
+
+  /**
+   * Container to render the drawer
+   * @default document.body
+   * @example document.querySelector("#drawer-container")
+   */
   container?: HTMLElement | null;
+
+  /**
+   * Show overlay
+   * @default true
+   * @example false
+   */
   showOverlay?: boolean;
 }
 
-export const Drawer = ({
+export const Drawer: React.FC<DrawerProps> = ({
   children,
   container,
   className,
   style,
   showOverlay = true,
-}: IDrawerProps) => {
+}: DrawerProps) => {
   return (
     <Vaul.Portal container={container}>
       {showOverlay && (
@@ -27,15 +55,13 @@ export const Drawer = ({
       )}
       <Vaul.Content
         style={style}
-        className={cn("bg-accent-12 flex flex-col", className)}
+        className={cn(
+          "bg-gray-1 flex flex-col w-drawer fixed outline-none p-4",
+          className
+        )}
       >
-        <Vaul.Title className="hidden">Sidebar</Vaul.Title>
         {children}
       </Vaul.Content>
     </Vaul.Portal>
   );
 };
-
-Drawer.Root = DrawerRoot;
-Drawer.Trigger = Vaul.Trigger;
-Drawer.Title = Vaul.Title;

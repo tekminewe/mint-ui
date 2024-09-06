@@ -3,13 +3,14 @@
 import { MixerHorizontalIcon } from "@radix-ui/react-icons";
 import { Button } from "../button";
 import { Flex } from "../flex";
-import { Drawer } from "../drawer";
+import { Drawer, DrawerRoot, DrawerTrigger } from "../drawer";
 import { Select } from "../select";
 import { FormEvent, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { DatePicker } from "../date-picker";
 import { cn } from "../utils";
 import { Badge } from "../badge";
+import { DrawerTitle } from "../drawer/drawer-title";
 
 interface IDataTableFilterColumnOption {
   value: string;
@@ -68,13 +69,13 @@ export const Filter = <T extends IDataTableFilterState>({
   };
 
   return (
-    <Drawer.Root
+    <DrawerRoot
       open={open}
       onOpenChange={setOpen}
       direction={isDesktop ? "right" : "bottom"}
     >
       <Flex>
-        <Drawer.Trigger asChild>
+        <DrawerTrigger asChild>
           <Button
             variant="ghost"
             className={cn({
@@ -84,15 +85,13 @@ export const Filter = <T extends IDataTableFilterState>({
             <MixerHorizontalIcon /> Filter
             {hasFilter && <Badge variant="solid">{filterCount}</Badge>}
           </Button>
-        </Drawer.Trigger>
+        </DrawerTrigger>
       </Flex>
       <Drawer className="bg-white fixed bottom-0 left-0 md:left-auto md:h-screen md:w-80 right-0 p-4 rounded-t-md md:rounded-none">
-        <Flex mb="4" align="center" gap="1" asChild>
-          <Drawer.Title>
-            <MixerHorizontalIcon width="18" height="18" />
-            Filter
-          </Drawer.Title>
-        </Flex>
+        <DrawerTitle>
+          <MixerHorizontalIcon width="18" height="18" />
+          Filter
+        </DrawerTitle>
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           {columns.map((column, index) => {
@@ -141,6 +140,6 @@ export const Filter = <T extends IDataTableFilterState>({
           </div>
         </form>
       </Drawer>
-    </Drawer.Root>
+    </DrawerRoot>
   );
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import { HTMLAttributes, ReactNode } from "react";
-import { Drawer } from "../drawer";
+import { Drawer, DrawerRoot, DrawerTrigger } from "../drawer";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { cn } from "../utils";
 import { Flex } from "../flex";
@@ -74,14 +74,14 @@ export const Navbar = ({
         {...props}
         className={cn(className, "border-b")}
       >
-        <Drawer.Root>
-          <Drawer.Trigger className={showOnMobileClassName(mobileBreakpoint)}>
+        <DrawerRoot>
+          <DrawerTrigger className={showOnMobileClassName(mobileBreakpoint)}>
             <HamburgerMenuIcon width={28} height={28} />
-          </Drawer.Trigger>
+          </DrawerTrigger>
           <Drawer className="bg-accent-1 text-gray-11 fixed top-0 bottom-0 h-screen w-80">
             {drawerContent}
           </Drawer>
-        </Drawer.Root>
+        </DrawerRoot>
         <Container>
           <Flex align="center">{children}</Flex>
         </Container>
