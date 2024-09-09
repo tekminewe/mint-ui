@@ -99,6 +99,18 @@ export const Primary: Story = {
           ],
         },
         {
+          type: "codeBlock",
+          attrs: {
+            language: "bash",
+          },
+          content: [
+            {
+              type: "text",
+              text: "$ ssh -i ./path/to/<KEYPAIR>.pem -f -N -L <RDS_PORT>:<RDS_DNS>:<RDS_PORT> ec2-user@<BASTION_HOST_IP> -v",
+            },
+          ],
+        },
+        {
           type: "figure",
           attrs: {
             src: "blob:http://localhost:6006/b853d58b-7308-40dd-a2ca-16387eb2cc2e",

@@ -65,11 +65,6 @@ export default defineConfig({
           dest: path.resolve(__dirname, "./dist"),
           rename: () => "styles.css",
         },
-        {
-          src: path.resolve(__dirname, "./src/prosemirror.css"),
-          dest: path.resolve(__dirname, "./dist"),
-          rename: () => "prosemirror.css",
-        },
       ],
     }),
   ],
@@ -78,6 +73,9 @@ export default defineConfig({
       assets: path.resolve(__dirname, "./src/assets"),
       components: path.resolve(__dirname, "./src/components"),
     },
+  },
+  optimizeDeps: {
+    include: ["highlight.js"],
   },
   build: {
     emptyOutDir: true,

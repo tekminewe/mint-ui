@@ -1,3 +1,5 @@
+"use client";
+
 import { generateHTML, JSONContent } from "@tiptap/core";
 import { useMemo } from "react";
 import { useExtensions } from "./use-extensions";
