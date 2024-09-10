@@ -1,7 +1,10 @@
-import { generateHTML, JSONContent } from "@tiptap/core";
+"use client";
+
+import { JSONContent } from "@tiptap/core";
 import { useMemo } from "react";
-import { useExtensions } from "./use-extensions";
-import "./rich-text-editor.module.scss";
+import { useExtensions } from "../rich-text-editor/use-extensions";
+import "../rich-text-editor/rich-text-editor.module.scss";
+import { generateHTML } from "@tiptap/html";
 
 export interface RichTextPreviewProps {
   content: JSONContent;
