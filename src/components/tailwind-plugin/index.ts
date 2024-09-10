@@ -112,6 +112,8 @@ export default () => {
             track: "var(--gray-track)",
             contrast: "var(--gray-contrast)",
           },
+          background: "var(--color-background)",
+          overlay: "var(--color-overlay)",
         },
         spacing: {
           ...config.spacing,
