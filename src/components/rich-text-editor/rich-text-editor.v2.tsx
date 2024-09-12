@@ -2,7 +2,6 @@
 
 import {
   FloatingMenu,
-  // BubbleMenu,
   JSONContent,
   useEditor,
   EditorContent,
@@ -12,6 +11,7 @@ import "./rich-text-editor.module.scss";
 import { NodeCommand, OnItemClickHandler } from "./node-command";
 import { useDebouncedCallback } from "use-debounce";
 import { useExtensions } from "./use-extensions";
+import { LinkBubbleMenu } from "./link-bubble-menu";
 
 export type OnChangeHandler = (params: { content: JSONContent }) => void;
 
@@ -143,7 +143,7 @@ export const RichTextEditor = ({
       >
         <NodeCommand onItemClick={handleItemClick} />
       </FloatingMenu>
-      {/* <BubbleMenu editor={null}>This is the bubble menu</BubbleMenu> */}
+      {editor && <LinkBubbleMenu editor={editor} />}
     </div>
   );
 };
