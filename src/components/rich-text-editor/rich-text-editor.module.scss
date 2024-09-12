@@ -16,4 +16,18 @@
       margin: 0 auto;
     }
   }
+
+  code::before {
+    content: "";
+  }
+
+  :not(pre) > code {
+    background-color: var(--gray-a3);
+    padding: 0.15em 0.3em;
+    border-radius: 0.25em;
+  }
+
+  code::after {
+    content: "";
+  }
 }

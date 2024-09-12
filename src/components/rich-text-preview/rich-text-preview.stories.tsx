@@ -162,6 +162,31 @@ export const Primary: Story = {
         },
         {
           type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "This is the ",
+            },
+            {
+              type: "text",
+              marks: [
+                {
+                  type: "code",
+                },
+              ],
+              text: "inline code",
+            },
+            {
+              type: "text",
+              text: " . Do not mistaken with codeblock.",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+        },
+        {
+          type: "paragraph",
         },
       ],
     },
