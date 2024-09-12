@@ -99,24 +99,69 @@ export const Primary: Story = {
           ],
         },
         {
-          type: "codeBlock",
+          type: "figure",
           attrs: {
-            language: "bash",
+            src: "https://tekminewe.com/_next/image?url=%2Fassets%2Flogo.webp&w=384&q=75",
+            alt: null,
+            title: null,
           },
           content: [
             {
               type: "text",
-              text: "$ ssh -i ./path/to/<KEYPAIR>.pem -f -N -L <RDS_PORT>:<RDS_DNS>:<RDS_PORT> ec2-user@<BASTION_HOST_IP> -v",
+              text: "This is the caption for the figure",
             },
           ],
         },
         {
-          type: "figure",
-          attrs: {
-            src: "blob:http://localhost:6006/b853d58b-7308-40dd-a2ca-16387eb2cc2e",
-            alt: null,
-            title: null,
-          },
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "This is a ",
+            },
+            {
+              type: "text",
+              marks: [
+                {
+                  type: "link",
+                  attrs: {
+                    href: "https://tekminewe.com",
+                    target: "_blank",
+                    rel: "noopener noreferrer nofollow",
+                    class: null,
+                  },
+                },
+              ],
+              text: "link",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "This is a mailto:",
+            },
+            {
+              type: "text",
+              marks: [
+                {
+                  type: "link",
+                  attrs: {
+                    href: "mailto:johndoe@example.com",
+                    target: "_blank",
+                    rel: "noopener noreferrer nofollow",
+                    class: null,
+                  },
+                },
+              ],
+              text: "johndoe@example.com",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
         },
       ],
     },
