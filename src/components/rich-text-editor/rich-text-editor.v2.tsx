@@ -132,7 +132,12 @@ export const RichTextEditor = ({
         editor={editor}
       />
       <FloatingMenu
-        shouldShow={({ editor }) => editor.isActive("paragraph")}
+        shouldShow={({ editor, state }) => {
+          return (
+            editor.isActive("paragraph") &&
+            state.selection.$from.node().textContent.length === 0
+          );
+        }}
         editor={editor}
         tippyOptions={{ duration: 250, placement: "top-start" }}
       >
