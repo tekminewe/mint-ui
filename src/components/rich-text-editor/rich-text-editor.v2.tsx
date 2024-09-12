@@ -36,18 +36,18 @@ export interface RichTextEditorProps {
   onChange?: OnChangeHandler;
 
   /**
-   * The time to wait in miliseconds before updating the editor content
+   * The time to delay in miliseconds before callback for updating the editor content
    * @default 2000
    * @example 5000
    */
-  debounceTime?: number;
+  changeDelay?: number;
 
   /**
-   * The maximum time to wait in miliseconds before updating the editor content
+   * The maximum time to delay in miliseconds before callback for updating the editor content
    * @example 5000
    * @default 10000
    */
-  maxWait?: number;
+  maxChangeDelay?: number;
 
   /**
    * Callback function that is called when an image is uploaded.
@@ -59,8 +59,8 @@ export interface RichTextEditorProps {
 
 export const RichTextEditor = ({
   onChange,
-  maxWait = 5000,
-  debounceTime = 2000,
+  maxChangeDelay = 5000,
+  changeDelay = 2000,
   content,
   placeholder = "Write something...",
   onImageUpload,
@@ -70,8 +70,8 @@ export const RichTextEditor = ({
       const content = editor.getJSON();
       onChange?.({ content });
     },
-    debounceTime,
-    { maxWait: maxWait }
+    changeDelay,
+    { maxWait: maxChangeDelay }
   );
 
   const extensions = useExtensions({ defaultPlaceholder: placeholder });
