@@ -15,7 +15,7 @@ export const LinkBubbleMenu = ({ editor }: LinkBubbleMenuProps) => {
       }}
     >
       <ToggleGroup.Root
-        className="ToggleGroup"
+        className="bg-panel-solid shadow-5 p-1 space-x-1 rounded-2"
         type="multiple"
         value={editor.getAttributes("link").rel?.split(" ") ?? []}
         aria-label="Link rel options"
@@ -30,21 +30,21 @@ export const LinkBubbleMenu = ({ editor }: LinkBubbleMenuProps) => {
         }}
       >
         <ToggleGroup.Item
-          className="ToggleGroupItem"
+          className="px-2 py-1 data-[state=on]:bg-accent-9 data-[state=on]:text-accent-contrast rounded-2"
           value="nofollow"
           aria-label="nofollow"
         >
           nofollow
         </ToggleGroup.Item>
         <ToggleGroup.Item
-          className="ToggleGroupItem"
+          className="px-2 py-1 data-[state=on]:bg-accent-9 data-[state=on]:text-accent-contrast rounded-2"
           value="noreferrer"
           aria-label="noreferrer"
         >
           noreferrer
         </ToggleGroup.Item>
         <ToggleGroup.Item
-          className="ToggleGroupItem"
+          className="px-2 py-1 data-[state=on]:bg-accent-9 data-[state=on]:text-accent-contrast rounded-2"
           value="noopener"
           aria-label="noopener"
         >
