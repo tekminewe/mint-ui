@@ -9,3 +9,11 @@
 :global .ProseMirror {
   outline: none;
 }
+
+:global .prose {
+  figure {
+    img {
+      margin: 0 auto;
+    }
+  }
+}
