@@ -7,11 +7,12 @@ import {
   EditorContent,
   Editor,
 } from "@tiptap/react";
-import "./rich-text-editor.module.scss";
+import styles from "./rich-text-editor.module.scss";
 import { NodeCommand, OnItemClickHandler } from "./node-command";
 import { useDebouncedCallback } from "use-debounce";
 import { useExtensions } from "./use-extensions";
 import { LinkBubbleMenu } from "./link-bubble-menu";
+import { cn } from "../utils";
 
 export type OnChangeHandler = (params: { content: JSONContent }) => void;
 
@@ -126,9 +127,9 @@ export const RichTextEditor = ({
   };
 
   return (
-    <div className="p-8">
+    <div className={cn(styles.rte, "p-8")}>
       <EditorContent
-        className="prose prose-figcaption:text-center"
+        className={"prose prose-figcaption:text-center"}
         editor={editor}
       />
       <FloatingMenu
