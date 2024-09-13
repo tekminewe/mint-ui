@@ -1,18 +1,14 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { RichTextEditor } from "./rich-text-editor.v2";
+import { useState } from "react";
+import { JSONContent } from "@tiptap/core";
 
 const meta = {
   title: "Form / Rich Text Editor",
   component: RichTextEditor,
   tags: ["autodocs"],
-} satisfies Meta<typeof RichTextEditor>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Primary: Story = {
-  args: {
-    content: {
+  render: () => {
+    const [content, setContent] = useState<JSONContent>({
       type: "doc",
       content: [
         {
@@ -101,16 +97,113 @@ export const Primary: Story = {
         {
           type: "figure",
           attrs: {
-            src: "blob:http://localhost:6006/b853d58b-7308-40dd-a2ca-16387eb2cc2e",
+            src: "https://tekminewe.com/_next/image?url=%2Fassets%2Flogo.webp&w=384&q=75",
             alt: null,
             title: null,
           },
+          content: [
+            {
+              type: "text",
+              text: "This is the caption for the figure",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "This is a ",
+            },
+            {
+              type: "text",
+              marks: [
+                {
+                  type: "link",
+                  attrs: {
+                    href: "https://tekminewe.com",
+                    target: "_blank",
+                    rel: "noopener noreferrer nofollow",
+                    class: null,
+                  },
+                },
+              ],
+              text: "link",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "This is a mailto:",
+            },
+            {
+              type: "text",
+              marks: [
+                {
+                  type: "link",
+                  attrs: {
+                    href: "mailto:johndoe@example.com",
+                    target: "_blank",
+                    rel: "noopener noreferrer nofollow",
+                    class: null,
+                  },
+                },
+              ],
+              text: "johndoe@example.com",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "This is the ",
+            },
+            {
+              type: "text",
+              marks: [
+                {
+                  type: "code",
+                },
+              ],
+              text: "inline code",
+            },
+            {
+              type: "text",
+              text: " . Do not mistaken with codeblock.",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+        },
+        {
+          type: "paragraph",
         },
       ],
-    },
-    onImageUpload: async (file: File) => {
-      return { src: URL.createObjectURL(file) };
-    },
-    onChange: ({ content }) => console.log(content),
+    });
+    return (
+      <RichTextEditor
+        content={content}
+        onImageUpload={async (file: File) => {
+          return { src: URL.createObjectURL(file) };
+        }}
+        onChange={({ content }) => {
+          console.log(content);
+          setContent(content);
+        }}
+      />
+    );
   },
+} satisfies Meta<typeof RichTextEditor>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Primary: Story = {
+  args: {},
 };

@@ -52,6 +52,7 @@ export default () => {
         ...config.theme,
         colors: {
           ...config.colors,
+          "panel-solid": "var(--color-panel-solid)",
           accent: {
             1: "var(--accent-1)",
             2: "var(--accent-2)",
@@ -135,6 +136,24 @@ export default () => {
           md: "1024px",
           lg: "1280px",
           xl: "1640px",
+        },
+        boxShadow: {
+          "1": "var(--shadow-1)",
+          "2": "var(--shadow-2)",
+          "3": "var(--shadow-3)",
+          "4": "var(--shadow-4)",
+          "5": "var(--shadow-5)",
+          "6": "var(--shadow-6)",
+        },
+        borderRadius: {
+          "1": "var(--radius-1)",
+          "2": "var(--radius-2)",
+          "3": "var(--radius-3)",
+          "4": "var(--radius-4)",
+          "5": "var(--radius-5)",
+          "6": "var(--radius-6)",
+          full: "var(--radius-full)",
+          none: "0",
         },
       },
     }

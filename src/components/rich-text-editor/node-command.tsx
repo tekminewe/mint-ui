@@ -16,7 +16,7 @@ interface NodeCommandProps {
 
 export const NodeCommand = ({ onItemClick }: NodeCommandProps) => {
   return (
-    <Command className="border rounded-lg">
+    <Command className="border rounded-2">
       <Command.List>
         <Command.Group>
           <NodeCommandItem

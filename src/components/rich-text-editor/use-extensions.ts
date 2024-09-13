@@ -7,6 +7,7 @@ import { useMemo } from "react";
 import { Figure } from "./figure-extensions";
 import CodeBlock from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
+import Link from "@tiptap/extension-link";
 
 const lowlight = createLowlight(all);
 
@@ -33,6 +34,18 @@ export const useExtensions = ({
       CodeBlock.configure({
         lowlight,
       }) as AnyExtension,
+      Link.configure({
+        openOnClick: false,
+        autolink: true,
+        defaultProtocol: "https",
+        protocols: [
+          "mailto",
+          {
+            scheme: "tel",
+            optionalSlashes: true,
+          },
+        ],
+      }),
     ],
     [defaultPlaceholder]
   );
