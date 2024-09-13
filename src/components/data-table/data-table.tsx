@@ -173,7 +173,7 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
       <Card>
         <RadixTable.Root
           variant={variant}
-          className="bg-white rounded-lg overflow-hidden"
+          className="bg-white rounded-2 overflow-hidden"
         >
           <RadixTable.Header>
             {table.getHeaderGroups().map((headerGroup) => {
