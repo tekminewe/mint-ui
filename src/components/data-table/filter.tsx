@@ -87,7 +87,7 @@ export const Filter = <T extends IDataTableFilterState>({
           </Button>
         </DrawerTrigger>
       </Flex>
-      <Drawer className="bg-white fixed bottom-0 left-0 md:left-auto md:h-screen md:w-80 right-0 p-4 rounded-t-md md:rounded-none">
+      <Drawer className="bg-white fixed bottom-0 left-0 md:left-auto md:h-screen md:w-80 right-0 p-4 rounded-t-2 md:rounded-none">
         <DrawerTitle>
           <MixerHorizontalIcon width="18" height="18" />
           Filter

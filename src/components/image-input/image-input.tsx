@@ -130,7 +130,7 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
             <Flex
               justify="center"
               align="center"
-              className="w-full cursor-pointer h-9 text-gray-8 bg-gray-2 border-dashed border rounded-md"
+              className="w-full cursor-pointer h-9 text-gray-8 bg-gray-2 border-dashed border rounded-2"
             >
               Upload an image
             </Flex>

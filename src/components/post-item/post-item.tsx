@@ -36,7 +36,7 @@ export const PostItem = forwardRef<HTMLDivElement, PostItemProps>(
         ref={ref}
       >
         <Flex gap="4" className="relative md:static">
-          <Box className="relative flex-shrink-0 w-full aspect-[1] md:w-[256px] overflow-hidden rounded-lg border">
+          <Box className="relative flex-shrink-0 w-full aspect-[1] md:w-[256px] overflow-hidden rounded-2 border">
             <img
               src={imageUrl}
               alt={title}

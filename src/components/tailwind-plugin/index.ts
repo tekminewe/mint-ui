@@ -152,6 +152,8 @@ export default () => {
           "4": "var(--radius-4)",
           "5": "var(--radius-5)",
           "6": "var(--radius-6)",
+          full: "var(--radius-full)",
+          none: "0",
         },
       },
     }
