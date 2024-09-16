@@ -6,6 +6,7 @@ import { viteStaticCopy } from "vite-plugin-static-copy";
 import path from "path";
 import packageJson from "./package.dist.json";
 import { readdirSync } from "fs";
+import { libInjectCss } from "vite-plugin-lib-inject-css";
 
 // Generate package.json for each sub folder in src/components when building the library.
 const subFolderJsonConfigs = readdirSync("./src/components/")
@@ -52,6 +53,7 @@ const entryFiles = readdirSync("./src/components/").reduce(
 export default defineConfig({
   plugins: [
     react(),
+    libInjectCss(),
     dts({
       tsconfigPath: "./tsconfig.build.json",
       beforeWriteFile: (filePath: string) => {
