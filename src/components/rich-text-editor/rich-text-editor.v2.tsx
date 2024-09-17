@@ -13,6 +13,7 @@ import { useDebouncedCallback } from "use-debounce";
 import { useExtensions } from "./use-extensions";
 import { LinkBubbleMenu } from "./link-bubble-menu";
 import { cn } from "../utils";
+import { FigureBubbleMenu } from "./figure-bubble-menu";
 
 export type OnChangeHandler = (params: { content: JSONContent }) => void;
 
@@ -145,6 +146,7 @@ export const RichTextEditor = ({
         <NodeCommand onItemClick={handleItemClick} />
       </FloatingMenu>
       {editor && <LinkBubbleMenu editor={editor} />}
+      {editor && <FigureBubbleMenu editor={editor} />}
     </div>
   );
 };
