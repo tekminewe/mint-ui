@@ -3,7 +3,7 @@
 import { JSONContent } from "@tiptap/core";
 import { useMemo } from "react";
 import { useExtensions } from "../rich-text-editor/use-extensions";
-import "../rich-text-editor/rich-text-editor.module.scss";
+import styles from "../rich-text-editor/rich-text-editor.module.scss";
 import { generateHTML } from "@tiptap/html";
 
 export interface RichTextPreviewProps {
@@ -17,10 +17,12 @@ export const RichTextPreview = ({ content }: RichTextPreviewProps) => {
   }, [content, extensions]);
 
   return (
-    <div
-      className="prose prose-figcaption:text-center"
-      dangerouslySetInnerHTML={{ __html: output }}
-    />
+    <div className={styles.rte}>
+      <div
+        className="prose prose-figcaption:text-center"
+        dangerouslySetInnerHTML={{ __html: output }}
+      />
+    </div>
   );
   return;
 };
