@@ -8,6 +8,7 @@ import {
   Editor,
 } from "@tiptap/react";
 import styles from "./rich-text-editor.module.scss";
+import "./atom-one-dark.min.css";
 import { NodeCommand, OnItemClickHandler } from "./node-command";
 import { useDebouncedCallback } from "use-debounce";
 import { useExtensions } from "./use-extensions";
@@ -57,6 +58,20 @@ export interface RichTextEditorProps {
    * @returns
    */
   onImageUpload?: (file: File) => Promise<{ src: string; caption?: string }>;
+
+  /**
+   * Whether the editor is editable or not.
+   * @default true
+   * @example false
+   */
+  editable?: boolean;
+
+  /**
+   * Additional class name for the container.
+   * @example "my-custom-class"
+   * @default ""
+   */
+  containerClassName?: string;
 }
 
 export const RichTextEditor = ({
@@ -66,6 +81,8 @@ export const RichTextEditor = ({
   content,
   placeholder = "Write something...",
   onImageUpload,
+  editable,
+  containerClassName = "",
 }: RichTextEditorProps) => {
   const debouncedUpdates = useDebouncedCallback(
     async ({ editor }: { editor: Editor }) => {
@@ -81,6 +98,8 @@ export const RichTextEditor = ({
     onUpdate: debouncedUpdates,
     extensions,
     content,
+    immediatelyRender: false,
+    editable,
   });
 
   const handleItemClick: OnItemClickHandler = ({ id }) => {
@@ -128,7 +147,7 @@ export const RichTextEditor = ({
   };
 
   return (
-    <div className={cn(styles.rte, "p-8")}>
+    <div className={cn(styles.rte, "p-8", containerClassName)}>
       <EditorContent
         className={"prose prose-figcaption:text-center"}
         editor={editor}

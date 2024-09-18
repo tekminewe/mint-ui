@@ -26,7 +26,7 @@ export const FigureBubbleMenu = ({ editor }: FigureBubbleMenuProps) => {
               <Button variant="soft">Details</Button>
             </Dialog.Trigger>
           </div>
-          <Dialog.Content className="space-y-4" maxWidth="450px">
+          <Dialog.Content className="space-y-4 z-[99999]" maxWidth="450px">
             <Dialog.Title>Image Details</Dialog.Title>
             <Dialog.Description>
               Update the details of the image.
@@ -34,7 +34,7 @@ export const FigureBubbleMenu = ({ editor }: FigureBubbleMenuProps) => {
             <img src={editor.getAttributes("figure").src} />
             <TextInput
               label="Title"
-              value={editor.getAttributes("figure").title}
+              value={editor.getAttributes("figure").title || ""}
               onChange={(e) => {
                 editor.commands.updateAttributes("figure", {
                   title: e.target.value,
@@ -43,7 +43,7 @@ export const FigureBubbleMenu = ({ editor }: FigureBubbleMenuProps) => {
             />
             <TextInput
               label="Alt text"
-              value={editor.getAttributes("figure").alt}
+              value={editor.getAttributes("figure").alt || ""}
               onChange={(e) => {
                 editor.commands.updateAttributes("figure", {
                   alt: e.target.value,

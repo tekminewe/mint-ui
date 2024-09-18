@@ -102,8 +102,8 @@ export const Primary: Story = {
           type: "figure",
           attrs: {
             src: "https://tekminewe.com/_next/image?url=%2Fassets%2Flogo.webp&w=384&q=75",
-            alt: null,
-            title: null,
+            alt: "The logo of tekminewe.com",
+            title: "tekminewe Logo",
           },
           content: [
             {
