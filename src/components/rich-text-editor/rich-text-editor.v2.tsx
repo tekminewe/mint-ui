@@ -8,6 +8,7 @@ import {
   Editor,
 } from "@tiptap/react";
 import styles from "./rich-text-editor.module.scss";
+import "./atom-one-dark.min.css";
 import { NodeCommand, OnItemClickHandler } from "./node-command";
 import { useDebouncedCallback } from "use-debounce";
 import { useExtensions } from "./use-extensions";
