@@ -8,5 +8,11 @@ export interface RichTextPreviewProps {
 }
 
 export const RichTextPreview = ({ content }: RichTextPreviewProps) => {
-  return <RichTextEditor content={content} editable={false} />;
+  return (
+    <RichTextEditor
+      content={content}
+      editable={false}
+      containerClassName="p-0"
+    />
+  );
 };

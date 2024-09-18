@@ -64,6 +64,13 @@ export interface RichTextEditorProps {
    * @example false
    */
   editable?: boolean;
+
+  /**
+   * Additional class name for the container.
+   * @example "my-custom-class"
+   * @default ""
+   */
+  containerClassName?: string;
 }
 
 export const RichTextEditor = ({
@@ -74,6 +81,7 @@ export const RichTextEditor = ({
   placeholder = "Write something...",
   onImageUpload,
   editable,
+  containerClassName = "",
 }: RichTextEditorProps) => {
   const debouncedUpdates = useDebouncedCallback(
     async ({ editor }: { editor: Editor }) => {
@@ -138,7 +146,7 @@ export const RichTextEditor = ({
   };
 
   return (
-    <div className={cn(styles.rte, "p-8")}>
+    <div className={cn(styles.rte, "p-8", containerClassName)}>
       <EditorContent
         className={"prose prose-figcaption:text-center"}
         editor={editor}
