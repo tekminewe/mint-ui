@@ -57,6 +57,13 @@ export interface RichTextEditorProps {
    * @returns
    */
   onImageUpload?: (file: File) => Promise<{ src: string; caption?: string }>;
+
+  /**
+   * Whether the editor is editable or not.
+   * @default true
+   * @example false
+   */
+  editable?: boolean;
 }
 
 export const RichTextEditor = ({
@@ -66,6 +73,7 @@ export const RichTextEditor = ({
   content,
   placeholder = "Write something...",
   onImageUpload,
+  editable,
 }: RichTextEditorProps) => {
   const debouncedUpdates = useDebouncedCallback(
     async ({ editor }: { editor: Editor }) => {
@@ -81,6 +89,8 @@ export const RichTextEditor = ({
     onUpdate: debouncedUpdates,
     extensions,
     content,
+    immediatelyRender: false,
+    editable,
   });
 
   const handleItemClick: OnItemClickHandler = ({ id }) => {

@@ -5,11 +5,39 @@ import { AnyExtension } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useMemo } from "react";
 import { Figure } from "./figure-extensions";
-import CodeBlock from "@tiptap/extension-code-block-lowlight";
-import { all, createLowlight } from "lowlight";
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import { createLowlight } from "lowlight";
 import Link from "@tiptap/extension-link";
+import css from "highlight.js/lib/languages/css";
+import ts from "highlight.js/lib/languages/typescript";
+import js from "highlight.js/lib/languages/javascript";
+import html from "highlight.js/lib/languages/xml";
+import yaml from "highlight.js/lib/languages/yaml";
+import markdown from "highlight.js/lib/languages/markdown";
+import makefile from "highlight.js/lib/languages/makefile";
+import nginx from "highlight.js/lib/languages/nginx";
+import json from "highlight.js/lib/languages/json";
+import kotlin from "highlight.js/lib/languages/kotlin";
+import go from "highlight.js/lib/languages/go";
+import dts from "highlight.js/lib/languages/dts";
+import scss from "highlight.js/lib/languages/scss";
+import shell from "highlight.js/lib/languages/shell";
 
-const lowlight = createLowlight(all);
+const lowlight = createLowlight();
+lowlight.register("ts", ts);
+lowlight.register("js", js);
+lowlight.register("css", css);
+lowlight.register("html", html);
+lowlight.register("yaml", yaml);
+lowlight.register("markdown", markdown);
+lowlight.register("makefile", makefile);
+lowlight.register("nginx", nginx);
+lowlight.register("json", json);
+lowlight.register("kotlin", kotlin);
+lowlight.register("go", go);
+lowlight.register("dts", dts);
+lowlight.register("scss", scss);
+lowlight.register("bash", shell);
 
 export const useExtensions = ({
   defaultPlaceholder,
@@ -31,7 +59,7 @@ export const useExtensions = ({
         },
       }) as AnyExtension,
       Figure as AnyExtension,
-      CodeBlock.configure({
+      CodeBlockLowlight.configure({
         lowlight,
       }) as AnyExtension,
       Link.configure({
