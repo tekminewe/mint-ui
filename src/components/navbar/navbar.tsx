@@ -1,24 +1,17 @@
 "use client";
 
-import { HTMLAttributes, ReactNode } from "react";
-import { Drawer, DrawerRoot, DrawerTrigger } from "../drawer";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { HTMLAttributes } from "react";
 import { cn } from "../utils";
 import { Flex } from "../flex";
 import { Container } from "../container";
-import { NavbarContext } from "./context";
+import { NavbarBreakpoint } from "./types";
 
 export interface NavbarProps extends HTMLAttributes<HTMLDivElement> {
-  /**
-   * The content of the navbar.
-   */
-  drawerContent?: ReactNode;
-
   /**
    * The breakpoint at which the navbar should switch to a mobile layout.
    * @default "md"
    */
-  mobileBreakpoint?: "xl" | "lg" | "md" | "sm" | "xs";
+  breakpoint?: NavbarBreakpoint;
 
   /**
    * Class name for the container element.
@@ -28,74 +21,28 @@ export interface NavbarProps extends HTMLAttributes<HTMLDivElement> {
   containerClassName?: string;
 }
 
-const hideOnMobileClassName = (
-  mobileBreakpoint: NavbarProps["mobileBreakpoint"]
-) => {
-  switch (mobileBreakpoint) {
-    case "xl":
-      return "hidden xl:flex";
-    case "lg":
-      return "hidden lg:flex";
-    case "md":
-      return "hidden md:flex";
-    case "sm":
-      return "hidden sm:flex";
-    case "xs":
-      return "hidden xs:flex";
-  }
-};
-
-const showOnMobileClassName = (
-  mobileBreakpoint: NavbarProps["mobileBreakpoint"]
-) => {
-  switch (mobileBreakpoint) {
-    case "xl":
-      return "xl:hidden";
-    case "lg":
-      return "lg:hidden";
-    case "md":
-      return "md:hidden";
-    case "sm":
-      return "sm:hidden";
-    case "xs":
-      return "xs:hidden";
-  }
-};
-
 export const Navbar = ({
   children,
   className,
-  drawerContent,
-  mobileBreakpoint = "md",
+  breakpoint = "md",
   containerClassName,
   ...props
 }: NavbarProps) => {
   return (
-    <NavbarContext.Provider
-      value={{ hideOnMobileClassName: hideOnMobileClassName(mobileBreakpoint) }}
+    <Flex
+      align="center"
+      px="4"
+      width="100%"
+      height="4rem"
+      {...props}
+      className={cn("mt-navbar", "border-b", containerClassName)}
+      data-breakpoint={breakpoint}
     >
-      <Flex
-        align="center"
-        px="4"
-        width="100%"
-        height="4rem"
-        {...props}
-        className={cn(containerClassName, "border-b")}
-      >
-        <DrawerRoot>
-          <DrawerTrigger className={showOnMobileClassName(mobileBreakpoint)}>
-            <HamburgerMenuIcon width={28} height={28} />
-          </DrawerTrigger>
-          <Drawer className="bg-accent-1 text-gray-11 fixed top-0 bottom-0 h-screen w-80">
-            {drawerContent}
-          </Drawer>
-        </DrawerRoot>
-        <Container>
-          <Flex align="center" className={className}>
-            {children}
-          </Flex>
-        </Container>
-      </Flex>
-    </NavbarContext.Provider>
+      <Container>
+        <Flex align="center" className={className}>
+          {children}
+        </Flex>
+      </Container>
+    </Flex>
   );
 };

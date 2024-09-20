@@ -2,10 +2,10 @@ import { Meta, StoryObj } from "@storybook/react";
 import { Navbar } from "./navbar";
 import { Box } from "../box";
 import { NavigationMenu } from "../navigation-menu/navigation-menu";
-import { NavigationMenuVertical } from "../navigation-menu-vertical";
+import { MobileNavigationMenu } from "../mobile-navigation-menu";
 
 const meta = {
-  title: "Navbar",
+  title: "Common / Navbar",
   component: Navbar,
   tags: ["autodocs"],
 } satisfies Meta<typeof Navbar>;
@@ -15,19 +15,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    drawerContent: (
-      <NavigationMenuVertical>
-        <NavigationMenuVertical.Item href="/">Home</NavigationMenuVertical.Item>
-        <NavigationMenuVertical.Item href="/blog">
-          Blog
-        </NavigationMenuVertical.Item>
-        <NavigationMenuVertical.Item href="/about">
-          About
-        </NavigationMenuVertical.Item>
-      </NavigationMenuVertical>
-    ),
     children: (
       <>
+        <MobileNavigationMenu>
+          <MobileNavigationMenu.Item href="/">Home</MobileNavigationMenu.Item>
+          <MobileNavigationMenu.Item href="/blog">
+            Blog
+          </MobileNavigationMenu.Item>
+          <MobileNavigationMenu.Item href="/about">
+            About
+          </MobileNavigationMenu.Item>
+        </MobileNavigationMenu>
         <Box
           asChild
           ml={{
