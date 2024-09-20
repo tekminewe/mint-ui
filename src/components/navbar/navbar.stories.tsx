@@ -1,8 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Navbar } from "./navbar";
-import { Box } from "../box";
 import { NavigationMenu } from "../navigation-menu/navigation-menu";
+import { NavigationMenuItem } from "../navigation-menu/item";
 import { MobileNavigationMenu } from "../mobile-navigation-menu";
+import { MobileNavigationMenuItem } from "../mobile-navigation-menu/item";
+import { NavbarBrand } from "./brand";
 
 const meta = {
   title: "Common / Navbar",
@@ -18,32 +20,24 @@ export const Primary: Story = {
     children: (
       <>
         <MobileNavigationMenu>
-          <MobileNavigationMenu.Item href="/">Home</MobileNavigationMenu.Item>
-          <MobileNavigationMenu.Item href="/blog">
-            Blog
-          </MobileNavigationMenu.Item>
-          <MobileNavigationMenu.Item href="/about">
+          <MobileNavigationMenuItem href="/">Home</MobileNavigationMenuItem>
+          <MobileNavigationMenuItem href="/blog">Blog</MobileNavigationMenuItem>
+          <MobileNavigationMenuItem href="/about">
             About
-          </MobileNavigationMenu.Item>
+          </MobileNavigationMenuItem>
         </MobileNavigationMenu>
-        <Box
-          asChild
-          ml={{
-            initial: "2",
-            xl: "0",
-          }}
-        >
+        <NavbarBrand>
           <img
             src="../assets/logo.webp"
             alt="tekminewe.com"
             width={150}
             height={150}
           />
-        </Box>
+        </NavbarBrand>
         <NavigationMenu>
-          <NavigationMenu.Item href="/">Home</NavigationMenu.Item>
-          <NavigationMenu.Item href="/blog">Blog</NavigationMenu.Item>
-          <NavigationMenu.Item href="/about">About</NavigationMenu.Item>
+          <NavigationMenuItem href="/">Home</NavigationMenuItem>
+          <NavigationMenuItem href="/blog">Blog</NavigationMenuItem>
+          <NavigationMenuItem href="/about">About</NavigationMenuItem>
         </NavigationMenu>
       </>
     ),
