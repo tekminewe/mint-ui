@@ -2,11 +2,11 @@ import { Link, LinkProps } from "@radix-ui/themes";
 import { forwardRef } from "react";
 import { cn } from "../utils";
 
-export type NavigationMenuVerticalItemProps = LinkProps;
+export type MobileNavigationMenuItemProps = LinkProps;
 
-export const NavigationMenuVerticalItem = forwardRef<
+export const MobileNavigationMenuItem = forwardRef<
   HTMLAnchorElement,
-  NavigationMenuVerticalItemProps
+  MobileNavigationMenuItemProps
 >(({ ...props }, ref) => {
   return (
     <Link
@@ -18,4 +18,4 @@ export const NavigationMenuVerticalItem = forwardRef<
   );
 });
 
-NavigationMenuVerticalItem.displayName = "NavigationMenuVerticalItem";
+MobileNavigationMenuItem.displayName = "MobileNavigationMenuItem";

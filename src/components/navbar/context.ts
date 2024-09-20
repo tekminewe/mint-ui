@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 export const NavbarContext = createContext<{
-  hideOnMobileClassName?: string;
+  breakpoint?: "xl" | "lg" | "md" | "sm" | "xs";
 }>({
-  hideOnMobileClassName: "",
+  breakpoint: "md",
 });

@@ -1,11 +1,13 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Navbar } from "./navbar";
-import { Box } from "../box";
 import { NavigationMenu } from "../navigation-menu/navigation-menu";
-import { NavigationMenuVertical } from "../navigation-menu-vertical";
+import { NavigationMenuItem } from "../navigation-menu/item";
+import { MobileNavigationMenu } from "../mobile-navigation-menu";
+import { MobileNavigationMenuItem } from "../mobile-navigation-menu/item";
+import { NavbarBrand } from "./brand";
 
 const meta = {
-  title: "Navbar",
+  title: "Common / Navbar",
   component: Navbar,
   tags: ["autodocs"],
 } satisfies Meta<typeof Navbar>;
@@ -15,37 +17,27 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    drawerContent: (
-      <NavigationMenuVertical>
-        <NavigationMenuVertical.Item href="/">Home</NavigationMenuVertical.Item>
-        <NavigationMenuVertical.Item href="/blog">
-          Blog
-        </NavigationMenuVertical.Item>
-        <NavigationMenuVertical.Item href="/about">
-          About
-        </NavigationMenuVertical.Item>
-      </NavigationMenuVertical>
-    ),
     children: (
       <>
-        <Box
-          asChild
-          ml={{
-            initial: "2",
-            xl: "0",
-          }}
-        >
+        <MobileNavigationMenu>
+          <MobileNavigationMenuItem href="/">Home</MobileNavigationMenuItem>
+          <MobileNavigationMenuItem href="/blog">Blog</MobileNavigationMenuItem>
+          <MobileNavigationMenuItem href="/about">
+            About
+          </MobileNavigationMenuItem>
+        </MobileNavigationMenu>
+        <NavbarBrand>
           <img
             src="../assets/logo.webp"
             alt="tekminewe.com"
             width={150}
             height={150}
           />
-        </Box>
+        </NavbarBrand>
         <NavigationMenu>
-          <NavigationMenu.Item href="/">Home</NavigationMenu.Item>
-          <NavigationMenu.Item href="/blog">Blog</NavigationMenu.Item>
-          <NavigationMenu.Item href="/about">About</NavigationMenu.Item>
+          <NavigationMenuItem href="/">Home</NavigationMenuItem>
+          <NavigationMenuItem href="/blog">Blog</NavigationMenuItem>
+          <NavigationMenuItem href="/about">About</NavigationMenuItem>
         </NavigationMenu>
       </>
     ),

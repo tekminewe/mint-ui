@@ -11,7 +11,7 @@ export { DatePicker } from "./components/date-picker";
 export { Text } from "./components/text";
 export { Callout } from "./components/callout";
 export { Spinner } from "./components/spinner";
-export { Navbar } from "./components/navbar";
+export { Navbar, NavbarBrand } from "./components/navbar";
 export { Drawer } from "./components/drawer";
 export { ToastContainer } from "./components/toast";
 export { SuccessCard } from "./components/success-card";
@@ -33,8 +33,14 @@ export { Switch } from "./components/switch";
 export { Link } from "./components/link";
 export { cn } from "./components/utils";
 export { useForm } from "./components/utils-client";
-export { NavigationMenu } from "./components/navigation-menu";
-export { NavigationMenuVertical } from "./components/navigation-menu-vertical";
+export {
+  NavigationMenu,
+  NavigationMenuItem,
+} from "./components/navigation-menu";
+export {
+  MobileNavigationMenu,
+  MobileNavigationMenuItem,
+} from "./components/mobile-navigation-menu";
 export { ProductItem } from "./components/product-item";
 export { ProductList } from "./components/product-list";
 export { Skeleton } from "./components/skeleton";
