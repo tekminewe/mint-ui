@@ -199,7 +199,7 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
             <RadixTable.Body>
               {table.getRowModel().rows.map((row) => {
                 return (
-                  <RadixTable.Row key={row.id}>
+                  <RadixTable.Row align="center" key={row.id}>
                     {row.getVisibleCells().map((cell, i) => {
                       if (i === 0) {
                         return (
