@@ -81,7 +81,7 @@ export const RichTextEditor = ({
   content,
   placeholder = "Write something...",
   onImageUpload,
-  editable,
+  editable = true,
   containerClassName = "",
 }: RichTextEditorProps) => {
   const debouncedUpdates = useDebouncedCallback(
