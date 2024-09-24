@@ -53,6 +53,7 @@ export default () => {
         colors: {
           ...config.colors,
           "panel-solid": "var(--color-panel-solid)",
+          error: "rgb(206 44 49)",
           accent: {
             1: "var(--accent-1)",
             2: "var(--accent-2)",

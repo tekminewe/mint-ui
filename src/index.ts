@@ -7,7 +7,7 @@ export { Title } from "./components/title";
 export { Grid } from "./components/grid";
 export { Theme } from "./components/theme";
 export { Select } from "./components/select";
-export { DatePicker } from "./components/date-picker";
+export { DateInput } from "./components/date-input";
 export { Text } from "./components/text";
 export { Callout } from "./components/callout";
 export { Spinner } from "./components/spinner";

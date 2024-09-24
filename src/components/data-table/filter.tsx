@@ -7,7 +7,7 @@ import { Drawer, DrawerRoot, DrawerTrigger } from "../drawer";
 import { Select } from "../select";
 import { FormEvent, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
-import { DatePicker } from "../date-picker";
+import { DateInput } from "../date-input";
 import { cn } from "../utils";
 import { Badge } from "../badge";
 import { DrawerTitle } from "../drawer/drawer-title";
@@ -114,7 +114,7 @@ export const Filter = <T extends IDataTableFilterState>({
 
               case "date":
                 return (
-                  <DatePicker
+                  <DateInput
                     onChange={(value) =>
                       setFilterState((state) => ({
                         ...state,

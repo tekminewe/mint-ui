@@ -14,19 +14,69 @@ import { Button } from "../button";
 import { forwardRef, useState } from "react";
 import { TextInput } from "../text-input";
 import { FormLabel } from "../form";
+import { cn } from "../utils";
 
-export interface IDatePickerProps {
+export interface DateInputProps {
+  /**
+   * The selected date.
+   * @default undefined
+   * @example new Date()
+   */
   value?: Date;
+  /**
+   * Callback when the date is changed.
+   *
+   * @param date
+   * @returns
+   */
   onChange?: (date: Date | undefined) => void;
+  /**
+   * The label for the date picker.
+   * @default undefined
+   * @example "Post Date"
+   */
   label?: string;
+  /**
+   * The placeholder for the date picker.
+   * @default "Please select a date"
+   * @example "Select a date"
+   */
   placeholder?: string;
+  /**
+   * Whether to show the time picker.
+   * @default false
+   * @example true
+   */
   showTime?: boolean;
+  /**
+   * Whether the date picker is required.
+   * @default false
+   * @example true
+   */
   required?: boolean;
+
+  /**
+   * The error message to display.
+   * @default undefined
+   * @example "This field is required"
+   */
   error?: string;
+  /**
+   * Whether the date picker is disabled.
+   * @default false
+   * @example true
+   */
   disabled?: boolean;
+
+  /**
+   * Whether the date picker is clearable.
+   * @default true
+   * @example false
+   */
+  clearable?: boolean;
 }
 
-export const DatePicker = forwardRef<HTMLButtonElement, IDatePickerProps>(
+export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
   (
     {
       showTime = false,
@@ -37,6 +87,7 @@ export const DatePicker = forwardRef<HTMLButtonElement, IDatePickerProps>(
       required = false,
       error,
       disabled,
+      clearable = true,
     },
     ref
   ) => {
@@ -97,7 +148,13 @@ export const DatePicker = forwardRef<HTMLButtonElement, IDatePickerProps>(
                   disabled={disabled}
                   style={{ textAlign: "left" }}
                   variant="outline"
-                  className="bg-[--color-surface] hover:bg-[--color-surface] focus:bg-[--color-surface]"
+                  className={cn(
+                    "bg-[--color-surface] hover:bg-[--color-surface] focus:bg-[--color-surface]",
+                    {
+                      "text-[var(--gray-12)]": value,
+                      "shadow-[inset_0_0_0_1px_rgb(206,44,49)]": error,
+                    }
+                  )}
                   color="gray"
                 >
                   <CalendarIcon />
@@ -113,7 +170,7 @@ export const DatePicker = forwardRef<HTMLButtonElement, IDatePickerProps>(
                 </Button>
               </Flex>
             </Popover.Trigger>
-            {value && (
+            {value && clearable && (
               <Cross1Icon
                 className="cursor-pointer absolute right-[12px] text-[--accent]"
                 onClick={handleClear}
@@ -151,7 +208,7 @@ export const DatePicker = forwardRef<HTMLButtonElement, IDatePickerProps>(
     return (
       <Flex asChild direction="column" gap="1">
         <label>
-          <FormLabel label={label} size="3" required={required} />
+          <FormLabel label={label} size="2" required={required} />
           {renderCalendar()}
           <Text size="2" color="red">
             {error}
@@ -162,4 +219,4 @@ export const DatePicker = forwardRef<HTMLButtonElement, IDatePickerProps>(
   }
 );
 
-DatePicker.displayName = "DatePicker";
+DateInput.displayName = "DatePicker";
