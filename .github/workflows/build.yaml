@@ -1,4 +1,4 @@
-name: Publish to npm
+name: Build and Publish
 
 on:
   push:
@@ -23,7 +23,9 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm build
+      - name: Extract tag name
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
       - name: Publish to npm
-        run: cd dist && npm publish --tag ${{ github.ref_name || 'latest' }}
+        run: cd dist && npm publish --tag ${{ env.TAG_NAME }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
