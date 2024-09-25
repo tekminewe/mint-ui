@@ -1,6 +1,9 @@
 name: Publish to npm
 
-on: [push]
+on:
+  push:
+    tags:
+      - "v*"
 
 jobs:
   build:
@@ -21,6 +24,6 @@ jobs:
       - name: Build
         run: pnpm build
       - name: Publish to npm
-        run: cd dist && npm publish
+        run: cd dist && npm publish --tag ${{ github.ref_name || 'latest' }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
