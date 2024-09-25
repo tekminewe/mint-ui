@@ -26,6 +26,6 @@ jobs:
       - name: Extract tag name
         run: echo "TAG_NAME=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
       - name: Publish to npm
-        run: cd dist && npm version ${{ env.TAG_NAME }} && npm publish
+        run: cd dist && npm version --no-git-tag-version ${{ env.TAG_NAME }} && npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
