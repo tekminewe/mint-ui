@@ -1,5 +1,7 @@
+"use client";
+
 import { Checkbox, Flex, Popover } from "@radix-ui/themes";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { FormLabel } from "../form";
 import { cn } from "../utils";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
@@ -7,6 +9,7 @@ import { Command } from "../command";
 import { Badge } from "../badge";
 import { SearchIcon, XIcon } from "lucide-react";
 import { Spinner } from "../spinner";
+import { useDebouncedCallback } from "use-debounce";
 
 export interface MultiSelectProps {
   /**
@@ -58,13 +61,6 @@ export interface MultiSelectProps {
   onSearchValueChange?: (value: string) => void;
 
   /**
-   * The search value
-   * @default undefined
-   * @example "option"
-   */
-  searchValue?: string;
-
-  /**
    * Whether the select is in loading state
    * @default false
    * @example true
@@ -84,6 +80,20 @@ export interface MultiSelectProps {
    * @returns
    */
   onOpenChange?: (open: boolean) => void;
+
+  /**
+   * Whether to allow creating a new option
+   * @default false
+   * @example true
+   */
+  allowCreate?: boolean;
+
+  /**
+   * The time to delay in miliseconds before callback for updating the search value
+   * @default 200
+   * @example 300
+   */
+  searchChangeDelay?: number;
 }
 
 export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
@@ -95,20 +105,32 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
       options = [],
       value = [],
       onChange,
-      searchValue,
-      onSearchValueChange,
+      onSearchValueChange = () => {},
       isSearching = false,
       open,
       onOpenChange,
+      allowCreate = false,
+      searchChangeDelay = 200,
     },
     ref
   ) => {
+    const [searchValue, setSearchValue] = useState<string>("");
     const handleChange = (checked: boolean, optionValue: string) => {
       if (checked) {
         onChange?.([...value, optionValue]);
       } else {
         onChange?.(value.filter((v) => v !== optionValue));
       }
+    };
+
+    const debouncedHandleSearchChange = useDebouncedCallback(
+      onSearchValueChange,
+      searchChangeDelay
+    );
+
+    const handleSearchValueChange = (value: string) => {
+      setSearchValue(value);
+      debouncedHandleSearchChange(value);
     };
 
     return (
@@ -168,7 +190,7 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
                 className="text-sm w-full outline-none"
                 placeholder="Search..."
                 value={searchValue}
-                onValueChange={onSearchValueChange}
+                onValueChange={handleSearchValueChange}
               />
             </div>
             <Command.List>
@@ -179,7 +201,24 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
               ) : (
                 <>
                   <Command.Empty className="px-3 py-2 text-sm">
-                    No results found.
+                    {allowCreate && searchValue ? (
+                      <Flex
+                        align="center"
+                        gap="2"
+                        px="3"
+                        className="py-[2px] text-sm"
+                      >
+                        <Checkbox
+                          onCheckedChange={(checked) =>
+                            handleChange(!!checked, searchValue ?? "")
+                          }
+                          checked={value.includes(searchValue ?? "")}
+                        />
+                        {searchValue}
+                      </Flex>
+                    ) : (
+                      "No results found."
+                    )}
                   </Command.Empty>
                   {options.map((option) => (
                     <Command.Item
