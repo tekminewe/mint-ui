@@ -5,6 +5,7 @@ import { cn } from "../utils";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { Command } from "../command";
 import { Badge } from "../badge";
+import { XIcon } from "lucide-react";
 
 export interface MultiSelectProps {
   /**
@@ -96,7 +97,20 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
                   <>
                     {value.slice(0, maxDisplay ?? value.length).map((v) => {
                       const opt = options.find((o) => o.value === v);
-                      return <Badge>{opt?.label}</Badge>;
+                      if (!opt) return null;
+                      return (
+                        <Badge>
+                          {opt.label}
+                          <XIcon
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleChange(false, opt.value);
+                            }}
+                            className="cursor-pointer"
+                            size={12}
+                          />
+                        </Badge>
+                      );
                     })}
                     {value.slice(0, maxDisplay ?? value.length).length <
                       value.length && (
