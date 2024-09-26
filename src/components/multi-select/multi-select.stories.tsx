@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { MultiSelect } from "./multi-select";
-import { Select } from "../select";
 import { useState } from "react";
 
 const options = [
@@ -68,7 +67,14 @@ const meta = {
           onChange={setValue}
           label="Tags"
         />
-        <Select label="Status" />
+        <MultiSelect
+          options={options}
+          value={value}
+          isSearching
+          open
+          onChange={setValue}
+          label="Loading Multi Select"
+        />
       </div>
     );
   },

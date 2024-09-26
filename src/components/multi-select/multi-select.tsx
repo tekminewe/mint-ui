@@ -6,6 +6,7 @@ import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { Command } from "../command";
 import { Badge } from "../badge";
 import { SearchIcon, XIcon } from "lucide-react";
+import { Spinner } from "../spinner";
 
 export interface MultiSelectProps {
   /**
@@ -48,6 +49,41 @@ export interface MultiSelectProps {
    * @example (value) => console.log(value)
    */
   onChange?: (value: string[]) => void;
+
+  /**
+   * The callback function when the search value changes when using `async` mode
+   * @default undefined
+   * @example (value) => console.log(value)
+   */
+  onSearchValueChange?: (value: string) => void;
+
+  /**
+   * The search value
+   * @default undefined
+   * @example "option"
+   */
+  searchValue?: string;
+
+  /**
+   * Whether the select is in loading state
+   * @default false
+   * @example true
+   */
+  isSearching?: boolean;
+
+  /**
+   * Whether the select is open
+   * @default undefined
+   * @example true
+   */
+  open?: boolean;
+
+  /**
+   * The callback function when the select is open
+   * @param open
+   * @returns
+   */
+  onOpenChange?: (open: boolean) => void;
 }
 
 export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
@@ -59,6 +95,11 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
       options = [],
       value = [],
       onChange,
+      searchValue,
+      onSearchValueChange,
+      isSearching = false,
+      open,
+      onOpenChange,
     },
     ref
   ) => {
@@ -71,7 +112,7 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
     };
 
     return (
-      <Popover.Root>
+      <Popover.Root onOpenChange={onOpenChange} open={open}>
         <Flex gap="1" direction="column">
           {label && <FormLabel label={label} />}
           <Popover.Trigger>
@@ -126,26 +167,36 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
               <Command.Input
                 className="text-sm w-full outline-none"
                 placeholder="Search..."
+                value={searchValue}
+                onValueChange={onSearchValueChange}
               />
             </div>
             <Command.List>
-              <Command.Empty className="px-3 py-2 text-sm">
-                No results found.
-              </Command.Empty>
-              {options.map((option) => (
-                <Command.Item
-                  className="flex items-center gap-2 px-3 py-[2px] text-sm"
-                  key={option.value}
-                >
-                  <Checkbox
-                    onCheckedChange={(checked) =>
-                      handleChange(!!checked, option.value)
-                    }
-                    checked={value.includes(option.value)}
-                  />
-                  {option.label}
-                </Command.Item>
-              ))}
+              {isSearching ? (
+                <Command.Empty className="flex justify-center px-3 py-2 text-sm">
+                  <Spinner />
+                </Command.Empty>
+              ) : (
+                <>
+                  <Command.Empty className="px-3 py-2 text-sm">
+                    No results found.
+                  </Command.Empty>
+                  {options.map((option) => (
+                    <Command.Item
+                      className="flex items-center gap-2 px-3 py-[2px] text-sm"
+                      key={option.value}
+                    >
+                      <Checkbox
+                        onCheckedChange={(checked) =>
+                          handleChange(!!checked, option.value)
+                        }
+                        checked={value.includes(option.value)}
+                      />
+                      {option.label}
+                    </Command.Item>
+                  ))}
+                </>
+              )}
             </Command.List>
           </Command>
         </Popover.Content>
