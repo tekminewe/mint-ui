@@ -5,7 +5,7 @@ import { cn } from "../utils";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { Command } from "../command";
 import { Badge } from "../badge";
-import { XIcon } from "lucide-react";
+import { SearchIcon, XIcon } from "lucide-react";
 
 export interface MultiSelectProps {
   /**
@@ -48,13 +48,6 @@ export interface MultiSelectProps {
    * @example (value) => console.log(value)
    */
   onChange?: (value: string[]) => void;
-
-  /**
-   * The maximum number of items that can be selected
-   * @default undefined
-   * @example 3
-   */
-  maxSelected?: number;
 }
 
 export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
@@ -66,7 +59,6 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
       options = [],
       value = [],
       onChange,
-      maxSelected,
     },
     ref
   ) => {
@@ -127,14 +119,22 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
             </div>
           </Popover.Trigger>
         </Flex>
-        <Popover.Content>
+        <Popover.Content className="p-0">
           <Command>
-            <Command.Input />
+            <div className="flex items-center gap-2 px-3 h-6 w-full border-b">
+              <SearchIcon size={16} />
+              <Command.Input
+                className="text-sm w-full outline-none"
+                placeholder="Search..."
+              />
+            </div>
             <Command.List>
-              <Command.Empty>No results found.</Command.Empty>
+              <Command.Empty className="px-3 py-2 text-sm">
+                No results found.
+              </Command.Empty>
               {options.map((option) => (
                 <Command.Item
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 px-3 py-[2px] text-sm"
                   key={option.value}
                 >
                   <Checkbox
