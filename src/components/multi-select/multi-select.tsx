@@ -1,7 +1,7 @@
 "use client";
 
 import { Checkbox, Flex, Popover } from "@radix-ui/themes";
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { FormLabel } from "../form";
 import { cn } from "../utils";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
@@ -10,6 +10,8 @@ import { Badge } from "../badge";
 import { SearchIcon, XIcon } from "lucide-react";
 import { Spinner } from "../spinner";
 import { useDebouncedCallback } from "use-debounce";
+
+export type MultiSelectOption = { label: string; value: string };
 
 export interface MultiSelectProps {
   /**
@@ -37,7 +39,7 @@ export interface MultiSelectProps {
    * @default []
    * @example [{ label: "Option 1", value: "option1" }, { label: "Option 2", value: "option2" }]
    */
-  options?: { label: string; value: string; icon?: React.ReactNode }[];
+  options?: MultiSelectOption[];
 
   /**
    * The value of the select
@@ -115,12 +117,20 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
     ref
   ) => {
     const [searchValue, setSearchValue] = useState<string>("");
+    const [selectedValues, setSelectedValues] = useState<MultiSelectOption[]>(
+      options.filter((o) => value.includes(o.value))
+    );
     const handleChange = (checked: boolean, optionValue: string) => {
+      let newValues: string[];
       if (checked) {
-        onChange?.([...value, optionValue]);
+        newValues = [...value, optionValue];
       } else {
-        onChange?.(value.filter((v) => v !== optionValue));
+        newValues = value.filter((v) => v !== optionValue);
       }
+      setSelectedValues(
+        newValues.map((v) => options.find((o) => o.value === v)!)
+      );
+      onChange?.(newValues);
     };
 
     const debouncedHandleSearchChange = useDebouncedCallback(
@@ -132,6 +142,10 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
       setSearchValue(value);
       debouncedHandleSearchChange(value);
     };
+
+    useEffect(() => {
+      setSelectedValues(value.map((v) => options.find((o) => o.value === v)!));
+    }, [value, options]);
 
     return (
       <Popover.Root onOpenChange={onOpenChange} open={open}>
@@ -150,27 +164,33 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
               <span className="flex-1 text-gray-9 flex items-center gap-1 flex-wrap">
                 {value.length > 0 ? (
                   <>
-                    {value.slice(0, maxDisplay ?? value.length).map((v) => {
-                      const opt = options.find((o) => o.value === v);
-                      if (!opt) return null;
-                      return (
-                        <Badge>
-                          {opt.label}
-                          <XIcon
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleChange(false, opt.value);
-                            }}
-                            className="cursor-pointer"
-                            size={12}
-                          />
-                        </Badge>
-                      );
-                    })}
-                    {value.slice(0, maxDisplay ?? value.length).length <
-                      value.length && (
+                    {selectedValues
+                      .slice(0, maxDisplay ?? selectedValues.length)
+                      .map((opt) => {
+                        if (!opt) return null;
+                        return (
+                          <Badge key={opt.value}>
+                            {opt.label}
+                            <XIcon
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleChange(false, opt.value);
+                              }}
+                              className="cursor-pointer"
+                              size={12}
+                            />
+                          </Badge>
+                        );
+                      })}
+                    {selectedValues.slice(
+                      0,
+                      maxDisplay ?? selectedValues.length
+                    ).length < selectedValues.length && (
                       <Badge>
-                        +{value.length - (maxDisplay ?? value.length)} more
+                        +
+                        {selectedValues.length -
+                          (maxDisplay ?? selectedValues.length)}{" "}
+                        more
                       </Badge>
                     )}
                   </>
