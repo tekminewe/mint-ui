@@ -1,7 +1,7 @@
 "use client";
 
 import { Checkbox, Flex, Popover } from "@radix-ui/themes";
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useState } from "react";
 import { FormLabel } from "../form";
 import { cn } from "../utils";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
@@ -142,11 +142,6 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
       setSearchValue(value);
       debouncedHandleSearchChange(value);
     };
-
-    useEffect(() => {
-      setSelectedValues(value.map((v) => options.find((o) => o.value === v)!));
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [value]);
 
     return (
       <Popover.Root onOpenChange={onOpenChange} open={open}>
