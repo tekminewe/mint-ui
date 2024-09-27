@@ -145,7 +145,8 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
 
     useEffect(() => {
       setSelectedValues(value.map((v) => options.find((o) => o.value === v)!));
-    }, [value, options]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [value]);
 
     return (
       <Popover.Root onOpenChange={onOpenChange} open={open}>
