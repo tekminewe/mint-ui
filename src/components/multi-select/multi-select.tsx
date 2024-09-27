@@ -126,7 +126,10 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
         newValues = [...value, optionValue];
         setSelectedValues((prev) => [
           ...prev,
-          options.find((o) => o.value === optionValue)!,
+          options.find((o) => o.value === optionValue) ?? {
+            label: optionValue,
+            value: optionValue,
+          },
         ]);
       } else {
         newValues = value.filter((v) => v !== optionValue);
