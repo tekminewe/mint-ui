@@ -17,5 +17,6 @@ export const Primary: Story = {
       "MintUI is a great library for building user interfaces. Here are 10 benefits of using it. MintUI is a great library for building user interfaces. Here are 10 benefits of using it.",
     imageUrl: "https://via.placeholder.com/200x100",
     date: "July 13, 2021",
+    tags: ["React", "JavaScript", "UI"],
   },
 };
