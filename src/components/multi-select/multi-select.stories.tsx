@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { MultiSelect } from "./multi-select";
 import { useState } from "react";
 
-const options = [
+const defaultOptions = [
   { label: "React", value: "react" },
   { label: "Vue", value: "vue" },
   { label: "Angular", value: "angular" },
@@ -50,6 +50,18 @@ const meta = {
       "remix",
       "sveltest",
     ]);
+    const [options, setOptions] = useState(defaultOptions);
+    const [searchValue, setSearchValue] = useState<string>("");
+    const handleChange = (value: string[]) => {
+      const hasNewValue = options.some(
+        (option) => !value.includes(option.value)
+      );
+      if (hasNewValue) {
+        setOptions([...options, { label: searchValue, value: searchValue }]);
+      }
+
+      setValue(value);
+    };
 
     return (
       <div className="space-y-4">
@@ -64,7 +76,9 @@ const meta = {
           options={options}
           value={value}
           maxDisplay={3}
-          onChange={setValue}
+          allowCreate
+          onSearchValueChange={setSearchValue}
+          onChange={handleChange}
           label="Tags"
         />
         <MultiSelect
