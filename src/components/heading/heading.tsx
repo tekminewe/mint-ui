@@ -1,7 +1,7 @@
-import { Heading as RadixHeading, TextProps } from "@radix-ui/themes";
+import { HeadingProps, Heading as RadixHeading } from "@radix-ui/themes";
 import { forwardRef } from "react";
 
-export const Heading = forwardRef<HTMLHeadingElement, TextProps>(
+export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   (props, ref) => {
     return (
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
