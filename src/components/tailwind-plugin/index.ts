@@ -40,6 +40,35 @@ export default () => {
             bottom: "0",
             width: "100vw",
           },
+        ".card": {
+          borderRadius: theme("borderRadius.2"),
+          boxShadow: "var(--shadow-3)",
+          padding: theme("spacing.4"),
+        },
+        ".button": {
+          cursor: "pointer",
+        },
+        ".shadow-0": {
+          boxShadow: "none",
+        },
+        ".shadow-1": {
+          boxShadow: "var(--shadow-1)",
+        },
+        ".shadow-2": {
+          boxShadow: "var(--shadow-2)",
+        },
+        ".shadow-3": {
+          boxShadow: "var(--shadow-3)",
+        },
+        ".shadow-4": {
+          boxShadow: "var(--shadow-4)",
+        },
+        ".shadow-5": {
+          boxShadow: "var(--shadow-5)",
+        },
+        ".shadow-6": {
+          boxShadow: "var(--shadow-6)",
+        },
       });
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -138,14 +167,7 @@ export default () => {
           lg: "1280px",
           xl: "1640px",
         },
-        boxShadow: {
-          "1": "var(--shadow-1)",
-          "2": "var(--shadow-2)",
-          "3": "var(--shadow-3)",
-          "4": "var(--shadow-4)",
-          "5": "var(--shadow-5)",
-          "6": "var(--shadow-6)",
-        },
+        boxShadow: {},
         borderRadius: {
           "1": "var(--radius-1)",
           "2": "var(--radius-2)",
