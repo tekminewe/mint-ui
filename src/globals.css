@@ -12,34 +12,80 @@
   border-color: var(--gray-a6);
 }
 
-.mt-navbar[data-breakpoint="xs"] .mt-navMenu {
-  @apply hidden xs:flex;
-}
-.mt-navbar[data-breakpoint="sm"] .mt-navMenu {
-  @apply hidden sm:flex;
-}
-.mt-navbar[data-breakpoint="md"] .mt-navMenu {
-  @apply hidden md:flex;
-}
-.mt-navbar[data-breakpoint="lg"] .mt-navMenu {
-  @apply hidden lg:flex;
-}
-.mt-navbar[data-breakpoint="xl"] .mt-navMenu {
-  @apply hidden xl:flex;
-}
+@layer components {
+  /**
+  * Navbar styles
+  */
+  .navbar {
+    @apply bg-gray-1 shadow-3 w-full p-4 flex items-center border-b;
+    height: 4rem;
+  }
+  .navbar[data-breakpoint="xs"] .mt-navMenu {
+    @apply hidden xs:flex;
+  }
+  .navbar[data-breakpoint="sm"] .mt-navMenu {
+    @apply hidden sm:flex;
+  }
+  .navbar[data-breakpoint="md"] .mt-navMenu {
+    @apply hidden md:flex;
+  }
+  .navbar[data-breakpoint="lg"] .mt-navMenu {
+    @apply hidden lg:flex;
+  }
+  .navbar[data-breakpoint="xl"] .mt-navMenu {
+    @apply hidden xl:flex;
+  }
 
-.mt-navbar[data-breakpoint="xs"] .mt-mobileNavMenu {
-  @apply xs:hidden;
-}
-.mt-navbar[data-breakpoint="sm"] .mt-mobileNavMenu {
-  @apply sm:hidden;
-}
-.mt-navbar[data-breakpoint="md"] .mt-mobileNavMenu {
-  @apply md:hidden;
-}
-.mt-navbar[data-breakpoint="lg"] .mt-mobileNavMenu {
-  @apply lg:hidden;
-}
-.mt-navbar[data-breakpoint="xl"] .mt-mobileNavMenu {
-  @apply xl:hidden;
+  .navbar[data-breakpoint="xs"] .mt-mobileNavMenu {
+    @apply xs:hidden;
+  }
+  .navbar[data-breakpoint="sm"] .mt-mobileNavMenu {
+    @apply sm:hidden;
+  }
+  .navbar[data-breakpoint="md"] .mt-mobileNavMenu {
+    @apply md:hidden;
+  }
+  .navbar[data-breakpoint="lg"] .mt-mobileNavMenu {
+    @apply lg:hidden;
+  }
+  .navbar[data-breakpoint="xl"] .mt-mobileNavMenu {
+    @apply xl:hidden;
+  }
+
+  /**
+  * Card styles
+  */
+  .card {
+    @apply rounded-4 shadow-3 p-4 bg-accent-1;
+  }
+
+  /**
+  * Button styles
+  */
+
+  .button {
+    cursor: pointer;
+  }
+
+  /**
+ * Typography styles
+ */
+  .section-title {
+    @apply text-3xl font-semibold;
+  }
+
+  .caption {
+    @apply text-sm text-gray-11;
+  }
+
+  /**
+ * Scrollbar styles
+ */
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
 }

@@ -40,14 +40,6 @@ export default () => {
             bottom: "0",
             width: "100vw",
           },
-        ".card": {
-          borderRadius: theme("borderRadius.2"),
-          boxShadow: "var(--shadow-3)",
-          padding: theme("spacing.4"),
-        },
-        ".button": {
-          cursor: "pointer",
-        },
         ".shadow-0": {
           boxShadow: "none",
         },

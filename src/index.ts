@@ -1,7 +1,6 @@
 export { Button } from "./components/button";
 export { TextInput, ControlledTextInput } from "./components/text-input";
 export { Card } from "./components/card";
-export { Container } from "./components/container";
 export { Flex } from "./components/flex";
 export { Title } from "./components/title";
 export { Grid } from "./components/grid";
