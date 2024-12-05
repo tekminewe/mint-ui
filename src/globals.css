@@ -17,7 +17,7 @@
   * Navbar styles
   */
   .navbar {
-    @apply bg-gray-1 shadow-3 w-full p-4 flex items-center border-b;
+    @apply shadow-3 w-full p-4 flex items-center border-b;
     height: 4rem;
   }
   .navbar[data-breakpoint="xs"] .mt-navMenu {
@@ -56,7 +56,11 @@
   * Card styles
   */
   .card {
-    @apply rounded-4 shadow-3 p-4 bg-accent-1;
+    @apply rounded-4 shadow-3 p-4;
+  }
+
+  .card-title {
+    @apply text-lg font-semibold;
   }
 
   /**

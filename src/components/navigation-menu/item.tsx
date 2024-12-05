@@ -1,13 +1,24 @@
-import { Link, LinkProps } from "@radix-ui/themes";
-import { forwardRef } from "react";
+import { AnchorHTMLAttributes, forwardRef } from "react";
+import { cn } from "../utils";
+import { Slot } from "@radix-ui/themes";
 
-export type NavigationMenuItemProps = LinkProps;
+export interface NavigationMenuItemProps
+  extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  asChild?: boolean;
+}
 
 export const NavigationMenuItem = forwardRef<
   HTMLAnchorElement,
   NavigationMenuItemProps
->(({ ...props }, ref) => {
-  return <Link ref={ref} {...props} color={props.color ?? "gray"} />;
+>(({ asChild, ...props }, ref) => {
+  const Comp = asChild ? Slot : "a";
+  return (
+    <Comp
+      ref={ref}
+      {...props}
+      className={cn("text-gray-11", props.className)}
+    />
+  );
 });
 
 NavigationMenuItem.displayName = "NavbarMenuItem";

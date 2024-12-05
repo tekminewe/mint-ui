@@ -1,23 +1,21 @@
 "use client";
 
-import { Flex, FlexProps } from "@radix-ui/themes";
-import { forwardRef } from "react";
+import { forwardRef, HTMLAttributes } from "react";
 import { cn } from "../utils";
 
-export type NavigationMenuProps = Omit<FlexProps, "as">;
+export interface NavigationMenuProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const NavigationMenu = forwardRef<HTMLDivElement, NavigationMenuProps>(
   ({ ...props }, ref) => {
     return (
-      <Flex
-        asChild
+      <nav
+        ref={ref}
         {...props}
-        className={cn("mt-navMenu flex-1", props.className)}
-        justify={props.justify ?? "end"}
-        gap={props.gap ?? "6"}
-      >
-        <nav ref={ref} {...props} />
-      </Flex>
+        className={cn(
+          "mt-navMenu flex-1 flex justify-end gap-6",
+          props.className
+        )}
+      />
     );
   }
 );
