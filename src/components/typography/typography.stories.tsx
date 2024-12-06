@@ -6,7 +6,8 @@ const meta = {
   render: () => {
     return (
       <div>
-        <h1 className="section-title">Section Title</h1>
+        <h1 className="page-title">Page Title</h1>
+        <h2 className="section-title">Section Title</h2>
         <span className="caption">Caption</span>
       </div>
     );

@@ -72,8 +72,12 @@
   }
 
   /**
- * Typography styles
- */
+  * Typography styles
+  */
+  .page-title {
+    @apply text-4xl font-semibold;
+  }
+
   .section-title {
     @apply text-3xl font-semibold;
   }
