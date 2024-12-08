@@ -51,6 +51,7 @@ export interface IDataTableProps<T, F> {
   allowExport?: boolean;
   exportDataRequest?: () => Promise<T[]> | T[];
   exportFileName?: string;
+  isLoading?: boolean;
 }
 
 export const DataTable = <T extends object, F extends IDataTableFilterState>({
@@ -70,6 +71,7 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
   allowExport = false,
   exportDataRequest,
   exportFileName = "Data",
+  isLoading,
 }: IDataTableProps<T, F>) => {
   const colummDefs = useMemo(() => {
     const columnHelper = createColumnHelper<T>();
@@ -195,7 +197,18 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
               );
             })}
           </RadixTable.Header>
-          {hasData && (
+          {isLoading && (
+            <RadixTable.Body>
+              <RadixTable.Row align="center">
+                <RadixTable.Cell colSpan={columns.length} className="space-y-4">
+                  <div className="animate-pulse w-full h-6 bg-gray-6 rounded-3"></div>
+                  <div className="animate-pulse w-full h-6 bg-gray-6 rounded-3"></div>
+                  <div className="animate-pulse w-full h-6 bg-gray-6 rounded-3"></div>
+                </RadixTable.Cell>
+              </RadixTable.Row>
+            </RadixTable.Body>
+          )}
+          {!isLoading && hasData && (
             <RadixTable.Body>
               {table.getRowModel().rows.map((row) => {
                 return (
@@ -226,8 +239,8 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
             </RadixTable.Body>
           )}
         </RadixTable.Root>
-        {hasData && <Pagination table={table} />}
-        {!hasData && (
+        {!isLoading && hasData && <Pagination table={table} />}
+        {!isLoading && !hasData && (
           <Flex direction="column" align="center" py="8">
             <img
               alt="No data"

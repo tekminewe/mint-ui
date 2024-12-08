@@ -74,3 +74,11 @@ export const Default: Story = {
     ],
   },
 };
+
+export const Loading: Story = {
+  args: {
+    ...Default.args,
+    data: [],
+    isLoading: true,
+  },
+};

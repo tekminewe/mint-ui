@@ -56,7 +56,7 @@
   * Card styles
   */
   .card {
-    @apply rounded-4 shadow-3 p-4;
+    @apply rounded-4 shadow-3 p-4 bg-gray-surface;
   }
 
   .card-title {
