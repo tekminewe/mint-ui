@@ -9,6 +9,10 @@ const meta = {
         <h1 className="page-title">Page Title</h1>
         <h2 className="section-title">Section Title</h2>
         <span className="caption">Caption</span>
+        <br />
+        <a href="#" className="link">
+          Link
+        </a>
       </div>
     );
   },
