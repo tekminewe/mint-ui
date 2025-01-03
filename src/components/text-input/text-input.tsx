@@ -5,13 +5,14 @@ import { Flex, TextField } from "@radix-ui/themes";
 import { Text } from "../text";
 import { FormLabel } from "../form";
 
-export interface TextInputProps extends TextField.RootProps {
+export interface TextInputProps extends Omit<TextField.RootProps, "type"> {
   icon?: React.ReactNode;
   label?: string;
   error?: string;
   description?: string;
   containerClassName?: string;
   labelClassName?: string;
+  type?: TextField.RootProps["type"] | "currency";
 }
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
@@ -27,6 +28,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       required,
       description,
       id,
+      type,
+      onChange,
       ...props
     },
     ref
@@ -53,6 +56,11 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       return null;
     };
 
+    let inputType = type;
+    if (type === "currency") {
+      inputType = "number";
+    }
+
     const renderTextField = () => {
       return (
         <TextField.Root
@@ -61,6 +69,13 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           required={required}
           size={size}
           placeholder={placeholder}
+          onChange={(e) => {
+            if (type === "currency") {
+              e.target.value = e.target.value.replace(/(\.\d{2})\d+$/, "$1");
+            }
+            onChange?.(e);
+          }}
+          type={inputType as TextField.RootProps["type"]}
           {...props}
         >
           {icon && <TextField.Slot>{icon}</TextField.Slot>}

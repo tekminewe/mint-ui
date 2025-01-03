@@ -24,6 +24,7 @@ interface IControlledFormProps<T extends FieldValues> {
   submitButtonLabel?: string;
   submitButtonPosition?: "start" | "end" | "center" | "stretch";
   keepValuesOnSubmit?: boolean;
+  className?: string;
 }
 
 export const ControlledForm = <T extends FieldValues>({
@@ -34,6 +35,7 @@ export const ControlledForm = <T extends FieldValues>({
   submitButtonLabel = "Submit",
   submitButtonPosition = "end",
   keepValuesOnSubmit = false,
+  className,
 }: IControlledFormProps<T>) => {
   const {
     control,
@@ -69,7 +71,10 @@ export const ControlledForm = <T extends FieldValues>({
   };
 
   return (
-    <form onSubmit={onSubmit ? handleSubmit(preSubmit) : undefined}>
+    <form
+      onSubmit={onSubmit ? handleSubmit(preSubmit) : undefined}
+      className={className}
+    >
       <fieldset disabled={isSubmitting}>
         <Flex direction="column" gap="4">
           {children?.({

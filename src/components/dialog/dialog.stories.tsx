@@ -3,6 +3,7 @@ import { Dialog, DialogRoot } from "./dialog";
 import { useCallback, useState } from "react";
 import { TextInput } from "../text-input";
 import { Button } from "../button";
+import { DialogFooter } from "./dialog-footer";
 
 const meta = {
   title: "Common / Dialog",
@@ -25,7 +26,9 @@ const meta = {
             <form className="space-y-4">
               <TextInput label="Current Password" type="password" />
               <TextInput label="New Password" type="password" />
-              <Button>Change password</Button>
+              <DialogFooter>
+                <Button>Change password</Button>
+              </DialogFooter>
             </form>
           </Dialog>
         </DialogRoot>

@@ -6,6 +6,7 @@ import { cn } from "../utils";
 
 export const DialogRoot = RadixDialog.Root;
 export const DialogTrigger = RadixDialog.Trigger;
+export const DialogClose = RadixDialog.Close;
 
 export interface DialogProps {
   /**
