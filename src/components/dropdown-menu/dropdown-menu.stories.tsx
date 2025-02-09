@@ -1,14 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import {
-  DropdownMenuItem,
-  DropdownMenuRoot,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-} from "./dropdown-menu";
+import { DropdownMenu, DropdownMenuRoot } from "./dropdown-menu";
 import { Button } from "../button";
 import { FaXTwitter, FaLinkedinIn } from "react-icons/fa6";
 import { useCallback, useState } from "react";
+import { DropdownMenuItem } from "./item";
+import { DropdownMenuTrigger } from "./trigger";
 
 const meta = {
   title: "Common / DropdownMenu",
@@ -27,7 +24,7 @@ const meta = {
           <DropdownMenuTrigger>
             <Button>Open Menu</Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent container={ref}>
+          <DropdownMenu container={ref}>
             <DropdownMenuItem>
               <FaXTwitter /> Share on X
             </DropdownMenuItem>
@@ -35,7 +32,7 @@ const meta = {
               <FaLinkedinIn />
               Share on Linkedin
             </DropdownMenuItem>
-          </DropdownMenuContent>
+          </DropdownMenu>
         </DropdownMenuRoot>
       </div>
     );
