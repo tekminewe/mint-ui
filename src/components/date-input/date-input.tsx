@@ -208,7 +208,7 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
     return (
       <Flex asChild direction="column" gap="1">
         <label>
-          <FormLabel label={label} size="2" required={required} />
+          <FormLabel label={label} required={required} />
           {renderCalendar()}
           <Text size="2" color="red">
             {error}

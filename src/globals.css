@@ -104,12 +104,20 @@
   /**
   * Typography styles
   */
-  .page-title {
-    @apply text-4xl font-semibold;
+  .display {
+    @apply text-4xl font-bold;
   }
 
-  .section-title {
-    @apply text-3xl font-semibold;
+  .header {
+    @apply text-2xl font-bold;
+  }
+
+  .title {
+    @apply text-lg font-medium;
+  }
+
+  .text {
+    @apply text-base;
   }
 
   .caption {
@@ -154,10 +162,34 @@
     @apply h-[1px] bg-gray-a6 my-3;
   }
   /**
+  * Admin Layout styles
+  */
+  .admin-layout {
+    @apply grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "sidebar navbar" "sidebar content";
+  }
+  /**
+  * Admin Navbar styles
+  */
+  .admin-navbar {
+    @apply border-b h-9 flex items-center;
+    grid-area: navbar;
+  }
+  /**
+  * Admin Content styles
+  */
+  .admin-content {
+    @apply p-4 bg-gray-1;
+    grid-area: content;
+  }
+  /**
   * Sidebar styles
   */
   .sidebar {
     @apply w-[350px] h-screen border-r px-3;
+    grid-area: sidebar;
   }
   .sidebar-header {
     @apply flex items-center gap-3 font-bold text-3xl py-3;

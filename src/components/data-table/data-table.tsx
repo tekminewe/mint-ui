@@ -10,9 +10,8 @@ import {
 import { ReactNode, useMemo } from "react";
 import { Pagination } from "./pagination";
 import { Filter, IDataTableFilterState, IDataTableFilterProps } from "./filter";
-import { Text } from "../text";
 import { Flex } from "../flex";
-import { Title } from "../title";
+import { Title, Text } from "../typography";
 import { Card } from "../card";
 import { Button } from "../button";
 import { DownloadIcon } from "@radix-ui/react-icons";
@@ -248,9 +247,7 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
               width="300"
               height="300"
             />
-            <Title mt="4" mb="2">
-              {emptyTitle}
-            </Title>
+            <Title className="mt-4 mb-2">{emptyTitle}</Title>
             <Text>{emptyText}</Text>
           </Flex>
         )}

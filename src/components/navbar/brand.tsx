@@ -1,4 +1,4 @@
-import { Slot } from "@radix-ui/themes";
+import { Slot } from "@radix-ui/react-slot";
 import { HTMLAttributes } from "react";
 import { cn } from "../utils";
 

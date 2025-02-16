@@ -1,8 +1,7 @@
 import { forwardRef, InputHTMLAttributes, useId } from "react";
 import { Flex } from "../flex";
 import { FormLabel } from "../form";
-import { TextField } from "@radix-ui/themes";
-import { Text } from "../text";
+import { Caption } from "../typography";
 
 export interface ImageInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
@@ -26,13 +25,6 @@ export interface ImageInputProps
    * @example "text-white"
    */
   labelClassName?: string;
-
-  /**
-   * The size of the input.
-   * @default "2"
-   * @example "1"
-   */
-  size?: TextField.RootProps["size"];
 
   /**
    * The error message to display.
@@ -63,7 +55,6 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
       labelClassName,
       required,
       label,
-      size,
       error,
       description,
       id,
@@ -78,19 +69,11 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
 
     const renderDescription = () => {
       if (error) {
-        return (
-          <Text size="2" color="red">
-            {error}
-          </Text>
-        );
+        return <Caption className="text-error">{error}</Caption>;
       }
 
       if (description) {
-        return (
-          <Text size="2" color="gray">
-            {description}
-          </Text>
-        );
+        return <Caption>{description}</Caption>;
       }
 
       return null;
@@ -109,7 +92,6 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
             className={labelClassName}
             htmlFor={inputId}
             label={label}
-            size={size}
             required={required}
           />
           <input

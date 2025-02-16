@@ -1,7 +1,6 @@
 import { Box } from "@radix-ui/themes";
-import { Caption } from "../caption";
 import { Flex } from "../flex";
-import { Text } from "../text";
+import { Text, Caption, Title } from "../typography";
 import { forwardRef } from "react";
 import { cn } from "../utils";
 import { Badge } from "../badge";
@@ -60,20 +59,13 @@ export const PostItem = forwardRef<HTMLDivElement, PostItemProps>(
                 ))}
               </Flex>
             )}
-            <Text
-              size="5"
-              weight="bold"
-              my="1"
-              className="text-gray-contrast md:text-[unset]"
-            >
+            <Title className="text-gray-contrast md:text-[unset] my-1">
               {title}
-            </Text>
+            </Title>
             <Caption className="text-gray-contrast md:text-[unset]">
               {date}
             </Caption>
-            <Text mt="4" className="hidden md:block">
-              {summary}
-            </Text>
+            <Text className="hidden md:block mt-4">{summary}</Text>
           </div>
         </Flex>
       </div>

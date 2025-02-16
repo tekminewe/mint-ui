@@ -2,7 +2,7 @@
 
 import { forwardRef, useId } from "react";
 import { Flex, TextField } from "@radix-ui/themes";
-import { Text } from "../text";
+import { Caption } from "../typography";
 import { FormLabel } from "../form";
 
 export interface TextInputProps extends Omit<TextField.RootProps, "type"> {
@@ -38,19 +38,11 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     const inputId = id ?? customId;
     const renderDescription = () => {
       if (error) {
-        return (
-          <Text size="2" color="red">
-            {error}
-          </Text>
-        );
+        return <Caption className="text-error">{error}</Caption>;
       }
 
       if (description) {
-        return (
-          <Text size="2" color="gray">
-            {description}
-          </Text>
-        );
+        return <Caption>{description}</Caption>;
       }
 
       return null;
@@ -95,7 +87,6 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             className={labelClassName}
             htmlFor={inputId}
             label={label}
-            size={size}
             required={required}
           />
           {renderTextField()}

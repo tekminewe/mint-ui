@@ -1,7 +1,7 @@
 import { TextArea as RadixTextArea, TextAreaProps } from "@radix-ui/themes";
 import { forwardRef } from "react";
 import { Flex } from "../flex";
-import { Text } from "../text";
+import { Caption } from "../typography";
 import { FormLabel } from "../form";
 
 export interface ITextAreaProps extends TextAreaProps {
@@ -26,12 +26,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, ITextAreaProps>(
     return (
       <Flex asChild direction="column" gap="1">
         <label>
-          <FormLabel label={label} size={size} required={required} />
-          {description && (
-            <Text size="2" color="gray">
-              {description}
-            </Text>
-          )}
+          <FormLabel label={label} required={required} />
+          {description && <Caption>{description}</Caption>}
           <RadixTextArea
             placeholder={placeholder}
             size={size}
@@ -39,9 +35,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, ITextAreaProps>(
             {...props}
             ref={ref}
           />
-          <Text size="2" color="red">
-            {error}
-          </Text>
+          <Caption className="text-error">{error}</Caption>
         </label>
       </Flex>
     );
