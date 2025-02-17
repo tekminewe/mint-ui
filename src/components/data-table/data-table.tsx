@@ -7,15 +7,14 @@ import {
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { ReactNode, useMemo } from "react";
+import { MouseEventHandler, ReactNode, useMemo } from "react";
 import { Pagination } from "./pagination";
 import { Filter, IDataTableFilterState, IDataTableFilterProps } from "./filter";
-import { Flex } from "../flex";
 import { Title, Text } from "../typography";
 import { Card } from "../card";
 import { Button } from "../button";
-import { DownloadIcon } from "@radix-ui/react-icons";
 import { utils, writeFile } from "xlsx";
+import { LuDownload } from "react-icons/lu";
 
 export type IDataTableColumn<T> =
   | IDataTableColumnWithDataKey<T>
@@ -51,6 +50,9 @@ export interface IDataTableProps<T, F> {
   exportDataRequest?: () => Promise<T[]> | T[];
   exportFileName?: string;
   isLoading?: boolean;
+  showAddButton?: boolean;
+  addButtonLabel?: string;
+  onAddButtonClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 export const DataTable = <T extends object, F extends IDataTableFilterState>({
@@ -71,6 +73,9 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
   exportDataRequest,
   exportFileName = "Data",
   isLoading,
+  showAddButton = false,
+  addButtonLabel = "Add",
+  onAddButtonClick,
 }: IDataTableProps<T, F>) => {
   const colummDefs = useMemo(() => {
     const columnHelper = createColumnHelper<T>();
@@ -159,18 +164,24 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
   };
 
   const hasData = table.getRowModel().rows.length > 0;
+  const showActions = filters || allowExport || showAddButton;
 
   return (
     <div>
-      <Flex justify="end" gap="6" mr="4" mb="4">
-        {filters && <Filter<F> onSubmit={onFilterSubmit} {...filters} />}
-        {allowExport && (
-          <Button variant="ghost" onClick={handleExportClick}>
-            <DownloadIcon />
-            Export
-          </Button>
-        )}
-      </Flex>
+      {showActions && (
+        <div className="flex items-center justify-end gap-6 mr-4 mb-4">
+          {filters && <Filter<F> onSubmit={onFilterSubmit} {...filters} />}
+          {allowExport && (
+            <Button variant="ghost" onClick={handleExportClick}>
+              <LuDownload />
+              Export
+            </Button>
+          )}
+          {showAddButton && (
+            <Button onClick={onAddButtonClick}>{addButtonLabel}</Button>
+          )}
+        </div>
+      )}
       <Card>
         <RadixTable.Root
           variant={variant}
@@ -240,7 +251,7 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
         </RadixTable.Root>
         {!isLoading && hasData && <Pagination table={table} />}
         {!isLoading && !hasData && (
-          <Flex direction="column" align="center" py="8">
+          <div className="flex flex-col items-center py-8">
             <img
               alt="No data"
               src="/assets/ui/404.png"
@@ -249,7 +260,7 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
             />
             <Title className="mt-4 mb-2">{emptyTitle}</Title>
             <Text>{emptyText}</Text>
-          </Flex>
+          </div>
         )}
       </Card>
     </div>

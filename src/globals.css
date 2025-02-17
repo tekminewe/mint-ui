@@ -128,6 +128,10 @@
     @apply text-accent-11;
   }
 
+  .form-label {
+    @apply text-sm font-medium;
+  }
+
   /**
   * Scrollbar styles
   */
