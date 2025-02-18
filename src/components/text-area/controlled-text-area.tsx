@@ -1,20 +1,26 @@
-'use client';
+"use client";
 
-import { Controller, FieldValues, UseControllerProps } from 'react-hook-form';
-import { ITextAreaProps, TextArea } from './text-area';
+import {
+  FieldValues,
+  Path,
+  useController,
+  useFormContext,
+} from "react-hook-form";
+import { ITextAreaProps, TextArea } from "./text-area";
 
-interface IControlledTextAreaProps<T extends FieldValues>
-  extends Omit<ITextAreaProps, 'name' | 'defaultValue'>,
-    UseControllerProps<T> {}
+interface ControlledTextAreaProps<T extends FieldValues>
+  extends Omit<ITextAreaProps, "name"> {
+  name: Path<T>;
+}
 
-export const ControlledTextArea = <T extends FieldValues>({ control, name, ...props }: IControlledTextAreaProps<T>) => {
-  return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field, fieldState }) => {
-        return <TextArea {...props} {...field} error={fieldState.error?.message} />;
-      }}
-    />
-  );
+export const ControlledTextArea = <T extends FieldValues>({
+  name,
+  ...props
+}: ControlledTextAreaProps<T>) => {
+  const { control } = useFormContext<T>();
+  const {
+    fieldState: { error },
+    field,
+  } = useController<T>({ name, control });
+  return <TextArea {...props} {...field} error={error?.message} />;
 };

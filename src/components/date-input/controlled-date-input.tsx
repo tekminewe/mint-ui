@@ -1,26 +1,37 @@
 "use client";
 
-import { Controller, FieldValues, UseControllerProps } from "react-hook-form";
+import {
+  FieldValues,
+  Path,
+  useController,
+  useFormContext,
+} from "react-hook-form";
 import { DateInputProps, DateInput } from "./date-input";
 
 export interface ControlledDateInputProps<T extends FieldValues>
-  extends DateInputProps,
-    UseControllerProps<T> {}
+  extends DateInputProps {
+  name: Path<T>;
+}
 
-export const ControlledDatePicker = <T extends FieldValues>({
+export const ControlledDateInput = <T extends FieldValues>({
   name,
-  control,
   ...props
 }: ControlledDateInputProps<T>) => {
+  const { control } = useFormContext<T>();
+  const {
+    fieldState: { error },
+    field: { onChange, ...field },
+  } = useController<T>({ name, control });
+
   return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field, fieldState }) => {
-        return (
-          <DateInput {...props} {...field} error={fieldState.error?.message} />
-        );
+    <DateInput
+      {...props}
+      {...field}
+      onChange={(date) => {
+        props.onChange?.(date);
+        onChange({ target: { value: date } });
       }}
+      error={error?.message}
     />
   );
 };
