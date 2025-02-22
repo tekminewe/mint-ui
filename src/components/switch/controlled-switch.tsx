@@ -1,6 +1,6 @@
 "use client";
 
-import { ISwitchProps, Switch } from "./switch";
+import { SwitchProps, Switch } from "./switch";
 import {
   FieldValues,
   Path,
@@ -8,8 +8,8 @@ import {
   useFormContext,
 } from "react-hook-form";
 
-interface ControlledSwitchProps<T extends FieldValues>
-  extends Omit<ISwitchProps, "name"> {
+export interface ControlledSwitchProps<T extends FieldValues>
+  extends Omit<SwitchProps, "name"> {
   name: Path<T>;
 }
 
@@ -27,7 +27,9 @@ export const ControlledSwitch = <T extends FieldValues>({
       {...props}
       {...field}
       checked={field.value}
-      onCheckedChange={field.onChange}
+      onCheckedChange={(checked) => {
+        field.onChange({ target: { value: checked } });
+      }}
       error={error?.message}
     />
   );

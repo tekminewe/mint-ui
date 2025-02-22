@@ -1,13 +1,13 @@
 import {
   Flex,
   Switch as RadixSwitch,
-  SwitchProps,
+  SwitchProps as RadixSwitchProps,
   Text,
 } from "@radix-ui/themes";
 import { FormLabel } from "../form";
 import { forwardRef } from "react";
 
-export interface ISwitchProps extends SwitchProps {
+export interface SwitchProps extends RadixSwitchProps {
   error?: string;
   containerClassName?: string;
   labelClassName?: string;
@@ -15,7 +15,7 @@ export interface ISwitchProps extends SwitchProps {
   description?: string;
 }
 
-export const Switch = forwardRef<HTMLButtonElement, ISwitchProps>(
+export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   (
     {
       error,
