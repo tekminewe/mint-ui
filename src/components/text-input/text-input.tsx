@@ -1,9 +1,10 @@
 "use client";
 
 import { forwardRef, useId } from "react";
-import { Flex, TextField } from "@radix-ui/themes";
-import { Text } from "../text";
+import { TextField } from "@radix-ui/themes";
+import { Caption } from "../typography";
 import { FormLabel } from "../form";
+import { cn } from "../utils";
 
 export interface TextInputProps extends Omit<TextField.RootProps, "type"> {
   icon?: React.ReactNode;
@@ -38,19 +39,11 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     const inputId = id ?? customId;
     const renderDescription = () => {
       if (error) {
-        return (
-          <Text size="2" color="red">
-            {error}
-          </Text>
-        );
+        return <Caption className="text-error">{error}</Caption>;
       }
 
       if (description) {
-        return (
-          <Text size="2" color="gray">
-            {description}
-          </Text>
-        );
+        return <Caption>{description}</Caption>;
       }
 
       return null;
@@ -83,25 +76,16 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       );
     };
     return (
-      <Flex
-        asChild
-        width="100%"
-        direction="column"
-        gap="1"
-        className={containerClassName}
-      >
-        <label>
-          <FormLabel
-            className={labelClassName}
-            htmlFor={inputId}
-            label={label}
-            size={size}
-            required={required}
-          />
-          {renderTextField()}
-          {renderDescription()}
-        </label>
-      </Flex>
+      <label className={cn("flex flex-col w-full gap-1", containerClassName)}>
+        <FormLabel
+          className={labelClassName}
+          htmlFor={inputId}
+          label={label}
+          required={required}
+        />
+        {renderTextField()}
+        {renderDescription()}
+      </label>
     );
   }
 );

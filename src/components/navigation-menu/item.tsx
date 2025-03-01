@@ -1,6 +1,6 @@
 import { AnchorHTMLAttributes, forwardRef } from "react";
 import { cn } from "../utils";
-import { Slot } from "@radix-ui/themes";
+import { Slot } from "@radix-ui/react-slot";
 
 export interface NavigationMenuItemProps
   extends AnchorHTMLAttributes<HTMLAnchorElement> {

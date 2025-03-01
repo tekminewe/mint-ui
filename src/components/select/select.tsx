@@ -74,7 +74,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
     return (
       <Flex asChild direction="column" gap="1">
         <label>
-          <FormLabel label={label} size={size} required={required} />
+          <FormLabel label={label} required={required} />
           {description && (
             <Text size="2" color="gray">
               {description}

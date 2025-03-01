@@ -52,6 +52,13 @@ export interface DialogProps {
    * @required false
    */
   className?: string;
+
+  /**
+   * Hide title
+   * @default true
+   * @type boolean
+   */
+  showTitle?: boolean;
 }
 
 export const Dialog = ({
@@ -61,6 +68,7 @@ export const Dialog = ({
   children,
   container,
   className,
+  showTitle = true,
 }: DialogProps) => {
   return (
     <RadixDialog.DialogPortal container={container}>
@@ -71,22 +79,28 @@ export const Dialog = ({
           className
         )}
       >
-        <RadixDialog.Title
-          className={cn("font-semibold text-lg", {
+        <div
+          className={cn("flex items-center justify-between", {
             "mb-4": !description,
           })}
         >
-          {title}
-        </RadixDialog.Title>
+          <RadixDialog.Title
+            className={cn("font-semibold text-lg", {
+              invisible: !showTitle,
+            })}
+          >
+            {title}
+          </RadixDialog.Title>
+          {showCloseButton && (
+            <RadixDialog.Close>
+              <LuX />
+            </RadixDialog.Close>
+          )}
+        </div>
         {description && (
           <RadixDialog.Description className="caption mb-4">
             {description}
           </RadixDialog.Description>
-        )}
-        {showCloseButton && (
-          <RadixDialog.Close>
-            <LuX />
-          </RadixDialog.Close>
         )}
         {children}
       </RadixDialog.Content>

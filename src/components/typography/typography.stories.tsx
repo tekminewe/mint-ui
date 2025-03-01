@@ -1,14 +1,22 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { Header } from "./header";
+import { Display } from "./display";
+import { Title } from "./title";
+import { Caption } from "./caption";
+import { Text } from "./text";
 
 const meta = {
-  title: "Typography",
+  title: "Typography / Typography",
   tags: ["autodocs"],
+  component: Display,
   render: () => {
     return (
       <div>
-        <h1 className="page-title">Page Title</h1>
-        <h2 className="section-title">Section Title</h2>
-        <span className="caption">Caption</span>
+        <Display>Display</Display>
+        <Header>Header</Header>
+        <Title>Title</Title>
+        <Text>Text</Text>
+        <Caption>Caption</Caption>
         <br />
         <a href="#" className="link">
           Link

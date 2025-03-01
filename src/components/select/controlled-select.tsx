@@ -1,26 +1,35 @@
 "use client";
 
-import { Controller, FieldValues, UseControllerProps } from "react-hook-form";
+import {
+  FieldValues,
+  Path,
+  useController,
+  useFormContext,
+} from "react-hook-form";
 import { SelectProps, Select } from "./select";
 
-interface IControlledSelectProps<T extends FieldValues>
-  extends SelectProps,
-    UseControllerProps<T> {}
+interface ControlledSelectProps<T extends FieldValues> extends SelectProps {
+  name: Path<T>;
+}
 
 export const ControlledSelect = <T extends FieldValues>({
   name,
-  control,
   ...props
-}: IControlledSelectProps<T>) => {
+}: ControlledSelectProps<T>) => {
+  const { control } = useFormContext<T>();
+  const {
+    fieldState: { error },
+    field: { onChange, ...field },
+  } = useController<T>({ name, control });
   return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field, fieldState }) => {
-        return (
-          <Select {...props} {...field} error={fieldState.error?.message} />
-        );
+    <Select
+      {...props}
+      {...field}
+      onChange={(value) => {
+        props.onChange?.(value);
+        onChange({ target: { value } });
       }}
+      error={error?.message}
     />
   );
 };

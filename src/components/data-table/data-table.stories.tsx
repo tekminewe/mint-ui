@@ -82,3 +82,31 @@ export const Loading: Story = {
     isLoading: true,
   },
 };
+
+export const WithActions: Story = {
+  args: {
+    ...Default.args,
+    data: [],
+    showAddButton: true,
+    addButtonLabel: "Add Blog",
+    allowExport: true,
+    filters: {
+      columns: [
+        {
+          label: "Title",
+          key: "title",
+          type: "select",
+          options: [
+            { label: "Hello World", value: "Hello World" },
+            { label: "Hello World 2", value: "Hello World 2" },
+          ],
+        },
+        {
+          label: "Created At",
+          key: "createdAt",
+          type: "date",
+        },
+      ],
+    },
+  },
+};

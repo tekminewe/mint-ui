@@ -6,17 +6,19 @@ import {
   ChevronRightIcon,
   Cross1Icon,
 } from "@radix-ui/react-icons";
-import { Flex, Popover, Text } from "@radix-ui/themes";
+import { Popover } from "@radix-ui/themes";
 import { format } from "date-fns/format";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import { Button } from "../button";
+import { Button, ButtonProps } from "../button";
 import { forwardRef, useState } from "react";
 import { TextInput } from "../text-input";
+import { Caption, Text } from "../typography";
 import { FormLabel } from "../form";
 import { cn } from "../utils";
 
-export interface DateInputProps {
+export interface DateInputProps
+  extends Omit<ButtonProps, "value" | "onChange"> {
   /**
    * The selected date.
    * @default undefined
@@ -88,6 +90,7 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
       error,
       disabled,
       clearable = true,
+      ...props
     },
     ref
   ) => {
@@ -140,35 +143,31 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
     const renderCalendar = () => {
       return (
         <Popover.Root>
-          <Flex align="center" width="100%" className="relative">
+          <div className="relative flex items-center w-full">
             <Popover.Trigger>
-              <Flex asChild justify="start" width="100%">
-                <Button
-                  ref={ref}
-                  disabled={disabled}
-                  style={{ textAlign: "left" }}
-                  variant="outline"
-                  className={cn(
-                    "bg-[--color-surface] hover:bg-[--color-surface] focus:bg-[--color-surface]",
-                    {
-                      "text-[var(--gray-12)]": value,
-                      "shadow-[inset_0_0_0_1px_rgb(206,44,49)]": error,
-                    }
-                  )}
-                  color="gray"
-                >
-                  <CalendarIcon />
-                  <Text
-                    as="span"
-                    weight="regular"
-                    className="pointer-events-none"
-                  >
-                    {value
-                      ? format(value, showTime ? "PPpp" : "PP")
-                      : placeholder}
-                  </Text>
-                </Button>
-              </Flex>
+              <Button
+                {...props}
+                ref={ref}
+                disabled={disabled}
+                style={{ textAlign: "left" }}
+                variant="outline"
+                className={cn(
+                  "flex justify-start w-full",
+                  "bg-[--color-surface] hover:bg-[--color-surface] focus:bg-[--color-surface]",
+                  {
+                    "text-gray-12": value,
+                    "shadow-[inset_0_0_0_1px_rgb(206,44,49)]": error,
+                  }
+                )}
+                color="gray"
+              >
+                <CalendarIcon />
+                <Text className="font-normal text-sm pointer-events-none">
+                  {value
+                    ? format(value, showTime ? "PPpp" : "PP")
+                    : placeholder}
+                </Text>
+              </Button>
             </Popover.Trigger>
             {value && clearable && (
               <Cross1Icon
@@ -176,7 +175,7 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
                 onClick={handleClear}
               />
             )}
-          </Flex>
+          </div>
 
           <Popover.Content>
             <DayPicker
@@ -206,15 +205,11 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
     };
 
     return (
-      <Flex asChild direction="column" gap="1">
-        <label>
-          <FormLabel label={label} size="2" required={required} />
-          {renderCalendar()}
-          <Text size="2" color="red">
-            {error}
-          </Text>
-        </label>
-      </Flex>
+      <label className="flex flex-col gap-1">
+        <FormLabel label={label} required={required} />
+        {renderCalendar()}
+        <Caption className="text-error">{error}</Caption>
+      </label>
     );
   }
 );

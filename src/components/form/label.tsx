@@ -1,28 +1,22 @@
-import { TextProps } from '@radix-ui/themes';
-import { Text } from '../text';
-import { forwardRef } from 'react';
+import { forwardRef, LabelHTMLAttributes } from "react";
+import { cn } from "../utils";
 
-export interface IFormLabelProps {
+export interface FormLabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   label?: string;
-  size?: TextProps['size'];
   required?: boolean;
   className?: string;
   htmlFor?: string;
 }
 
-export const FormLabel = forwardRef<HTMLSpanElement, IFormLabelProps>(
-  ({ size = '2', label, required, className, htmlFor }, ref) => {
+export const FormLabel = forwardRef<HTMLLabelElement, FormLabelProps>(
+  ({ label, required, className, ...props }, ref) => {
     return (
-      <Text mb="1" ref={ref} weight="medium" size={size} as="label" htmlFor={htmlFor} className={className}>
+      <span ref={ref} {...props} className={cn("mb-1 form-label", className)}>
         {label}
-        {required && (
-          <Text as="span" color="red">
-            {' *'}
-          </Text>
-        )}
-      </Text>
+        {required && <span className="text-error">{" *"}</span>}
+      </span>
     );
-  },
+  }
 );
 
-FormLabel.displayName = 'FormLabel';
+FormLabel.displayName = "FormLabel";
