@@ -51,7 +51,7 @@ export const ProductItem = ({
           <img
             src={imageUrl}
             alt={title}
-            className="block object-cover w-full h-140 bg-[--var(--gray-5)]"
+            className="block object-cover w-full h-140 bg-[var(--gray-5)]"
           />
         </Inset>
         <Flex>
