@@ -7,16 +7,14 @@ import {
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { ReactNode, useMemo } from "react";
+import { MouseEventHandler, ReactNode, useMemo } from "react";
 import { Pagination } from "./pagination";
 import { Filter, IDataTableFilterState, IDataTableFilterProps } from "./filter";
-import { Text } from "../text";
-import { Flex } from "../flex";
-import { Title } from "../title";
+import { Title, Text } from "../typography";
 import { Card } from "../card";
 import { Button } from "../button";
-import { DownloadIcon } from "@radix-ui/react-icons";
 import { utils, writeFile } from "xlsx";
+import { LuDownload } from "react-icons/lu";
 
 export type IDataTableColumn<T> =
   | IDataTableColumnWithDataKey<T>
@@ -51,6 +49,10 @@ export interface IDataTableProps<T, F> {
   allowExport?: boolean;
   exportDataRequest?: () => Promise<T[]> | T[];
   exportFileName?: string;
+  isLoading?: boolean;
+  showAddButton?: boolean;
+  addButtonLabel?: string;
+  onAddButtonClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 export const DataTable = <T extends object, F extends IDataTableFilterState>({
@@ -70,6 +72,10 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
   allowExport = false,
   exportDataRequest,
   exportFileName = "Data",
+  isLoading,
+  showAddButton = false,
+  addButtonLabel = "Add",
+  onAddButtonClick,
 }: IDataTableProps<T, F>) => {
   const colummDefs = useMemo(() => {
     const columnHelper = createColumnHelper<T>();
@@ -158,18 +164,24 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
   };
 
   const hasData = table.getRowModel().rows.length > 0;
+  const showActions = filters || allowExport || showAddButton;
 
   return (
     <div>
-      <Flex justify="end" gap="6" mr="4" mb="4">
-        {filters && <Filter<F> onSubmit={onFilterSubmit} {...filters} />}
-        {allowExport && (
-          <Button variant="ghost" onClick={handleExportClick}>
-            <DownloadIcon />
-            Export
-          </Button>
-        )}
-      </Flex>
+      {showActions && (
+        <div className="flex items-center justify-end gap-6 mr-4 mb-4">
+          {filters && <Filter<F> onSubmit={onFilterSubmit} {...filters} />}
+          {allowExport && (
+            <Button variant="ghost" onClick={handleExportClick}>
+              <LuDownload />
+              Export
+            </Button>
+          )}
+          {showAddButton && (
+            <Button onClick={onAddButtonClick}>{addButtonLabel}</Button>
+          )}
+        </div>
+      )}
       <Card>
         <RadixTable.Root
           variant={variant}
@@ -195,7 +207,18 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
               );
             })}
           </RadixTable.Header>
-          {hasData && (
+          {isLoading && (
+            <RadixTable.Body>
+              <RadixTable.Row align="center">
+                <RadixTable.Cell colSpan={columns.length} className="space-y-4">
+                  <div className="animate-pulse w-full h-6 bg-gray-6 rounded-3"></div>
+                  <div className="animate-pulse w-full h-6 bg-gray-6 rounded-3"></div>
+                  <div className="animate-pulse w-full h-6 bg-gray-6 rounded-3"></div>
+                </RadixTable.Cell>
+              </RadixTable.Row>
+            </RadixTable.Body>
+          )}
+          {!isLoading && hasData && (
             <RadixTable.Body>
               {table.getRowModel().rows.map((row) => {
                 return (
@@ -226,20 +249,18 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
             </RadixTable.Body>
           )}
         </RadixTable.Root>
-        {hasData && <Pagination table={table} />}
-        {!hasData && (
-          <Flex direction="column" align="center" py="8">
+        {!isLoading && hasData && <Pagination table={table} />}
+        {!isLoading && !hasData && (
+          <div className="flex flex-col items-center py-8">
             <img
               alt="No data"
               src="/assets/ui/404.png"
               width="300"
               height="300"
             />
-            <Title mt="4" mb="2">
-              {emptyTitle}
-            </Title>
+            <Title className="mt-4 mb-2">{emptyTitle}</Title>
             <Text>{emptyText}</Text>
-          </Flex>
+          </div>
         )}
       </Card>
     </div>

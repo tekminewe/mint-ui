@@ -6,40 +6,221 @@
 
 :root {
   --toastify-text-color-light: rgb(0.113 0.125 0.14);
+  --color-error: rgb(206 44 49);
+  --color-success: rgb(0 128 0);
 }
 
 * {
   border-color: var(--gray-a6);
 }
 
-.mt-navbar[data-breakpoint="xs"] .mt-navMenu {
-  @apply hidden xs:flex;
-}
-.mt-navbar[data-breakpoint="sm"] .mt-navMenu {
-  @apply hidden sm:flex;
-}
-.mt-navbar[data-breakpoint="md"] .mt-navMenu {
-  @apply hidden md:flex;
-}
-.mt-navbar[data-breakpoint="lg"] .mt-navMenu {
-  @apply hidden lg:flex;
-}
-.mt-navbar[data-breakpoint="xl"] .mt-navMenu {
-  @apply hidden xl:flex;
-}
+@layer components {
+  /**
+  * Navbar styles
+  */
+  .navbar {
+    @apply shadow-3 w-full p-4 flex items-center border-b;
+    height: 4rem;
+  }
+  .navbar[data-breakpoint="xs"] .mt-navMenu {
+    @apply hidden xs:flex;
+  }
+  .navbar[data-breakpoint="sm"] .mt-navMenu {
+    @apply hidden sm:flex;
+  }
+  .navbar[data-breakpoint="md"] .mt-navMenu {
+    @apply hidden md:flex;
+  }
+  .navbar[data-breakpoint="lg"] .mt-navMenu {
+    @apply hidden lg:flex;
+  }
+  .navbar[data-breakpoint="xl"] .mt-navMenu {
+    @apply hidden xl:flex;
+  }
 
-.mt-navbar[data-breakpoint="xs"] .mt-mobileNavMenu {
-  @apply xs:hidden;
-}
-.mt-navbar[data-breakpoint="sm"] .mt-mobileNavMenu {
-  @apply sm:hidden;
-}
-.mt-navbar[data-breakpoint="md"] .mt-mobileNavMenu {
-  @apply md:hidden;
-}
-.mt-navbar[data-breakpoint="lg"] .mt-mobileNavMenu {
-  @apply lg:hidden;
-}
-.mt-navbar[data-breakpoint="xl"] .mt-mobileNavMenu {
-  @apply xl:hidden;
+  .navbar[data-breakpoint="xs"] .mt-mobileNavMenu {
+    @apply xs:hidden;
+  }
+  .navbar[data-breakpoint="sm"] .mt-mobileNavMenu {
+    @apply sm:hidden;
+  }
+  .navbar[data-breakpoint="md"] .mt-mobileNavMenu {
+    @apply md:hidden;
+  }
+  .navbar[data-breakpoint="lg"] .mt-mobileNavMenu {
+    @apply lg:hidden;
+  }
+  .navbar[data-breakpoint="xl"] .mt-mobileNavMenu {
+    @apply xl:hidden;
+  }
+  /**
+  * Dialog styles
+  */
+  .dialog-content {
+    animation: dialogContentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dialog-overlay {
+    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes overlayShow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes dialogContentShow {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  /**
+  * Card styles
+  */
+  .card {
+    @apply rounded-4 shadow-3 p-4 bg-gray-surface;
+  }
+
+  .card-title {
+    @apply text-lg font-semibold;
+  }
+
+  /**
+  * Button styles
+  */
+
+  .button {
+    cursor: pointer;
+  }
+
+  /**
+  * Typography styles
+  */
+  .display {
+    @apply text-4xl font-bold;
+  }
+
+  .header {
+    @apply text-2xl font-bold;
+  }
+
+  .title {
+    @apply text-lg font-medium;
+  }
+
+  .text {
+    @apply text-base;
+  }
+
+  .caption {
+    @apply text-sm text-gray-11;
+  }
+
+  .link {
+    @apply text-accent-11;
+  }
+
+  .form-label {
+    @apply text-sm font-medium;
+  }
+
+  /**
+  * Scrollbar styles
+  */
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  /**
+  * Avatar styles
+  */
+  .avatar {
+    @apply rounded-full w-7 h-7 ml-4 flex items-center justify-center;
+  }
+
+  /**
+  * Dropdown styles
+  */
+  .dropdown-menu-content {
+    @apply shadow-3 rounded-3 overflow-hidden p-3 mt-1 bg-gray-surface;
+  }
+  .dropdown-menu-trigger {
+    @apply outline-none;
+  }
+  .dropdown-menu-item {
+    @apply py-2 px-3 divide-y outline-none cursor-pointer rounded-3 flex items-center gap-2;
+    @apply hover:bg-accent-9 hover:text-gray-contrast;
+  }
+  .dropdown-menu-separator {
+    @apply h-[1px] bg-gray-a6 my-3;
+  }
+  /**
+  * Admin Layout styles
+  */
+  .admin-layout {
+    @apply grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "sidebar navbar" "sidebar content";
+  }
+  /**
+  * Admin Navbar styles
+  */
+  .admin-navbar {
+    @apply border-b h-9 flex items-center;
+    grid-area: navbar;
+  }
+  /**
+  * Admin Content styles
+  */
+  .admin-content {
+    @apply p-4 bg-gray-1;
+    grid-area: content;
+  }
+  /**
+  * Sidebar styles
+  */
+  .sidebar {
+    @apply w-[350px] h-screen border-r px-3;
+    grid-area: sidebar;
+  }
+  .sidebar-header {
+    @apply flex items-center gap-3 font-bold text-3xl py-3;
+  }
+  .sidebar-header img {
+    @apply w-9 rounded-full;
+  }
+  .sidebar-menu {
+  }
+  .sidebar-menu-group {
+  }
+  .sidebar-menu-group + .sidebar-menu-group {
+    @apply mt-3;
+  }
+  .sidebar-menu-group-title {
+    @apply text-sm font-semibold uppercase text-gray-9 mb-3;
+  }
+  .sidebar-menu-item {
+    @apply p-3 rounded-3 cursor-pointer font-medium flex items-center gap-3;
+    @apply hover:bg-accent-9 hover:text-gray-contrast;
+  }
+  .sidebar-menu-item[data-selected="true"] {
+    @apply bg-accent-9 text-gray-contrast;
+  }
+  .sidebar-menu-item + .sidebar-menu-item {
+    @apply mt-1;
+  }
 }

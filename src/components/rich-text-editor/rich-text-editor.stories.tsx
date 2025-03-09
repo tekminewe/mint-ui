@@ -193,7 +193,6 @@ const meta = {
           return { src: URL.createObjectURL(file) };
         }}
         onChange={({ content }) => {
-          console.log(content);
           setContent(content);
         }}
       />

@@ -2,28 +2,24 @@
 
 import { useForm } from "../utils-client";
 import {
-  Control,
   DefaultValues,
   FieldValues,
   SubmitHandler,
-  UseFormReset,
+  FormProvider,
 } from "react-hook-form";
 import { ZodSchema } from "zod";
-import { Flex } from "../flex";
 import { Button } from "../button";
+import { cn } from "../utils";
 
-interface IControlledFormProps<T extends FieldValues> {
+export interface ControlledFormProps<T extends FieldValues> {
   defaultValues?: DefaultValues<T>;
   schema?: ZodSchema<T>;
-  children?: (options: {
-    control: Control<T, unknown>;
-    reset: UseFormReset<T>;
-    values: T;
-  }) => JSX.Element;
+  children?: React.ReactNode;
   onSubmit?: SubmitHandler<T>;
   submitButtonLabel?: string;
   submitButtonPosition?: "start" | "end" | "center" | "stretch";
   keepValuesOnSubmit?: boolean;
+  className?: string;
 }
 
 export const ControlledForm = <T extends FieldValues>({
@@ -34,30 +30,17 @@ export const ControlledForm = <T extends FieldValues>({
   submitButtonLabel = "Submit",
   submitButtonPosition = "end",
   keepValuesOnSubmit = false,
-}: IControlledFormProps<T>) => {
-  const {
-    control,
-    reset,
-    handleSubmit,
-    getValues,
-    formState: { isSubmitting, isValid, isDirty },
-  } = useForm<T>({
+  className,
+}: ControlledFormProps<T>) => {
+  const forms = useForm<T>({
     defaultValues,
     schema,
   });
-
-  const getSubmitButtonPosition = () => {
-    switch (submitButtonPosition) {
-      case "end":
-        return "end";
-      case "center":
-        return "center";
-      case "start":
-        return "start";
-      default:
-        return undefined;
-    }
-  };
+  const {
+    reset,
+    handleSubmit,
+    formState: { isSubmitting, isValid, isDirty },
+  } = forms;
 
   const preSubmit: SubmitHandler<T> = async (data) => {
     try {
@@ -69,25 +52,32 @@ export const ControlledForm = <T extends FieldValues>({
   };
 
   return (
-    <form onSubmit={onSubmit ? handleSubmit(preSubmit) : undefined}>
-      <fieldset disabled={isSubmitting}>
-        <Flex direction="column" gap="4">
-          {children?.({
-            control,
-            reset,
-            values: getValues(),
-          })}
-          <Flex justify={getSubmitButtonPosition()}>
-            <Button
-              disabled={!isValid || !isDirty}
-              loading={isSubmitting}
-              type="submit"
+    <FormProvider {...forms}>
+      <form
+        onSubmit={onSubmit ? handleSubmit(preSubmit) : undefined}
+        className={className}
+      >
+        <fieldset disabled={isSubmitting}>
+          <div className="flex flex-col gap-4">
+            {children}
+            <div
+              className={cn("flex", {
+                "justify-end": submitButtonPosition === "end",
+                "justify-center": submitButtonPosition === "center",
+                "justify-start": submitButtonPosition === "start",
+              })}
             >
-              {submitButtonLabel}
-            </Button>
-          </Flex>
-        </Flex>
-      </fieldset>
-    </form>
+              <Button
+                disabled={!isValid || !isDirty}
+                loading={isSubmitting}
+                type="submit"
+              >
+                {submitButtonLabel}
+              </Button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </FormProvider>
   );
 };

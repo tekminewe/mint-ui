@@ -1,12 +1,11 @@
-export {
-  DropdownMenuRoot,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./dropdown-menu";
-export type {
-  DropdownMenuRootProps,
-  DropdownMenuContentProps,
-  DropdownMenuItemProps,
-  DropdownMenuTriggerProps,
-} from "./dropdown-menu";
+export { DropdownMenuRoot, DropdownMenu } from "./dropdown-menu";
+export type { DropdownMenuProps } from "./dropdown-menu";
+
+export { DropdownMenuItem } from "./item";
+export type { DropdownMenuItemProps } from "./item";
+
+export { DropdownMenuTrigger } from "./trigger";
+export type { DropdownMenuTriggerProps } from "./trigger";
+
+export { DropdownMenuSeparator } from "./separator";
+export type { DropdownMenuSeparatorProps } from "./separator";

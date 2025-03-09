@@ -1,8 +1,7 @@
 import { forwardRef, InputHTMLAttributes, useId } from "react";
-import { Flex } from "../flex";
 import { FormLabel } from "../form";
-import { TextField } from "@radix-ui/themes";
-import { Text } from "../text";
+import { Caption } from "../typography";
+import { cn } from "../utils";
 
 export interface ImageInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
@@ -26,13 +25,6 @@ export interface ImageInputProps
    * @example "text-white"
    */
   labelClassName?: string;
-
-  /**
-   * The size of the input.
-   * @default "2"
-   * @example "1"
-   */
-  size?: TextField.RootProps["size"];
 
   /**
    * The error message to display.
@@ -63,7 +55,6 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
       labelClassName,
       required,
       label,
-      size,
       error,
       description,
       id,
@@ -78,66 +69,45 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
 
     const renderDescription = () => {
       if (error) {
-        return (
-          <Text size="2" color="red">
-            {error}
-          </Text>
-        );
+        return <Caption className="text-error">{error}</Caption>;
       }
 
       if (description) {
-        return (
-          <Text size="2" color="gray">
-            {description}
-          </Text>
-        );
+        return <Caption>{description}</Caption>;
       }
 
       return null;
     };
 
     return (
-      <Flex
-        asChild
-        width="100%"
-        direction="column"
-        gap="1"
-        className={containerClassName}
-      >
-        <label>
-          <FormLabel
-            className={labelClassName}
-            htmlFor={inputId}
-            label={label}
-            size={size}
-            required={required}
+      <label className={cn("flex w-full flex-col gap-1", containerClassName)}>
+        <FormLabel
+          className={labelClassName}
+          htmlFor={inputId}
+          label={label}
+          required={required}
+        />
+        <input
+          type="file"
+          accept={accept}
+          id={inputId}
+          ref={ref}
+          className="hidden"
+          {...props}
+        />
+        {value ? (
+          <img
+            src={value}
+            alt="featured-image-upload"
+            className="w-full aspect-auto"
           />
-          <input
-            type="file"
-            accept={accept}
-            id={inputId}
-            ref={ref}
-            className="hidden"
-            {...props}
-          />
-          {value ? (
-            <img
-              src={value}
-              alt="featured-image-upload"
-              className="w-full aspect-auto"
-            />
-          ) : (
-            <Flex
-              justify="center"
-              align="center"
-              className="w-full cursor-pointer h-9 text-gray-8 bg-gray-2 border-dashed border rounded-2"
-            >
-              Upload an image
-            </Flex>
-          )}
-          {renderDescription()}
-        </label>
-      </Flex>
+        ) : (
+          <div className="flex justify-center items-center w-full cursor-pointer h-9 text-gray-8 bg-gray-2 border-dashed border rounded-2">
+            Upload an image
+          </div>
+        )}
+        {renderDescription()}
+      </label>
     );
   }
 );

@@ -1,19 +1,16 @@
-import { BoxProps } from "@radix-ui/themes";
-import { Box } from "../box";
+import { Slot } from "@radix-ui/react-slot";
+import { HTMLAttributes } from "react";
+import { cn } from "../utils";
 
-export type NavbarBrandProps = BoxProps;
+export interface NavbarBrandProps extends HTMLAttributes<HTMLElement> {}
 
-export const NavbarBrand = ({ ml, ...props }: BoxProps) => {
+export const NavbarBrand = ({ ...props }: NavbarBrandProps) => {
   return (
-    <Box
-      asChild
-      ml={
-        ml ?? {
-          initial: "4",
-          xl: "0",
-        }
-      }
+    <Slot
       {...props}
+      className={cn(props.className, "md:ml-4", {
+        "cursor-pointer": props.onClick,
+      })}
     />
   );
 };

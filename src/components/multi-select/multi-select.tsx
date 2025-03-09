@@ -7,9 +7,9 @@ import { cn } from "../utils";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { Command } from "../command";
 import { Badge } from "../badge";
-import { SearchIcon, XIcon } from "lucide-react";
 import { Spinner } from "../spinner";
 import { useDebouncedCallback } from "use-debounce";
+import { LuSearch, LuX } from "react-icons/lu";
 
 export type MultiSelectOption = { label: string; value: string };
 
@@ -175,9 +175,8 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
                         return (
                           <Badge key={opt.value}>
                             {opt.label}
-                            <XIcon
-                              onClick={(e) => {
-                                e.stopPropagation();
+                            <LuX
+                              onClick={() => {
                                 handleChange(false, opt.value);
                               }}
                               className="cursor-pointer"
@@ -209,7 +208,7 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
         <Popover.Content className="p-0">
           <Command>
             <div className="flex items-center gap-2 px-3 h-6 w-full border-b">
-              <SearchIcon size={16} />
+              <LuSearch size={16} />
               <Command.Input
                 className="text-sm w-full outline-none"
                 placeholder="Search..."

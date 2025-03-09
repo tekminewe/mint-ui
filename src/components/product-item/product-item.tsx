@@ -1,8 +1,7 @@
 import { Box, BoxProps, Card, Inset } from "@radix-ui/themes";
-import { Text } from "../text/text";
-import { Caption } from "../caption";
 import { Flex } from "../flex";
 import { cn } from "../utils";
+import { Caption, Text } from "../typography";
 
 export type ProductItemProps = {
   /**
@@ -56,11 +55,11 @@ export const ProductItem = ({
         </Inset>
         <Flex>
           <Box className="flex-1">
-            <Text as="p">{title}</Text>
-            <Caption as="p">{caption}</Caption>
+            <Text>{title}</Text>
+            <Caption>{caption}</Caption>
           </Box>
           <Box>
-            <Text as="p">{price}</Text>
+            <Text>{price}</Text>
           </Box>
         </Flex>
       </Card>

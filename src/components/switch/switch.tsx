@@ -1,8 +1,13 @@
-import { Flex, Switch as RadixSwitch, SwitchProps, Text } from '@radix-ui/themes';
-import { FormLabel } from '../form';
-import { forwardRef } from 'react';
+import {
+  Flex,
+  Switch as RadixSwitch,
+  SwitchProps as RadixSwitchProps,
+  Text,
+} from "@radix-ui/themes";
+import { FormLabel } from "../form";
+import { forwardRef } from "react";
 
-export interface ISwitchProps extends SwitchProps {
+export interface SwitchProps extends RadixSwitchProps {
   error?: string;
   containerClassName?: string;
   labelClassName?: string;
@@ -10,12 +15,33 @@ export interface ISwitchProps extends SwitchProps {
   description?: string;
 }
 
-export const Switch = forwardRef<HTMLButtonElement, ISwitchProps>(
-  ({ error, description, label, size, required, containerClassName, labelClassName, ...props }, ref) => {
+export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
+  (
+    {
+      error,
+      description,
+      label,
+      required,
+      containerClassName,
+      labelClassName,
+      ...props
+    },
+    ref
+  ) => {
     return (
-      <Flex asChild width="100%" direction="column" gap="1" className={containerClassName}>
+      <Flex
+        asChild
+        width="100%"
+        direction="column"
+        gap="1"
+        className={containerClassName}
+      >
         <label>
-          <FormLabel className={labelClassName} label={label} size={size} required={required} />
+          <FormLabel
+            className={labelClassName}
+            label={label}
+            required={required}
+          />
           <RadixSwitch ref={ref} {...props} />
           {error && (
             <Text size="2" color="red">
@@ -30,7 +56,7 @@ export const Switch = forwardRef<HTMLButtonElement, ISwitchProps>(
         </label>
       </Flex>
     );
-  },
+  }
 );
 
-Switch.displayName = 'Switch';
+Switch.displayName = "Switch";

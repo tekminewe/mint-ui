@@ -1,17 +1,19 @@
 "use client";
 
 import { forwardRef, useId } from "react";
-import { Flex, TextField } from "@radix-ui/themes";
-import { Text } from "../text";
+import { TextField } from "@radix-ui/themes";
+import { Caption } from "../typography";
 import { FormLabel } from "../form";
+import { cn } from "../utils";
 
-export interface TextInputProps extends TextField.RootProps {
+export interface TextInputProps extends Omit<TextField.RootProps, "type"> {
   icon?: React.ReactNode;
   label?: string;
   error?: string;
   description?: string;
   containerClassName?: string;
   labelClassName?: string;
+  type?: TextField.RootProps["type"] | "currency";
 }
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
@@ -27,6 +29,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       required,
       description,
       id,
+      type,
+      onChange,
       ...props
     },
     ref
@@ -35,23 +39,20 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     const inputId = id ?? customId;
     const renderDescription = () => {
       if (error) {
-        return (
-          <Text size="2" color="red">
-            {error}
-          </Text>
-        );
+        return <Caption className="text-error">{error}</Caption>;
       }
 
       if (description) {
-        return (
-          <Text size="2" color="gray">
-            {description}
-          </Text>
-        );
+        return <Caption>{description}</Caption>;
       }
 
       return null;
     };
+
+    let inputType = type;
+    if (type === "currency") {
+      inputType = "number";
+    }
 
     const renderTextField = () => {
       return (
@@ -61,6 +62,13 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           required={required}
           size={size}
           placeholder={placeholder}
+          onChange={(e) => {
+            if (type === "currency") {
+              e.target.value = e.target.value.replace(/(\.\d{2})\d+$/, "$1");
+            }
+            onChange?.(e);
+          }}
+          type={inputType as TextField.RootProps["type"]}
           {...props}
         >
           {icon && <TextField.Slot>{icon}</TextField.Slot>}
@@ -68,25 +76,16 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       );
     };
     return (
-      <Flex
-        asChild
-        width="100%"
-        direction="column"
-        gap="1"
-        className={containerClassName}
-      >
-        <label>
-          <FormLabel
-            className={labelClassName}
-            htmlFor={inputId}
-            label={label}
-            size={size}
-            required={required}
-          />
-          {renderTextField()}
-          {renderDescription()}
-        </label>
-      </Flex>
+      <label className={cn("flex flex-col w-full gap-1", containerClassName)}>
+        <FormLabel
+          className={labelClassName}
+          htmlFor={inputId}
+          label={label}
+          required={required}
+        />
+        {renderTextField()}
+        {renderDescription()}
+      </label>
     );
   }
 );

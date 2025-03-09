@@ -40,14 +40,6 @@ export default () => {
             bottom: "0",
             width: "100vw",
           },
-        ".card": {
-          borderRadius: theme("borderRadius.2"),
-          boxShadow: "var(--shadow-3)",
-          padding: theme("spacing.4"),
-        },
-        ".button": {
-          cursor: "pointer",
-        },
         ".shadow-0": {
           boxShadow: "none",
         },
@@ -82,7 +74,8 @@ export default () => {
         colors: {
           ...config.colors,
           "panel-solid": "var(--color-panel-solid)",
-          error: "rgb(206 44 49)",
+          error: "var(--color-error)",
+          success: "var(--color-success)",
           accent: {
             1: "var(--accent-1)",
             2: "var(--accent-2)",
