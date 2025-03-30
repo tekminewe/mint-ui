@@ -9,7 +9,10 @@ import { useCallback, useState } from "react";
 const meta = {
   title: "Common / Search Input",
   component: SearchRoot,
-  subcomponents: { SearchDialog, SearchInput },
+  subcomponents: {
+    SearchDialog: SearchDialog as React.ComponentType<unknown>,
+    SearchInput: SearchInput as React.ComponentType<unknown>,
+  },
   tags: ["autodocs"],
 } satisfies Meta<typeof SearchRoot>;
 
