@@ -60,3 +60,38 @@ export const SearchList: Story = {
     );
   },
 };
+
+export const SearchListLoading: Story = {
+  render: () => {
+    const [ref, setRef] = useState<HTMLDivElement | null>(null);
+    const callbackRef = useCallback((node: HTMLDivElement) => {
+      if (node) {
+        setRef(node);
+      }
+    }, []);
+    return (
+      <div ref={callbackRef}>
+        <SearchRoot open>
+          <SearchDialog container={ref}>
+            <SearchResultList isLoading>
+              <SearchResultListItem
+                title="Search result 1"
+                subtitle="Description of the item"
+                imageUrl="/assets/placeholder.png"
+              />
+              <SearchResultListItem
+                title="Search result 2"
+                subtitle={
+                  <div>
+                    This is a <strong>good</strong> description
+                  </div>
+                }
+              />
+              <SearchResultListItem title="Search result 3" />
+            </SearchResultList>
+          </SearchDialog>
+        </SearchRoot>
+      </div>
+    );
+  },
+};

@@ -1,5 +1,6 @@
 import { Command } from "cmdk";
 import { ReactNode } from "react";
+import { SearchResultListItemSkeleton } from "./search-result-list-item-skeleton";
 
 export interface SearchResultListProps {
   /**
@@ -17,16 +18,37 @@ export interface SearchResultListProps {
    * @default undefined
    */
   children?: ReactNode;
+
+  /**
+   * Indicates whether the search result list is currently loading.
+   * This can be used to show a loading state while search results are being fetched.
+   * @type boolean
+   * @example true
+   * @default false
+   */
+  isLoading?: boolean;
 }
 
 export const SearchResultList = ({
   emptyText,
   children,
+  isLoading = false,
 }: SearchResultListProps) => {
   return (
-    <Command.List className="search-result-list">
+    <Command.List
+      data-state={isLoading ? "loading" : "loaded"}
+      className="search-result-list"
+    >
       <Command.Empty>{emptyText}</Command.Empty>
-      {children}
+      {isLoading ? (
+        <div className="search-result-list-skeleton">
+          <SearchResultListItemSkeleton />
+          <SearchResultListItemSkeleton />
+          <SearchResultListItemSkeleton />
+        </div>
+      ) : (
+        children
+      )}
     </Command.List>
   );
 };

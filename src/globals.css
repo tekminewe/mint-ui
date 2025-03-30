@@ -235,12 +235,21 @@
     @apply outline-1 outline outline-gray-a6 focus:outline-2 focus:outline-accent-9 rounded-3 p-2 w-full;
     @apply mb-2;
   }
-  .search-result-list > div {
+  .search-result-list[data-state="loaded"] > div {
     @apply divide-y divide-gray-a6;
   }
   .search-result-list-item {
     @apply flex items-center p-2 cursor-pointer gap-3;
     @apply hover:bg-accent-9 hover:text-gray-contrast;
+  }
+  .search-result-list-skeleton {
+    @apply space-y-2;
+  }
+  .search-result-list-item-skeleton {
+    @apply animate-pulse;
+  }
+  .search-result-list-item-skeleton div {
+    @apply h-6 w-full bg-gray-a6 rounded-3;
   }
   .search-result-list-item-content {
     @apply flex flex-col gap-1;
