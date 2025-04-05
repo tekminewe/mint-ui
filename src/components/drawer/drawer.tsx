@@ -2,30 +2,9 @@
 
 import { Drawer as Vaul } from "vaul";
 import { cn } from "../utils";
-import { CSSProperties } from "react";
+import { HTMLAttributes } from "react";
 
-export interface DrawerProps {
-  /**
-   * Content of the drawer
-   * @default undefined
-   * @example "Drawer Content"
-   */
-  children?: React.ReactNode;
-
-  /**
-   * Custom class name
-   * @default undefined
-   * @example "text-white"
-   */
-  className?: string;
-
-  /**
-   * Custom style
-   * @default undefined
-   * @example { maxWidth: "80%" }
-   */
-  style?: CSSProperties;
-
+export interface DrawerProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Container to render the drawer
    * @default document.body
@@ -47,18 +26,15 @@ export const Drawer: React.FC<DrawerProps> = ({
   className,
   style,
   showOverlay = true,
+  ...props
 }: DrawerProps) => {
   return (
     <Vaul.Portal container={container}>
-      {showOverlay && (
-        <Vaul.Overlay className="fixed inset-0 bg-[var(--black-a6)]" />
-      )}
+      {showOverlay && <Vaul.Overlay className="overlay" />}
       <Vaul.Content
         style={style}
-        className={cn(
-          "bg-gray-1 flex flex-col w-drawer fixed outline-none p-4",
-          className
-        )}
+        className={cn("drawer", className)}
+        {...props}
       >
         {children}
       </Vaul.Content>

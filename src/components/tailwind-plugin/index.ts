@@ -23,23 +23,6 @@ export default () => {
         ".radix-themes": {
           borderColor: "var(--accent-a6)",
         },
-        "[vaul-drawer][vaul-drawer-visible=true][vaul-drawer-direction=right]":
-          {
-            right: "0",
-            top: "0",
-            height: "100vh",
-          },
-        "[vaul-drawer][vaul-drawer-visible=true][vaul-drawer-direction=left]": {
-          left: "0",
-          top: "0",
-          height: "100vh",
-        },
-        "[vaul-drawer][vaul-drawer-visible=true][vaul-drawer-direction=bottom]":
-          {
-            left: "0",
-            bottom: "0",
-            width: "100vw",
-          },
         ".shadow-0": {
           boxShadow: "none",
         },

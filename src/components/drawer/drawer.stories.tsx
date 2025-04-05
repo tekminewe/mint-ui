@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Drawer } from "./drawer";
-import { DrawerRoot } from "./drawer-root";
+import { Drawer, DrawerProps } from "./drawer";
+import { DrawerRoot, DrawerRootProps } from "./drawer-root";
 import { DrawerTrigger } from "./drawer-trigger";
 import { Button } from "../button";
 import { useCallback, useState } from "react";
@@ -10,8 +10,13 @@ import { DrawerTitle } from "./drawer-title";
 const meta = {
   title: "Common / Drawer",
   component: Drawer,
+  subcomponents: {
+    DrawerRoot: DrawerRoot as React.ComponentType<unknown>,
+    DrawerTrigger: DrawerTrigger as React.ComponentType<unknown>,
+    DrawerTitle: DrawerTitle as React.ComponentType<unknown>,
+  },
   tags: ["autodocs"],
-  render: (args) => {
+  render: (args: DrawerProps & DrawerRootProps) => {
     const [ref, setRef] = useState<HTMLDivElement | null>(null);
     const callbackRef = useCallback((node: HTMLDivElement) => {
       if (node) {
@@ -43,11 +48,7 @@ type Story = StoryObj<typeof meta>;
 
 export const RightDrawer: Story = {
   args: {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     title: "Right Drawer",
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     direction: "right",
     open: true,
   },
@@ -55,11 +56,7 @@ export const RightDrawer: Story = {
 
 export const LeftDrawer: Story = {
   args: {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     title: "Left Drawer",
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     direction: "left",
     open: true,
   },
@@ -67,11 +64,7 @@ export const LeftDrawer: Story = {
 
 export const BottomDrawer: Story = {
   args: {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     title: "Bottom Drawer",
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     direction: "bottom",
     open: true,
   },
