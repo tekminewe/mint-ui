@@ -34,7 +34,7 @@ export interface SearchResultListProps {
 export const SearchResultList = forwardRef<
   HTMLDivElement,
   SearchResultListProps
->(({ emptyText = "No results found.", children, isLoading = false }, ref) => {
+>(({ emptyText = "Sorry, no results found.", children, isLoading = false }, ref) => {
   return (
     <Command.List
       ref={ref}
