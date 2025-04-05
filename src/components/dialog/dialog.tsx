@@ -72,13 +72,8 @@ export const Dialog = ({
 }: DialogProps) => {
   return (
     <RadixDialog.DialogPortal container={container}>
-      <RadixDialog.Overlay className="dialog-overlay bg-gray-a8 fixed top-0 left-0 right-0 bottom-0" />
-      <RadixDialog.Content
-        className={cn(
-          "dialog-content rounded-4 bg-gray-1 p-4 fixed focus:outline-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[600px] shadow-3",
-          className
-        )}
-      >
+      <RadixDialog.Overlay className="overlay" />
+      <RadixDialog.Content className={cn("dialog-content", className)}>
         <div
           className={cn("flex items-center justify-between", {
             "mb-4": !description,

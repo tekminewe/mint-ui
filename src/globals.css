@@ -16,11 +16,18 @@
 
 @layer components {
   /**
+  * Global styles
+  */
+  .overlay {
+    @apply fixed inset-0 bg-gray-a8;
+    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  /**
   * Navbar styles
   */
   .navbar {
     @apply shadow-3 w-full p-4 flex items-center border-b;
-    height: 4rem;
+    @apply min-h-[4rem];
   }
   .navbar[data-breakpoint="xs"] .mt-navMenu {
     @apply hidden xs:flex;
@@ -57,11 +64,8 @@
   * Dialog styles
   */
   .dialog-content {
+    @apply rounded-4 bg-gray-1 p-4 fixed focus:outline-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[600px] shadow-3;
     animation: dialogContentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .dialog-overlay {
-    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @keyframes overlayShow {
@@ -222,5 +226,58 @@
   }
   .sidebar-menu-item + .sidebar-menu-item {
     @apply mt-1;
+  }
+  /**
+  * Search Input styles
+  */
+  .search-input input {
+    @apply cursor-pointer;
+  }
+  .search-dialog {
+    @apply w-screen h-screen md:h-[50vh] overflow-hidden;
+  }
+  .search-result-input {
+    @apply outline-1 outline outline-gray-a6 focus:outline-2 focus:outline-accent-9 rounded-3 p-2 w-full;
+    @apply mb-2;
+  }
+  .search-result-list {
+    @apply overflow-y-auto h-[calc(100vh-72px)];
+  }
+  .search-result-list-item {
+    @apply flex items-center p-2 cursor-pointer gap-3 rounded-3;
+    @apply hover:bg-accent-9 hover:text-gray-contrast;
+  }
+  .search-result-list-item-skeleton {
+    @apply animate-pulse;
+    @apply h-6 w-full bg-gray-a6 rounded-3 mb-2;
+  }
+  .search-result-list-item-title {
+    @apply font-semibold text-lg;
+  }
+  .search-result-list-item-subtitle {
+    @apply text-gray-11;
+    @apply group-hover:text-gray-contrast;
+  }
+  .search-result-list-item-image {
+    @apply w-full;
+  }
+  .search-result-list-item-image-container {
+    @apply w-[50px] h-[50px] rounded-3 overflow-hidden flex items-center justify-center border;
+  }
+
+  /**
+  * Drawer styles
+  */
+  .drawer {
+    @apply bg-gray-1 flex flex-col w-drawer fixed outline-none p-4;
+  }
+  .drawer[data-vaul-drawer-direction="right"] {
+    @apply right-0 top-0 h-screen;
+  }
+  .drawer[data-vaul-drawer-direction="left"] {
+    @apply left-0 top-0 h-screen;
+  }
+  .drawer[data-vaul-drawer-direction="bottom"] {
+    @apply bottom-0 left-0 w-screen;
   }
 }
