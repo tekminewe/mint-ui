@@ -64,7 +64,7 @@ export const SearchDialog = forwardRef<HTMLDivElement, SearchDialogProps>(
         open={isOpen}
         onOpenChange={onOpenChange}
         className="dialog-content search-dialog"
-        overlayClassName="dialog-overlay"
+        overlayClassName="overlay"
       >
         <Command.Input
           className="search-result-input"
