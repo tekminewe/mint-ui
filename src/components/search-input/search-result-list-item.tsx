@@ -1,8 +1,9 @@
 "use client";
 
 import { Command } from "cmdk";
-import { forwardRef, ReactNode } from "react";
+import { forwardRef, ReactNode, useContext } from "react";
 import { cn } from "../utils";
+import { SearchContext } from "./search-root";
 
 export interface SearchResultListItemProps
   extends Omit<
@@ -38,35 +39,64 @@ export interface SearchResultListItemProps
    * @returns
    */
   onItemClick?: () => void;
+
+  /**
+   * Should the dialog be dismissed when the item is selected.
+   * @type boolean
+   * @default false
+   */
+  dismissOnSelect?: boolean;
 }
 export const SearchResultListItem = forwardRef<
   HTMLDivElement,
   SearchResultListItemProps
->(({ title, subtitle, imageUrl, className, onItemClick, ...props }, ref) => {
-  return (
-    <Command.Item
-      ref={ref}
-      {...props}
-      onSelect={onItemClick}
-      className={cn("search-result-list-item group", className)}
-    >
-      {imageUrl && (
-        <div className="search-result-list-item-image-container">
-          <img
-            src={imageUrl}
-            alt={title}
-            className="search-result-list-item-image"
-          />
-        </div>
-      )}
-      <div>
-        <div className="search-result-list-item-title">{title}</div>
-        {subtitle && (
-          <div className="search-result-list-item-subtitle">{subtitle}</div>
+>(
+  (
+    {
+      title,
+      subtitle,
+      imageUrl,
+      className,
+      onItemClick,
+      dismissOnSelect,
+      ...props
+    },
+    ref
+  ) => {
+    const { onOpenChange } = useContext(SearchContext);
+
+    const handleSelect = () => {
+      onItemClick?.();
+
+      if (dismissOnSelect) {
+        onOpenChange?.(false);
+      }
+    };
+    return (
+      <Command.Item
+        ref={ref}
+        {...props}
+        onSelect={handleSelect}
+        className={cn("search-result-list-item group", className)}
+      >
+        {imageUrl && (
+          <div className="search-result-list-item-image-container">
+            <img
+              src={imageUrl}
+              alt={title}
+              className="search-result-list-item-image"
+            />
+          </div>
         )}
-      </div>
-    </Command.Item>
-  );
-});
+        <div>
+          <div className="search-result-list-item-title">{title}</div>
+          {subtitle && (
+            <div className="search-result-list-item-subtitle">{subtitle}</div>
+          )}
+        </div>
+      </Command.Item>
+    );
+  }
+);
 
 SearchResultListItem.displayName = "SearchResultListItem";
