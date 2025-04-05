@@ -1,8 +1,9 @@
 "use client";
 
 import { Command } from "cmdk";
-import { ReactNode, useContext } from "react";
-import { SearchContext } from "./search-input-root";
+import { forwardRef, ReactNode, useContext, useEffect, useState } from "react";
+import { SearchContext } from "./search-root";
+import { useDebouncedCallback } from "use-debounce";
 
 export interface SearchDialogProps {
   /**
@@ -28,27 +29,53 @@ export interface SearchDialogProps {
    * @default "Search..."
    */
   searchInputPlaceholder?: string;
+
+  /**
+   * Callback function that is called when the search query changes.
+   * @param query The search query string.
+   * @returns
+   */
+  onQueryChange?: (query: string) => Promise<void> | void;
 }
 
-export const SearchDialog = ({
-  children,
-  container,
-  searchInputPlaceholder = "Search...",
-}: SearchDialogProps) => {
-  const { isOpen, onOpenChange } = useContext(SearchContext);
-  return (
-    <Command.Dialog
-      container={container ?? undefined}
-      open={isOpen}
-      onOpenChange={onOpenChange}
-      className="dialog-content"
-      overlayClassName="dialog-overlay"
-    >
-      <Command.Input
-        className="search-result-input"
-        placeholder={searchInputPlaceholder}
-      ></Command.Input>
-      {children}
-    </Command.Dialog>
-  );
-};
+export const SearchDialog = forwardRef<HTMLDivElement, SearchDialogProps>(
+  (
+    {
+      children,
+      container,
+      searchInputPlaceholder = "Search...",
+      onQueryChange = () => {},
+    },
+    ref
+  ) => {
+    const { isOpen, onOpenChange } = useContext(SearchContext);
+    const [query, setQuery] = useState("");
+    const debounceQueryChange = useDebouncedCallback(onQueryChange, 300);
+
+    useEffect(() => {
+      debounceQueryChange?.(query);
+    }, [query, debounceQueryChange]);
+
+    return (
+      <Command.Dialog
+        ref={ref}
+        shouldFilter={false}
+        container={container ?? undefined}
+        open={isOpen}
+        onOpenChange={onOpenChange}
+        className="dialog-content search-dialog"
+        overlayClassName="dialog-overlay"
+      >
+        <Command.Input
+          className="search-result-input"
+          placeholder={searchInputPlaceholder}
+          value={query}
+          onValueChange={setQuery}
+        />
+        {children}
+      </Command.Dialog>
+    );
+  }
+);
+
+SearchDialog.displayName = "SearchDialog";

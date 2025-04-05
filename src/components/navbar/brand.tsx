@@ -8,7 +8,7 @@ export const NavbarBrand = ({ ...props }: NavbarBrandProps) => {
   return (
     <Slot
       {...props}
-      className={cn(props.className, "md:ml-4", {
+      className={cn(props.className, "md:ml-4 flex-shrink-0", {
         "cursor-pointer": props.onClick,
       })}
     />

@@ -1,3 +1,4 @@
+"use client";
 import { Command } from "cmdk";
 
 export interface SearchResultListGroupProps

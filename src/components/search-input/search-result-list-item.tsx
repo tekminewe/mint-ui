@@ -1,8 +1,14 @@
+"use client";
+
 import { Command } from "cmdk";
-import { ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
+import { cn } from "../utils";
 
 export interface SearchResultListItemProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  extends Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    "title" | "onSelect" | "disabled" | "value"
+  > {
   /**
    * The URL of the image to display in the search result item.
    * @type string
@@ -26,22 +32,34 @@ export interface SearchResultListItemProps
    * @default undefined
    */
   title: string;
+
+  /**
+   * The callback function when the item is clicked.
+   * @returns
+   */
+  onItemClick?: () => void;
 }
-export const SearchResultListItem = ({
-  title,
-  subtitle,
-  imageUrl,
-}: SearchResultListItemProps) => {
+export const SearchResultListItem = forwardRef<
+  HTMLDivElement,
+  SearchResultListItemProps
+>(({ title, subtitle, imageUrl, className, onItemClick, ...props }, ref) => {
   return (
-    <Command.Item className="search-result-list-item group">
+    <Command.Item
+      ref={ref}
+      {...props}
+      onSelect={onItemClick}
+      className={cn("search-result-list-item group", className)}
+    >
       {imageUrl && (
-        <img
-          src={imageUrl}
-          alt={title}
-          className="search-result-list-item-image"
-        />
+        <div className="search-result-list-item-image-container">
+          <img
+            src={imageUrl}
+            alt={title}
+            className="search-result-list-item-image"
+          />
+        </div>
       )}
-      <div className="search-result-list-item-content">
+      <div>
         <div className="search-result-list-item-title">{title}</div>
         {subtitle && (
           <div className="search-result-list-item-subtitle">{subtitle}</div>
@@ -49,4 +67,6 @@ export const SearchResultListItem = ({
       </div>
     </Command.Item>
   );
-};
+});
+
+SearchResultListItem.displayName = "SearchResultListItem";

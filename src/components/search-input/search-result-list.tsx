@@ -1,5 +1,7 @@
+"use client";
+
 import { Command } from "cmdk";
-import { ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 import { SearchResultListItemSkeleton } from "./search-result-list-item-skeleton";
 
 export interface SearchResultListProps {
@@ -29,26 +31,30 @@ export interface SearchResultListProps {
   isLoading?: boolean;
 }
 
-export const SearchResultList = ({
-  emptyText,
-  children,
-  isLoading = false,
-}: SearchResultListProps) => {
+export const SearchResultList = forwardRef<
+  HTMLDivElement,
+  SearchResultListProps
+>(({ emptyText = "No results found.", children, isLoading = false }, ref) => {
   return (
     <Command.List
+      ref={ref}
       data-state={isLoading ? "loading" : "loaded"}
-      className="search-result-list"
+      className="search-result-list scrollbar-none"
     >
-      <Command.Empty>{emptyText}</Command.Empty>
       {isLoading ? (
-        <div className="search-result-list-skeleton">
+        <Command.Loading>
           <SearchResultListItemSkeleton />
           <SearchResultListItemSkeleton />
           <SearchResultListItemSkeleton />
-        </div>
+        </Command.Loading>
       ) : (
-        children
+        <>
+          <Command.Empty>{emptyText}</Command.Empty>
+          {children}
+        </>
       )}
     </Command.List>
   );
-};
+});
+
+SearchResultList.displayName = "SearchResultList";
