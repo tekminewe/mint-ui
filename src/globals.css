@@ -228,20 +228,20 @@
     @apply mt-1;
   }
   /**
-  * Search Input styles
+  * Search styles
   */
   .search-input input {
     @apply cursor-pointer;
   }
   .search-dialog {
-    @apply w-screen h-screen md:h-[50vh] overflow-hidden;
+    @apply w-screen h-svh md:h-[50vh] overflow-hidden;
   }
   .search-result-input {
     @apply outline-1 outline outline-gray-a6 focus:outline-2 focus:outline-accent-9 rounded-3 p-2 w-full;
     @apply mb-2;
   }
   .search-result-list {
-    @apply overflow-y-auto h-[calc(100vh-72px)];
+    @apply overflow-y-auto h-[calc(100svh-72px)];
   }
   .search-result-list-item {
     @apply flex items-center p-2 cursor-pointer gap-3 rounded-3;
