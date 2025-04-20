@@ -16,6 +16,7 @@ export interface ControlledFormProps<T extends FieldValues> {
   schema?: ZodSchema<T>;
   children?: React.ReactNode;
   onSubmit?: SubmitHandler<T>;
+  hideSubmitButton?: boolean;
   submitButtonLabel?: string;
   submitButtonPosition?: "start" | "end" | "center" | "stretch";
   keepValuesOnSubmit?: boolean;
@@ -27,6 +28,7 @@ export const ControlledForm = <T extends FieldValues>({
   schema,
   children,
   onSubmit,
+  hideSubmitButton = false,
   submitButtonLabel = "Submit",
   submitButtonPosition = "end",
   keepValuesOnSubmit = false,
@@ -60,21 +62,23 @@ export const ControlledForm = <T extends FieldValues>({
         <fieldset disabled={isSubmitting}>
           <div className="flex flex-col gap-4">
             {children}
-            <div
-              className={cn("flex", {
-                "justify-end": submitButtonPosition === "end",
-                "justify-center": submitButtonPosition === "center",
-                "justify-start": submitButtonPosition === "start",
-              })}
-            >
-              <Button
-                disabled={!isValid || !isDirty}
-                loading={isSubmitting}
-                type="submit"
+            {!hideSubmitButton && (
+              <div
+                className={cn("flex", {
+                  "justify-end": submitButtonPosition === "end",
+                  "justify-center": submitButtonPosition === "center",
+                  "justify-start": submitButtonPosition === "start",
+                })}
               >
-                {submitButtonLabel}
-              </Button>
-            </div>
+                <Button
+                  disabled={!isValid || !isDirty}
+                  loading={isSubmitting}
+                  type="submit"
+                >
+                  {submitButtonLabel}
+                </Button>
+              </div>
+            )}
           </div>
         </fieldset>
       </form>
