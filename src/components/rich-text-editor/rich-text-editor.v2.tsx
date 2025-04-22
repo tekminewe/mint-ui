@@ -164,8 +164,8 @@ export const RichTextEditor = ({
       >
         <NodeCommand onItemClick={handleItemClick} />
       </FloatingMenu>
-      {editor && <LinkBubbleMenu editor={editor} />}
-      {editor && <FigureBubbleMenu editor={editor} />}
+      {editor && editable && <LinkBubbleMenu editor={editor} />}
+      {editor && editable && <FigureBubbleMenu editor={editor} />}
     </div>
   );
 };
