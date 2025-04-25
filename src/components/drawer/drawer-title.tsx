@@ -1,21 +1,26 @@
 import { Drawer as Vaul } from "vaul";
 import { cn } from "../utils";
-import { Flex } from "../flex";
+import { DialogTitleProps } from "@radix-ui/react-dialog";
 
-export interface DrawerTitleProps {
-  children?: React.ReactNode;
-}
+export interface DrawerTitleProps extends DialogTitleProps {}
 
-export const DrawerTitle = ({ children }: DrawerTitleProps) => {
+export const DrawerTitle = ({
+  children,
+  className,
+  ...props
+}: DrawerTitleProps) => {
   return (
-    <Flex mb="4" align="center" gap="1" asChild>
-      <Vaul.Title
-        className={cn("font-semibold", {
+    <Vaul.Title
+      className={cn(
+        "font-semibold flex mb-4 items-center gap-1",
+        {
           hidden: !children,
-        })}
-      >
-        {children}
-      </Vaul.Title>
-    </Flex>
+        },
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </Vaul.Title>
   );
 };

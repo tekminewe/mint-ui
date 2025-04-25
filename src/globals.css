@@ -280,4 +280,24 @@
   .drawer[data-vaul-drawer-direction="bottom"] {
     @apply bottom-0 left-0 w-screen;
   }
+
+  /**
+  * List styles
+  */
+  .list-item-row {
+    @apply p-3 rounded-3 cursor-pointer font-medium flex items-center gap-2;
+    @apply hover:bg-gray-a3;
+  }
+  .list-item-row[data-selected="true"] {
+    @apply bg-accent-9 text-gray-contrast;
+  }
+  .list-item-row + .list-item-row {
+    @apply mt-1;
+  }
+  .list-group + .list-group {
+    @apply mt-6;
+  }
+  .list-group-title {
+    @apply text-sm font-semibold uppercase text-gray-9 mb-3 ml-3;
+  }
 }
