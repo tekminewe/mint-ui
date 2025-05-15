@@ -2,7 +2,6 @@
 
 import { MixerHorizontalIcon } from "@radix-ui/react-icons";
 import { Button } from "../button";
-import { Flex } from "../flex";
 import { Drawer, DrawerRoot, DrawerTrigger } from "../drawer";
 import { Select } from "../select";
 import { FormEvent, useState } from "react";
@@ -74,7 +73,7 @@ export const Filter = <T extends IDataTableFilterState>({
       onOpenChange={setOpen}
       direction={isDesktop ? "right" : "bottom"}
     >
-      <Flex>
+      <div className="flex">
         <DrawerTrigger asChild>
           <Button
             variant="ghost"
@@ -86,7 +85,7 @@ export const Filter = <T extends IDataTableFilterState>({
             {hasFilter && <Badge variant="solid">{filterCount}</Badge>}
           </Button>
         </DrawerTrigger>
-      </Flex>
+      </div>
       <Drawer className="bg-white fixed bottom-0 left-0 md:left-auto md:h-screen md:w-80 right-0 p-4 rounded-t-2 md:rounded-none">
         <DrawerTitle>
           <MixerHorizontalIcon width="18" height="18" />

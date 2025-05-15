@@ -4,7 +4,6 @@ import { BubbleMenu, Editor } from "@tiptap/react";
 import { Button } from "../button";
 import { Dialog } from "@radix-ui/themes";
 import { TextInput } from "../text-input";
-import { Flex } from "../flex";
 
 interface FigureBubbleMenuProps {
   editor: Editor;
@@ -50,11 +49,11 @@ export const FigureBubbleMenu = ({ editor }: FigureBubbleMenuProps) => {
                 });
               }}
             />
-            <Flex justify="end">
+            <div className="flex justify-end">
               <Dialog.Close>
                 <Button variant="soft">Close</Button>
               </Dialog.Close>
-            </Flex>
+            </div>
           </Dialog.Content>
         </Dialog.Root>
       </BubbleMenu>

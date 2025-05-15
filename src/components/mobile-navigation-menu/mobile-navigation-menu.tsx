@@ -1,12 +1,21 @@
 "use client";
 
-import { Flex, FlexProps } from "@radix-ui/themes";
 import { forwardRef } from "react";
 import { Drawer, DrawerRoot, DrawerRootProps, DrawerTrigger } from "../drawer";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { cn } from "../utils";
 
-export type MobileNavigationMenuProps = Omit<FlexProps, "as"> &
-  Pick<DrawerRootProps, "open" | "onOpenChange">;
+export type MobileNavigationMenuProps = {
+  /**
+   * Children to render
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Additional class names
+   */
+  className?: string;
+} & Pick<DrawerRootProps, "open" | "onOpenChange">;
 
 export const MobileNavigationMenu = forwardRef<
   HTMLDivElement,
@@ -18,15 +27,11 @@ export const MobileNavigationMenu = forwardRef<
         <HamburgerMenuIcon width={28} height={28} />
       </DrawerTrigger>
       <Drawer className="bg-accent-1 text-gray-11 fixed top-0 bottom-0 h-screen w-80">
-        <Flex
-          asChild
+        <nav
+          ref={ref}
           {...props}
-          direction="column"
-          justify={props.justify ?? "end"}
-          gap={props.gap ?? "2"}
-        >
-          <nav ref={ref} {...props} />
-        </Flex>
+          className={cn("flex flex-col gap-2", props.className)}
+        />
       </Drawer>
     </DrawerRoot>
   );

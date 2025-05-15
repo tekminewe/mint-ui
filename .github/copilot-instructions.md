@@ -3,15 +3,7 @@
 - This is a React UI library project using React 19 and TypeScript.
 - Please check package.json for the list of dependencies.
 - Always give the answers based on the dependencies in package.json.
-- Use Tailwind CSS v3 for styling. Do not use the tailwind class directly in the component. Create a new CSS class in the `src/globals.css` file and use that class in the component. Example:
-
-```css
-@layer components {
-  .my-class {
-    @apply bg-red-500 text-white;
-  }
-}
-```
+- Use Tailwind CSS v3 for styling.
 
 - Do not create any other css file.
 - Use React 19 recommended coding styles and conventions.
@@ -25,6 +17,7 @@
 - Always use named exports instead of default exports.
 - Always create one file per component.
 - Always add description for props of the component. For example:
+
 ```typescript
 interface MyComponentProps {
   /**
@@ -32,7 +25,7 @@ interface MyComponentProps {
    * @default undefined
    * @example "John Doe"
    */
-   myProps: string;
+  myProps: string;
 }
 ```
 

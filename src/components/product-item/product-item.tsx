@@ -1,5 +1,4 @@
 import { Box, BoxProps, Card, Inset } from "@radix-ui/themes";
-import { Flex } from "../flex";
 import { cn } from "../utils";
 import { Caption, Text } from "../typography";
 
@@ -53,7 +52,7 @@ export const ProductItem = ({
             className="block object-cover w-full h-140 bg-[var(--gray-5)]"
           />
         </Inset>
-        <Flex>
+        <div className="flex">
           <Box className="flex-1">
             <Text>{title}</Text>
             <Caption>{caption}</Caption>
@@ -61,7 +60,7 @@ export const ProductItem = ({
           <Box>
             <Text>{price}</Text>
           </Box>
-        </Flex>
+        </div>
       </Card>
     </Box>
   );

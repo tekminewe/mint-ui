@@ -1,6 +1,6 @@
 "use client";
 
-import { Checkbox, Flex, Popover } from "@radix-ui/themes";
+import { Checkbox, Popover } from "@radix-ui/themes";
 import { forwardRef, useState } from "react";
 import { FormLabel } from "../form";
 import { cn } from "../utils";
@@ -153,7 +153,7 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
 
     return (
       <Popover.Root onOpenChange={onOpenChange} open={open}>
-        <Flex gap="1" direction="column">
+        <div className="flex flex-col gap-1">
           {label && <FormLabel label={label} />}
           <Popover.Trigger>
             <div
@@ -204,7 +204,7 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
               <ChevronDownIcon />
             </div>
           </Popover.Trigger>
-        </Flex>
+        </div>
         <Popover.Content className="p-0">
           <Command>
             <div className="flex items-center gap-2 px-3 h-6 w-full border-b">
@@ -225,12 +225,7 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
                 <>
                   <Command.Empty className="px-3 py-2 text-sm">
                     {allowCreate && searchValue ? (
-                      <Flex
-                        align="center"
-                        gap="2"
-                        px="3"
-                        className="py-[2px] text-sm"
-                      >
+                      <div className="flex items-center gap-2 py-[2px] text-sm px-3">
                         <Checkbox
                           onCheckedChange={(checked) =>
                             handleChange(!!checked, searchValue ?? "")
@@ -238,7 +233,7 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
                           checked={value.includes(searchValue ?? "")}
                         />
                         {searchValue}
-                      </Flex>
+                      </div>
                     ) : (
                       "No results found."
                     )}
