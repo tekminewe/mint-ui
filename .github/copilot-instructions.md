@@ -29,6 +29,10 @@ interface MyComponentProps {
 }
 ```
 
+- The tailwind config file is located at `src/components/tailwind-plugin/index.ts`.
+- Create the storybook story for the component for each variant of style and state.
+- Ensure the accessibility of the component.
+
 ## Project Structure
 
 ```
