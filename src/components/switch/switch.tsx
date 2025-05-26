@@ -1,11 +1,11 @@
 import {
-  Flex,
   Switch as RadixSwitch,
   SwitchProps as RadixSwitchProps,
   Text,
 } from "@radix-ui/themes";
 import { FormLabel } from "../form";
 import { forwardRef } from "react";
+import { cn } from "../utils";
 
 export interface SwitchProps extends RadixSwitchProps {
   error?: string;
@@ -29,32 +29,24 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     ref
   ) => {
     return (
-      <Flex
-        asChild
-        width="100%"
-        direction="column"
-        gap="1"
-        className={containerClassName}
-      >
-        <label>
-          <FormLabel
-            className={labelClassName}
-            label={label}
-            required={required}
-          />
-          <RadixSwitch ref={ref} {...props} />
-          {error && (
-            <Text size="2" color="red">
-              {error}
-            </Text>
-          )}
-          {description && (
-            <Text size="2" color="gray">
-              {description}
-            </Text>
-          )}
-        </label>
-      </Flex>
+      <label className={cn("flex flex-col w-full gap-1", containerClassName)}>
+        <FormLabel
+          className={labelClassName}
+          label={label}
+          required={required}
+        />
+        <RadixSwitch ref={ref} {...props} />
+        {error && (
+          <Text size="2" color="red">
+            {error}
+          </Text>
+        )}
+        {description && (
+          <Text size="2" color="gray">
+            {description}
+          </Text>
+        )}
+      </label>
     );
   }
 );

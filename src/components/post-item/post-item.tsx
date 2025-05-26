@@ -1,5 +1,4 @@
 import { Box } from "@radix-ui/themes";
-import { Flex } from "../flex";
 import { Text, Caption, Title } from "../typography";
 import { forwardRef } from "react";
 import { cn } from "../utils";
@@ -42,7 +41,7 @@ export const PostItem = forwardRef<HTMLDivElement, PostItemProps>(
         className={cn(props.className, "cursor-pointer")}
         ref={ref}
       >
-        <Flex gap="4" className="relative md:static">
+        <div className="flex gap-4 relative md:static">
           <Box className="relative flex-shrink-0 w-full aspect-[1] md:w-[256px] overflow-hidden rounded-2 border">
             <img
               src={imageUrl}
@@ -53,11 +52,11 @@ export const PostItem = forwardRef<HTMLDivElement, PostItemProps>(
           </Box>
           <div className="absolute bottom-0 p-4 md:p-0 md:static">
             {tags.length > 0 && (
-              <Flex gap="2" mb="2">
+              <div className="flex gap-2 mb-2">
                 {tags.map((tag) => (
                   <Badge key={tag}>{tag}</Badge>
                 ))}
-              </Flex>
+              </div>
             )}
             <Title className="text-gray-contrast md:text-[unset] my-1">
               {title}
@@ -67,7 +66,7 @@ export const PostItem = forwardRef<HTMLDivElement, PostItemProps>(
             </Caption>
             <Text className="hidden md:block mt-4">{summary}</Text>
           </div>
-        </Flex>
+        </div>
       </div>
     );
   }

@@ -1,7 +1,6 @@
 "use client";
 
 import { Select as RadixSelect, Text } from "@radix-ui/themes";
-import { Flex } from "../flex";
 import { forwardRef } from "react";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import { FormLabel } from "../form";
@@ -72,28 +71,26 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
     };
 
     return (
-      <Flex asChild direction="column" gap="1">
-        <label>
-          <FormLabel label={label} required={required} />
-          {description && (
-            <Text size="2" color="gray">
-              {description}
-            </Text>
-          )}
-          <Flex width="100%" align="center" className="relative">
-            {renderSelect()}
-            {clearable && value && (
-              <Cross1Icon
-                className="cursor-pointer absolute right-[40px]"
-                onClick={handleClear}
-              />
-            )}
-          </Flex>
-          <Text size="2" color="red">
-            {error}
+      <label className="flex flex-col gap-1">
+        <FormLabel label={label} required={required} />
+        {description && (
+          <Text size="2" color="gray">
+            {description}
           </Text>
-        </label>
-      </Flex>
+        )}
+        <div className="flex items-center w-full relative">
+          {renderSelect()}
+          {clearable && value && (
+            <Cross1Icon
+              className="cursor-pointer absolute right-[40px]"
+              onClick={handleClear}
+            />
+          )}
+        </div>
+        <Text size="2" color="red">
+          {error}
+        </Text>
+      </label>
     );
   }
 );

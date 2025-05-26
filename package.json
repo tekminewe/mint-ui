@@ -17,12 +17,14 @@
   "exports": {
     ".": {
       "import": "./index.js",
-      "require": "./index.cjs"
+      "require": "./index.cjs",
+      "types": "./index.d.ts"
     },
     "./styles.css": "./styles.css",
     "./*": {
       "import": "./*/index.js",
-      "require": "./*/index.cjs"
+      "require": "./*/index.cjs",
+      "types": "./*/index.d.ts"
     }
   },
   "types": "./index.d.ts",

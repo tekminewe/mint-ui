@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DateInput } from "./date-input";
-import { Flex } from "../flex";
 
 const meta = {
   title: "Form / DateInput",
@@ -8,7 +7,7 @@ const meta = {
   tags: ["autodocs"],
   render: () => {
     return (
-      <Flex gap="4" direction="column">
+      <div className="flex flex-col gap-4">
         <DateInput label="Date of birth" placeholder="Select your birth date" />
         <DateInput label="Post Date" value={new Date("2021-01-01T00:00:00")} />
         <DateInput
@@ -28,7 +27,7 @@ const meta = {
           showTime
           value={new Date("2021-01-01T00:00:00")}
         />
-      </Flex>
+      </div>
     );
   },
 } satisfies Meta<typeof DateInput>;
