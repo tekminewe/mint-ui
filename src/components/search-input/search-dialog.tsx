@@ -4,8 +4,10 @@ import { Command } from "cmdk";
 import { forwardRef, ReactNode, useContext, useEffect, useState } from "react";
 import { SearchContext } from "./search-root";
 import { useDebouncedCallback } from "use-debounce";
+import { cn } from "../utils";
 
-export interface SearchDialogProps {
+export interface SearchDialogProps
+  extends Pick<React.HTMLAttributes<HTMLDivElement>, "className"> {
   /**
    * The children of the `SearchInputDialog` component.
    * @type {ReactNode}
@@ -45,6 +47,7 @@ export const SearchDialog = forwardRef<HTMLDivElement, SearchDialogProps>(
       container,
       searchInputPlaceholder = "Search...",
       onQueryChange = () => {},
+      className,
     },
     ref
   ) => {
@@ -63,7 +66,7 @@ export const SearchDialog = forwardRef<HTMLDivElement, SearchDialogProps>(
         container={container ?? undefined}
         open={isOpen}
         onOpenChange={onOpenChange}
-        className="dialog-content search-dialog"
+        className={cn("dialog-content search-dialog", className)}
         overlayClassName="overlay"
       >
         <Command.Input
