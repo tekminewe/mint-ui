@@ -171,16 +171,19 @@ export const Disabled: Story = {
 // All Variants and Colors Grid
 export const AllVariantsAndColors: Story = {
   render: () => (
-    <div className="grid grid-cols-6 gap-4">
+    <div className="grid grid-cols-7 gap-4">
       <div></div>
+      <div className="font-bold text-center">Info</div>
       <div className="font-bold text-center">Primary</div>
       <div className="font-bold text-center">Neutral</div>
       <div className="font-bold text-center">Success</div>
       <div className="font-bold text-center">Error</div>
       <div className="font-bold text-center">Warning</div>
-      <div className="font-bold text-center">Info</div>
 
       <div className="font-bold">Solid</div>
+      <Button variant="solid" color="info">
+        Info
+      </Button>
       <Button variant="solid" color="primary">
         Primary
       </Button>
@@ -196,11 +199,11 @@ export const AllVariantsAndColors: Story = {
       <Button variant="solid" color="warning">
         Warning
       </Button>
-      <Button variant="solid" color="info">
-        Info
-      </Button>
 
       <div className="font-bold">Soft</div>
+      <Button variant="soft" color="info">
+        Info
+      </Button>
       <Button variant="soft" color="primary">
         Primary
       </Button>
@@ -216,11 +219,11 @@ export const AllVariantsAndColors: Story = {
       <Button variant="soft" color="warning">
         Warning
       </Button>
-      <Button variant="soft" color="info">
-        Info
-      </Button>
 
       <div className="font-bold">Outline</div>
+      <Button variant="outline" color="info">
+        Info
+      </Button>
       <Button variant="outline" color="primary">
         Primary
       </Button>
@@ -236,11 +239,11 @@ export const AllVariantsAndColors: Story = {
       <Button variant="outline" color="warning">
         Warning
       </Button>
-      <Button variant="outline" color="info">
-        Info
-      </Button>
 
       <div className="font-bold">Ghost</div>
+      <Button variant="ghost" color="info">
+        Info
+      </Button>
       <Button variant="ghost" color="primary">
         Primary
       </Button>
@@ -256,11 +259,11 @@ export const AllVariantsAndColors: Story = {
       <Button variant="ghost" color="warning">
         Warning
       </Button>
-      <Button variant="ghost" color="info">
-        Info
-      </Button>
 
       <div className="font-bold">Link</div>
+      <Button variant="link" color="info">
+        Info
+      </Button>
       <Button variant="link" color="primary">
         Primary
       </Button>
@@ -275,9 +278,6 @@ export const AllVariantsAndColors: Story = {
       </Button>
       <Button variant="link" color="warning">
         Warning
-      </Button>
-      <Button variant="link" color="info">
-        Info
       </Button>
     </div>
   ),
