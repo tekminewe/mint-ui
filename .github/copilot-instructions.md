@@ -4,7 +4,6 @@
 - Please check package.json for the list of dependencies.
 - Always give the answers based on the dependencies in package.json.
 - Use Tailwind CSS v3 for styling.
-
 - Do not create any other css file.
 - Use React 19 recommended coding styles and conventions.
 - Use the same naming conventions as in the project.

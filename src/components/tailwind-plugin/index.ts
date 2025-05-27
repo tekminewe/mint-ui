@@ -13,6 +13,152 @@ export default () => {
       addBase({
         ":root": {
           "--mt-w-drawer": "350px",
+
+          // === COLOR PALETTE ===
+
+          // PRIMARY: Main brand color (blue-based)
+          // Use for: Buttons, links, focus states, selections, and primary actions
+          "--color-primary-50":
+            "239 246 255" /* Lightest - backgrounds, hover states */,
+          "--color-primary-100":
+            "219 234 254" /* Very light - backgrounds, borders */,
+          "--color-primary-200":
+            "191 219 254" /* Light - hover states, subtle UI */,
+          "--color-primary-300":
+            "147 197 253" /* Medium light - borders, focus rings */,
+          "--color-primary-400":
+            "96 165 250" /* Medium - secondary buttons, icons */,
+          "--color-primary-500":
+            "59 130 246" /* Base - main brand color, primary buttons */,
+          "--color-primary-600":
+            "37 99 235" /* Medium dark - hover states, active states */,
+          "--color-primary-700": "29 78 216" /* Dark - active states, text */,
+          "--color-primary-800":
+            "30 64 175" /* Very dark - text, concentrated UI */,
+          "--color-primary-900":
+            "30 58 138" /* Darkest - text against light backgrounds */,
+
+          // NEUTRAL: Gray scale for UI framework
+          // Use for: Text, backgrounds, dividers, cards, secondary UI elements
+          "--color-neutral-50":
+            "250 250 250" /* White/Off-white - page backgrounds, cards */,
+          "--color-neutral-100":
+            "245 245 245" /* Very light gray - subtle backgrounds, dividers */,
+          "--color-neutral-200":
+            "229 229 229" /* Light gray - borders, dividers, disabled states */,
+          "--color-neutral-300":
+            "212 212 212" /* Medium light gray - disabled elements, borders */,
+          "--color-neutral-400":
+            "163 163 163" /* Medium gray - disabled text, placeholders */,
+          "--color-neutral-500":
+            "115 115 115" /* Base gray - secondary text, icons */,
+          "--color-neutral-600":
+            "82 82 82" /* Medium dark gray - primary text, headings */,
+          "--color-neutral-700":
+            "64 64 64" /* Dark gray - heavy text, headings */,
+          "--color-neutral-800":
+            "38 38 38" /* Very dark gray - high contrast text */,
+          "--color-neutral-900":
+            "23 23 23" /* Nearly black - highest contrast text/backgrounds */,
+
+          // SUCCESS: Indicates successful actions or validation
+          // Use for: Confirmation messages, completed states, positive feedback
+          "--color-success-100":
+            "220 252 231" /* Light success - success backgrounds */,
+          "--color-success-500":
+            "34 197 94" /* Base success - success buttons, text, icons */,
+          "--color-success-700":
+            "21 128 61" /* Deep success - text on light backgrounds */,
+
+          // ERROR: Indicates errors or destructive actions
+          // Use for: Error messages, destructive actions, validation errors
+          "--color-error-100":
+            "254 226 226" /* Light error - error backgrounds, alerts */,
+          "--color-error-500":
+            "239 68 68" /* Base error - error messages, destructive buttons */,
+          "--color-error-700":
+            "185 28 28" /* Deep error - text on light backgrounds */,
+
+          // WARNING: Indicates caution or attention needed
+          // Use for: Warning messages, pending states, attention-requiring elements
+          "--color-warning-100":
+            "254 243 199" /* Light warning - warning backgrounds, alerts */,
+          "--color-warning-500":
+            "245 158 11" /* Base warning - warning indicators, icons */,
+          "--color-warning-700":
+            "180 83 9" /* Deep warning - text on light backgrounds */,
+
+          // INFO: Indicates information or help
+          // Use for: Informational messages, help text, neutral status indicators
+          "--color-info-100":
+            "224 242 254" /* Light info - informational backgrounds, alerts */,
+          "--color-info-500":
+            "6 182 212" /* Base info - informational messages, icons */,
+          "--color-info-700":
+            "14 116 144" /* Deep info - text on light backgrounds */,
+        },
+
+        // Dark mode color adjustments for better contrast and visibility
+        ".dark": {
+          // PRIMARY: Brighter in dark mode for better visibility
+          "--color-primary-50":
+            "30 58 138" /* Reversed from 900 for dark mode */,
+          "--color-primary-100":
+            "30 64 175" /* Reversed from 800 for dark mode */,
+          "--color-primary-200":
+            "29 78 216" /* Reversed from 700 for dark mode */,
+          "--color-primary-300":
+            "37 99 235" /* Reversed from 600 for dark mode */,
+          "--color-primary-400":
+            "59 130 246" /* Reversed from 500 for dark mode */,
+          "--color-primary-500": "96 165 250" /* Brighter in dark mode */,
+          "--color-primary-600":
+            "147 197 253" /* Reversed from 300 for dark mode */,
+          "--color-primary-700":
+            "191 219 254" /* Reversed from 200 for dark mode */,
+          "--color-primary-800":
+            "219 234 254" /* Reversed from 100 for dark mode */,
+          "--color-primary-900":
+            "239 246 255" /* Reversed from 50 for dark mode */,
+
+          // NEUTRAL: Inverted for dark mode
+          "--color-neutral-50": "23 23 23" /* Dark background in dark mode */,
+          "--color-neutral-100": "38 38 38" /* Dark surfaces in dark mode */,
+          "--color-neutral-200": "64 64 64" /* Subtle borders in dark mode */,
+          "--color-neutral-300": "82 82 82" /* Strong borders in dark mode */,
+          "--color-neutral-400": "115 115 115" /* Disabled text in dark mode */,
+          "--color-neutral-500":
+            "163 163 163" /* Secondary text in dark mode */,
+          "--color-neutral-600": "212 212 212" /* Primary text in dark mode */,
+          "--color-neutral-700":
+            "229 229 229" /* High contrast text in dark mode */,
+          "--color-neutral-800":
+            "245 245 245" /* Very high contrast text in dark mode */,
+          "--color-neutral-900":
+            "250 250 250" /* Maximum contrast text in dark mode */,
+
+          // STATUS COLORS: Brighter in dark mode for better visibility
+          "--color-success-100": "21 128 61" /* Dark mode success background */,
+          "--color-success-500":
+            "74 222 128" /* Brighter success for dark mode */,
+          "--color-success-700":
+            "220 252 231" /* Success text for dark backgrounds */,
+
+          "--color-error-100": "185 28 28" /* Dark mode error background */,
+          "--color-error-500": "248 113 113" /* Brighter error for dark mode */,
+          "--color-error-700":
+            "254 226 226" /* Error text for dark backgrounds */,
+
+          "--color-warning-100": "180 83 9" /* Dark mode warning background */,
+          "--color-warning-500":
+            "251 191 36" /* Brighter warning for dark mode */,
+          "--color-warning-700":
+            "254 243 199" /* Warning text for dark backgrounds */,
+
+          "--color-info-100": "14 116 144" /* Dark mode info background */,
+          "--color-info-500": "34 211 238" /* Brighter info for dark mode */,
+          "--color-info-700":
+            "224 242 254" /* Info text for dark backgrounds */,
         },
         body: {
           fontSize: theme("fontSize.base"),
@@ -57,8 +203,66 @@ export default () => {
         colors: {
           ...config.colors,
           "panel-solid": "var(--color-panel-solid)",
-          error: "var(--color-error)",
-          success: "var(--color-success)",
+
+          // Main color palettes with semantic naming
+          primary: {
+            50: "rgb(var(--color-primary-50) / <alpha-value>)", // Use for: Subtle backgrounds, hover states
+            100: "rgb(var(--color-primary-100) / <alpha-value>)", // Use for: Light backgrounds, subtle UI
+            200: "rgb(var(--color-primary-200) / <alpha-value>)", // Use for: Hover states, selected items
+            300: "rgb(var(--color-primary-300) / <alpha-value>)", // Use for: Focus rings, borders
+            400: "rgb(var(--color-primary-400) / <alpha-value>)", // Use for: Secondary buttons, icons
+            500: "rgb(var(--color-primary-500) / <alpha-value>)", // Use for: Primary buttons, key UI elements
+            600: "rgb(var(--color-primary-600) / <alpha-value>)", // Use for: Hover states, active elements
+            700: "rgb(var(--color-primary-700) / <alpha-value>)", // Use for: Text, active states
+            800: "rgb(var(--color-primary-800) / <alpha-value>)", // Use for: Text on light backgrounds
+            900: "rgb(var(--color-primary-900) / <alpha-value>)", // Use for: High contrast text
+            DEFAULT: "rgb(var(--color-primary-500) / <alpha-value>)",
+          },
+
+          neutral: {
+            50: "rgb(var(--color-neutral-50) / <alpha-value>)", // Use for: Page backgrounds, cards
+            100: "rgb(var(--color-neutral-100) / <alpha-value>)", // Use for: Card backgrounds, subtle UI
+            200: "rgb(var(--color-neutral-200) / <alpha-value>)", // Use for: Borders, dividers, disabled elements
+            300: "rgb(var(--color-neutral-300) / <alpha-value>)", // Use for: Strong borders, disabled elements
+            400: "rgb(var(--color-neutral-400) / <alpha-value>)", // Use for: Placeholder text, disabled text
+            500: "rgb(var(--color-neutral-500) / <alpha-value>)", // Use for: Secondary text, icons
+            600: "rgb(var(--color-neutral-600) / <alpha-value>)", // Use for: Primary text, headings
+            700: "rgb(var(--color-neutral-700) / <alpha-value>)", // Use for: Strong text, primary headings
+            800: "rgb(var(--color-neutral-800) / <alpha-value>)", // Use for: High contrast text
+            900: "rgb(var(--color-neutral-900) / <alpha-value>)", // Use for: Highest contrast text, dark backgrounds
+            DEFAULT: "rgb(var(--color-neutral-600) / <alpha-value>)",
+          },
+
+          // Status colors for feedback and notifications
+          success: {
+            100: "rgb(var(--color-success-100) / <alpha-value>)", // Use for: Success backgrounds, subtle indicators
+            500: "rgb(var(--color-success-500) / <alpha-value>)", // Use for: Success messages, icons, buttons
+            700: "rgb(var(--color-success-700) / <alpha-value>)", // Use for: Text on light backgrounds
+            DEFAULT: "rgb(var(--color-success-500) / <alpha-value>)",
+          },
+
+          error: {
+            100: "rgb(var(--color-error-100) / <alpha-value>)", // Use for: Error backgrounds, subtle indicators
+            500: "rgb(var(--color-error-500) / <alpha-value>)", // Use for: Error messages, destructive buttons
+            700: "rgb(var(--color-error-700) / <alpha-value>)", // Use for: Text on light backgrounds
+            DEFAULT: "rgb(var(--color-error-500) / <alpha-value>)",
+          },
+
+          warning: {
+            100: "rgb(var(--color-warning-100) / <alpha-value>)", // Use for: Warning backgrounds, notices
+            500: "rgb(var(--color-warning-500) / <alpha-value>)", // Use for: Warning indicators, icons
+            700: "rgb(var(--color-warning-700) / <alpha-value>)", // Use for: Text on light backgrounds
+            DEFAULT: "rgb(var(--color-warning-500) / <alpha-value>)",
+          },
+
+          info: {
+            100: "rgb(var(--color-info-100) / <alpha-value>)", // Use for: Info backgrounds, help notices
+            500: "rgb(var(--color-info-500) / <alpha-value>)", // Use for: Info messages, icons
+            700: "rgb(var(--color-info-700) / <alpha-value>)", // Use for: Text on light backgrounds
+            DEFAULT: "rgb(var(--color-info-500) / <alpha-value>)",
+          },
+
+          /** Deprecated colors for backward compatibility */
           accent: {
             1: "var(--accent-1)",
             2: "var(--accent-2)",
@@ -122,6 +326,7 @@ export default () => {
           background: "var(--color-background)",
           overlay: "var(--color-overlay)",
         },
+        /** End of deprecated */
         spacing: {
           ...config.spacing,
           0: "0",
