@@ -42,6 +42,164 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
+// Default interactive button example with all controls
+export const Default: Story = {
+  args: {
+    children: "Button",
+    variant: "solid",
+    color: "primary",
+    size: "md",
+    loading: false,
+    disabled: false,
+  },
+};
+
+// Button Sizes Story
+export const ButtonSizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Buttons come in three standard sizes: small, medium (default), and large. The size prop changes the overall dimensions, padding, and font size of the button.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-8">
+      {/* Light Theme Sizes */}
+      <div className="p-8 bg-white border rounded-lg">
+        <h2 className="text-xl font-bold mb-6 text-neutral-900">
+          Light Theme Button Sizes
+        </h2>
+        <div className="flex flex-wrap gap-8">
+          <div className="flex flex-col items-center gap-3">
+            <Button size="sm" variant="solid" color="primary">
+              Small Button
+            </Button>
+            <span className="text-xs text-neutral-600">size="sm"</span>
+          </div>
+
+          <div className="flex flex-col items-center gap-3">
+            <Button size="md" variant="solid" color="primary">
+              Medium Button
+            </Button>
+            <span className="text-xs text-neutral-600">
+              size="md" (default)
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center gap-3">
+            <Button size="lg" variant="solid" color="primary">
+              Large Button
+            </Button>
+            <span className="text-xs text-neutral-600">size="lg"</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Dark Theme Sizes */}
+      <div className="p-8 bg-neutral-900 border rounded-lg">
+        <h2 className="text-xl font-bold mb-6 text-white">
+          Dark Theme Button Sizes
+        </h2>
+        <div className="flex flex-wrap gap-8 dark">
+          <div className="flex flex-col items-center gap-3">
+            <Button size="sm" variant="solid" color="primary">
+              Small Button
+            </Button>
+            <span className="text-xs text-neutral-400">size="sm"</span>
+          </div>
+
+          <div className="flex flex-col items-center gap-3">
+            <Button size="md" variant="solid" color="primary">
+              Medium Button
+            </Button>
+            <span className="text-xs text-neutral-400">
+              size="md" (default)
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center gap-3">
+            <Button size="lg" variant="solid" color="primary">
+              Large Button
+            </Button>
+            <span className="text-xs text-neutral-400">size="lg"</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Size Comparison with Different Variants */}
+      <div className="p-8 bg-white border rounded-lg">
+        <h2 className="text-xl font-bold mb-6 text-neutral-900">
+          Size Comparison with Different Variants
+        </h2>
+
+        <div className="grid grid-cols-4 gap-6">
+          <div className="font-bold text-neutral-700"></div>
+          <div className="font-bold text-center text-neutral-700">Small</div>
+          <div className="font-bold text-center text-neutral-700">Medium</div>
+          <div className="font-bold text-center text-neutral-700">Large</div>
+
+          <div className="font-bold text-neutral-700">Solid</div>
+          <Button size="sm" variant="solid" color="primary">
+            Button
+          </Button>
+          <Button size="md" variant="solid" color="primary">
+            Button
+          </Button>
+          <Button size="lg" variant="solid" color="primary">
+            Button
+          </Button>
+
+          <div className="font-bold text-neutral-700">Outline</div>
+          <Button size="sm" variant="outline" color="primary">
+            Button
+          </Button>
+          <Button size="md" variant="outline" color="primary">
+            Button
+          </Button>
+          <Button size="lg" variant="outline" color="primary">
+            Button
+          </Button>
+
+          <div className="font-bold text-neutral-700">Soft</div>
+          <Button size="sm" variant="soft" color="primary">
+            Button
+          </Button>
+          <Button size="md" variant="soft" color="primary">
+            Button
+          </Button>
+          <Button size="lg" variant="soft" color="primary">
+            Button
+          </Button>
+
+          <div className="font-bold text-neutral-700">Ghost</div>
+          <Button size="sm" variant="ghost" color="primary">
+            Button
+          </Button>
+          <Button size="md" variant="ghost" color="primary">
+            Button
+          </Button>
+          <Button size="lg" variant="ghost" color="primary">
+            Button
+          </Button>
+
+          <div className="font-bold text-neutral-700">Link</div>
+          <Button size="sm" variant="link" color="primary">
+            Button
+          </Button>
+          <Button size="md" variant="link" color="primary">
+            Button
+          </Button>
+          <Button size="lg" variant="link" color="primary">
+            Button
+          </Button>
+        </div>
+      </div>
+    </div>
+  ),
+};
+
 // Combined Light and Dark Theme Comparison
 export const LightAndDarkComparison: Story = {
   render: () => (
