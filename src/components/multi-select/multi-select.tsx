@@ -219,7 +219,7 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
             <Command.List>
               {isSearching ? (
                 <Command.Empty className="flex justify-center px-3 py-2 text-sm">
-                  <Spinner />
+                  <Spinner color="neutral" size="sm" />
                 </Command.Empty>
               ) : (
                 <>

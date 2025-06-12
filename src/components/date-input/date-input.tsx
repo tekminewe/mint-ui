@@ -18,7 +18,7 @@ import { FormLabel } from "../form";
 import { cn } from "../utils";
 
 export interface DateInputProps
-  extends Omit<ButtonProps, "value" | "onChange"> {
+  extends Omit<ButtonProps, "value" | "onChange" | "children"> {
   /**
    * The selected date.
    * @default undefined
@@ -159,7 +159,6 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
                     "shadow-[inset_0_0_0_1px_rgb(206,44,49)]": error,
                   }
                 )}
-                color="gray"
               >
                 <CalendarIcon />
                 <Text className="font-normal text-sm pointer-events-none">

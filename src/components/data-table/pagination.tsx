@@ -12,7 +12,7 @@ export function Pagination<TData>({ table }: DataTablePaginationProps<TData>) {
     <div className="flex items-center gap-1 mt-4">
       <Button
         variant="outline"
-        size="2"
+        size="sm"
         disabled={!table.getCanPreviousPage()}
         style={{
           boxShadow: "none",
@@ -29,7 +29,7 @@ export function Pagination<TData>({ table }: DataTablePaginationProps<TData>) {
         return (
           <Button
             key={pageIndex}
-            size="2"
+            size="sm"
             variant={currentPageIndex === pageIndex ? "solid" : "outline"}
             style={{
               boxShadow: "none",
@@ -42,7 +42,7 @@ export function Pagination<TData>({ table }: DataTablePaginationProps<TData>) {
         );
       })}
       <Button
-        size="2"
+        size="sm"
         variant="outline"
         style={{
           boxShadow: "none",

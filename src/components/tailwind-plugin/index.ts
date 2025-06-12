@@ -19,9 +19,9 @@ export default () => {
           // PRIMARY: Main brand color (blue-based)
           // Use for: Buttons, links, focus states, selections, and primary actions
           "--color-primary-50":
-            "239 246 255" /* Lightest - backgrounds, hover states */,
+            "248 250 255" /* Lightest - backgrounds, hover states */,
           "--color-primary-100":
-            "219 234 254" /* Very light - backgrounds, borders */,
+            "239 246 255" /* Very light - backgrounds, borders */,
           "--color-primary-200":
             "191 219 254" /* Light - hover states, subtle UI */,
           "--color-primary-300":
@@ -63,39 +63,86 @@ export default () => {
 
           // SUCCESS: Indicates successful actions or validation
           // Use for: Confirmation messages, completed states, positive feedback
+          "--color-success-50":
+            "250 253 251" /* Very subtle success - barely visible tint */,
           "--color-success-100":
-            "220 252 231" /* Light success - success backgrounds */,
+            "240 253 244" /* Light success - success backgrounds */,
+          "--color-success-200":
+            "187 247 208" /* Medium light success - hover states */,
+          "--color-success-400":
+            "74 222 128" /* Medium success - icons, secondary elements */,
           "--color-success-500":
             "34 197 94" /* Base success - success buttons, text, icons */,
+          "--color-success-600":
+            "22 163 74" /* Medium dark success - borders, outlines */,
           "--color-success-700":
             "21 128 61" /* Deep success - text on light backgrounds */,
+          "--color-success-800":
+            "22 101 52" /* Very dark success - dark mode backgrounds */,
+          "--color-success-900":
+            "14 63 28" /* Darkest success - highest contrast */,
 
           // ERROR: Indicates errors or destructive actions
           // Use for: Error messages, destructive actions, validation errors
+          "--color-error-50":
+            "254 252 252" /* Very subtle error - barely visible tint */,
           "--color-error-100":
-            "254 226 226" /* Light error - error backgrounds, alerts */,
+            "254 242 242" /* Light error - error backgrounds, alerts */,
+          "--color-error-200":
+            "254 202 202" /* Medium light error - hover states */,
+          "--color-error-400":
+            "248 113 113" /* Medium error - icons, secondary elements */,
           "--color-error-500":
             "239 68 68" /* Base error - error messages, destructive buttons */,
+          "--color-error-600":
+            "220 38 38" /* Medium dark error - borders, outlines */,
           "--color-error-700":
             "185 28 28" /* Deep error - text on light backgrounds */,
+          "--color-error-800":
+            "153 27 27" /* Very dark error - dark mode backgrounds */,
+          "--color-error-900":
+            "127 29 29" /* Darkest error - highest contrast */,
 
           // WARNING: Indicates caution or attention needed
           // Use for: Warning messages, pending states, attention-requiring elements
+          "--color-warning-50":
+            "255 254 248" /* Very subtle warning - barely visible tint */,
           "--color-warning-100":
-            "254 243 199" /* Light warning - warning backgrounds, alerts */,
+            "255 251 235" /* Light warning - warning backgrounds, alerts */,
+          "--color-warning-200":
+            "254 240 138" /* Medium light warning - hover states */,
+          "--color-warning-400":
+            "254 228 102" /* Medium warning - icons, secondary elements */,
           "--color-warning-500":
-            "245 158 11" /* Base warning - warning indicators, icons */,
+            "255 193 7" /* Base warning - warning indicators, icons (target color) */,
+          "--color-warning-600":
+            "212 159 6" /* Medium dark warning - borders, outlines */,
           "--color-warning-700":
-            "180 83 9" /* Deep warning - text on light backgrounds */,
+            "163 123 5" /* Deep warning - text on light backgrounds */,
+          "--color-warning-800":
+            "130 98 4" /* Very dark warning - dark mode backgrounds */,
+          "--color-warning-900":
+            "97 74 3" /* Darkest warning - highest contrast */,
 
           // INFO: Indicates information or help
           // Use for: Informational messages, help text, neutral status indicators
+          "--color-info-50":
+            "250 252 254" /* Very subtle info - barely visible tint */,
           "--color-info-100":
-            "224 242 254" /* Light info - informational backgrounds, alerts */,
+            "240 249 255" /* Light info - informational backgrounds, alerts */,
+          "--color-info-200":
+            "186 230 253" /* Medium light info - hover states */,
+          "--color-info-400":
+            "34 211 238" /* Medium info - icons, secondary elements */,
           "--color-info-500":
             "6 182 212" /* Base info - informational messages, icons */,
+          "--color-info-600":
+            "8 145 178" /* Medium dark info - borders, outlines */,
           "--color-info-700":
             "14 116 144" /* Deep info - text on light backgrounds */,
+          "--color-info-800":
+            "22 78 99" /* Very dark info - dark mode backgrounds */,
+          "--color-info-900": "12 74 110" /* Darkest info - highest contrast */,
         },
 
         // Dark mode color adjustments for better contrast and visibility
@@ -138,27 +185,58 @@ export default () => {
             "250 250 250" /* Maximum contrast text in dark mode */,
 
           // STATUS COLORS: Brighter in dark mode for better visibility
+          "--color-success-50": "14 63 28" /* Dark mode success darkest */,
           "--color-success-100": "21 128 61" /* Dark mode success background */,
+          "--color-success-200": "22 101 52" /* Dark mode success hover */,
+          "--color-success-400": "187 247 208" /* Dark mode success medium */,
           "--color-success-500":
             "74 222 128" /* Brighter success for dark mode */,
+          "--color-success-600": "134 239 172" /* Dark mode success borders */,
           "--color-success-700":
             "220 252 231" /* Success text for dark backgrounds */,
+          "--color-success-800":
+            "187 247 208" /* Light success for dark mode text */,
+          "--color-success-900":
+            "248 250 248" /* Very subtle success for dark mode */,
 
+          "--color-error-50": "127 29 29" /* Dark mode error darkest */,
           "--color-error-100": "185 28 28" /* Dark mode error background */,
+          "--color-error-200": "153 27 27" /* Dark mode error hover */,
+          "--color-error-400": "254 202 202" /* Dark mode error medium */,
           "--color-error-500": "248 113 113" /* Brighter error for dark mode */,
+          "--color-error-600": "252 165 165" /* Dark mode error borders */,
           "--color-error-700":
             "254 226 226" /* Error text for dark backgrounds */,
+          "--color-error-800":
+            "254 202 202" /* Light error for dark mode text */,
+          "--color-error-900":
+            "253 248 248" /* Very subtle error for dark mode */,
 
-          "--color-warning-100": "180 83 9" /* Dark mode warning background */,
+          "--color-warning-50": "97 74 3" /* Dark mode warning darkest */,
+          "--color-warning-100": "163 123 5" /* Dark mode warning background */,
+          "--color-warning-200": "130 98 4" /* Dark mode warning hover */,
+          "--color-warning-400": "254 240 138" /* Dark mode warning medium */,
           "--color-warning-500":
-            "251 191 36" /* Brighter warning for dark mode */,
+            "254 228 102" /* Brighter warning for dark mode */,
+          "--color-warning-600": "255 225 102" /* Dark mode warning borders */,
           "--color-warning-700":
-            "254 243 199" /* Warning text for dark backgrounds */,
+            "254 249 195" /* Warning text for dark backgrounds */,
+          "--color-warning-800":
+            "254 240 138" /* Light warning for dark mode text */,
+          "--color-warning-900":
+            "255 254 240" /* Very subtle warning for dark mode */,
 
+          "--color-info-50": "12 74 110" /* Dark mode info darkest */,
           "--color-info-100": "14 116 144" /* Dark mode info background */,
+          "--color-info-200": "22 78 99" /* Dark mode info hover */,
+          "--color-info-400": "186 230 253" /* Dark mode info medium */,
           "--color-info-500": "34 211 238" /* Brighter info for dark mode */,
+          "--color-info-600": "103 232 249" /* Dark mode info borders */,
           "--color-info-700":
             "224 242 254" /* Info text for dark backgrounds */,
+          "--color-info-800": "186 230 253" /* Light info for dark mode text */,
+          "--color-info-900":
+            "248 251 253" /* Very subtle info for dark mode */,
         },
         body: {
           fontSize: theme("fontSize.base"),
@@ -235,30 +313,54 @@ export default () => {
 
           // Status colors for feedback and notifications
           success: {
+            50: "rgb(var(--color-success-50) / <alpha-value>)", // Use for: Very light success backgrounds
             100: "rgb(var(--color-success-100) / <alpha-value>)", // Use for: Success backgrounds, subtle indicators
+            200: "rgb(var(--color-success-200) / <alpha-value>)", // Use for: Success hover states
+            400: "rgb(var(--color-success-400) / <alpha-value>)", // Use for: Success icons, secondary elements
             500: "rgb(var(--color-success-500) / <alpha-value>)", // Use for: Success messages, icons, buttons
+            600: "rgb(var(--color-success-600) / <alpha-value>)", // Use for: Success borders, outlines
             700: "rgb(var(--color-success-700) / <alpha-value>)", // Use for: Text on light backgrounds
+            800: "rgb(var(--color-success-800) / <alpha-value>)", // Use for: Dark mode backgrounds and text
+            900: "rgb(var(--color-success-900) / <alpha-value>)", // Use for: Darkest success for high contrast
             DEFAULT: "rgb(var(--color-success-500) / <alpha-value>)",
           },
 
           error: {
+            50: "rgb(var(--color-error-50) / <alpha-value>)", // Use for: Very light error backgrounds
             100: "rgb(var(--color-error-100) / <alpha-value>)", // Use for: Error backgrounds, subtle indicators
+            200: "rgb(var(--color-error-200) / <alpha-value>)", // Use for: Error hover states
+            400: "rgb(var(--color-error-400) / <alpha-value>)", // Use for: Error icons, secondary elements
             500: "rgb(var(--color-error-500) / <alpha-value>)", // Use for: Error messages, destructive buttons
+            600: "rgb(var(--color-error-600) / <alpha-value>)", // Use for: Error borders, outlines
             700: "rgb(var(--color-error-700) / <alpha-value>)", // Use for: Text on light backgrounds
+            800: "rgb(var(--color-error-800) / <alpha-value>)", // Use for: Dark mode backgrounds and text
+            900: "rgb(var(--color-error-900) / <alpha-value>)", // Use for: Darkest error for high contrast
             DEFAULT: "rgb(var(--color-error-500) / <alpha-value>)",
           },
 
           warning: {
+            50: "rgb(var(--color-warning-50) / <alpha-value>)", // Use for: Very light warning backgrounds
             100: "rgb(var(--color-warning-100) / <alpha-value>)", // Use for: Warning backgrounds, notices
+            200: "rgb(var(--color-warning-200) / <alpha-value>)", // Use for: Warning hover states
+            400: "rgb(var(--color-warning-400) / <alpha-value>)", // Use for: Warning icons, secondary elements
             500: "rgb(var(--color-warning-500) / <alpha-value>)", // Use for: Warning indicators, icons
+            600: "rgb(var(--color-warning-600) / <alpha-value>)", // Use for: Warning borders, outlines
             700: "rgb(var(--color-warning-700) / <alpha-value>)", // Use for: Text on light backgrounds
+            800: "rgb(var(--color-warning-800) / <alpha-value>)", // Use for: Dark mode backgrounds and text
+            900: "rgb(var(--color-warning-900) / <alpha-value>)", // Use for: Darkest warning for high contrast
             DEFAULT: "rgb(var(--color-warning-500) / <alpha-value>)",
           },
 
           info: {
+            50: "rgb(var(--color-info-50) / <alpha-value>)", // Use for: Very light info backgrounds
             100: "rgb(var(--color-info-100) / <alpha-value>)", // Use for: Info backgrounds, help notices
+            200: "rgb(var(--color-info-200) / <alpha-value>)", // Use for: Info hover states
+            400: "rgb(var(--color-info-400) / <alpha-value>)", // Use for: Info icons, secondary elements
             500: "rgb(var(--color-info-500) / <alpha-value>)", // Use for: Info messages, icons
+            600: "rgb(var(--color-info-600) / <alpha-value>)", // Use for: Info borders, outlines
             700: "rgb(var(--color-info-700) / <alpha-value>)", // Use for: Text on light backgrounds
+            800: "rgb(var(--color-info-800) / <alpha-value>)", // Use for: Dark mode backgrounds and text
+            900: "rgb(var(--color-info-900) / <alpha-value>)", // Use for: Darkest info for high contrast
             DEFAULT: "rgb(var(--color-info-500) / <alpha-value>)",
           },
 
