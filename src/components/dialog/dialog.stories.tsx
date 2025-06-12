@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { Dialog, DialogRoot } from "./dialog";
 import { useCallback, useState } from "react";
 import { TextInput } from "../text-input";

@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { DataTable, IDataTableColumn } from "./data-table";
 import { Button } from "../button";
 

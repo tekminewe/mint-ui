@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ProductList } from "./product-list";
 import { ProductItem } from "../product-item";
 

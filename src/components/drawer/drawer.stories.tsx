@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { Drawer, DrawerProps } from "./drawer";
 import { DrawerRoot, DrawerRootProps } from "./drawer-root";
 import { DrawerTrigger } from "./drawer-trigger";

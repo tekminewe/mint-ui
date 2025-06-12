@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { Sidebar } from "./sidebar";
 import { SidebarHeader } from "./header";
 import { SidebarMenu } from "./menu";

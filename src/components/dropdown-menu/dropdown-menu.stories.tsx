@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 import { DropdownMenu, DropdownMenuRoot } from "./dropdown-menu";
 import { Button } from "../button";

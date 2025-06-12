@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { SubMenu } from "./sub-menu";
 import { SubMenuItem } from "./sub-menu-item";
 import { LuAward, LuLayoutDashboard, LuSettings } from "react-icons/lu";

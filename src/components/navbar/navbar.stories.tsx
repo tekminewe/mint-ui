@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { Navbar } from "./navbar";
 import { NavigationMenu } from "../navigation-menu/navigation-menu";
 import { NavigationMenuItem } from "../navigation-menu/item";

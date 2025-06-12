@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { SearchInput } from "./search-input";
 import { SearchDialog } from "./search-dialog";
 import { SearchRoot } from "./search-root";

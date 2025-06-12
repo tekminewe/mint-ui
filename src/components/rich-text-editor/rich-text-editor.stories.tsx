@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { RichTextEditor } from "./rich-text-editor.v2";
 import { useState } from "react";
 import { JSONContent } from "@tiptap/core";

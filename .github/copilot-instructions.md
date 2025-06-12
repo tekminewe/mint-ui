@@ -39,4 +39,6 @@ src/
 ├── components/ # Components folder
 │   ├── <components>/ # Component folder
 │       ├── index.ts/ # Export components and types
+│       ├── <ComponentName>.tsx # Component file
+│       ├── <ComponentName>.stories.tsx # Storybook file
 ```

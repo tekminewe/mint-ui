@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { List } from "./list";
 import { ListItem } from "./list-item";
 import { ListGroup } from "./list-group";
