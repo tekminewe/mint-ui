@@ -429,20 +429,6 @@ export default () => {
           overlay: "var(--color-overlay)",
         },
         /** End of deprecated */
-        spacing: {
-          ...config.spacing,
-          0: "0",
-          1: "calc(0.25rem * var(--scaling))",
-          2: "calc(0.5rem * var(--scaling))",
-          3: "calc(0.75rem * var(--scaling))",
-          4: "calc(1rem * var(--scaling))",
-          5: "calc(1.5rem * var(--scaling))",
-          6: "calc(2rem * var(--scaling))",
-          7: "calc(2.5rem * var(--scaling))",
-          8: "calc(3rem * var(--scaling))",
-          9: "calc(4rem * var(--scaling))",
-          drawer: "var(--mt-w-drawer)",
-        },
         screens: {
           xs: "520px",
           sm: "768px",

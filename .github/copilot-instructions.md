@@ -48,6 +48,7 @@ interface MyComponentProps {
 
 - Create the storybook story for the component for each variant of style and state.
 - Show all variant or state of the component in the same storybook.
+- Each story should include dark and light mode variants.
 
 ## Tailwind CSS Rules
 

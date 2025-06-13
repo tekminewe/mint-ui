@@ -269,7 +269,7 @@
   * Drawer styles
   */
   .drawer {
-    @apply bg-gray-1 flex flex-col w-drawer fixed outline-none p-4;
+    @apply bg-gray-1 flex flex-col w-[var(--mt-w-drawer)] fixed outline-none p-4;
   }
   .drawer[data-vaul-drawer-direction="right"] {
     @apply right-0 top-0 h-screen;

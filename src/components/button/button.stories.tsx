@@ -1,11 +1,40 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "./button";
 
+// Define modes directly since Storybook will use the global modes configuration
+const modes = {
+  light: {
+    backgrounds: { value: "#ffffff" },
+    theme: "light",
+  },
+  dark: {
+    backgrounds: { value: "#0c0a09" },
+    theme: "dark",
+  },
+  "light desktop": {
+    backgrounds: { value: "#ffffff" },
+    theme: "light",
+    viewport: "responsive",
+  },
+  "dark desktop": {
+    backgrounds: { value: "#0c0a09" },
+    theme: "dark",
+    viewport: "responsive",
+  },
+};
+
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
+    chromatic: {
+      // Single comprehensive story for both light and dark themes
+      modes: {
+        light: modes.light,
+        dark: modes.dark,
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {
@@ -42,8 +71,161 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-// Default interactive button example with all controls
-export const Default: Story = {
+/**
+ * Comprehensive button showcase - all variants, colors, sizes, and states
+ * This single story will be tested in both light and dark modes by Chromatic
+ */
+export const AllVariations: Story = {
+  render: () => (
+    <div className="p-8 space-y-6 max-w-7xl mx-auto">
+      {/* Variants Section */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+          Variants
+        </h2>
+        <div className="flex flex-wrap gap-4">
+          <Button variant="solid" color="primary">
+            Solid
+          </Button>
+          <Button variant="soft" color="primary">
+            Soft
+          </Button>
+          <Button variant="outline" color="primary">
+            Outline
+          </Button>
+          <Button variant="ghost" color="primary">
+            Ghost
+          </Button>
+          <Button variant="link" color="primary">
+            Link
+          </Button>
+        </div>
+      </section>
+
+      {/* Colors Section */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+          Colors
+        </h2>
+        <div className="space-y-4">
+          {(["solid", "soft", "outline", "ghost"] as const).map((variant) => (
+            <div key={variant} className="space-y-2">
+              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 capitalize">
+                {variant}
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                <Button variant={variant} color="primary">
+                  Primary
+                </Button>
+                <Button variant={variant} color="neutral">
+                  Neutral
+                </Button>
+                <Button variant={variant} color="success">
+                  Success
+                </Button>
+                <Button variant={variant} color="error">
+                  Error
+                </Button>
+                <Button variant={variant} color="warning">
+                  Warning
+                </Button>
+                <Button variant={variant} color="info">
+                  Info
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Sizes Section */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+          Sizes
+        </h2>
+        <div className="flex flex-wrap items-center gap-4">
+          <Button size="sm" variant="solid" color="primary">
+            Small
+          </Button>
+          <Button size="md" variant="solid" color="primary">
+            Medium
+          </Button>
+          <Button size="lg" variant="solid" color="primary">
+            Large
+          </Button>
+        </div>
+      </section>
+
+      {/* States Section */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+          States
+        </h2>
+        <div className="space-y-4">
+          {(["solid", "outline", "soft"] as const).map((variant) => (
+            <div key={variant} className="space-y-2">
+              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 capitalize">
+                {variant} States
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                <Button variant={variant} color="primary">
+                  Normal
+                </Button>
+                <Button variant={variant} color="primary" loading>
+                  Loading
+                </Button>
+                <Button variant={variant} color="primary" disabled>
+                  Disabled
+                </Button>
+                <Button variant={variant} color="primary" loading disabled>
+                  Loading Disabled
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Size Combinations */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+          Size Combinations
+        </h2>
+        <div className="space-y-4">
+          {(["sm", "md", "lg"] as const).map((size) => (
+            <div key={size} className="space-y-2">
+              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+                Size: {size}
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                <Button size={size} variant="solid" color="primary">
+                  Solid
+                </Button>
+                <Button size={size} variant="outline" color="success">
+                  Outline
+                </Button>
+                <Button size={size} variant="soft" color="warning">
+                  Soft
+                </Button>
+                <Button size={size} variant="ghost" color="info">
+                  Ghost
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  ),
+};
+
+/**
+ * Interactive playground for controls - not tested by Chromatic
+ */
+export const Playground: Story = {
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
   args: {
     children: "Button",
     variant: "solid",
@@ -52,897 +234,4 @@ export const Default: Story = {
     loading: false,
     disabled: false,
   },
-};
-
-// Button Sizes Story
-export const ButtonSizes: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Buttons come in three standard sizes: small, medium (default), and large. The size prop changes the overall dimensions, padding, and font size of the button.",
-      },
-    },
-  },
-  render: () => (
-    <div className="flex flex-col gap-8">
-      {/* Light Theme Sizes */}
-      <div className="p-8 bg-white border rounded-lg">
-        <h2 className="text-xl font-bold mb-6 text-neutral-900">
-          Light Theme Button Sizes
-        </h2>
-        <div className="flex flex-wrap gap-8">
-          <div className="flex flex-col items-center gap-3">
-            <Button size="sm" variant="solid" color="primary">
-              Small Button
-            </Button>
-            <span className="text-xs text-neutral-600">size="sm"</span>
-          </div>
-
-          <div className="flex flex-col items-center gap-3">
-            <Button size="md" variant="solid" color="primary">
-              Medium Button
-            </Button>
-            <span className="text-xs text-neutral-600">
-              size="md" (default)
-            </span>
-          </div>
-
-          <div className="flex flex-col items-center gap-3">
-            <Button size="lg" variant="solid" color="primary">
-              Large Button
-            </Button>
-            <span className="text-xs text-neutral-600">size="lg"</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Dark Theme Sizes */}
-      <div className="p-8 bg-neutral-900 border rounded-lg">
-        <h2 className="text-xl font-bold mb-6 text-white">
-          Dark Theme Button Sizes
-        </h2>
-        <div className="flex flex-wrap gap-8 dark">
-          <div className="flex flex-col items-center gap-3">
-            <Button size="sm" variant="solid" color="primary">
-              Small Button
-            </Button>
-            <span className="text-xs text-neutral-400">size="sm"</span>
-          </div>
-
-          <div className="flex flex-col items-center gap-3">
-            <Button size="md" variant="solid" color="primary">
-              Medium Button
-            </Button>
-            <span className="text-xs text-neutral-400">
-              size="md" (default)
-            </span>
-          </div>
-
-          <div className="flex flex-col items-center gap-3">
-            <Button size="lg" variant="solid" color="primary">
-              Large Button
-            </Button>
-            <span className="text-xs text-neutral-400">size="lg"</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Size Comparison with Different Variants */}
-      <div className="p-8 bg-white border rounded-lg">
-        <h2 className="text-xl font-bold mb-6 text-neutral-900">
-          Size Comparison with Different Variants
-        </h2>
-
-        <div className="grid grid-cols-4 gap-6">
-          <div className="font-bold text-neutral-700"></div>
-          <div className="font-bold text-center text-neutral-700">Small</div>
-          <div className="font-bold text-center text-neutral-700">Medium</div>
-          <div className="font-bold text-center text-neutral-700">Large</div>
-
-          <div className="font-bold text-neutral-700">Solid</div>
-          <Button size="sm" variant="solid" color="primary">
-            Button
-          </Button>
-          <Button size="md" variant="solid" color="primary">
-            Button
-          </Button>
-          <Button size="lg" variant="solid" color="primary">
-            Button
-          </Button>
-
-          <div className="font-bold text-neutral-700">Outline</div>
-          <Button size="sm" variant="outline" color="primary">
-            Button
-          </Button>
-          <Button size="md" variant="outline" color="primary">
-            Button
-          </Button>
-          <Button size="lg" variant="outline" color="primary">
-            Button
-          </Button>
-
-          <div className="font-bold text-neutral-700">Soft</div>
-          <Button size="sm" variant="soft" color="primary">
-            Button
-          </Button>
-          <Button size="md" variant="soft" color="primary">
-            Button
-          </Button>
-          <Button size="lg" variant="soft" color="primary">
-            Button
-          </Button>
-
-          <div className="font-bold text-neutral-700">Ghost</div>
-          <Button size="sm" variant="ghost" color="primary">
-            Button
-          </Button>
-          <Button size="md" variant="ghost" color="primary">
-            Button
-          </Button>
-          <Button size="lg" variant="ghost" color="primary">
-            Button
-          </Button>
-
-          <div className="font-bold text-neutral-700">Link</div>
-          <Button size="sm" variant="link" color="primary">
-            Button
-          </Button>
-          <Button size="md" variant="link" color="primary">
-            Button
-          </Button>
-          <Button size="lg" variant="link" color="primary">
-            Button
-          </Button>
-        </div>
-      </div>
-    </div>
-  ),
-};
-
-// Combined Light and Dark Theme Comparison
-export const LightAndDarkComparison: Story = {
-  render: () => (
-    <div className="space-y-8">
-      {/* Light Theme Section */}
-      <div className="p-8 bg-white border rounded-lg">
-        <h2 className="text-2xl font-bold mb-6 text-neutral-900">
-          Light Theme
-        </h2>
-        <div className="grid grid-cols-7 gap-4">
-          <div className="font-bold text-neutral-700">Variant</div>
-          <div className="font-bold text-center text-neutral-700">Primary</div>
-          <div className="font-bold text-center text-neutral-700">Neutral</div>
-          <div className="font-bold text-center text-neutral-700">Success</div>
-          <div className="font-bold text-center text-neutral-700">Error</div>
-          <div className="font-bold text-center text-neutral-700">Warning</div>
-          <div className="font-bold text-center text-neutral-700">Info</div>
-
-          <div className="font-bold text-neutral-700">Solid</div>
-          <Button variant="solid" color="primary">
-            Primary
-          </Button>
-          <Button variant="solid" color="neutral">
-            Neutral
-          </Button>
-          <Button variant="solid" color="success">
-            Success
-          </Button>
-          <Button variant="solid" color="error">
-            Error
-          </Button>
-          <Button variant="solid" color="warning">
-            Warning
-          </Button>
-          <Button variant="solid" color="info">
-            Info
-          </Button>
-
-          <div className="font-bold text-neutral-700">Outline</div>
-          <Button variant="outline" color="primary">
-            Primary
-          </Button>
-          <Button variant="outline" color="neutral">
-            Neutral
-          </Button>
-          <Button variant="outline" color="success">
-            Success
-          </Button>
-          <Button variant="outline" color="error">
-            Error
-          </Button>
-          <Button variant="outline" color="warning">
-            Warning
-          </Button>
-          <Button variant="outline" color="info">
-            Info
-          </Button>
-
-          <div className="font-bold text-neutral-700">Soft</div>
-          <Button variant="soft" color="primary">
-            Primary
-          </Button>
-          <Button variant="soft" color="neutral">
-            Neutral
-          </Button>
-          <Button variant="soft" color="success">
-            Success
-          </Button>
-          <Button variant="soft" color="error">
-            Error
-          </Button>
-          <Button variant="soft" color="warning">
-            Warning
-          </Button>
-          <Button variant="soft" color="info">
-            Info
-          </Button>
-
-          <div className="font-bold text-neutral-700">Ghost</div>
-          <Button variant="ghost" color="primary">
-            Primary
-          </Button>
-          <Button variant="ghost" color="neutral">
-            Neutral
-          </Button>
-          <Button variant="ghost" color="success">
-            Success
-          </Button>
-          <Button variant="ghost" color="error">
-            Error
-          </Button>
-          <Button variant="ghost" color="warning">
-            Warning
-          </Button>
-          <Button variant="ghost" color="info">
-            Info
-          </Button>
-
-          <div className="font-bold text-neutral-700">Link</div>
-          <Button variant="link" color="primary">
-            Primary
-          </Button>
-          <Button variant="link" color="neutral">
-            Neutral
-          </Button>
-          <Button variant="link" color="success">
-            Success
-          </Button>
-          <Button variant="link" color="error">
-            Error
-          </Button>
-          <Button variant="link" color="warning">
-            Warning
-          </Button>
-          <Button variant="link" color="info">
-            Info
-          </Button>
-        </div>
-      </div>
-
-      {/* Dark Theme Section */}
-      <div className="dark">
-        <div className="p-8 bg-neutral-100 border border-neutral-700 rounded-lg">
-          <h2 className="text-2xl font-bold mb-6 text-neutral-100">
-            Dark Theme
-          </h2>
-          <div className="grid grid-cols-7 gap-4">
-            <div className="font-bold text-neutral-300">Variant</div>
-            <div className="font-bold text-center text-neutral-300">
-              Primary
-            </div>
-            <div className="font-bold text-center text-neutral-300">
-              Neutral
-            </div>
-            <div className="font-bold text-center text-neutral-300">
-              Success
-            </div>
-            <div className="font-bold text-center text-neutral-300">Error</div>
-            <div className="font-bold text-center text-neutral-300">
-              Warning
-            </div>
-            <div className="font-bold text-center text-neutral-300">Info</div>
-
-            <div className="font-bold text-neutral-300">Solid</div>
-            <Button variant="solid" color="primary">
-              Primary
-            </Button>
-            <Button variant="solid" color="neutral">
-              Neutral
-            </Button>
-            <Button variant="solid" color="success">
-              Success
-            </Button>
-            <Button variant="solid" color="error">
-              Error
-            </Button>
-            <Button variant="solid" color="warning">
-              Warning
-            </Button>
-            <Button variant="solid" color="info">
-              Info
-            </Button>
-
-            <div className="font-bold text-neutral-300">Outline</div>
-            <Button variant="outline" color="primary">
-              Primary
-            </Button>
-            <Button variant="outline" color="neutral">
-              Neutral
-            </Button>
-            <Button variant="outline" color="success">
-              Success
-            </Button>
-            <Button variant="outline" color="error">
-              Error
-            </Button>
-            <Button variant="outline" color="warning">
-              Warning
-            </Button>
-            <Button variant="outline" color="info">
-              Info
-            </Button>
-
-            <div className="font-bold text-neutral-300">Ghost</div>
-            <Button variant="ghost" color="primary">
-              Primary
-            </Button>
-            <Button variant="ghost" color="neutral">
-              Neutral
-            </Button>
-            <Button variant="ghost" color="success">
-              Success
-            </Button>
-            <Button variant="ghost" color="error">
-              Error
-            </Button>
-            <Button variant="ghost" color="warning">
-              Warning
-            </Button>
-            <Button variant="ghost" color="info">
-              Info
-            </Button>
-
-            <div className="font-bold text-neutral-300">Soft</div>
-            <Button variant="soft" color="primary">
-              Primary
-            </Button>
-            <Button variant="soft" color="neutral">
-              Neutral
-            </Button>
-            <Button variant="soft" color="success">
-              Success
-            </Button>
-            <Button variant="soft" color="error">
-              Error
-            </Button>
-            <Button variant="soft" color="warning">
-              Warning
-            </Button>
-            <Button variant="soft" color="info">
-              Info
-            </Button>
-
-            <div className="font-bold text-neutral-300">Link</div>
-            <Button variant="link" color="primary">
-              Primary
-            </Button>
-            <Button variant="link" color="neutral">
-              Neutral
-            </Button>
-            <Button variant="link" color="success">
-              Success
-            </Button>
-            <Button variant="link" color="error">
-              Error
-            </Button>
-            <Button variant="link" color="warning">
-              Warning
-            </Button>
-            <Button variant="link" color="info">
-              Info
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  ),
-};
-
-// All Variants in Disabled State
-export const AllVariantsDisabled: Story = {
-  render: () => (
-    <div className="space-y-8">
-      {/* Light Theme Section */}
-      <div className="p-8 bg-white border rounded-lg">
-        <h2 className="text-2xl font-bold mb-6 text-neutral-900">
-          Disabled State - Light Theme
-        </h2>
-        <div className="grid grid-cols-7 gap-4">
-          <div className="font-bold text-neutral-700">Variant</div>
-          <div className="font-bold text-center text-neutral-700">Primary</div>
-          <div className="font-bold text-center text-neutral-700">Neutral</div>
-          <div className="font-bold text-center text-neutral-700">Success</div>
-          <div className="font-bold text-center text-neutral-700">Error</div>
-          <div className="font-bold text-center text-neutral-700">Warning</div>
-          <div className="font-bold text-center text-neutral-700">Info</div>
-
-          <div className="font-bold text-neutral-700">Solid</div>
-          <Button variant="solid" color="primary" disabled>
-            Primary
-          </Button>
-          <Button variant="solid" color="neutral" disabled>
-            Neutral
-          </Button>
-          <Button variant="solid" color="success" disabled>
-            Success
-          </Button>
-          <Button variant="solid" color="error" disabled>
-            Error
-          </Button>
-          <Button variant="solid" color="warning" disabled>
-            Warning
-          </Button>
-          <Button variant="solid" color="info" disabled>
-            Info
-          </Button>
-
-          <div className="font-bold text-neutral-700">Outline</div>
-          <Button variant="outline" color="primary" disabled>
-            Primary
-          </Button>
-          <Button variant="outline" color="neutral" disabled>
-            Neutral
-          </Button>
-          <Button variant="outline" color="success" disabled>
-            Success
-          </Button>
-          <Button variant="outline" color="error" disabled>
-            Error
-          </Button>
-          <Button variant="outline" color="warning" disabled>
-            Warning
-          </Button>
-          <Button variant="outline" color="info" disabled>
-            Info
-          </Button>
-
-          <div className="font-bold text-neutral-700">Soft</div>
-          <Button variant="soft" color="primary" disabled>
-            Primary
-          </Button>
-          <Button variant="soft" color="neutral" disabled>
-            Neutral
-          </Button>
-          <Button variant="soft" color="success" disabled>
-            Success
-          </Button>
-          <Button variant="soft" color="error" disabled>
-            Error
-          </Button>
-          <Button variant="soft" color="warning" disabled>
-            Warning
-          </Button>
-          <Button variant="soft" color="info" disabled>
-            Info
-          </Button>
-
-          <div className="font-bold text-neutral-700">Ghost</div>
-          <Button variant="ghost" color="primary" disabled>
-            Primary
-          </Button>
-          <Button variant="ghost" color="neutral" disabled>
-            Neutral
-          </Button>
-          <Button variant="ghost" color="success" disabled>
-            Success
-          </Button>
-          <Button variant="ghost" color="error" disabled>
-            Error
-          </Button>
-          <Button variant="ghost" color="warning" disabled>
-            Warning
-          </Button>
-          <Button variant="ghost" color="info" disabled>
-            Info
-          </Button>
-
-          <div className="font-bold text-neutral-700">Link</div>
-          <Button variant="link" color="primary" disabled>
-            Primary
-          </Button>
-          <Button variant="link" color="neutral" disabled>
-            Neutral
-          </Button>
-          <Button variant="link" color="success" disabled>
-            Success
-          </Button>
-          <Button variant="link" color="error" disabled>
-            Error
-          </Button>
-          <Button variant="link" color="warning" disabled>
-            Warning
-          </Button>
-          <Button variant="link" color="info" disabled>
-            Info
-          </Button>
-        </div>
-      </div>
-
-      {/* Dark Theme Section */}
-      <div className="dark">
-        <div className="p-8 bg-neutral-100 border border-neutral-700 rounded-lg">
-          <h2 className="text-2xl font-bold mb-6 text-neutral-100">
-            Disabled State - Dark Theme
-          </h2>
-          <div className="grid grid-cols-7 gap-4">
-            <div className="font-bold text-neutral-300">Variant</div>
-            <div className="font-bold text-center text-neutral-300">
-              Primary
-            </div>
-            <div className="font-bold text-center text-neutral-300">
-              Neutral
-            </div>
-            <div className="font-bold text-center text-neutral-300">
-              Success
-            </div>
-            <div className="font-bold text-center text-neutral-300">Error</div>
-            <div className="font-bold text-center text-neutral-300">
-              Warning
-            </div>
-            <div className="font-bold text-center text-neutral-300">Info</div>
-
-            <div className="font-bold text-neutral-300">Solid</div>
-            <Button variant="solid" color="primary" disabled>
-              Primary
-            </Button>
-            <Button variant="solid" color="neutral" disabled>
-              Neutral
-            </Button>
-            <Button variant="solid" color="success" disabled>
-              Success
-            </Button>
-            <Button variant="solid" color="error" disabled>
-              Error
-            </Button>
-            <Button variant="solid" color="warning" disabled>
-              Warning
-            </Button>
-            <Button variant="solid" color="info" disabled>
-              Info
-            </Button>
-
-            <div className="font-bold text-neutral-300">Outline</div>
-            <Button variant="outline" color="primary" disabled>
-              Primary
-            </Button>
-            <Button variant="outline" color="neutral" disabled>
-              Neutral
-            </Button>
-            <Button variant="outline" color="success" disabled>
-              Success
-            </Button>
-            <Button variant="outline" color="error" disabled>
-              Error
-            </Button>
-            <Button variant="outline" color="warning" disabled>
-              Warning
-            </Button>
-            <Button variant="outline" color="info" disabled>
-              Info
-            </Button>
-
-            <div className="font-bold text-neutral-300">Soft</div>
-            <Button variant="soft" color="primary" disabled>
-              Primary
-            </Button>
-            <Button variant="soft" color="neutral" disabled>
-              Neutral
-            </Button>
-            <Button variant="soft" color="success" disabled>
-              Success
-            </Button>
-            <Button variant="soft" color="error" disabled>
-              Error
-            </Button>
-            <Button variant="soft" color="warning" disabled>
-              Warning
-            </Button>
-            <Button variant="soft" color="info" disabled>
-              Info
-            </Button>
-
-            <div className="font-bold text-neutral-300">Ghost</div>
-            <Button variant="ghost" color="primary" disabled>
-              Primary
-            </Button>
-            <Button variant="ghost" color="neutral" disabled>
-              Neutral
-            </Button>
-            <Button variant="ghost" color="success" disabled>
-              Success
-            </Button>
-            <Button variant="ghost" color="error" disabled>
-              Error
-            </Button>
-            <Button variant="ghost" color="warning" disabled>
-              Warning
-            </Button>
-            <Button variant="ghost" color="info" disabled>
-              Info
-            </Button>
-
-            <div className="font-bold text-neutral-300">Link</div>
-            <Button variant="link" color="primary" disabled>
-              Primary
-            </Button>
-            <Button variant="link" color="neutral" disabled>
-              Neutral
-            </Button>
-            <Button variant="link" color="success" disabled>
-              Success
-            </Button>
-            <Button variant="link" color="error" disabled>
-              Error
-            </Button>
-            <Button variant="link" color="warning" disabled>
-              Warning
-            </Button>
-            <Button variant="link" color="info" disabled>
-              Info
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  ),
-};
-
-// All Variants in Loading State
-export const AllVariantsLoading: Story = {
-  render: () => (
-    <div className="space-y-8">
-      {/* Light Theme Section */}
-      <div className="p-8 bg-white border rounded-lg">
-        <h2 className="text-2xl font-bold mb-6 text-neutral-900">
-          Loading State - Light Theme
-        </h2>
-        <div className="grid grid-cols-7 gap-4">
-          <div className="font-bold text-neutral-700">Variant</div>
-          <div className="font-bold text-center text-neutral-700">Primary</div>
-          <div className="font-bold text-center text-neutral-700">Neutral</div>
-          <div className="font-bold text-center text-neutral-700">Success</div>
-          <div className="font-bold text-center text-neutral-700">Error</div>
-          <div className="font-bold text-center text-neutral-700">Warning</div>
-          <div className="font-bold text-center text-neutral-700">Info</div>
-
-          <div className="font-bold text-neutral-700">Solid</div>
-          <Button variant="solid" color="primary" loading>
-            Primary
-          </Button>
-          <Button variant="solid" color="neutral" loading>
-            Neutral
-          </Button>
-          <Button variant="solid" color="success" loading>
-            Success
-          </Button>
-          <Button variant="solid" color="error" loading>
-            Error
-          </Button>
-          <Button variant="solid" color="warning" loading>
-            Warning
-          </Button>
-          <Button variant="solid" color="info" loading>
-            Info
-          </Button>
-
-          <div className="font-bold text-neutral-700">Outline</div>
-          <Button variant="outline" color="primary" loading>
-            Primary
-          </Button>
-          <Button variant="outline" color="neutral" loading>
-            Neutral
-          </Button>
-          <Button variant="outline" color="success" loading>
-            Success
-          </Button>
-          <Button variant="outline" color="error" loading>
-            Error
-          </Button>
-          <Button variant="outline" color="warning" loading>
-            Warning
-          </Button>
-          <Button variant="outline" color="info" loading>
-            Info
-          </Button>
-
-          <div className="font-bold text-neutral-700">Soft</div>
-          <Button variant="soft" color="primary" loading>
-            Primary
-          </Button>
-          <Button variant="soft" color="neutral" loading>
-            Neutral
-          </Button>
-          <Button variant="soft" color="success" loading>
-            Success
-          </Button>
-          <Button variant="soft" color="error" loading>
-            Error
-          </Button>
-          <Button variant="soft" color="warning" loading>
-            Warning
-          </Button>
-          <Button variant="soft" color="info" loading>
-            Info
-          </Button>
-
-          <div className="font-bold text-neutral-700">Ghost</div>
-          <Button variant="ghost" color="primary" loading>
-            Primary
-          </Button>
-          <Button variant="ghost" color="neutral" loading>
-            Neutral
-          </Button>
-          <Button variant="ghost" color="success" loading>
-            Success
-          </Button>
-          <Button variant="ghost" color="error" loading>
-            Error
-          </Button>
-          <Button variant="ghost" color="warning" loading>
-            Warning
-          </Button>
-          <Button variant="ghost" color="info" loading>
-            Info
-          </Button>
-
-          <div className="font-bold text-neutral-700">Link</div>
-          <Button variant="link" color="primary" loading>
-            Primary
-          </Button>
-          <Button variant="link" color="neutral" loading>
-            Neutral
-          </Button>
-          <Button variant="link" color="success" loading>
-            Success
-          </Button>
-          <Button variant="link" color="error" loading>
-            Error
-          </Button>
-          <Button variant="link" color="warning" loading>
-            Warning
-          </Button>
-          <Button variant="link" color="info" loading>
-            Info
-          </Button>
-        </div>
-      </div>
-
-      {/* Dark Theme Section */}
-      <div className="dark">
-        <div className="p-8 bg-neutral-100 border border-neutral-700 rounded-lg">
-          <h2 className="text-2xl font-bold mb-6 text-neutral-100">
-            Loading State - Dark Theme
-          </h2>
-          <div className="grid grid-cols-7 gap-4">
-            <div className="font-bold text-neutral-300">Variant</div>
-            <div className="font-bold text-center text-neutral-300">
-              Primary
-            </div>
-            <div className="font-bold text-center text-neutral-300">
-              Neutral
-            </div>
-            <div className="font-bold text-center text-neutral-300">
-              Success
-            </div>
-            <div className="font-bold text-center text-neutral-300">Error</div>
-            <div className="font-bold text-center text-neutral-300">
-              Warning
-            </div>
-            <div className="font-bold text-center text-neutral-300">Info</div>
-
-            <div className="font-bold text-neutral-300">Solid</div>
-            <Button variant="solid" color="primary" loading>
-              Primary
-            </Button>
-            <Button variant="solid" color="neutral" loading>
-              Neutral
-            </Button>
-            <Button variant="solid" color="success" loading>
-              Success
-            </Button>
-            <Button variant="solid" color="error" loading>
-              Error
-            </Button>
-            <Button variant="solid" color="warning" loading>
-              Warning
-            </Button>
-            <Button variant="solid" color="info" loading>
-              Info
-            </Button>
-
-            <div className="font-bold text-neutral-300">Outline</div>
-            <Button variant="outline" color="primary" loading>
-              Primary
-            </Button>
-            <Button variant="outline" color="neutral" loading>
-              Neutral
-            </Button>
-            <Button variant="outline" color="success" loading>
-              Success
-            </Button>
-            <Button variant="outline" color="error" loading>
-              Error
-            </Button>
-            <Button variant="outline" color="warning" loading>
-              Warning
-            </Button>
-            <Button variant="outline" color="info" loading>
-              Info
-            </Button>
-
-            <div className="font-bold text-neutral-300">Soft</div>
-            <Button variant="soft" color="primary" loading>
-              Primary
-            </Button>
-            <Button variant="soft" color="neutral" loading>
-              Neutral
-            </Button>
-            <Button variant="soft" color="success" loading>
-              Success
-            </Button>
-            <Button variant="soft" color="error" loading>
-              Error
-            </Button>
-            <Button variant="soft" color="warning" loading>
-              Warning
-            </Button>
-            <Button variant="soft" color="info" loading>
-              Info
-            </Button>
-
-            <div className="font-bold text-neutral-300">Ghost</div>
-            <Button variant="ghost" color="primary" loading>
-              Primary
-            </Button>
-            <Button variant="ghost" color="neutral" loading>
-              Neutral
-            </Button>
-            <Button variant="ghost" color="success" loading>
-              Success
-            </Button>
-            <Button variant="ghost" color="error" loading>
-              Error
-            </Button>
-            <Button variant="ghost" color="warning" loading>
-              Warning
-            </Button>
-            <Button variant="ghost" color="info" loading>
-              Info
-            </Button>
-
-            <div className="font-bold text-neutral-300">Link</div>
-            <Button variant="link" color="primary" loading>
-              Primary
-            </Button>
-            <Button variant="link" color="neutral" loading>
-              Neutral
-            </Button>
-            <Button variant="link" color="success" loading>
-              Success
-            </Button>
-            <Button variant="link" color="error" loading>
-              Error
-            </Button>
-            <Button variant="link" color="warning" loading>
-              Warning
-            </Button>
-            <Button variant="link" color="info" loading>
-              Info
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  ),
 };
