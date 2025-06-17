@@ -1,17 +1,16 @@
-@import "tailwindcss/base";
-@import "@radix-ui/themes/styles.css";
 @import "react-toastify/dist/ReactToastify.css";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --toastify-text-color-light: rgb(0.113 0.125 0.14);
-  --color-error: rgb(206 44 49);
-  --color-success: rgb(0 128 0);
+  --toastify-text-color-light: rgb(var(--color-neutral-800));
+  --color-error: rgb(var(--color-error-500));
+  --color-success: rgb(var(--color-success-500));
 }
 
 * {
-  border-color: var(--gray-a6);
+  border-color: rgb(var(--color-neutral-300));
 }
 
 @layer components {
@@ -19,7 +18,7 @@
   * Global styles
   */
   .overlay {
-    @apply fixed inset-0 bg-gray-a8;
+    @apply fixed inset-0 bg-neutral-800/50;
     animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
   }
   /**
@@ -64,7 +63,7 @@
   * Dialog styles
   */
   .dialog-content {
-    @apply rounded-4 bg-gray-1 p-4 fixed focus:outline-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[600px] shadow-3;
+    @apply rounded-4 bg-neutral-50 p-4 fixed focus:outline-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[600px] shadow-3;
     animation: dialogContentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -92,7 +91,7 @@
   * Card styles
   */
   .card {
-    @apply rounded-4 shadow-3 p-4 bg-gray-surface;
+    @apply rounded-4 shadow-3 p-4 bg-neutral-50;
   }
 
   .card-title {
@@ -127,11 +126,11 @@
   }
 
   .caption {
-    @apply text-sm text-gray-11;
+    @apply text-sm text-neutral-500;
   }
 
   .link {
-    @apply text-accent-11;
+    @apply text-primary-600;
   }
 
   .form-label {
@@ -159,17 +158,17 @@
   * Dropdown styles
   */
   .dropdown-menu-content {
-    @apply shadow-3 rounded-3 overflow-hidden p-3 mt-1 bg-gray-surface;
+    @apply shadow-3 rounded-3 overflow-hidden p-3 mt-1 bg-neutral-50;
   }
   .dropdown-menu-trigger {
     @apply outline-none;
   }
   .dropdown-menu-item {
     @apply py-2 px-3 divide-y outline-none cursor-pointer rounded-3 flex items-center gap-2;
-    @apply hover:bg-accent-9 hover:text-gray-contrast;
+    @apply hover:bg-primary-600 hover:text-neutral-50;
   }
   .dropdown-menu-separator {
-    @apply h-[1px] bg-gray-a6 my-3;
+    @apply h-[1px] bg-neutral-300 my-3;
   }
   /**
   * Admin Layout styles
@@ -191,7 +190,7 @@
   * Admin Content styles
   */
   .admin-content {
-    @apply p-4 bg-gray-1;
+    @apply p-4 bg-neutral-50;
     grid-area: content;
   }
   /**
@@ -215,14 +214,14 @@
     @apply mt-3;
   }
   .sidebar-menu-group-title {
-    @apply text-sm font-semibold uppercase text-gray-9 mb-3;
+    @apply text-sm font-semibold uppercase text-neutral-500 mb-3;
   }
   .sidebar-menu-item {
     @apply p-3 rounded-3 cursor-pointer font-medium flex items-center gap-3;
-    @apply hover:bg-accent-9 hover:text-gray-contrast;
+    @apply hover:bg-primary-600 hover:text-neutral-50;
   }
   .sidebar-menu-item[data-selected="true"] {
-    @apply bg-accent-9 text-gray-contrast;
+    @apply bg-primary-600 text-neutral-50;
   }
   .sidebar-menu-item + .sidebar-menu-item {
     @apply mt-1;
@@ -237,7 +236,7 @@
     @apply w-screen h-svh md:h-[50vh] overflow-hidden;
   }
   .search-result-input {
-    @apply outline-1 outline outline-gray-a6 focus:outline-2 focus:outline-accent-9 rounded-3 p-2 w-full;
+    @apply outline-1 outline outline-neutral-300 focus:outline-2 focus:outline-primary-600 rounded-3 p-2 w-full;
     @apply mb-2;
   }
   .search-result-list {
@@ -245,18 +244,18 @@
   }
   .search-result-list-item {
     @apply flex items-center p-2 cursor-pointer gap-3 rounded-3;
-    @apply hover:bg-accent-9 hover:text-gray-contrast;
+    @apply hover:bg-primary-600 hover:text-neutral-50;
   }
   .search-result-list-item-skeleton {
     @apply animate-pulse;
-    @apply h-6 w-full bg-gray-a6 rounded-3 mb-2;
+    @apply h-6 w-full bg-neutral-300 rounded-3 mb-2;
   }
   .search-result-list-item-title {
     @apply font-semibold text-lg;
   }
   .search-result-list-item-subtitle {
-    @apply text-gray-11;
-    @apply group-hover:text-gray-contrast;
+    @apply text-neutral-500;
+    @apply group-hover:text-neutral-50;
   }
   .search-result-list-item-image {
     @apply w-full;
@@ -269,7 +268,7 @@
   * Drawer styles
   */
   .drawer {
-    @apply bg-gray-1 flex flex-col w-[var(--mt-w-drawer)] fixed outline-none p-4;
+    @apply bg-neutral-50 flex flex-col w-[var(--mt-w-drawer)] fixed outline-none p-4;
   }
   .drawer[data-vaul-drawer-direction="right"] {
     @apply right-0 top-0 h-screen;
@@ -286,10 +285,10 @@
   */
   .list-item-row {
     @apply p-3 rounded-3 cursor-pointer font-medium flex items-center gap-2;
-    @apply hover:bg-gray-a3;
+    @apply hover:bg-neutral-200;
   }
   .list-item-row[data-selected="true"] {
-    @apply bg-accent-9 text-gray-contrast;
+    @apply bg-primary-600 text-neutral-50;
   }
   .list-item-row + .list-item-row {
     @apply mt-1;
@@ -298,6 +297,6 @@
     @apply mt-6;
   }
   .list-group-title {
-    @apply text-sm font-semibold uppercase text-gray-9 mb-3 ml-3;
+    @apply text-sm font-semibold uppercase text-neutral-500 mb-3 ml-3;
   }
 }

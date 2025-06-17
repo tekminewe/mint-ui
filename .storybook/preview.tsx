@@ -36,7 +36,7 @@ const preview: Preview = {
     }),
     (Story: any) => {
       return (
-        <Theme accentColor="ruby">
+        <Theme>
           <Story />
         </Theme>
       );

@@ -1,8 +1,8 @@
-# Mint UI (Under developement)
+# Mint UI (Under development)
 
-The UI library that leverage radix-ui as the base and add consistent behaviour to the components.
+The UI library with consistent behavior and theming capabilities for React applications.
 
-It has successfully power the following website:
+It has successfully powered the following websites:
 
 - tekminewe.com
 - onsentalent.com
@@ -40,24 +40,84 @@ const config: Config = {
 export default config;
 ```
 
-3. Wrap your root Client component with the `Theme` component.
+4. Wrap your root Client component with the `ThemeProvider` component.
 
 ```jsx
 "use client";
 
-import { Theme } from "@tekminewe/mint-ui/theme";
+import { ThemeProvider } from "@tekminewe/mint-ui/theme";
 
 function App() {
   return (
-    <Theme>
+    <ThemeProvider>
       <YourRootComponent />
-    </Theme>
+    </ThemeProvider>
   );
 }
 ```
 
-3. Import the components you need
+5. Import the components you need
 
 ```jsx
 import { Button } from "@tekminewe/mint-ui/button";
+```
+
+## Theme System
+
+Mint UI includes a built-in theme system that supports both light and dark modes:
+
+### Using the Theme Provider
+
+The `ThemeProvider` component automatically detects user system preferences and supports theme persistence:
+
+```jsx
+import { ThemeProvider } from "@tekminewe/mint-ui/theme";
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light">
+      <YourRootComponent />
+    </ThemeProvider>
+  );
+}
+```
+
+### Accessing and Changing Themes
+
+Use the `useTheme` hook to access the current theme and change it:
+
+```jsx
+import { useTheme } from "@tekminewe/mint-ui/theme";
+
+function MyComponent() {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <div>
+      <p>Current theme: {theme}</p>
+      <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+        Toggle theme
+      </button>
+    </div>
+  );
+}
+```
+
+### Theme Toggle Component
+
+Mint UI provides a ready-to-use theme toggle component:
+
+```jsx
+import { ThemeToggle } from "@tekminewe/mint-ui/theme";
+
+function Navbar() {
+  return (
+    <nav>
+      <div className="flex items-center gap-2">
+        <ThemeToggle aria-label="Toggle theme" />
+        <UserProfile />
+      </div>
+    </nav>
+  );
+}
 ```

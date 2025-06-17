@@ -1,24 +1,46 @@
 import { Grid } from "../grid";
-import { GridProps } from "@radix-ui/themes";
-import { cn } from "../utils";
+import { cn } from "../../utils";
 
-export type ProductListProps = GridProps;
+export interface ProductListProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Number of columns in the grid
+   * @default responsive object
+   */
+  columns?: number;
+  /**
+   * Gap between grid items
+   * @default "4"
+   */
+  gap?: string | number;
+  /**
+   * Responsive column count at different breakpoints
+   */
+  responsive?: {
+    xs?: number;
+    sm?: number;
+    md?: number;
+    lg?: number;
+    xl?: number;
+  };
+}
 
 export const ProductList = ({
-  columns = {
-    initial: "1",
-    sm: "2",
-    md: "3",
-    lg: "4",
-  },
   gap = "4",
+  className,
+  responsive = {
+    xs: 1,
+    sm: 2,
+    md: 3,
+    lg: 4,
+  },
   ...props
 }: ProductListProps) => {
   return (
     <Grid
       gap={gap}
-      columns={columns}
-      className={cn("justify-items-center grid-flow-row", props.className)}
+      columns={1} // Default to 1, but use responsive prop for breakpoints
+      responsive={responsive}
+      className={cn("justify-items-center grid-flow-row", className)}
       {...props}
     />
   );
