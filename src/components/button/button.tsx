@@ -1,12 +1,13 @@
 "use client";
 
 import { forwardRef } from "react";
-import { cn } from "../utils";
+import { cn, Radius } from "../utils";
 import { Spinner } from "../spinner";
+import { getStaticRadiusClass } from "../utils/get-radius-class";
 
-// Base styles that apply to all buttons
+// Base styles that apply to all buttons (without radius)
 const baseStyles =
-  "inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-2 disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
 // Size styles
 const sizeStyles = {
@@ -108,6 +109,14 @@ export interface ButtonProps
   size?: "sm" | "md" | "lg";
 
   /**
+   * The border radius for the button.
+   * If not provided, uses the global default radius from RadiusProvider.
+   * @default "md" (from global context)
+   * @example "lg"
+   */
+  radius?: Radius;
+
+  /**
    * Whether the button is in a loading state.
    * @default false
    * @example false
@@ -133,6 +142,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant = "solid",
       color = "primary",
       size = "md",
+      radius,
       loading = false,
       disabled = false,
       children,
@@ -142,6 +152,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
+    const radiusClass = getStaticRadiusClass(radius);
+
     return (
       <button
         ref={ref}
@@ -149,6 +161,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled || loading}
         className={cn(
           baseStyles,
+          radiusClass,
           sizeStyles[size],
           colorVariantStyles[variant][color],
           className

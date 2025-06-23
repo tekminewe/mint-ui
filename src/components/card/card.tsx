@@ -1,8 +1,10 @@
 import { HTMLAttributes } from "react";
 import { Slot } from "@radix-ui/react-slot";
-import { cn } from "../utils";
+import { cn, Radius } from "../utils";
+import { Shadow, getShadowClass } from "../utils/shadow";
+import { getStaticRadiusClass } from "../utils/get-radius-class";
 
-export type CardShadow = "none" | "sm" | "md" | "lg" | "xl";
+export type CardShadow = Shadow;
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -17,28 +19,34 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
    * @example "md"
    */
   shadow?: CardShadow;
+
+  /**
+   * The border radius for the card.
+   * If not provided, uses the global default radius from RadiusProvider.
+   * @default "md" (from global context)
+   * @example "lg"
+   */
+  radius?: Radius;
 }
 
 export const Card = (props: CardProps) => {
-  const { asChild, shadow = "none", ...rest } = props;
+  const { asChild, shadow = "none", radius, ...rest } = props;
   const Comp = asChild ? Slot : "div";
+  const radiusClass = getStaticRadiusClass(radius);
 
-  // Define shadow classes based on size
-  const shadowClasses = {
-    sm: "shadow-1",
-    md: "shadow-2",
-    lg: "shadow-3",
-    xl: "shadow-4",
-  };
+  // Determine shadow or border styling
+  const shadowOrBorderClass =
+    shadow === "none"
+      ? "border border-neutral-100 dark:border-neutral-600" // Lighter border when no shadow
+      : getShadowClass(shadow); // Apply shadow using utility
 
   return (
     <Comp
       {...rest}
       className={cn(
-        "rounded-4 p-4 bg-gray-surface", // Base classes always applied
-        shadow === "none"
-          ? "border border-neutral-100 dark:border-neutral-600" // Lighter border when no shadow
-          : shadowClasses[shadow as Exclude<CardShadow, "none">], // Apply shadow when specified
+        "p-4 bg-gray-surface", // Base classes always applied
+        radiusClass, // Apply the effective radius
+        shadowOrBorderClass, // Apply shadow or border
         props.className
       )}
     />

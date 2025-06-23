@@ -1,22 +1,47 @@
-import { Card, Text } from "@radix-ui/themes";
+import * as React from "react";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { cn } from "../utils";
 
-export const InfoCard = ({
+export interface InfoCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The title of the info card.
+   */
+  title: string;
+
+  /**
+   * The message of the info card.
+   */
+  message: string;
+
+  /**
+   * Additional CSS class names.
+   */
+  className?: string;
+}
+
+export function InfoCard({
   title,
   message,
-}: {
-  title: string;
-  message: string;
-}) => {
+  className,
+  ...props
+}: InfoCardProps) {
   return (
-    <Card className="max-w-xl w-full mt-24 mx-2 md:mx-0 md:p-8">
-      <div className="flex flex-col items-center justify-center p-4 space-y-4">
-        <InfoCircledIcon width={120} height={120} color="blue" />
-        <Text size="8" ml="2">
+    <div
+      className={cn(
+        "max-w-xl w-full mt-6 mx-2 md:mx-0 rounded-xl border border-neutral-200 bg-white shadow-sm dark:border-neutral-800 dark:bg-neutral-900",
+        className
+      )}
+      {...props}
+    >
+      <div className="flex flex-col items-center justify-center p-6 md:p-8 space-y-4">
+        <InfoCircledIcon className="h-24 w-24 text-blue-500 dark:text-blue-400" />
+        <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
           {title}
-        </Text>
-        <Text align="center">{message}</Text>
+        </h2>
+        <p className="text-center text-neutral-700 dark:text-neutral-300">
+          {message}
+        </p>
       </div>
-    </Card>
+    </div>
   );
-};
+}

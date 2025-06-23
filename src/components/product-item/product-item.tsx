@@ -1,8 +1,8 @@
-import { Box, BoxProps, Card, Inset } from "@radix-ui/themes";
+import * as React from "react";
 import { cn } from "../utils";
 import { Caption, Text } from "../typography";
 
-export type ProductItemProps = {
+export interface ProductItemProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The title of the product.
    * @example "Product Title"
@@ -26,42 +26,60 @@ export type ProductItemProps = {
    * @example "£1000.00"
    */
   price?: string;
-} & BoxProps;
 
-export const ProductItem = ({
-  title,
-  caption,
-  imageUrl,
-  price,
-  ...props
-}: ProductItemProps) => {
-  return (
-    <Box
-      maxWidth={props.maxWidth ?? "375px"}
-      className={cn(
-        props.className,
-        "cursor-pointer transition-all hover:scale-[1.01]"
-      )}
-      {...props}
-    >
-      <Card size="2" className="h-full">
-        <Inset clip="padding-box" side="top" pb="current">
-          <img
-            src={imageUrl}
-            alt={title}
-            className="block object-cover w-full h-140 bg-[var(--gray-5)]"
-          />
-        </Inset>
-        <div className="flex">
-          <Box className="flex-1">
-            <Text>{title}</Text>
-            <Caption>{caption}</Caption>
-          </Box>
-          <Box>
-            <Text>{price}</Text>
-          </Box>
+  /**
+   * The maximum width of the product item.
+   * @default "375px"
+   */
+  maxWidth?: string | number;
+}
+
+export const ProductItem = React.forwardRef<HTMLDivElement, ProductItemProps>(
+  (
+    {
+      title,
+      caption,
+      imageUrl,
+      price,
+      maxWidth = "375px",
+      className,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "cursor-pointer transition-all hover:scale-[1.01]",
+          className
+        )}
+        style={{ maxWidth }}
+        {...props}
+      >
+        <div className="h-full rounded-md border border-neutral-200 bg-white overflow-hidden shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
+          <div className="w-full overflow-hidden">
+            <img
+              src={imageUrl}
+              alt={title}
+              className="block object-cover w-full h-[140px] bg-neutral-100 dark:bg-neutral-800"
+            />
+          </div>
+          <div className="p-4">
+            <div className="flex">
+              <div className="flex-1">
+                <Text>{title}</Text>
+                <Caption>{caption}</Caption>
+              </div>
+              <div>
+                <Text className="font-medium">{price}</Text>
+              </div>
+            </div>
+          </div>
         </div>
-      </Card>
-    </Box>
-  );
-};
+      </div>
+    );
+  }
+);
+
+ProductItem.displayName = "ProductItem";

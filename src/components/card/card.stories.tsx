@@ -37,6 +37,14 @@ const meta = {
         defaultValue: { summary: "none" },
       },
     },
+    radius: {
+      control: "select",
+      options: ["none", "sm", "md", "lg", "xl", "full"],
+      description: "Border radius for the card",
+      table: {
+        defaultValue: { summary: "md" },
+      },
+    },
   },
 } satisfies Meta<typeof Card>;
 
@@ -79,6 +87,44 @@ export const AllVariations: Story = {
                 </p>
                 <div className="text-sm text-gray-500 dark:text-gray-500">
                   shadow="{shadow}"
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Radius Variations Section */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+          Radius Variations
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {(["none", "sm", "md", "lg", "xl", "full"] as const).map((radius) => (
+            <Card key={radius} shadow="md" radius={radius} className="p-6">
+              <div className="space-y-3">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                  {radius === "none"
+                    ? "No Radius (Square)"
+                    : radius === "full"
+                    ? "Full Radius (Pill)"
+                    : `${radius.toUpperCase()} Radius`}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {radius === "none"
+                    ? "Card with sharp, square corners for modern, geometric layouts."
+                    : radius === "full"
+                    ? "Card with fully rounded corners for a pill-like appearance."
+                    : `Card with ${radius} radius for ${
+                        radius === "sm"
+                          ? "subtle"
+                          : radius === "md"
+                          ? "balanced"
+                          : "pronounced"
+                      } rounded corners.`}
+                </p>
+                <div className="text-sm text-gray-500 dark:text-gray-500">
+                  radius="{radius}"
                 </div>
               </div>
             </Card>

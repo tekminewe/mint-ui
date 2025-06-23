@@ -9,7 +9,7 @@ export default () => {
 
   return plugin(
     (args) => {
-      const { addComponents, addBase, theme } = args;
+      const { addBase, theme } = args;
       addBase({
         ":root": {
           "--mt-w-drawer": "350px",
@@ -143,6 +143,26 @@ export default () => {
           "--color-info-800":
             "22 78 99" /* Very dark info - dark mode backgrounds */,
           "--color-info-900": "12 74 110" /* Darkest info - highest contrast */,
+
+          // === BORDER RADIUS ===
+          // Consistent radius scale for components
+          "--radius-sm":
+            "0.25rem" /* 4px - Small buttons, inputs, small cards */,
+          "--radius-md": "0.5rem" /* 8px - Default for most components */,
+          "--radius-lg": "0.75rem" /* 12px - Large cards, modals */,
+          "--radius-xl": "1rem" /* 16px - Hero sections, prominent cards */,
+          "--radius-full": "9999px" /* Fully rounded - Pills, avatars */,
+
+          // === BOX SHADOWS ===
+          // Consistent shadow scale for elevations
+          "--shadow-1":
+            "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)" /* Subtle shadow */,
+          "--shadow-2":
+            "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" /* Light shadow */,
+          "--shadow-3":
+            "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)" /* Medium shadow */,
+          "--shadow-4":
+            "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" /* Heavy shadow */,
         },
 
         // Dark mode color adjustments for better contrast and visibility
@@ -241,32 +261,6 @@ export default () => {
         body: {
           fontSize: theme("fontSize.base"),
           lineHeight: theme("leading.5"),
-        },
-      });
-      addComponents({
-        ".radix-themes": {
-          borderColor: "rgb(var(--color-neutral-300))",
-        },
-        ".shadow-0": {
-          boxShadow: "none",
-        },
-        ".shadow-1": {
-          boxShadow: "var(--shadow-1)",
-        },
-        ".shadow-2": {
-          boxShadow: "var(--shadow-2)",
-        },
-        ".shadow-3": {
-          boxShadow: "var(--shadow-3)",
-        },
-        ".shadow-4": {
-          boxShadow: "var(--shadow-4)",
-        },
-        ".shadow-5": {
-          boxShadow: "var(--shadow-5)",
-        },
-        ".shadow-6": {
-          boxShadow: "var(--shadow-6)",
         },
       });
 
@@ -372,14 +366,30 @@ export default () => {
           xl: "1640px",
         },
         borderRadius: {
-          "1": "var(--radius-1)",
-          "2": "var(--radius-2)",
-          "3": "var(--radius-3)",
-          "4": "var(--radius-4)",
-          "5": "var(--radius-5)",
-          "6": "var(--radius-6)",
-          full: "var(--radius-full)",
           none: "0",
+          sm: "var(--radius-sm)",
+          md: "var(--radius-md)",
+          lg: "var(--radius-lg)",
+          xl: "var(--radius-xl)",
+          full: "var(--radius-full)",
+          // Legacy support for existing numbered classes
+          "1": "var(--radius-sm)",
+          "2": "var(--radius-sm)",
+          "3": "var(--radius-md)",
+          "4": "var(--radius-lg)",
+          "5": "var(--radius-xl)",
+          "6": "var(--radius-xl)",
+        },
+        boxShadow: {
+          "1": "var(--shadow-1)",
+          "2": "var(--shadow-2)",
+          "3": "var(--shadow-3)",
+          "4": "var(--shadow-4)",
+          none: "none",
+          sm: "var(--shadow-1)",
+          md: "var(--shadow-2)",
+          lg: "var(--shadow-3)",
+          xl: "var(--shadow-4)",
         },
       },
     }

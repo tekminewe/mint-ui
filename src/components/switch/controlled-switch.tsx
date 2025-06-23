@@ -9,7 +9,7 @@ import {
 } from "react-hook-form";
 
 export interface ControlledSwitchProps<T extends FieldValues>
-  extends Omit<SwitchProps, "name"> {
+  extends Omit<SwitchProps, "name" | "checked" | "onCheckedChange"> {
   name: Path<T>;
 }
 
@@ -22,15 +22,17 @@ export const ControlledSwitch = <T extends FieldValues>({
     fieldState: { error },
     field,
   } = useController<T>({ name, control });
+  
   return (
     <Switch
       {...props}
-      {...field}
       checked={field.value}
       onCheckedChange={(checked) => {
-        field.onChange({ target: { value: checked } });
+        field.onChange(checked);
       }}
       error={error?.message}
     />
   );
 };
+
+ControlledSwitch.displayName = "ControlledSwitch";

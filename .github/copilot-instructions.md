@@ -15,6 +15,7 @@
 - Make sure no Typescript error at the end of each iteration. Fix any TypeScript errors immediately.
 - Make sure no ESLint error at the end of each iteration. Fix any ESLint errors immediately.
 - Make sure no Prettier error at the end of each iteration. Fix any Prettier errors immediately.
+- Whenever you add, remove, or rename a component, always update the "Available Components and Imports" section at the bottom of this file to reflect the correct import statements.
 
 ## Naming Conventions
 
@@ -132,4 +133,118 @@ src/
 │       ├── index.ts/ # Export components and types
 │       ├── <ComponentName>.tsx # Component file
 │       ├── <ComponentName>.stories.tsx # Storybook file
+```
+
+## Available Components and Imports
+
+You can import components from `@tekminewe/mint-ui/<component>` as shown below. Use these import statements for each available component:
+
+```typescript
+import { Avatar } from '@tekminewe/mint-ui/avatar';
+import { Badge } from '@tekminewe/mint-ui/badge';
+import { Button } from '@tekminewe/mint-ui/button';
+import { Card } from '@tekminewe/mint-ui/card';
+import { Checkbox } from '@tekminewe/mint-ui/checkbox';
+import {
+  Dialog,
+  DialogRoot,
+  DialogTrigger,
+  DialogClose,
+  DialogFooter,
+} from '@tekminewe/mint-ui/dialog';
+import {
+  Drawer,
+  DrawerRoot,
+  DrawerTrigger,
+  DrawerTitle,
+} from '@tekminewe/mint-ui/drawer';
+import { Grid } from '@tekminewe/mint-ui/grid';
+import { Navbar, NavbarBrand } from '@tekminewe/mint-ui/navbar';
+import {
+  Popover,
+  PopoverRoot,
+  PopoverTrigger,
+  PopoverContent,
+} from '@tekminewe/mint-ui/popover';
+import { Select, ControlledSelect } from '@tekminewe/mint-ui/select';
+import {
+  Sidebar,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuGroup,
+  SidebarMenuItem,
+} from '@tekminewe/mint-ui/sidebar';
+import { Switch, ControlledSwitch } from '@tekminewe/mint-ui/switch';
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from '@tekminewe/mint-ui/tabs';
+import { DataTable } from '@tekminewe/mint-ui/data-table';
+import { ProductList } from '@tekminewe/mint-ui/product-list';
+import { TextInput, ControlledTextInput } from '@tekminewe/mint-ui/text-input';
+import { ProductItem } from '@tekminewe/mint-ui/product-item';
+import {
+  SearchDialog,
+  SearchRoot,
+  SearchInput,
+  SearchResultList,
+  SearchResultListGroup,
+  SearchResultListItem,
+} from '@tekminewe/mint-ui/search-input';
+import { IconButton } from '@tekminewe/mint-ui/icon-button';
+import { PostItem } from '@tekminewe/mint-ui/post-item';
+import { RichTextPreview } from '@tekminewe/mint-ui/rich-text-preview';
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from '@tekminewe/mint-ui/breadcrumb';
+import { Command, CommandItem } from '@tekminewe/mint-ui/command';
+import {
+  MobileNavigationMenu,
+  MobileNavigationMenuItem,
+} from '@tekminewe/mint-ui/mobile-navigation-menu';
+import { RichTextEditor } from '@tekminewe/mint-ui/rich-text-editor';
+import { List, ListItem, ListGroup } from '@tekminewe/mint-ui/list';
+import {
+  Theme,
+  ThemeProvider,
+  useTheme,
+  ThemeToggle,
+} from '@tekminewe/mint-ui/theme';
+import { Link } from '@tekminewe/mint-ui/link';
+import { ErrorMessage } from '@tekminewe/mint-ui/error-message';
+import { Callout } from '@tekminewe/mint-ui/callout';
+import { SmallText } from '@tekminewe/mint-ui/small-text';
+import {
+  ImageInput,
+  ControlledImageInput,
+} from '@tekminewe/mint-ui/image-input';
+import { Spinner } from '@tekminewe/mint-ui/spinner';
+import { MultiSelect } from '@tekminewe/mint-ui/multi-select';
+import { AdminNavbar } from '@tekminewe/mint-ui/admin-navbar';
+import { SuccessCard } from '@tekminewe/mint-ui/success-card';
+import { ToastContainer, toast } from '@tekminewe/mint-ui/toast';
+import { Skeleton } from '@tekminewe/mint-ui/skeleton';
+import { Separator } from '@tekminewe/mint-ui/separator';
+import { AdminContent } from '@tekminewe/mint-ui/admin-content';
+import { SubMenu, SubMenuItem } from '@tekminewe/mint-ui/sub-menu';
+import { DateInput, ControlledDateInput } from '@tekminewe/mint-ui/date-input';
+import {
+  FormLabel,
+  ControlledForm,
+  useFormContext,
+} from '@tekminewe/mint-ui/form';
+import { AdminLayout } from '@tekminewe/mint-ui/admin-layout';
+import { InfoCard } from '@tekminewe/mint-ui/info-card';
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+} from '@tekminewe/mint-ui/navigation-menu';
 ```

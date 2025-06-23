@@ -1,61 +1,76 @@
-"use client";
+'use client';
 
-import { BubbleMenu, Editor } from "@tiptap/react";
-import { Button } from "../button";
-import { Dialog } from "@radix-ui/themes";
-import { TextInput } from "../text-input";
+import { BubbleMenu, Editor } from '@tiptap/react';
+import { Button } from '../button';
+import { DialogRoot, DialogTrigger, DialogClose } from '../dialog';
+import { TextInput } from '../text-input';
+import { useState } from 'react';
+import * as RadixDialog from '@radix-ui/react-dialog';
 
 interface FigureBubbleMenuProps {
   editor: Editor;
 }
 
 export const FigureBubbleMenu = ({ editor }: FigureBubbleMenuProps) => {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <BubbleMenu
         editor={editor}
         tippyOptions={{ duration: 100 }}
         shouldShow={({ editor }) => {
-          return editor.isActive("figure");
+          return editor.isActive('figure');
         }}
       >
-        <Dialog.Root>
-          <div className="bg-panel-solid shadow-5 p-1 space-x-1 rounded-2">
-            <Dialog.Trigger>
-              <Button variant="soft">Details</Button>
-            </Dialog.Trigger>
+        <DialogRoot open={open} onOpenChange={setOpen}>
+          <div className="bg-white dark:bg-gray-800 shadow-lg p-1 space-x-1 rounded-lg border">
+            <DialogTrigger asChild>
+              <Button variant="ghost" size="sm">
+                Details
+              </Button>
+            </DialogTrigger>
           </div>
-          <Dialog.Content className="space-y-4 z-[99999]" maxWidth="450px">
-            <Dialog.Title>Image Details</Dialog.Title>
-            <Dialog.Description>
-              Update the details of the image.
-            </Dialog.Description>
-            <img src={editor.getAttributes("figure").src} />
-            <TextInput
-              label="Title"
-              value={editor.getAttributes("figure").title || ""}
-              onChange={(e) => {
-                editor.commands.updateAttributes("figure", {
-                  title: e.target.value,
-                });
-              }}
-            />
-            <TextInput
-              label="Alt text"
-              value={editor.getAttributes("figure").alt || ""}
-              onChange={(e) => {
-                editor.commands.updateAttributes("figure", {
-                  alt: e.target.value,
-                });
-              }}
-            />
-            <div className="flex justify-end">
-              <Dialog.Close>
-                <Button variant="soft">Close</Button>
-              </Dialog.Close>
-            </div>
-          </Dialog.Content>
-        </Dialog.Root>
+          <RadixDialog.Portal>
+            <RadixDialog.Overlay className="fixed inset-0 bg-black/50 z-[99998]" />
+            <RadixDialog.Content className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] bg-white dark:bg-gray-900 p-6 rounded-lg shadow-xl max-w-md w-full z-[99999] space-y-4">
+              <RadixDialog.Title className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                Image Details
+              </RadixDialog.Title>
+              <RadixDialog.Description className="text-sm text-gray-600 dark:text-gray-400">
+                Update the details of the image.
+              </RadixDialog.Description>
+              <img
+                src={editor.getAttributes('figure').src}
+                alt="Preview"
+                className="max-w-full h-auto rounded"
+              />
+              <TextInput
+                label="Title"
+                value={editor.getAttributes('figure').title || ''}
+                onChange={(e) => {
+                  editor.commands.updateAttributes('figure', {
+                    title: e.target.value,
+                  });
+                }}
+              />
+              <TextInput
+                label="Alt text"
+                value={editor.getAttributes('figure').alt || ''}
+                onChange={(e) => {
+                  editor.commands.updateAttributes('figure', {
+                    alt: e.target.value,
+                  });
+                }}
+              />
+              <div className="flex justify-end">
+                <DialogClose asChild>
+                  <Button variant="ghost">Close</Button>
+                </DialogClose>
+              </div>
+            </RadixDialog.Content>
+          </RadixDialog.Portal>
+        </DialogRoot>
       </BubbleMenu>
     </>
   );

@@ -25,7 +25,7 @@
   * Navbar styles
   */
   .navbar {
-    @apply shadow-3 w-full p-4 flex items-center border-b;
+    @apply shadow-2 w-full p-4 flex items-center border-b rounded-lg;
     @apply min-h-[4rem];
   }
   .navbar[data-breakpoint="xs"] .mt-navMenu {
@@ -63,7 +63,7 @@
   * Dialog styles
   */
   .dialog-content {
-    @apply rounded-4 bg-neutral-50 p-4 fixed focus:outline-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[600px] shadow-3;
+    @apply rounded-lg bg-neutral-50 p-4 fixed focus:outline-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[600px] shadow-2;
     animation: dialogContentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -91,7 +91,7 @@
   * Card styles
   */
   .card {
-    @apply rounded-4 shadow-3 p-4 bg-neutral-50;
+    @apply rounded-lg shadow-2 p-4 bg-neutral-50;
   }
 
   .card-title {
@@ -158,13 +158,13 @@
   * Dropdown styles
   */
   .dropdown-menu-content {
-    @apply shadow-3 rounded-3 overflow-hidden p-3 mt-1 bg-neutral-50;
+    @apply shadow-3 rounded-md overflow-hidden p-3 mt-1 bg-neutral-50;
   }
   .dropdown-menu-trigger {
     @apply outline-none;
   }
   .dropdown-menu-item {
-    @apply py-2 px-3 divide-y outline-none cursor-pointer rounded-3 flex items-center gap-2;
+    @apply py-2 px-3 divide-y outline-none cursor-pointer rounded-md flex items-center gap-2;
     @apply hover:bg-primary-600 hover:text-neutral-50;
   }
   .dropdown-menu-separator {
@@ -217,7 +217,7 @@
     @apply text-sm font-semibold uppercase text-neutral-500 mb-3;
   }
   .sidebar-menu-item {
-    @apply p-3 rounded-3 cursor-pointer font-medium flex items-center gap-3;
+    @apply p-3 rounded-md cursor-pointer font-medium flex items-center gap-3;
     @apply hover:bg-primary-600 hover:text-neutral-50;
   }
   .sidebar-menu-item[data-selected="true"] {
@@ -236,19 +236,19 @@
     @apply w-screen h-svh md:h-[50vh] overflow-hidden;
   }
   .search-result-input {
-    @apply outline-1 outline outline-neutral-300 focus:outline-2 focus:outline-primary-600 rounded-3 p-2 w-full;
+    @apply outline-1 outline outline-neutral-300 focus:outline-2 focus:outline-primary-600 rounded-md p-2 w-full;
     @apply mb-2;
   }
   .search-result-list {
     @apply overflow-y-auto h-[calc(100svh-72px)];
   }
   .search-result-list-item {
-    @apply flex items-center p-2 cursor-pointer gap-3 rounded-3;
+    @apply flex items-center p-2 cursor-pointer gap-3 rounded-md;
     @apply hover:bg-primary-600 hover:text-neutral-50;
   }
   .search-result-list-item-skeleton {
     @apply animate-pulse;
-    @apply h-6 w-full bg-neutral-300 rounded-3 mb-2;
+    @apply h-6 w-full bg-neutral-300 rounded-md mb-2;
   }
   .search-result-list-item-title {
     @apply font-semibold text-lg;
@@ -261,7 +261,7 @@
     @apply w-full;
   }
   .search-result-list-item-image-container {
-    @apply w-[50px] h-[50px] rounded-3 overflow-hidden flex items-center justify-center border;
+    @apply w-[50px] h-[50px] rounded-md overflow-hidden flex items-center justify-center border;
   }
 
   /**
@@ -284,7 +284,7 @@
   * List styles
   */
   .list-item-row {
-    @apply p-3 rounded-3 cursor-pointer font-medium flex items-center gap-2;
+    @apply p-3 rounded-md cursor-pointer font-medium flex items-center gap-2;
     @apply hover:bg-neutral-200;
   }
   .list-item-row[data-selected="true"] {

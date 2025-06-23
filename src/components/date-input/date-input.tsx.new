@@ -143,7 +143,7 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
     return (
       <div className="flex flex-col gap-1">
         {label && <FormLabel label={label} required={required} />}
-
+        
         <PopoverPrimitive.Root>
           <div className="relative flex items-center w-full">
             <PopoverPrimitive.Trigger asChild>
@@ -179,7 +179,7 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
           </div>
 
           <PopoverPrimitive.Portal>
-            <PopoverPrimitive.Content
+            <PopoverPrimitive.Content 
               className="bg-white p-4 rounded-md shadow-md z-50 border border-neutral-200"
               sideOffset={5}
             >
@@ -208,7 +208,7 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
             </PopoverPrimitive.Content>
           </PopoverPrimitive.Portal>
         </PopoverPrimitive.Root>
-
+        
         {error && <Caption className="text-error">{error}</Caption>}
       </div>
     );

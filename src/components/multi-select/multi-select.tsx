@@ -1,6 +1,5 @@
 "use client";
 
-import { Checkbox, Popover } from "@radix-ui/themes";
 import { forwardRef, useState } from "react";
 import { FormLabel } from "../form";
 import { cn } from "../utils";
@@ -10,6 +9,8 @@ import { Badge } from "../badge";
 import { Spinner } from "../spinner";
 import { useDebouncedCallback } from "use-debounce";
 import { LuSearch, LuX } from "react-icons/lu";
+import { Popover } from "../popover";
+import { Checkbox } from "../checkbox";
 
 export type MultiSelectOption = { label: string; value: string };
 
@@ -155,17 +156,19 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
       <Popover.Root onOpenChange={onOpenChange} open={open}>
         <div className="flex flex-col gap-1">
           {label && <FormLabel label={label} />}
-          <Popover.Trigger>
+          <Popover.Trigger asChild>
             <div
               className={cn(
-                "flex text-sm items-center gap-1 shadow-[inset_0_0_0_1px_var(--gray-a7)] w-full min-h-[var(--space-6)] pl-3 pr-2 rounded-2",
+                "flex text-sm items-center gap-1 border border-gray-300 w-full min-h-[36px] pl-3 pr-2 rounded",
+                "focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:outline-none",
+                "dark:border-gray-600 dark:bg-gray-800",
                 {
                   "py-1": value.length > 0,
                 }
               )}
               ref={ref}
             >
-              <span className="flex-1 text-gray-9 flex items-center gap-1 flex-wrap">
+              <span className="flex-1 text-gray-900 dark:text-gray-100 flex items-center gap-1 flex-wrap">
                 {value.length > 0 ? (
                   <>
                     {selectedValues
@@ -198,19 +201,21 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
                     )}
                   </>
                 ) : (
-                  placeholder
+                  <span className="text-gray-500 dark:text-gray-400">
+                    {placeholder}
+                  </span>
                 )}
               </span>
               <ChevronDownIcon />
             </div>
           </Popover.Trigger>
         </div>
-        <Popover.Content className="p-0">
+        <Popover.Content className="p-0 w-[var(--radix-popover-trigger-width)] max-h-[300px] overflow-auto">
           <Command>
-            <div className="flex items-center gap-2 px-3 h-6 w-full border-b">
+            <div className="flex items-center gap-2 px-3 h-6 w-full border-b dark:border-gray-700">
               <LuSearch size={16} />
               <Command.Input
-                className="text-sm w-full outline-none"
+                className="text-sm w-full outline-none bg-transparent"
                 placeholder="Search..."
                 value={searchValue}
                 onValueChange={handleSearchValueChange}
@@ -227,10 +232,10 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
                     {allowCreate && searchValue ? (
                       <div className="flex items-center gap-2 py-[2px] text-sm px-3">
                         <Checkbox
+                          checked={value.includes(searchValue ?? "")}
                           onCheckedChange={(checked) =>
                             handleChange(!!checked, searchValue ?? "")
                           }
-                          checked={value.includes(searchValue ?? "")}
                         />
                         {searchValue}
                       </div>
@@ -244,10 +249,10 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
                       key={option.value}
                     >
                       <Checkbox
+                        checked={value.includes(option.value)}
                         onCheckedChange={(checked) =>
                           handleChange(!!checked, option.value)
                         }
-                        checked={value.includes(option.value)}
                       />
                       {option.label}
                     </Command.Item>
@@ -261,5 +266,7 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
     );
   }
 );
+
+MultiSelect.displayName = "MultiSelect";
 
 MultiSelect.displayName = "MultiSelect";

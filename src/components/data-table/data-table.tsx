@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { Table as RadixTable } from "@radix-ui/themes";
 import {
   useReactTable,
   createColumnHelper,
   getCoreRowModel,
   flexRender,
-} from "@tanstack/react-table";
-import { MouseEventHandler, ReactNode, useMemo } from "react";
-import { Pagination } from "./pagination";
-import { Filter, IDataTableFilterState, IDataTableFilterProps } from "./filter";
-import { Title, Text } from "../typography";
-import { Card } from "../card";
-import { Button } from "../button";
-import { utils, writeFile } from "xlsx";
-import { LuDownload } from "react-icons/lu";
+} from '@tanstack/react-table';
+import { MouseEventHandler, ReactNode, useMemo } from 'react';
+import { Pagination } from './pagination';
+import { Filter, IDataTableFilterState, IDataTableFilterProps } from './filter';
+import { Title, Text } from '../typography';
+import { Card } from '../card';
+import { Button } from '../button';
+import { utils, writeFile } from 'xlsx';
+import { LuDownload } from 'react-icons/lu';
+import { cn } from '../utils';
 
 export type IDataTableColumn<T> =
   | IDataTableColumnWithDataKey<T>
@@ -37,7 +37,7 @@ export interface IDataTableColumnWithoutDataKey<T> {
 export interface IDataTableProps<T, F> {
   columns: IDataTableColumn<T>[];
   data: T[];
-  variant?: RadixTable.RootProps["variant"];
+  variant?: 'ghost' | 'surface';
   page?: number;
   totalCount?: number;
   pageSize?: number;
@@ -58,7 +58,7 @@ export interface IDataTableProps<T, F> {
 export const DataTable = <T extends object, F extends IDataTableFilterState>({
   columns,
   data,
-  variant = "ghost",
+  variant = 'ghost',
   page = 1,
   pageSize = 25,
   onPaginationChange = () => {
@@ -67,14 +67,14 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
   totalCount = 0,
   filters,
   onFilterSubmit,
-  emptyText = "There are no data found at the moment",
-  emptyTitle = "No data",
+  emptyText = 'There are no data found at the moment',
+  emptyTitle = 'No data',
   allowExport = false,
   exportDataRequest,
-  exportFileName = "Data",
+  exportFileName = 'Data',
   isLoading,
   showAddButton = false,
-  addButtonLabel = "Add",
+  addButtonLabel = 'Add',
   onAddButtonClick,
 }: IDataTableProps<T, F>) => {
   const colummDefs = useMemo(() => {
@@ -97,7 +97,7 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
                 })
               : info.renderValue();
           },
-        }
+        },
       );
     });
   }, [columns]);
@@ -118,7 +118,7 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
         pageSize,
         pageIndex: page - 1,
       };
-      if (typeof updater === "function") {
+      if (typeof updater === 'function') {
         const newState = updater(oldState);
         onPaginationChange({
           page: newState.pageIndex + 1,
@@ -151,7 +151,7 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
             ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               column.formatValueForExport({ value: d })
-            : "";
+            : '';
         }
         return data;
       }, {} as Record<string, string | number>);
@@ -159,7 +159,7 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
 
     const worksheet = utils.json_to_sheet(exportData);
     const workbook = utils.book_new();
-    utils.book_append_sheet(workbook, worksheet, "Data");
+    utils.book_append_sheet(workbook, worksheet, 'Data');
     writeFile(workbook, `${exportFileName}.xlsx`, { compression: true });
   };
 
@@ -183,72 +183,89 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
         </div>
       )}
       <Card>
-        <RadixTable.Root
-          variant={variant}
-          className="bg-white rounded-2 overflow-hidden"
-        >
-          <RadixTable.Header>
-            {table.getHeaderGroups().map((headerGroup) => {
-              return (
-                <RadixTable.Row key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => {
-                    return (
-                      <RadixTable.ColumnHeaderCell key={header.id}>
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                      </RadixTable.ColumnHeaderCell>
-                    );
-                  })}
-                </RadixTable.Row>
-              );
-            })}
-          </RadixTable.Header>
-          {isLoading && (
-            <RadixTable.Body>
-              <RadixTable.Row align="center">
-                <RadixTable.Cell colSpan={columns.length} className="space-y-4">
-                  <div className="animate-pulse w-full h-6 bg-gray-6 rounded-3"></div>
-                  <div className="animate-pulse w-full h-6 bg-gray-6 rounded-3"></div>
-                  <div className="animate-pulse w-full h-6 bg-gray-6 rounded-3"></div>
-                </RadixTable.Cell>
-              </RadixTable.Row>
-            </RadixTable.Body>
-          )}
-          {!isLoading && hasData && (
-            <RadixTable.Body>
-              {table.getRowModel().rows.map((row) => {
+        <div className="overflow-x-auto">
+          <table
+            className={cn(
+              'w-full border-collapse',
+              variant === 'ghost' ? 'bg-transparent' : 'bg-white',
+            )}
+          >
+            <thead>
+              {table.getHeaderGroups().map((headerGroup) => {
                 return (
-                  <RadixTable.Row align="center" key={row.id}>
-                    {row.getVisibleCells().map((cell, i) => {
-                      if (i === 0) {
-                        return (
-                          <RadixTable.RowHeaderCell key={cell.id}>
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext()
-                            )}
-                          </RadixTable.RowHeaderCell>
-                        );
-                      }
+                  <tr
+                    key={headerGroup.id}
+                    className="border-b border-gray-200 dark:border-gray-700"
+                  >
+                    {headerGroup.headers.map((header) => {
                       return (
-                        <RadixTable.Cell key={cell.id}>
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        </RadixTable.Cell>
+                        <th
+                          key={header.id}
+                          className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                        >
+                          {header.isPlaceholder
+                            ? null
+                            : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
+                        </th>
                       );
                     })}
-                  </RadixTable.Row>
+                  </tr>
                 );
               })}
-            </RadixTable.Body>
-          )}
-        </RadixTable.Root>
+            </thead>
+            {isLoading && (
+              <tbody>
+                <tr>
+                  <td
+                    colSpan={columns.length}
+                    className="px-4 py-6 text-center"
+                  >
+                    <div className="space-y-4">
+                      <div className="animate-pulse w-full h-6 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                      <div className="animate-pulse w-full h-6 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                      <div className="animate-pulse w-full h-6 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            )}
+            {!isLoading && hasData && (
+              <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                {table.getRowModel().rows.map((row) => {
+                  return (
+                    <tr
+                      key={row.id}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                    >
+                      {row.getVisibleCells().map((cell, i) => {
+                        const isFirstCell = i === 0;
+                        return (
+                          <td
+                            key={cell.id}
+                            className={cn(
+                              'px-4 py-4 whitespace-nowrap text-sm',
+                              isFirstCell
+                                ? 'font-medium text-gray-900 dark:text-gray-100'
+                                : 'text-gray-500 dark:text-gray-400',
+                            )}
+                          >
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext(),
+                            )}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            )}
+          </table>
+        </div>
         {!isLoading && hasData && <Pagination table={table} />}
         {!isLoading && !hasData && (
           <div className="flex flex-col items-center py-8">

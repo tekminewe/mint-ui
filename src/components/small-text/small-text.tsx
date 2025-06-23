@@ -1,12 +1,43 @@
-import { Text as RadixText, TextProps } from "@radix-ui/themes";
+import * as React from "react";
 import { cn } from "../utils";
 
-type ISmallTextProps = Omit<TextProps, "size" | "as">;
+type ElementType = "span" | "p" | "div";
 
-export const SmallText = ({ className, ...props }: ISmallTextProps) => (
-  <RadixText
-    size="2"
-    {...props}
-    className={cn("text-neutral-500", className)}
-  />
-);
+export interface SmallTextProps extends React.HTMLAttributes<HTMLElement> {
+  /**
+   * The content of the small text.
+   */
+  children: React.ReactNode;
+
+  /**
+   * Additional CSS class names.
+   */
+  className?: string;
+
+  /**
+   * The HTML element to render.
+   * @default "span"
+   */
+  as?: ElementType;
+}
+
+export function SmallText({
+  children,
+  className,
+  as = "span",
+  ...props
+}: SmallTextProps) {
+  const Component = as;
+
+  return (
+    <Component
+      className={cn(
+        "text-sm text-neutral-500 dark:text-neutral-400",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </Component>
+  );
+}

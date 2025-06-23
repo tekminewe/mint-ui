@@ -1,6 +1,5 @@
-import { Box } from "@radix-ui/themes";
+import * as React from "react";
 import { Text, Caption, Title } from "../typography";
-import { forwardRef } from "react";
 import { cn } from "../utils";
 import { Badge } from "../badge";
 
@@ -33,7 +32,7 @@ export interface PostItemProps extends React.HTMLAttributes<HTMLDivElement> {
   tags?: string[];
 }
 
-export const PostItem = forwardRef<HTMLDivElement, PostItemProps>(
+export const PostItem = React.forwardRef<HTMLDivElement, PostItemProps>(
   ({ title, summary, imageUrl, date, tags = [], ...props }, ref) => {
     return (
       <div
@@ -42,14 +41,14 @@ export const PostItem = forwardRef<HTMLDivElement, PostItemProps>(
         ref={ref}
       >
         <div className="flex gap-4 relative md:static">
-          <Box className="relative flex-shrink-0 w-full aspect-[1] md:w-[256px] overflow-hidden rounded-2 border">
+          <div className="relative flex-shrink-0 w-full aspect-[1] md:w-[256px] overflow-hidden rounded-md border border-neutral-200 dark:border-neutral-800">
             <img
               src={imageUrl}
               alt={title}
               className="object-cover w-full h-full"
             />
             <div className="absolute md:hidden top-0 bottom-0 left-0 right-0 bg-[linear-gradient(to_bottom,transparent_0%,black_100%)]" />
-          </Box>
+          </div>
           <div className="absolute bottom-0 p-4 md:p-0 md:static">
             {tags.length > 0 && (
               <div className="flex gap-2 mb-2">
@@ -71,5 +70,7 @@ export const PostItem = forwardRef<HTMLDivElement, PostItemProps>(
     );
   }
 );
+
+PostItem.displayName = "PostItem";
 
 PostItem.displayName = "PostItem";

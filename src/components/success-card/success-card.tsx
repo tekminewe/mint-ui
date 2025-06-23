@@ -1,22 +1,47 @@
-import { Card, Text } from "@radix-ui/themes";
+import * as React from "react";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
+import { cn } from "../utils";
 
-export const SuccessCard = ({
+export interface SuccessCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The title of the success card.
+   */
+  title: string;
+
+  /**
+   * The message of the success card.
+   */
+  message: string;
+
+  /**
+   * Additional CSS class names.
+   */
+  className?: string;
+}
+
+export function SuccessCard({
   title,
   message,
-}: {
-  title: string;
-  message: string;
-}) => {
+  className,
+  ...props
+}: SuccessCardProps) {
   return (
-    <Card className="max-w-xl w-full mt-24 mx-2 md:mx-0 md:p-8">
-      <div className="flex flex-col items-center justify-center p-4 space-y-4">
-        <CheckCircledIcon width={120} height={120} color="green" />
-        <Text size="8" ml="2">
+    <div
+      className={cn(
+        "max-w-xl w-full mt-6 mx-2 md:mx-0 rounded-xl border border-neutral-200 bg-white shadow-sm dark:border-neutral-800 dark:bg-neutral-900",
+        className
+      )}
+      {...props}
+    >
+      <div className="flex flex-col items-center justify-center p-6 md:p-8 space-y-4">
+        <CheckCircledIcon className="h-24 w-24 text-green-500 dark:text-green-400" />
+        <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
           {title}
-        </Text>
-        <Text align="center">{message}</Text>
+        </h2>
+        <p className="text-center text-neutral-700 dark:text-neutral-300">
+          {message}
+        </p>
       </div>
-    </Card>
+    </div>
   );
-};
+}

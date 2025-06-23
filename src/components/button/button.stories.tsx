@@ -1,33 +1,33 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "./button";
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Button } from './button';
 
 // Define modes directly since Storybook will use the global modes configuration
 const modes = {
   light: {
-    backgrounds: { value: "#ffffff" },
-    theme: "light",
+    backgrounds: { value: '#ffffff' },
+    theme: 'light',
   },
   dark: {
-    backgrounds: { value: "#0c0a09" },
-    theme: "dark",
+    backgrounds: { value: '#0c0a09' },
+    theme: 'dark',
   },
-  "light desktop": {
-    backgrounds: { value: "#ffffff" },
-    theme: "light",
-    viewport: "responsive",
+  'light desktop': {
+    backgrounds: { value: '#ffffff' },
+    theme: 'light',
+    viewport: 'responsive',
   },
-  "dark desktop": {
-    backgrounds: { value: "#0c0a09" },
-    theme: "dark",
-    viewport: "responsive",
+  'dark desktop': {
+    backgrounds: { value: '#0c0a09' },
+    theme: 'dark',
+    viewport: 'responsive',
   },
 };
 
 const meta: Meta<typeof Button> = {
-  title: "Components/Button",
+  title: 'Components/Button',
   component: Button,
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
     chromatic: {
       // Single comprehensive story for both light and dark themes
       modes: {
@@ -36,34 +36,42 @@ const meta: Meta<typeof Button> = {
       },
     },
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     variant: {
-      control: "select",
-      options: ["solid", "soft", "outline", "ghost", "link"],
-      description: "The visual style of the button",
+      control: 'select',
+      options: ['solid', 'soft', 'outline', 'ghost', 'link'],
+      description: 'The visual style of the button',
     },
     color: {
-      control: "select",
-      options: ["primary", "neutral", "success", "error", "warning", "info"],
-      description: "The color scheme of the button",
+      control: 'select',
+      options: ['primary', 'neutral', 'success', 'error', 'warning', 'info'],
+      description: 'The color scheme of the button',
     },
     size: {
-      control: "select",
-      options: ["sm", "md", "lg"],
-      description: "The size of the button",
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+      description: 'The size of the button',
+    },
+    radius: {
+      control: 'select',
+      options: ['none', 'sm', 'md', 'lg', 'xl', 'full'],
+      description: 'Border radius for the button',
+      table: {
+        defaultValue: { summary: 'md' },
+      },
     },
     loading: {
-      control: "boolean",
-      description: "Whether the button is in a loading state",
+      control: 'boolean',
+      description: 'Whether the button is in a loading state',
     },
     disabled: {
-      control: "boolean",
-      description: "Whether the button is disabled",
+      control: 'boolean',
+      description: 'Whether the button is disabled',
     },
     children: {
-      control: "text",
-      description: "The content of the button",
+      control: 'text',
+      description: 'The content of the button',
     },
   },
 };
@@ -108,7 +116,7 @@ export const AllVariations: Story = {
           Colors
         </h2>
         <div className="space-y-4">
-          {(["solid", "soft", "outline", "ghost"] as const).map((variant) => (
+          {(['solid', 'soft', 'outline', 'ghost'] as const).map((variant) => (
             <div key={variant} className="space-y-2">
               <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 capitalize">
                 {variant}
@@ -156,13 +164,36 @@ export const AllVariations: Story = {
         </div>
       </section>
 
+      {/* Radius Section */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+          Border Radius
+        </h2>
+        <div className="flex flex-wrap gap-4">
+          {(['none', 'sm', 'md', 'lg', 'xl', 'full'] as const).map((radius) => (
+            <Button
+              key={radius}
+              variant="solid"
+              color="primary"
+              radius={radius}
+            >
+              {radius === 'none'
+                ? 'Square'
+                : radius === 'full'
+                ? 'Pill'
+                : radius.toUpperCase()}
+            </Button>
+          ))}
+        </div>
+      </section>
+
       {/* States Section */}
       <section className="space-y-4">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
           States
         </h2>
         <div className="space-y-4">
-          {(["solid", "outline", "soft"] as const).map((variant) => (
+          {(['solid', 'outline', 'soft'] as const).map((variant) => (
             <div key={variant} className="space-y-2">
               <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 capitalize">
                 {variant} States
@@ -192,7 +223,7 @@ export const AllVariations: Story = {
           Size Combinations
         </h2>
         <div className="space-y-4">
-          {(["sm", "md", "lg"] as const).map((size) => (
+          {(['sm', 'md', 'lg'] as const).map((size) => (
             <div key={size} className="space-y-2">
               <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
                 Size: {size}
@@ -227,11 +258,12 @@ export const Playground: Story = {
     chromatic: { disableSnapshot: true },
   },
   args: {
-    children: "Button",
-    variant: "solid",
-    color: "primary",
-    size: "md",
+    children: 'Button',
+    variant: 'solid',
+    color: 'primary',
+    size: 'md',
     loading: false,
     disabled: false,
+    radius: 'sm',
   },
 };

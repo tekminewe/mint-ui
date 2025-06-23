@@ -27,7 +27,7 @@ export const ControlledTextInput = <T extends FieldValues>({
     <TextInput
       {...props}
       {...field}
-      onChange={(e) => {
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
         props.onChange?.(e);
         field.onChange(e);
       }}

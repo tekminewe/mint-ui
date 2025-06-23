@@ -1,13 +1,9 @@
-import {
-  Switch as RadixSwitch,
-  SwitchProps as RadixSwitchProps,
-  Text,
-} from "@radix-ui/themes";
+import * as RadixSwitch from "@radix-ui/react-switch";
 import { FormLabel } from "../form";
-import { forwardRef } from "react";
+import { ComponentPropsWithoutRef, forwardRef } from "react";
 import { cn } from "../utils";
 
-export interface SwitchProps extends RadixSwitchProps {
+export interface SwitchProps extends ComponentPropsWithoutRef<typeof RadixSwitch.Root> {
   error?: string;
   containerClassName?: string;
   labelClassName?: string;
@@ -24,29 +20,47 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
       required,
       containerClassName,
       labelClassName,
+      className,
       ...props
     },
     ref
   ) => {
     return (
-      <label className={cn("flex flex-col w-full gap-1", containerClassName)}>
-        <FormLabel
-          className={labelClassName}
-          label={label}
-          required={required}
-        />
-        <RadixSwitch ref={ref} {...props} />
+      <div className={cn("flex flex-col w-full gap-1", containerClassName)}>
+        {label && (
+          <FormLabel
+            className={labelClassName}
+            label={label}
+            required={required}
+          />
+        )}
+        <RadixSwitch.Root 
+          ref={ref} 
+          className={cn(
+            "relative inline-flex h-[24px] w-[44px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors",
+            "bg-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+            "data-[state=checked]:bg-primary",
+            "dark:bg-gray-700 dark:data-[state=checked]:bg-primary",
+            className
+          )} 
+          {...props} 
+        >
+          <RadixSwitch.Thumb className={cn(
+            "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg transition-transform",
+            "data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+          )} />
+        </RadixSwitch.Root>
         {error && (
-          <Text size="2" color="red">
+          <p className="text-sm text-red-500">
             {error}
-          </Text>
+          </p>
         )}
         {description && (
-          <Text size="2" color="gray">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             {description}
-          </Text>
+          </p>
         )}
-      </label>
+      </div>
     );
   }
 );
