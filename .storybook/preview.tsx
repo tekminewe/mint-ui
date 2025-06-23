@@ -1,8 +1,32 @@
-import type { Preview } from "@storybook/react-vite";
-import { withThemeByClassName } from "@storybook/addon-themes";
-import { Theme } from "../src/components/theme";
-import { allModes } from "./modes";
-import "../src/globals.css";
+import type { Preview } from '@storybook/react-vite';
+import { withThemeByClassName } from '@storybook/addon-themes';
+import { useEffect } from 'react';
+import { Theme } from '../src/components/theme';
+import { allModes } from './modes';
+import '../src/globals.css';
+import './storybook.css';
+
+// Custom decorator to sync background with theme
+const withThemeBackground = (Story: any, context: any) => {
+  const theme = context.globals.theme || 'light';
+
+  useEffect(() => {
+    // Set the background based on the current theme
+    const backgroundColor = theme === 'dark' ? '#0c0a09' : '#ffffff';
+
+    // Update the root body background
+    document.body.style.backgroundColor = backgroundColor;
+
+    // Also update the html element for full coverage
+    document.documentElement.style.backgroundColor = backgroundColor;
+  }, [theme]);
+
+  return (
+    <Theme>
+      <Story />
+    </Theme>
+  );
+};
 
 const preview: Preview = {
   parameters: {
@@ -13,9 +37,10 @@ const preview: Preview = {
       },
     },
     backgrounds: {
+      disable: true, // Disable default backgrounds since we handle it globally
       values: [
-        { name: "light", value: "#ffffff" },
-        { name: "dark", value: "#0c0a09" },
+        { name: 'light', value: '#ffffff' },
+        { name: 'dark', value: '#0c0a09' },
       ],
     },
     chromatic: {
@@ -29,18 +54,12 @@ const preview: Preview = {
   decorators: [
     withThemeByClassName({
       themes: {
-        light: "light",
-        dark: "dark",
+        light: 'light',
+        dark: 'dark',
       },
-      defaultTheme: "light",
+      defaultTheme: 'light',
     }),
-    (Story: any) => {
-      return (
-        <Theme>
-          <Story />
-        </Theme>
-      );
-    },
+    withThemeBackground,
   ],
 };
 

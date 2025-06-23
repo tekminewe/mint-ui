@@ -1,9 +1,10 @@
-import plugin from "./src/components/tailwind-plugin";
+import plugin from './src/components/tailwind-plugin';
 
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class', // Enable class-based dark mode
   content: {
-    files: ["./src/**/*.{ts,tsx}"],
+    files: ['./src/**/*.{ts,tsx}'],
   },
   theme: {
     extend: {},

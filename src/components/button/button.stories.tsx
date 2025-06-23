@@ -249,21 +249,3 @@ export const AllVariations: Story = {
     </div>
   ),
 };
-
-/**
- * Interactive playground for controls - not tested by Chromatic
- */
-export const Playground: Story = {
-  parameters: {
-    chromatic: { disableSnapshot: true },
-  },
-  args: {
-    children: 'Button',
-    variant: 'solid',
-    color: 'primary',
-    size: 'md',
-    loading: false,
-    disabled: false,
-    radius: 'sm',
-  },
-};
