@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Checkbox } from './checkbox';
+import { allModes } from '../../storybook-modes';
 
 const meta: Meta<typeof Checkbox> = {
   title: 'Form / Checkbox',
@@ -29,6 +30,16 @@ const meta: Meta<typeof Checkbox> = {
       </div>
     ),
   ],
+  parameters: {
+    layout: 'fullscreen',
+    chromatic: {
+      // Single comprehensive story for both light and dark themes
+      modes: {
+        'light desktop': allModes['light desktop'],
+        'dark desktop': allModes['dark desktop'],
+      },
+    },
+  },
 };
 
 export default meta;
@@ -79,10 +90,4 @@ export const AllVariants: Story = {
       </div>
     </div>
   ),
-  parameters: {
-    // Test both light and dark modes in Chromatic
-    chromatic: {
-      modes: { light: { theme: 'light' }, dark: { theme: 'dark' } },
-    },
-  },
 };
