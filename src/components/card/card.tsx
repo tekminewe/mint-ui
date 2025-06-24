@@ -1,8 +1,9 @@
-import { HTMLAttributes } from "react";
-import { Slot } from "@radix-ui/react-slot";
-import { cn, Radius } from "../utils";
-import { Shadow, getShadowClass } from "../utils/shadow";
-import { getStaticRadiusClass } from "../utils/get-radius-class";
+import { HTMLAttributes } from 'react';
+import { Slot } from '@radix-ui/react-slot';
+import { cn, Radius } from '../utils';
+import { Shadow, getShadowClass } from '../utils/shadow';
+import { getStaticRadiusClass } from '../utils/get-radius-class';
+import { getCardColors } from '../utils/component-colors';
 
 export type CardShadow = Shadow;
 
@@ -30,24 +31,20 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Card = (props: CardProps) => {
-  const { asChild, shadow = "none", radius, ...rest } = props;
-  const Comp = asChild ? Slot : "div";
+  const { asChild, shadow = 'none', radius, ...rest } = props;
+  const Comp = asChild ? Slot : 'div';
   const radiusClass = getStaticRadiusClass(radius);
-
-  // Determine shadow or border styling
-  const shadowOrBorderClass =
-    shadow === "none"
-      ? "border border-neutral-100 dark:border-neutral-600" // Lighter border when no shadow
-      : getShadowClass(shadow); // Apply shadow using utility
 
   return (
     <Comp
       {...rest}
       className={cn(
-        "p-4 bg-gray-surface", // Base classes always applied
+        'p-4', // Base padding
+        getCardColors('default'), // Standardized card colors
         radiusClass, // Apply the effective radius
-        shadowOrBorderClass, // Apply shadow or border
-        props.className
+        shadow !== 'none' && getShadowClass(shadow), // Apply shadow if specified
+        'border', // Ensure border is always present
+        props.className,
       )}
     />
   );

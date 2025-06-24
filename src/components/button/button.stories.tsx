@@ -83,7 +83,7 @@ type Story = StoryObj<typeof Button>;
  * Comprehensive button showcase - all variants, colors, sizes, and states
  * This single story will be tested in both light and dark modes by Chromatic
  */
-export const AllVariations: Story = {
+export const AllVariants: Story = {
   render: () => (
     <div className="p-8 space-y-6 max-w-7xl mx-auto">
       {/* Variants Section */}
