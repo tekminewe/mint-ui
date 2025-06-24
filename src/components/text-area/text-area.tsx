@@ -1,7 +1,7 @@
-import { forwardRef, TextareaHTMLAttributes } from "react";
-import { Caption } from "../typography";
-import { FormLabel } from "../form";
-import { cn } from "../utils";
+import { forwardRef, TextareaHTMLAttributes } from 'react';
+import { Caption } from '../typography';
+import { FormLabel } from '../form';
+import { cn } from '../utils';
 
 export interface ITextAreaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -25,14 +25,14 @@ export const TextArea = forwardRef<HTMLTextAreaElement, ITextAreaProps>(
   (
     {
       label,
-      placeholder = "Please fill in the field",
+      placeholder = 'Please fill in the field',
       error,
       description,
       required,
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <label className="flex flex-col gap-1">
@@ -42,13 +42,13 @@ export const TextArea = forwardRef<HTMLTextAreaElement, ITextAreaProps>(
           placeholder={placeholder}
           required={required}
           className={cn(
-            "w-full p-2 rounded-md border border-neutral-300 focus:outline-none focus:ring-2 focus:border-transparent",
+            'w-full p-2 rounded-md border border-neutral-300 focus:outline-none focus:ring-2 focus:border-transparent',
             error
-              ? "border-error-500 focus:ring-error-500"
-              : "focus:ring-primary-500",
-            "dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-100",
-            "min-h-[80px] resize-y",
-            className
+              ? 'border-error-500 focus:ring-error-500'
+              : 'focus:ring-primary-500',
+            'dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-100',
+            'min-h-[80px] resize-y',
+            className,
           )}
           {...props}
           ref={ref}
@@ -56,7 +56,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, ITextAreaProps>(
         {error && <Caption className="text-error">{error}</Caption>}
       </label>
     );
-  }
+  },
 );
 
-TextArea.displayName = "TextArea";
+TextArea.displayName = 'TextArea';

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   FloatingMenu,
@@ -6,15 +6,15 @@ import {
   useEditor,
   EditorContent,
   Editor,
-} from "@tiptap/react";
-import styles from "./rich-text-editor.module.scss";
-import "./atom-one-dark.min.css";
-import { NodeCommand, OnItemClickHandler } from "./node-command";
-import { useDebouncedCallback } from "use-debounce";
-import { useExtensions } from "./use-extensions";
-import { LinkBubbleMenu } from "./link-bubble-menu";
-import { cn } from "../utils";
-import { FigureBubbleMenu } from "./figure-bubble-menu";
+} from '@tiptap/react';
+import styles from './rich-text-editor.module.scss';
+import './atom-one-dark.min.css';
+import { NodeCommand, OnItemClickHandler } from './node-command';
+import { useDebouncedCallback } from 'use-debounce';
+import { useExtensions } from './use-extensions';
+import { LinkBubbleMenu } from './link-bubble-menu';
+import { cn } from '../utils';
+import { FigureBubbleMenu } from './figure-bubble-menu';
 
 export type OnChangeHandler = (params: { content: JSONContent }) => void;
 
@@ -79,10 +79,10 @@ export const RichTextEditor = ({
   maxChangeDelay = 5000,
   changeDelay = 2000,
   content,
-  placeholder = "Write something...",
+  placeholder = 'Write something...',
   onImageUpload,
   editable = true,
-  containerClassName = "",
+  containerClassName = '',
 }: RichTextEditorProps) => {
   const debouncedUpdates = useDebouncedCallback(
     async ({ editor }: { editor: Editor }) => {
@@ -90,7 +90,7 @@ export const RichTextEditor = ({
       onChange?.({ content });
     },
     changeDelay,
-    { maxWait: maxChangeDelay }
+    { maxWait: maxChangeDelay },
   );
 
   const extensions = useExtensions({ defaultPlaceholder: placeholder });
@@ -107,19 +107,19 @@ export const RichTextEditor = ({
       return;
     }
     switch (id) {
-      case "heading-1":
+      case 'heading-1':
         editor.chain().focus().toggleHeading({ level: 2 }).run();
         break;
-      case "heading-2":
+      case 'heading-2':
         editor.chain().focus().toggleHeading({ level: 3 }).run();
         break;
-      case "heading-3":
+      case 'heading-3':
         editor.chain().focus().toggleHeading({ level: 4 }).run();
         break;
-      case "image": {
-        const input = document.createElement("input");
-        input.type = "file";
-        input.accept = "image/*";
+      case 'image': {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
         input.onchange = async () => {
           if (input.files?.length) {
             const file = input.files[0];
@@ -130,7 +130,7 @@ export const RichTextEditor = ({
               if (!src) {
                 return;
               }
-              editor.chain().focus().setFigure({ src, caption: "" }).run();
+              editor.chain().focus().setFigure({ src, caption: '' }).run();
             } catch (e) {
               console.error(e);
               // Silent error
@@ -140,27 +140,27 @@ export const RichTextEditor = ({
         input.click();
         break;
       }
-      case "code-block":
+      case 'code-block':
         editor.chain().focus().toggleCodeBlock().run();
         break;
     }
   };
 
   return (
-    <div className={cn(styles.rte, "p-8", containerClassName)}>
+    <div className={cn(styles.rte, 'p-8', containerClassName)}>
       <EditorContent
-        className={"prose prose-figcaption:text-center"}
+        className={'prose prose-figcaption:text-center'}
         editor={editor}
       />
       <FloatingMenu
         shouldShow={({ editor, state }) => {
           return (
-            editor.isActive("paragraph") &&
+            editor.isActive('paragraph') &&
             state.selection.$from.node().textContent.length === 0
           );
         }}
         editor={editor}
-        tippyOptions={{ duration: 250, placement: "top-start" }}
+        tippyOptions={{ duration: 250, placement: 'top-start' }}
       >
         <NodeCommand onItemClick={handleItemClick} />
       </FloatingMenu>

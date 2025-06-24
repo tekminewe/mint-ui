@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { forwardRef, HTMLAttributes } from "react";
-import { cn } from "../utils";
+import { forwardRef, HTMLAttributes } from 'react';
+import { cn } from '../utils';
 
 export interface NavbarProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -15,11 +15,11 @@ export interface NavbarProps extends HTMLAttributes<HTMLDivElement> {
 export const Navbar = forwardRef<HTMLDivElement, NavbarProps>(
   ({ children, className, containerClassName, ...props }, ref) => {
     return (
-      <div ref={ref} className={cn("navbar", containerClassName)} {...props}>
-        <div className={cn("container mx-auto flex items-center", className)}>
+      <div ref={ref} className={cn('navbar', containerClassName)} {...props}>
+        <div className={cn('container mx-auto flex items-center', className)}>
           {children}
         </div>
       </div>
     );
-  }
+  },
 );

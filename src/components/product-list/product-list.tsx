@@ -1,5 +1,5 @@
-import { Grid } from "../grid";
-import { cn } from "../../utils";
+import { Grid } from '../grid';
+import { cn } from '../../utils';
 
 export interface ProductListProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -25,7 +25,7 @@ export interface ProductListProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const ProductList = ({
-  gap = "4",
+  gap = '4',
   className,
   responsive = {
     xs: 1,
@@ -40,7 +40,7 @@ export const ProductList = ({
       gap={gap}
       columns={1} // Default to 1, but use responsive prop for breakpoints
       responsive={responsive}
-      className={cn("justify-items-center grid-flow-row", className)}
+      className={cn('justify-items-center grid-flow-row', className)}
       {...props}
     />
   );

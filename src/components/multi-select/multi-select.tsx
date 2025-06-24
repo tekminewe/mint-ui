@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { forwardRef, useState } from "react";
-import { FormLabel } from "../form";
-import { cn } from "../utils";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
-import { Command } from "../command";
-import { Badge } from "../badge";
-import { Spinner } from "../spinner";
-import { useDebouncedCallback } from "use-debounce";
-import { LuSearch, LuX } from "react-icons/lu";
-import { Popover } from "../popover";
-import { Checkbox } from "../checkbox";
+import { forwardRef, useState } from 'react';
+import { FormLabel } from '../form';
+import { cn } from '../utils';
+import { ChevronDownIcon } from '@radix-ui/react-icons';
+import { Command } from '../command';
+import { Badge } from '../badge';
+import { Spinner } from '../spinner';
+import { useDebouncedCallback } from 'use-debounce';
+import { LuSearch, LuX } from 'react-icons/lu';
+import { Popover } from '../popover';
+import { Checkbox } from '../checkbox';
 
 export type MultiSelectOption = { label: string; value: string };
 
@@ -104,7 +104,7 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
     {
       label,
       maxDisplay,
-      placeholder = "Please select an option",
+      placeholder = 'Please select an option',
       options = [],
       value = [],
       onChange,
@@ -115,11 +115,11 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
       allowCreate = false,
       searchChangeDelay = 200,
     },
-    ref
+    ref,
   ) => {
-    const [searchValue, setSearchValue] = useState<string>("");
+    const [searchValue, setSearchValue] = useState<string>('');
     const [selectedValues, setSelectedValues] = useState<MultiSelectOption[]>(
-      options.filter((o) => value.includes(o.value))
+      options.filter((o) => value.includes(o.value)),
     );
     const handleChange = (checked: boolean, optionValue: string) => {
       let newValues: string[];
@@ -135,7 +135,7 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
       } else {
         newValues = value.filter((v) => v !== optionValue);
         setSelectedValues((prev) =>
-          prev.filter((o) => o.value !== optionValue)
+          prev.filter((o) => o.value !== optionValue),
         );
       }
 
@@ -144,7 +144,7 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
 
     const debouncedHandleSearchChange = useDebouncedCallback(
       onSearchValueChange,
-      searchChangeDelay
+      searchChangeDelay,
     );
 
     const handleSearchValueChange = (value: string) => {
@@ -159,12 +159,12 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
           <Popover.Trigger asChild>
             <div
               className={cn(
-                "flex text-sm items-center gap-1 border border-gray-300 w-full min-h-[36px] pl-3 pr-2 rounded",
-                "focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:outline-none",
-                "dark:border-gray-600 dark:bg-gray-800",
+                'flex text-sm items-center gap-1 border border-gray-300 w-full min-h-[36px] pl-3 pr-2 rounded',
+                'focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:outline-none',
+                'dark:border-gray-600 dark:bg-gray-800',
                 {
-                  "py-1": value.length > 0,
-                }
+                  'py-1': value.length > 0,
+                },
               )}
               ref={ref}
             >
@@ -190,12 +190,12 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
                       })}
                     {selectedValues.slice(
                       0,
-                      maxDisplay ?? selectedValues.length
+                      maxDisplay ?? selectedValues.length,
                     ).length < selectedValues.length && (
                       <Badge>
                         +
                         {selectedValues.length -
-                          (maxDisplay ?? selectedValues.length)}{" "}
+                          (maxDisplay ?? selectedValues.length)}{' '}
                         more
                       </Badge>
                     )}
@@ -232,15 +232,15 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
                     {allowCreate && searchValue ? (
                       <div className="flex items-center gap-2 py-[2px] text-sm px-3">
                         <Checkbox
-                          checked={value.includes(searchValue ?? "")}
+                          checked={value.includes(searchValue ?? '')}
                           onCheckedChange={(checked) =>
-                            handleChange(!!checked, searchValue ?? "")
+                            handleChange(!!checked, searchValue ?? '')
                           }
                         />
                         {searchValue}
                       </div>
                     ) : (
-                      "No results found."
+                      'No results found.'
                     )}
                   </Command.Empty>
                   {options.map((option) => (
@@ -264,9 +264,9 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
         </Popover.Content>
       </Popover.Root>
     );
-  }
+  },
 );
 
-MultiSelect.displayName = "MultiSelect";
+MultiSelect.displayName = 'MultiSelect';
 
-MultiSelect.displayName = "MultiSelect";
+MultiSelect.displayName = 'MultiSelect';

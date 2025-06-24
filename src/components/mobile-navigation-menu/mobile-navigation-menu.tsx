@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { forwardRef } from "react";
-import { Drawer, DrawerRoot, DrawerRootProps, DrawerTrigger } from "../drawer";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { cn } from "../utils";
+import { forwardRef } from 'react';
+import { Drawer, DrawerRoot, DrawerRootProps, DrawerTrigger } from '../drawer';
+import { HamburgerMenuIcon } from '@radix-ui/react-icons';
+import { cn } from '../utils';
 
 export type MobileNavigationMenuProps = {
   /**
@@ -15,7 +15,7 @@ export type MobileNavigationMenuProps = {
    * Additional class names
    */
   className?: string;
-} & Pick<DrawerRootProps, "open" | "onOpenChange">;
+} & Pick<DrawerRootProps, 'open' | 'onOpenChange'>;
 
 export const MobileNavigationMenu = forwardRef<
   HTMLDivElement,
@@ -30,11 +30,11 @@ export const MobileNavigationMenu = forwardRef<
         <nav
           ref={ref}
           {...props}
-          className={cn("flex flex-col gap-2", props.className)}
+          className={cn('flex flex-col gap-2', props.className)}
         />
       </Drawer>
     </DrawerRoot>
   );
 });
 
-MobileNavigationMenu.displayName = "MobileNavigationMenu";
+MobileNavigationMenu.displayName = 'MobileNavigationMenu';

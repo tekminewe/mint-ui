@@ -1,10 +1,10 @@
-import { forwardRef, InputHTMLAttributes, useId } from "react";
-import { FormLabel } from "../form";
-import { Caption } from "../typography";
-import { cn } from "../utils";
+import { forwardRef, InputHTMLAttributes, useId } from 'react';
+import { FormLabel } from '../form';
+import { Caption } from '../typography';
+import { cn } from '../utils';
 
 export interface ImageInputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /**
    * The label for the input.
    * @default undefined
@@ -58,11 +58,11 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
       error,
       description,
       id,
-      accept = "image/*",
+      accept = 'image/*',
       value,
       ...props
     },
-    ref
+    ref,
   ) => {
     const customId = useId();
     const inputId = id ?? customId;
@@ -80,7 +80,7 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
     };
 
     return (
-      <label className={cn("flex w-full flex-col gap-1", containerClassName)}>
+      <label className={cn('flex w-full flex-col gap-1', containerClassName)}>
         <FormLabel
           className={labelClassName}
           htmlFor={inputId}
@@ -109,7 +109,7 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
         {renderDescription()}
       </label>
     );
-  }
+  },
 );
 
-ImageInput.displayName = "ImageInput";
+ImageInput.displayName = 'ImageInput';

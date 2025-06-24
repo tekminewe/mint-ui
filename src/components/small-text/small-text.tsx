@@ -1,7 +1,7 @@
-import * as React from "react";
-import { cn } from "../utils";
+import * as React from 'react';
+import { cn } from '../utils';
 
-type ElementType = "span" | "p" | "div";
+type ElementType = 'span' | 'p' | 'div';
 
 export interface SmallTextProps extends React.HTMLAttributes<HTMLElement> {
   /**
@@ -24,7 +24,7 @@ export interface SmallTextProps extends React.HTMLAttributes<HTMLElement> {
 export function SmallText({
   children,
   className,
-  as = "span",
+  as = 'span',
   ...props
 }: SmallTextProps) {
   const Component = as;
@@ -32,8 +32,8 @@ export function SmallText({
   return (
     <Component
       className={cn(
-        "text-sm text-neutral-500 dark:text-neutral-400",
-        className
+        'text-sm text-neutral-500 dark:text-neutral-400',
+        className,
       )}
       {...props}
     >

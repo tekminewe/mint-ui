@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { Command } from "cmdk";
-import { forwardRef, ReactNode, useContext, useEffect, useState } from "react";
-import { SearchContext } from "./search-root";
-import { useDebouncedCallback } from "use-debounce";
-import { cn } from "../utils";
+import { Command } from 'cmdk';
+import { forwardRef, ReactNode, useContext, useEffect, useState } from 'react';
+import { SearchContext } from './search-root';
+import { useDebouncedCallback } from 'use-debounce';
+import { cn } from '../utils';
 
 export interface SearchDialogProps
-  extends Pick<React.HTMLAttributes<HTMLDivElement>, "className"> {
+  extends Pick<React.HTMLAttributes<HTMLDivElement>, 'className'> {
   /**
    * The children of the `SearchInputDialog` component.
    * @type {ReactNode}
@@ -45,14 +45,14 @@ export const SearchDialog = forwardRef<HTMLDivElement, SearchDialogProps>(
     {
       children,
       container,
-      searchInputPlaceholder = "Search...",
+      searchInputPlaceholder = 'Search...',
       onQueryChange = () => {},
       className,
     },
-    ref
+    ref,
   ) => {
     const { isOpen, onOpenChange } = useContext(SearchContext);
-    const [query, setQuery] = useState("");
+    const [query, setQuery] = useState('');
     const debounceQueryChange = useDebouncedCallback(onQueryChange, 300);
 
     useEffect(() => {
@@ -66,7 +66,7 @@ export const SearchDialog = forwardRef<HTMLDivElement, SearchDialogProps>(
         container={container ?? undefined}
         open={isOpen}
         onOpenChange={onOpenChange}
-        className={cn("dialog-content search-dialog", className)}
+        className={cn('dialog-content search-dialog', className)}
         overlayClassName="overlay"
       >
         <Command.Input
@@ -78,7 +78,7 @@ export const SearchDialog = forwardRef<HTMLDivElement, SearchDialogProps>(
         {children}
       </Command.Dialog>
     );
-  }
+  },
 );
 
-SearchDialog.displayName = "SearchDialog";
+SearchDialog.displayName = 'SearchDialog';

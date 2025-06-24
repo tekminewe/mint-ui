@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Command as Cmdk } from "cmdk";
-import { forwardRef } from "react";
-import { cn } from "../utils";
+import { Command as Cmdk } from 'cmdk';
+import { forwardRef } from 'react';
+import { cn } from '../utils';
 
 interface ICommandItemProps
   extends React.ComponentPropsWithoutRef<typeof Cmdk.Item> {
@@ -23,27 +23,27 @@ export const CommandItem = forwardRef<
       disabled = false,
       ...props
     },
-    ref
+    ref,
   ) => (
     <Cmdk.Item
       ref={ref}
       className={cn(
-        "flex items-center rounded px-2 py-2",
+        'flex items-center rounded px-2 py-2',
         {
-          "font-semibold": selected,
+          'font-semibold': selected,
         },
         {
-          "cursor-pointer hover:bg-accent-a3": !isStatic && !disabled,
+          'cursor-pointer hover:bg-accent-a3': !isStatic && !disabled,
         },
         {
-          "pointer-events-none opacity-50": disabled,
+          'pointer-events-none opacity-50': disabled,
         },
-        className
+        className,
       )}
       disabled={disabled}
       {...props}
     />
-  )
+  ),
 );
 
-CommandItem.displayName = "CommandItem";
+CommandItem.displayName = 'CommandItem';

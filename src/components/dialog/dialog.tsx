@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import * as RadixDialog from "@radix-ui/react-dialog";
-import { LuX } from "react-icons/lu";
-import { cn } from "../utils";
+import * as RadixDialog from '@radix-ui/react-dialog';
+import { LuX } from 'react-icons/lu';
+import { cn } from '../utils';
 
 export const DialogRoot = RadixDialog.Root;
 export const DialogTrigger = RadixDialog.Trigger;
@@ -73,14 +73,14 @@ export const Dialog = ({
   return (
     <RadixDialog.DialogPortal container={container}>
       <RadixDialog.Overlay className="overlay" />
-      <RadixDialog.Content className={cn("dialog-content", className)}>
+      <RadixDialog.Content className={cn('dialog-content', className)}>
         <div
-          className={cn("flex items-center justify-between", {
-            "mb-4": !description,
+          className={cn('flex items-center justify-between', {
+            'mb-4': !description,
           })}
         >
           <RadixDialog.Title
-            className={cn("font-semibold text-lg", {
+            className={cn('font-semibold text-lg', {
               invisible: !showTitle,
             })}
           >

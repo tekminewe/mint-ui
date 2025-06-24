@@ -1,5 +1,5 @@
-import { AnchorHTMLAttributes, forwardRef } from "react";
-import { cn } from "../utils";
+import { AnchorHTMLAttributes, forwardRef } from 'react';
+import { cn } from '../utils';
 
 export interface SubMenuItemProps
   extends AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -17,13 +17,13 @@ export const SubMenuItem = forwardRef<HTMLAnchorElement, SubMenuItemProps>(
         {...props}
         data-selected={selected}
         className={cn(
-          "text-gray-11 flex items-center gap-2 p-2 hover:bg-accent-9 hover:text-accent-contrast cursor-pointer rounded-3",
+          'text-gray-11 flex items-center gap-2 p-2 hover:bg-accent-9 hover:text-accent-contrast cursor-pointer rounded-3',
           "data-[selected='true']:bg-accent-9 data-[selected='true']:text-accent-contrast",
-          props.className
+          props.className,
         )}
       />
     );
-  }
+  },
 );
 
-SubMenuItem.displayName = "SubMenuItem";
+SubMenuItem.displayName = 'SubMenuItem';

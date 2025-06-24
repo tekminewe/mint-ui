@@ -1,5 +1,5 @@
-import { forwardRef, HTMLAttributes } from "react";
-import { cn } from "../utils";
+import { forwardRef, HTMLAttributes } from 'react';
+import { cn } from '../utils';
 
 export interface SidebarMenuItemProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -16,11 +16,11 @@ export const SidebarMenuItem = forwardRef<HTMLDivElement, SidebarMenuItemProps>(
       <div
         {...props}
         data-selected={selected}
-        className={cn("sidebar-menu-item", props.className)}
+        className={cn('sidebar-menu-item', props.className)}
         ref={ref}
       >
         {children}
       </div>
     );
-  }
+  },
 );

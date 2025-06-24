@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Drawer as Vaul } from "vaul";
-import { cn } from "../utils";
-import { HTMLAttributes } from "react";
+import { Drawer as Vaul } from 'vaul';
+import { cn } from '../utils';
+import { HTMLAttributes } from 'react';
 
 export interface DrawerProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -33,7 +33,7 @@ export const Drawer: React.FC<DrawerProps> = ({
       {showOverlay && <Vaul.Overlay className="overlay" />}
       <Vaul.Content
         style={style}
-        className={cn("drawer", className)}
+        className={cn('drawer', className)}
         {...props}
       >
         {children}

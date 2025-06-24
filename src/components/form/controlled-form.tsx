@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { useForm } from "../utils-client";
+import { useForm } from '../utils-client';
 import {
   DefaultValues,
   FieldValues,
   SubmitHandler,
   FormProvider,
-} from "react-hook-form";
-import { ZodSchema } from "zod";
-import { Button } from "../button";
-import { cn } from "../utils";
+} from 'react-hook-form';
+import { ZodSchema } from 'zod';
+import { Button } from '../button';
+import { cn } from '../utils';
 
 export interface ControlledFormProps<T extends FieldValues> {
   defaultValues?: DefaultValues<T>;
@@ -18,7 +18,7 @@ export interface ControlledFormProps<T extends FieldValues> {
   onSubmit?: SubmitHandler<T>;
   hideSubmitButton?: boolean;
   submitButtonLabel?: string;
-  submitButtonPosition?: "start" | "end" | "center" | "stretch";
+  submitButtonPosition?: 'start' | 'end' | 'center' | 'stretch';
   keepValuesOnSubmit?: boolean;
   className?: string;
 }
@@ -29,8 +29,8 @@ export const ControlledForm = <T extends FieldValues>({
   children,
   onSubmit,
   hideSubmitButton = false,
-  submitButtonLabel = "Submit",
-  submitButtonPosition = "end",
+  submitButtonLabel = 'Submit',
+  submitButtonPosition = 'end',
   keepValuesOnSubmit = false,
   className,
 }: ControlledFormProps<T>) => {
@@ -64,10 +64,10 @@ export const ControlledForm = <T extends FieldValues>({
             {children}
             {!hideSubmitButton && (
               <div
-                className={cn("flex", {
-                  "justify-end": submitButtonPosition === "end",
-                  "justify-center": submitButtonPosition === "center",
-                  "justify-start": submitButtonPosition === "start",
+                className={cn('flex', {
+                  'justify-end': submitButtonPosition === 'end',
+                  'justify-center': submitButtonPosition === 'center',
+                  'justify-start': submitButtonPosition === 'start',
                 })}
               >
                 <Button

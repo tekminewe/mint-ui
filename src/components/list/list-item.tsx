@@ -1,5 +1,5 @@
-import { forwardRef } from "react";
-import { cn } from "../utils";
+import { forwardRef } from 'react';
+import { cn } from '../utils';
 
 export interface ListItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
   /**
@@ -16,11 +16,11 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       <li
         ref={ref}
         {...props}
-        className={cn("list-item-row", className)}
+        className={cn('list-item-row', className)}
         data-selected={selected}
       />
     );
-  }
+  },
 );
 
-ListItem.displayName = "ListItem";
+ListItem.displayName = 'ListItem';

@@ -1,5 +1,5 @@
-import * as React from "react";
-import { cn } from "../utils";
+import * as React from 'react';
+import { cn } from '../utils';
 
 export interface LinkProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -40,16 +40,16 @@ export function Link({
   ...props
 }: LinkProps) {
   const externalProps = external
-    ? { target: "_blank", rel: "noopener noreferrer" }
+    ? { target: '_blank', rel: 'noopener noreferrer' }
     : {};
 
   return (
     <a
       href={href}
       className={cn(
-        "font-medium text-primary-600 transition-colors hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-400",
-        underline && "underline underline-offset-4",
-        className
+        'font-medium text-primary-600 transition-colors hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-400',
+        underline && 'underline underline-offset-4',
+        className,
       )}
       {...externalProps}
       {...props}

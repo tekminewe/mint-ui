@@ -1,6 +1,6 @@
-import { forwardRef, HTMLAttributes } from "react";
-import { BiSolidErrorCircle } from "react-icons/bi";
-import { cn } from "../utils";
+import { forwardRef, HTMLAttributes } from 'react';
+import { BiSolidErrorCircle } from 'react-icons/bi';
+import { cn } from '../utils';
 
 export interface ErrorMessageProps extends HTMLAttributes<HTMLDivElement> {
   title: string;
@@ -12,12 +12,12 @@ export const ErrorMessage = forwardRef<HTMLDivElement, ErrorMessageProps>(
     return (
       <div
         ref={ref}
-        className={cn("flex flex-col items-center", props.className)}
+        className={cn('flex flex-col items-center', props.className)}
       >
         <BiSolidErrorCircle size={64} className="text-error mb-4" />
         <div className="card-title text-center">{title}</div>
         <div className="caption text-center">{message}</div>
       </div>
     );
-  }
+  },
 );

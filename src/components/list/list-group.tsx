@@ -1,5 +1,5 @@
-import { forwardRef } from "react";
-import { cn } from "../utils";
+import { forwardRef } from 'react';
+import { cn } from '../utils';
 
 export interface ListGroupProps extends React.LiHTMLAttributes<HTMLLIElement> {
   /**
@@ -11,12 +11,12 @@ export interface ListGroupProps extends React.LiHTMLAttributes<HTMLLIElement> {
 export const ListGroup = forwardRef<HTMLLIElement, ListGroupProps>(
   ({ className, children, title, ...props }, ref) => {
     return (
-      <li ref={ref} {...props} className={cn("list-group", className)}>
+      <li ref={ref} {...props} className={cn('list-group', className)}>
         {title && <h3 className="list-group-title">{title}</h3>}
         <ul>{children}</ul>
       </li>
     );
-  }
+  },
 );
 
-ListGroup.displayName = "ListGroup";
+ListGroup.displayName = 'ListGroup';

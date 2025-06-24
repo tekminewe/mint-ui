@@ -1,8 +1,9 @@
 import { HTMLAttributes } from 'react';
 import { Slot } from '@radix-ui/react-slot';
-import { cn, Radius } from '../utils';
+import { cn } from '../utils';
+import { Radius } from '../utils-client/radius';
 import { Shadow, getShadowClass } from '../utils/shadow';
-import { getStaticRadiusClass } from '../utils/get-radius-class';
+import { getStaticRadiusClass } from '../utils-client/get-radius-class';
 import { getCardColors } from '../utils/component-colors';
 
 export type CardShadow = Shadow;

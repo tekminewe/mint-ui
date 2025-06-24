@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { Command } from "cmdk";
-import { forwardRef, ReactNode, useContext } from "react";
-import { cn } from "../utils";
-import { SearchContext } from "./search-root";
+import { Command } from 'cmdk';
+import { forwardRef, ReactNode, useContext } from 'react';
+import { cn } from '../utils';
+import { SearchContext } from './search-root';
 
 export interface SearchResultListItemProps
   extends Omit<
     React.HTMLAttributes<HTMLDivElement>,
-    "title" | "onSelect" | "disabled" | "value"
+    'title' | 'onSelect' | 'disabled' | 'value'
   > {
   /**
    * The URL of the image to display in the search result item.
@@ -61,7 +61,7 @@ export const SearchResultListItem = forwardRef<
       dismissOnSelect,
       ...props
     },
-    ref
+    ref,
   ) => {
     const { onOpenChange } = useContext(SearchContext);
 
@@ -77,7 +77,7 @@ export const SearchResultListItem = forwardRef<
         ref={ref}
         {...props}
         onSelect={handleSelect}
-        className={cn("search-result-list-item group", className)}
+        className={cn('search-result-list-item group', className)}
       >
         {imageUrl && (
           <div className="search-result-list-item-image-container">
@@ -96,7 +96,7 @@ export const SearchResultListItem = forwardRef<
         </div>
       </Command.Item>
     );
-  }
+  },
 );
 
-SearchResultListItem.displayName = "SearchResultListItem";
+SearchResultListItem.displayName = 'SearchResultListItem';

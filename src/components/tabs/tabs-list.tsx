@@ -1,6 +1,6 @@
-import * as RadixTabs from "@radix-ui/react-tabs";
-import { forwardRef } from "react";
-import { cn } from "../utils";
+import * as RadixTabs from '@radix-ui/react-tabs';
+import { forwardRef } from 'react';
+import { cn } from '../utils';
 
 export type TabsListProps = RadixTabs.TabsListProps;
 
@@ -9,11 +9,11 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
     return (
       <RadixTabs.TabsList
         {...props}
-        className={cn("border-b", props.className)}
+        className={cn('border-b', props.className)}
         ref={ref}
       />
     );
-  }
+  },
 );
 
-TabsList.displayName = "TabsList";
+TabsList.displayName = 'TabsList';

@@ -1,4 +1,4 @@
-import { cn } from "../utils";
+import { cn } from '../utils';
 
 export interface DialogFooterProps {
   /**
@@ -20,7 +20,7 @@ export interface DialogFooterProps {
 
 export const DialogFooter = ({ children, className }: DialogFooterProps) => {
   return (
-    <div className={cn("flex gap-2 mt-2 justify-end", className)}>
+    <div className={cn('flex gap-2 mt-2 justify-end', className)}>
       {children}
     </div>
   );

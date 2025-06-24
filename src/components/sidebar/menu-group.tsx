@@ -1,5 +1,5 @@
-import { forwardRef, HTMLAttributes } from "react";
-import { cn } from "../utils";
+import { forwardRef, HTMLAttributes } from 'react';
+import { cn } from '../utils';
 
 export interface SidebarMenuGroupProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -15,7 +15,7 @@ export const SidebarMenuGroup = forwardRef<
   return (
     <div
       {...props}
-      className={cn("sidebar-menu-group", props.className)}
+      className={cn('sidebar-menu-group', props.className)}
       ref={ref}
     >
       {title && <h3 className="sidebar-menu-group-title">{title}</h3>}

@@ -1,6 +1,6 @@
-import { Fallback, Root, Image } from "@radix-ui/react-avatar";
-import { forwardRef, ReactNode } from "react";
-import { cn } from "../utils";
+import { Fallback, Root, Image } from '@radix-ui/react-avatar';
+import { forwardRef, ReactNode } from 'react';
+import { cn } from '../utils';
 
 export interface AvatarProps {
   /**
@@ -34,12 +34,12 @@ export interface AvatarProps {
 export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
   ({ src, fallback, alt, className }, ref) => {
     return (
-      <Root ref={ref} className={cn("avatar", className)}>
+      <Root ref={ref} className={cn('avatar', className)}>
         <Image src={src} alt={alt} />
         <Fallback>{fallback}</Fallback>
       </Root>
     );
-  }
+  },
 );
 
-Avatar.displayName = "Avatar";
+Avatar.displayName = 'Avatar';

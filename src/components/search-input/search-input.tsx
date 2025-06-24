@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useContext } from "react";
-import { TextInput, TextInputProps } from "../text-input";
-import { cn } from "../utils";
-import { SearchContext } from "./search-root";
+import { useContext } from 'react';
+import { TextInput, TextInputProps } from '../text-input';
+import { cn } from '../utils';
+import { SearchContext } from './search-root';
 
-export interface SearchInputProps extends Omit<TextInputProps, "readOnly"> {}
+export interface SearchInputProps extends Omit<TextInputProps, 'readOnly'> {}
 
 export const SearchInput = ({
-  placeholder = "Search...",
+  placeholder = 'Search...',
   className,
   ...props
 }: SearchInputProps) => {
@@ -24,7 +24,7 @@ export const SearchInput = ({
     <TextInput
       readOnly
       placeholder={placeholder}
-      className={cn("search-input", className)}
+      className={cn('search-input', className)}
       onClick={handleClick}
       {...props}
     />

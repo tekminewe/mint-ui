@@ -1,5 +1,5 @@
-import * as React from "react";
-import { cn } from "../utils";
+import * as React from 'react';
+import { cn } from '../utils';
 
 export interface SkeletonProps {
   /**
@@ -27,8 +27,8 @@ export function Skeleton({
   return (
     <div
       className={cn(
-        "animate-pulse rounded-md bg-neutral-200 dark:bg-neutral-800",
-        className
+        'animate-pulse rounded-md bg-neutral-200 dark:bg-neutral-800',
+        className,
       )}
       style={{
         width,

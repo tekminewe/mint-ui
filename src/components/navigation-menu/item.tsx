@@ -1,6 +1,6 @@
-import { AnchorHTMLAttributes, forwardRef } from "react";
-import { cn } from "../utils";
-import { Slot } from "@radix-ui/react-slot";
+import { AnchorHTMLAttributes, forwardRef } from 'react';
+import { cn } from '../utils';
+import { Slot } from '@radix-ui/react-slot';
 
 export interface NavigationMenuItemProps
   extends AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -11,14 +11,14 @@ export const NavigationMenuItem = forwardRef<
   HTMLAnchorElement,
   NavigationMenuItemProps
 >(({ asChild, ...props }, ref) => {
-  const Comp = asChild ? Slot : "a";
+  const Comp = asChild ? Slot : 'a';
   return (
     <Comp
       ref={ref}
       {...props}
-      className={cn("text-gray-11", props.className)}
+      className={cn('text-gray-11', props.className)}
     />
   );
 });
 
-NavigationMenuItem.displayName = "NavbarMenuItem";
+NavigationMenuItem.displayName = 'NavbarMenuItem';

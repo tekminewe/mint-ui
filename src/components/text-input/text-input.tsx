@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { forwardRef, useId, InputHTMLAttributes } from "react";
-import { Caption } from "../typography";
-import { FormLabel } from "../form";
-import { cn } from "../utils";
+import { forwardRef, useId, InputHTMLAttributes } from 'react';
+import { Caption } from '../typography';
+import { FormLabel } from '../form';
+import { cn } from '../utils';
 
 export interface TextInputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /**
    * Icon to display inside the input
    */
@@ -46,7 +46,7 @@ export interface TextInputProps
    * Size of the input
    * @default "2"
    */
-  size?: "1" | "2" | "3";
+  size?: '1' | '2' | '3';
 }
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
@@ -57,8 +57,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       error,
       label,
       icon,
-      size = "2",
-      placeholder = "Please enter the field",
+      size = '2',
+      placeholder = 'Please enter the field',
       required,
       description,
       id,
@@ -66,7 +66,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       onChange,
       ...props
     },
-    ref
+    ref,
   ) => {
     const customId = useId();
     const inputId = id ?? customId;
@@ -83,18 +83,18 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     };
 
     let inputType = type;
-    if (type === "currency") {
-      inputType = "number";
+    if (type === 'currency') {
+      inputType = 'number';
     }
 
     const renderTextField = () => {
       // Get the appropriate size class based on the size prop
       const sizeClass =
         {
-          "1": "text-sm py-1 px-2",
-          "2": "py-2 px-3",
-          "3": "text-lg py-3 px-4",
-        }[size as "1" | "2" | "3"] || "py-2 px-3";
+          '1': 'text-sm py-1 px-2',
+          '2': 'py-2 px-3',
+          '3': 'text-lg py-3 px-4',
+        }[size as '1' | '2' | '3'] || 'py-2 px-3';
 
       return (
         <div className="relative w-full">
@@ -104,19 +104,19 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             required={required}
             placeholder={placeholder}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              if (type === "currency") {
-                e.target.value = e.target.value.replace(/(\.\d{2})\d+$/, "$1");
+              if (type === 'currency') {
+                e.target.value = e.target.value.replace(/(\.\d{2})\d+$/, '$1');
               }
               onChange?.(e);
             }}
             type={inputType as string}
             className={cn(
-              "w-full border border-neutral-300 rounded-md",
-              "focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent",
-              "dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-100",
-              error && "border-error-500 focus:ring-error-500",
+              'w-full border border-neutral-300 rounded-md',
+              'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent',
+              'dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-100',
+              error && 'border-error-500 focus:ring-error-500',
               sizeClass,
-              icon && "pl-10"
+              icon && 'pl-10',
             )}
             {...props}
           />
@@ -129,7 +129,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       );
     };
     return (
-      <label className={cn("flex flex-col w-full gap-1", containerClassName)}>
+      <label className={cn('flex flex-col w-full gap-1', containerClassName)}>
         <FormLabel
           className={labelClassName}
           htmlFor={inputId}
@@ -140,7 +140,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         {renderDescription()}
       </label>
     );
-  }
+  },
 );
 
-TextInput.displayName = "TextInput";
+TextInput.displayName = 'TextInput';

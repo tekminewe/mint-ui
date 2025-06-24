@@ -1,5 +1,5 @@
-import { forwardRef, LabelHTMLAttributes } from "react";
-import { cn } from "../utils";
+import { forwardRef, LabelHTMLAttributes } from 'react';
+import { cn } from '../utils';
 
 export interface FormLabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   label?: string;
@@ -11,12 +11,12 @@ export interface FormLabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
 export const FormLabel = forwardRef<HTMLLabelElement, FormLabelProps>(
   ({ label, required, className, ...props }, ref) => {
     return (
-      <span ref={ref} {...props} className={cn("mb-1 form-label", className)}>
+      <span ref={ref} {...props} className={cn('mb-1 form-label', className)}>
         {label}
-        {required && <span className="text-error">{" *"}</span>}
+        {required && <span className="text-error">{' *'}</span>}
       </span>
     );
-  }
+  },
 );
 
-FormLabel.displayName = "FormLabel";
+FormLabel.displayName = 'FormLabel';
