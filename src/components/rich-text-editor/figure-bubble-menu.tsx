@@ -24,7 +24,7 @@ export const FigureBubbleMenu = ({ editor }: FigureBubbleMenuProps) => {
         }}
       >
         <DialogRoot open={open} onOpenChange={setOpen}>
-          <div className="bg-white dark:bg-gray-800 shadow-lg p-1 space-x-1 rounded-lg border">
+          <div className="bg-neutral-50 dark:bg-neutral-100 shadow-lg p-1 space-x-1 rounded-lg border border-neutral-200 dark:border-neutral-300">
             <DialogTrigger asChild>
               <Button variant="ghost" size="sm">
                 Details
@@ -33,11 +33,11 @@ export const FigureBubbleMenu = ({ editor }: FigureBubbleMenuProps) => {
           </div>
           <RadixDialog.Portal>
             <RadixDialog.Overlay className="fixed inset-0 bg-black/50 z-[99998]" />
-            <RadixDialog.Content className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] bg-white dark:bg-gray-900 p-6 rounded-lg shadow-xl max-w-md w-full z-[99999] space-y-4">
-              <RadixDialog.Title className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+            <RadixDialog.Content className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] bg-neutral-50 dark:bg-neutral-100 p-6 rounded-lg shadow-xl max-w-md w-full z-[99999] space-y-4">
+              <RadixDialog.Title className="text-lg font-semibold text-neutral-900 dark:text-neutral-900">
                 Image Details
               </RadixDialog.Title>
-              <RadixDialog.Description className="text-sm text-gray-600 dark:text-gray-400">
+              <RadixDialog.Description className="text-sm text-neutral-600 dark:text-neutral-700">
                 Update the details of the image.
               </RadixDialog.Description>
               <img

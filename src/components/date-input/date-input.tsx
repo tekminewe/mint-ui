@@ -1,24 +1,24 @@
-"use client";
+'use client';
 
 import {
   CalendarIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   Cross1Icon,
-} from "@radix-ui/react-icons";
-import * as PopoverPrimitive from "@radix-ui/react-popover";
-import { format } from "date-fns/format";
-import { DayPicker } from "react-day-picker";
-import "react-day-picker/dist/style.css";
-import { Button, ButtonProps } from "../button";
-import { forwardRef, useState } from "react";
-import { TextInput } from "../text-input";
-import { Caption, Text } from "../typography";
-import { FormLabel } from "../form";
-import { cn } from "../utils";
+} from '@radix-ui/react-icons';
+import * as PopoverPrimitive from '@radix-ui/react-popover';
+import { format } from 'date-fns/format';
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
+import { Button, ButtonProps } from '../button';
+import { forwardRef, useState } from 'react';
+import { TextInput } from '../text-input';
+import { Caption, Text } from '../typography';
+import { FormLabel } from '../form';
+import { cn } from '../utils';
 
 export interface DateInputProps
-  extends Omit<ButtonProps, "value" | "onChange" | "children"> {
+  extends Omit<ButtonProps, 'value' | 'onChange' | 'children'> {
   /**
    * The selected date.
    * @default undefined
@@ -85,32 +85,32 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
       label,
       value,
       onChange,
-      placeholder = "Please select a date",
+      placeholder = 'Please select a date',
       required = false,
       error,
       disabled,
       clearable = true,
       ...props
     },
-    ref
+    ref,
   ) => {
-    const [timeValue, setTimeValue] = useState<string>("00:00");
+    const [timeValue, setTimeValue] = useState<string>('00:00');
 
     const handleTimeChange: React.ChangeEventHandler<HTMLInputElement> = (
-      e
+      e,
     ) => {
       const time = e.target.value;
       if (!value) {
         setTimeValue(time);
         return;
       }
-      const [hours, minutes] = time.split(":").map((str) => parseInt(str, 10));
+      const [hours, minutes] = time.split(':').map((str) => parseInt(str, 10));
       const newSelectedDate = new Date(
         value.getFullYear(),
         value.getMonth(),
         value.getDate(),
         hours,
-        minutes
+        minutes,
       );
       onChange?.(newSelectedDate);
       setTimeValue(time);
@@ -122,14 +122,14 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
         return;
       }
       const [hours, minutes] = timeValue
-        .split(":")
+        .split(':')
         .map((str) => parseInt(str, 10));
       const newDate = new Date(
         date.getFullYear(),
         date.getMonth(),
         date.getDate(),
         hours,
-        minutes
+        minutes,
       );
       onChange?.(newDate);
     };
@@ -151,21 +151,21 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
                 {...props}
                 ref={ref}
                 disabled={disabled}
-                style={{ textAlign: "left" }}
+                style={{ textAlign: 'left' }}
                 variant="outline"
                 className={cn(
-                  "flex justify-start w-full",
-                  "bg-[--color-surface] hover:bg-[--color-surface] focus:bg-[--color-surface]",
+                  'flex justify-start w-full',
+                  'bg-[--color-surface] hover:bg-[--color-surface] focus:bg-[--color-surface]',
                   {
-                    "text-gray-12": value,
-                    "shadow-[inset_0_0_0_1px_rgb(206,44,49)]": error,
-                  }
+                    'text-neutral-900': value,
+                    'shadow-[inset_0_0_0_1px_rgb(206,44,49)]': error,
+                  },
                 )}
               >
                 <CalendarIcon />
                 <Text className="font-normal text-sm pointer-events-none">
                   {value
-                    ? format(value, showTime ? "PPpp" : "PP")
+                    ? format(value, showTime ? 'PPpp' : 'PP')
                     : placeholder}
                 </Text>
               </Button>
@@ -180,7 +180,7 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
 
           <PopoverPrimitive.Portal>
             <PopoverPrimitive.Content
-              className="bg-white p-4 rounded-md shadow-md z-50 border border-neutral-200"
+              className="bg-neutral-50 dark:bg-neutral-100 p-4 rounded-md shadow-md z-50 border border-neutral-200 dark:border-neutral-300"
               sideOffset={5}
             >
               <DayPicker
@@ -212,7 +212,7 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
         {error && <Caption className="text-error">{error}</Caption>}
       </div>
     );
-  }
+  },
 );
 
-DateInput.displayName = "DateInput";
+DateInput.displayName = 'DateInput';

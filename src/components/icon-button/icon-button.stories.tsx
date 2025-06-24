@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import { IconButton } from "./icon-button";
-import { LuShare, LuTrash, LuHeart, LuPlus, LuSettings } from "react-icons/lu";
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { IconButton } from './icon-button';
+import { LuShare, LuTrash, LuHeart, LuPlus, LuSettings } from 'react-icons/lu';
 
 const meta: Meta<typeof IconButton> = {
-  title: "Common/IconButton",
+  title: 'Common/IconButton',
   component: IconButton,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 };
 
 export default meta;
@@ -80,11 +80,11 @@ export const Colors: Story = {
 
 export const DarkMode: Story = {
   parameters: {
-    backgrounds: { default: "dark" },
+    backgrounds: { default: 'dark' },
   },
   render: () => (
     <div className="flex flex-col gap-4 dark p-4 bg-neutral-900">
-      <h3 className="text-lg font-medium text-white">Variants</h3>
+      <h3 className="text-lg font-medium text-neutral-50">Variants</h3>
       <div className="flex items-center gap-4">
         <IconButton variant="ghost">
           <LuShare className="h-4 w-4" />
@@ -100,7 +100,7 @@ export const DarkMode: Story = {
         </IconButton>
       </div>
 
-      <h3 className="text-lg font-medium text-white mt-4">Colors</h3>
+      <h3 className="text-lg font-medium text-neutral-50 mt-4">Colors</h3>
       <div className="flex items-center gap-4">
         <IconButton color="gray">
           <LuShare className="h-4 w-4" />

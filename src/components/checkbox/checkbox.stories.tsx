@@ -1,26 +1,26 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Checkbox } from "./checkbox";
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Checkbox } from './checkbox';
 
 const meta: Meta<typeof Checkbox> = {
-  title: "Form / Checkbox",
+  title: 'Form / Checkbox',
   component: Checkbox,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     checked: {
-      control: "boolean",
-      description: "Whether the checkbox is checked",
+      control: 'boolean',
+      description: 'Whether the checkbox is checked',
     },
     label: {
-      control: "text",
-      description: "The label for the checkbox",
+      control: 'text',
+      description: 'The label for the checkbox',
     },
     disabled: {
-      control: "boolean",
-      description: "Whether the checkbox is disabled",
+      control: 'boolean',
+      description: 'Whether the checkbox is disabled',
     },
   },
   args: {
-    label: "Accept terms and conditions",
+    label: 'Accept terms and conditions',
   },
   decorators: [
     (Story) => (
@@ -34,59 +34,55 @@ const meta: Meta<typeof Checkbox> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {},
-};
-
-export const Checked: Story = {
-  args: {
-    checked: true,
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    disabled: true,
-  },
-};
-
-export const CheckedAndDisabled: Story = {
-  args: {
-    checked: true,
-    disabled: true,
-  },
-};
-
-export const DarkMode: Story = {
-  args: {},
-  parameters: {
-    backgrounds: { default: "dark" },
-    themes: { themeOverride: "dark" },
-  },
-};
-
 export const AllVariants: Story = {
   render: () => (
     <div className="grid gap-6">
       <div className="space-y-4">
-        <h3 className="text-lg font-medium">Light Mode</h3>
-        <div className="space-y-2">
-          <Checkbox label="Unchecked" />
-          <Checkbox label="Checked" checked />
-          <Checkbox label="Disabled" disabled />
-          <Checkbox label="Checked and Disabled" checked disabled />
-        </div>
-      </div>
+        <h3 className="text-lg font-medium">All Checkbox States</h3>
+        <div className="grid gap-4">
+          <div className="space-y-2">
+            <h4 className="text-sm font-medium text-neutral-600">
+              Basic States
+            </h4>
+            <div className="space-y-2">
+              <Checkbox label="Unchecked" />
+              <Checkbox label="Checked" checked />
+            </div>
+          </div>
 
-      <div className="space-y-4 p-4 bg-gray-900 text-white rounded-lg">
-        <h3 className="text-lg font-medium">Dark Mode</h3>
-        <div className="space-y-2">
-          <Checkbox label="Unchecked" />
-          <Checkbox label="Checked" checked />
-          <Checkbox label="Disabled" disabled />
-          <Checkbox label="Checked and Disabled" checked disabled />
+          <div className="space-y-2">
+            <h4 className="text-sm font-medium text-neutral-600">
+              Disabled States
+            </h4>
+            <div className="space-y-2">
+              <Checkbox label="Disabled" disabled />
+              <Checkbox label="Checked and Disabled" checked disabled />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <h4 className="text-sm font-medium text-neutral-600">
+              Without Label
+            </h4>
+            <div className="space-y-2">
+              <Checkbox />
+              <Checkbox checked />
+              <Checkbox disabled />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <h4 className="text-sm font-medium text-neutral-600">Long Label</h4>
+            <Checkbox label="This is a very long checkbox label that demonstrates how the component handles text wrapping and maintains proper alignment between the checkbox and the label text" />
+          </div>
         </div>
       </div>
     </div>
   ),
+  parameters: {
+    // Test both light and dark modes in Chromatic
+    chromatic: {
+      modes: { light: { theme: 'light' }, dark: { theme: 'dark' } },
+    },
+  },
 };

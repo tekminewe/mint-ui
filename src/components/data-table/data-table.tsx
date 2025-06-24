@@ -15,6 +15,11 @@ import { Button } from '../button';
 import { utils, writeFile } from 'xlsx';
 import { LuDownload } from 'react-icons/lu';
 import { cn } from '../utils';
+import {
+  SURFACE_COLORS,
+  TEXT_COLORS,
+  BORDER_COLORS,
+} from '../utils/component-colors';
 
 export type IDataTableColumn<T> =
   | IDataTableColumnWithDataKey<T>
@@ -187,7 +192,9 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
           <table
             className={cn(
               'w-full border-collapse',
-              variant === 'ghost' ? 'bg-transparent' : 'bg-white',
+              variant === 'ghost'
+                ? 'bg-transparent'
+                : SURFACE_COLORS.surfaceElevated,
             )}
           >
             <thead>
@@ -195,13 +202,16 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
                 return (
                   <tr
                     key={headerGroup.id}
-                    className="border-b border-gray-200 dark:border-gray-700"
+                    className={cn('border-b', BORDER_COLORS.default)}
                   >
                     {headerGroup.headers.map((header) => {
                       return (
                         <th
                           key={header.id}
-                          className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                          className={cn(
+                            'px-4 py-3 text-left text-xs font-medium uppercase tracking-wider',
+                            TEXT_COLORS.muted,
+                          )}
                         >
                           {header.isPlaceholder
                             ? null
@@ -224,21 +234,42 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
                     className="px-4 py-6 text-center"
                   >
                     <div className="space-y-4">
-                      <div className="animate-pulse w-full h-6 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                      <div className="animate-pulse w-full h-6 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                      <div className="animate-pulse w-full h-6 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                      <div
+                        className={cn(
+                          'animate-pulse w-full h-6 rounded',
+                          SURFACE_COLORS.surfaceSubtle,
+                        )}
+                      ></div>
+                      <div
+                        className={cn(
+                          'animate-pulse w-full h-6 rounded',
+                          SURFACE_COLORS.surfaceSubtle,
+                        )}
+                      ></div>
+                      <div
+                        className={cn(
+                          'animate-pulse w-full h-6 rounded',
+                          SURFACE_COLORS.surfaceSubtle,
+                        )}
+                      ></div>
                     </div>
                   </td>
                 </tr>
               </tbody>
             )}
             {!isLoading && hasData && (
-              <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+              <tbody
+                className={cn(
+                  SURFACE_COLORS.surfaceElevated,
+                  'divide-y',
+                  BORDER_COLORS.default,
+                )}
+              >
                 {table.getRowModel().rows.map((row) => {
                   return (
                     <tr
                       key={row.id}
-                      className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                      className="hover:bg-neutral-100 dark:hover:bg-neutral-200 transition-colors"
                     >
                       {row.getVisibleCells().map((cell, i) => {
                         const isFirstCell = i === 0;
@@ -248,8 +279,8 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
                             className={cn(
                               'px-4 py-4 whitespace-nowrap text-sm',
                               isFirstCell
-                                ? 'font-medium text-gray-900 dark:text-gray-100'
-                                : 'text-gray-500 dark:text-gray-400',
+                                ? cn('font-medium', TEXT_COLORS.primary)
+                                : TEXT_COLORS.muted,
                             )}
                           >
                             {flexRender(

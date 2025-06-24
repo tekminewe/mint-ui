@@ -1,6 +1,6 @@
-import * as React from "react";
-import { cn } from "../utils";
-import { Caption, Text } from "../typography";
+import * as React from 'react';
+import { cn } from '../utils';
+import { Caption, Text } from '../typography';
 
 export interface ProductItemProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -41,23 +41,23 @@ export const ProductItem = React.forwardRef<HTMLDivElement, ProductItemProps>(
       caption,
       imageUrl,
       price,
-      maxWidth = "375px",
+      maxWidth = '375px',
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div
         ref={ref}
         className={cn(
-          "cursor-pointer transition-all hover:scale-[1.01]",
-          className
+          'cursor-pointer transition-all hover:scale-[1.01]',
+          className,
         )}
         style={{ maxWidth }}
         {...props}
       >
-        <div className="h-full rounded-md border border-neutral-200 bg-white overflow-hidden shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
+        <div className="h-full rounded-md border border-neutral-200 bg-neutral-50 overflow-hidden shadow-sm dark:border-neutral-300 dark:bg-neutral-100">
           <div className="w-full overflow-hidden">
             <img
               src={imageUrl}
@@ -79,7 +79,7 @@ export const ProductItem = React.forwardRef<HTMLDivElement, ProductItemProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
-ProductItem.displayName = "ProductItem";
+ProductItem.displayName = 'ProductItem';

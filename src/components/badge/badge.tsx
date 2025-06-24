@@ -1,5 +1,5 @@
-import React from "react";
-import { cn } from "../../utils";
+import React from 'react';
+import { cn } from '../../utils';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
@@ -7,51 +7,51 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
    * @default "gray"
    * @example "green"
    */
-  color?: "gray" | "green" | "red" | "blue" | "yellow";
+  color?: 'gray' | 'green' | 'red' | 'blue' | 'yellow';
 
   /**
    * The size of the badge.
    * @default "1"
    * @example "2"
    */
-  size?: "1" | "2";
+  size?: '1' | '2';
 
   /**
    * The variant of the badge.
    * @default "solid"
    * @example "outline"
    */
-  variant?: "solid" | "outline" | "soft";
+  variant?: 'solid' | 'outline' | 'soft';
 }
 
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   (
-    { color = "gray", size = "1", variant = "solid", className, ...props },
-    ref
+    { color = 'gray', size = '1', variant = 'solid', className, ...props },
+    ref,
   ) => {
-    const sizeClasses = size === "1" ? "text-xs px-2" : "text-sm px-3";
+    const sizeClasses = size === '1' ? 'text-xs px-2' : 'text-sm px-3';
 
     const colorClasses = {
       solid: {
-        gray: "bg-gray-9 text-gray-contrast",
-        green: "bg-green-9 text-green-contrast",
-        red: "bg-red-9 text-white",
-        blue: "bg-blue-9 text-white",
-        yellow: "bg-yellow-9 text-black",
+        gray: 'bg-neutral-900 text-neutral-50',
+        green: 'bg-success-600 text-neutral-50',
+        red: 'bg-error-600 text-neutral-50',
+        blue: 'bg-primary text-neutral-50',
+        yellow: 'bg-warning-600 text-neutral-900',
       },
       soft: {
-        gray: "bg-gray-a3 text-gray-12",
-        green: "bg-green-a3 text-green-12",
-        red: "bg-red-a3 text-red-12",
-        blue: "bg-blue-a3 text-blue-12",
-        yellow: "bg-yellow-a3 text-yellow-12",
+        gray: 'bg-neutral-100 text-neutral-900',
+        green: 'bg-success-100 text-success-800',
+        red: 'bg-error-100 text-error-800',
+        blue: 'bg-primary-100 text-primary-800',
+        yellow: 'bg-warning-100 text-warning-800',
       },
       outline: {
-        gray: "border border-gray-a6 text-gray-12",
-        green: "border border-green-a6 text-green-12",
-        red: "border border-red-a6 text-red-12",
-        blue: "border border-blue-a6 text-blue-12",
-        yellow: "border border-yellow-a6 text-yellow-12",
+        gray: 'border border-neutral-300 text-neutral-700',
+        green: 'border border-success-300 text-success-700',
+        red: 'border border-error-300 text-error-700',
+        blue: 'border border-primary-300 text-primary-700',
+        yellow: 'border border-warning-300 text-warning-700',
       },
     };
 
@@ -59,15 +59,15 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       <span
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center rounded-full font-medium py-1",
+          'inline-flex items-center justify-center rounded-full font-medium py-1',
           sizeClasses,
           colorClasses[variant][color],
-          className
+          className,
         )}
         {...props}
       />
     );
-  }
+  },
 );
 
-Badge.displayName = "Badge";
+Badge.displayName = 'Badge';

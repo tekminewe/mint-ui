@@ -1,7 +1,8 @@
-import * as React from "react";
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import { CheckIcon } from "@radix-ui/react-icons";
-import { cn } from "../utils";
+import * as React from 'react';
+import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
+import { CheckIcon } from '@radix-ui/react-icons';
+import { cn } from '../utils';
+import { BORDER_COLORS, TEXT_COLORS } from '../utils/component-colors';
 
 export interface CheckboxProps
   extends React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> {
@@ -19,16 +20,19 @@ const Checkbox = React.forwardRef<
     <CheckboxPrimitive.Root
       ref={ref}
       className={cn(
-        "peer h-4 w-4 shrink-0 rounded-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
-        "data-[state=checked]:bg-primary data-[state=checked]:border-primary",
-        "disabled:cursor-not-allowed disabled:opacity-50",
-        "dark:border-gray-600 dark:focus:ring-primary dark:data-[state=checked]:bg-primary",
-        className
+        'peer h-4 w-4 shrink-0 rounded-sm border',
+        BORDER_COLORS.default,
+        'outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
+        'data-[state=checked]:bg-primary data-[state=checked]:!border-primary',
+        'disabled:cursor-not-allowed disabled:opacity-50',
+        'select-none appearance-none',
+        '[&::-webkit-focus-ring]:outline-none',
+        className,
       )}
       {...props}
     >
       <CheckboxPrimitive.Indicator
-        className={cn("flex items-center justify-center text-white")}
+        className={cn('flex items-center justify-center text-neutral-50')}
       >
         <CheckIcon className="h-3 w-3" />
       </CheckboxPrimitive.Indicator>
@@ -36,8 +40,9 @@ const Checkbox = React.forwardRef<
     {label && (
       <label
         className={cn(
-          "text-sm font-medium text-gray-900 dark:text-gray-100",
-          "peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+          'text-sm font-medium',
+          TEXT_COLORS.primary,
+          'peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
         )}
       >
         {label}
@@ -46,6 +51,6 @@ const Checkbox = React.forwardRef<
   </div>
 ));
 
-Checkbox.displayName = "Checkbox";
+Checkbox.displayName = 'Checkbox';
 
 export { Checkbox };

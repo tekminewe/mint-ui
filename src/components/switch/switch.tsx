@@ -1,9 +1,10 @@
-import * as RadixSwitch from "@radix-ui/react-switch";
-import { FormLabel } from "../form";
-import { ComponentPropsWithoutRef, forwardRef } from "react";
-import { cn } from "../utils";
+import * as RadixSwitch from '@radix-ui/react-switch';
+import { FormLabel } from '../form';
+import { ComponentPropsWithoutRef, forwardRef } from 'react';
+import { cn } from '../utils';
 
-export interface SwitchProps extends ComponentPropsWithoutRef<typeof RadixSwitch.Root> {
+export interface SwitchProps
+  extends ComponentPropsWithoutRef<typeof RadixSwitch.Root> {
   error?: string;
   containerClassName?: string;
   labelClassName?: string;
@@ -23,10 +24,10 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
-      <div className={cn("flex flex-col w-full gap-1", containerClassName)}>
+      <div className={cn('flex flex-col w-full gap-1', containerClassName)}>
         {label && (
           <FormLabel
             className={labelClassName}
@@ -34,35 +35,33 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
             required={required}
           />
         )}
-        <RadixSwitch.Root 
-          ref={ref} 
+        <RadixSwitch.Root
+          ref={ref}
           className={cn(
-            "relative inline-flex h-[24px] w-[44px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors",
-            "bg-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-            "data-[state=checked]:bg-primary",
-            "dark:bg-gray-700 dark:data-[state=checked]:bg-primary",
-            className
-          )} 
-          {...props} 
+            'relative inline-flex h-[24px] w-[44px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors',
+            'bg-neutral-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
+            'data-[state=checked]:bg-primary',
+            'dark:bg-neutral-300 dark:data-[state=checked]:bg-primary',
+            className,
+          )}
+          {...props}
         >
-          <RadixSwitch.Thumb className={cn(
-            "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg transition-transform",
-            "data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
-          )} />
+          <RadixSwitch.Thumb
+            className={cn(
+              'pointer-events-none block h-5 w-5 rounded-full bg-neutral-50 shadow-lg transition-transform',
+              'data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0',
+            )}
+          />
         </RadixSwitch.Root>
-        {error && (
-          <p className="text-sm text-red-500">
-            {error}
-          </p>
-        )}
+        {error && <p className="text-sm text-red-500">{error}</p>}
         {description && (
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-neutral-500 dark:text-neutral-500">
             {description}
           </p>
         )}
       </div>
     );
-  }
+  },
 );
 
-Switch.displayName = "Switch";
+Switch.displayName = 'Switch';

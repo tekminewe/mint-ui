@@ -1,7 +1,7 @@
-import * as React from "react";
-import { Text, Caption, Title } from "../typography";
-import { cn } from "../utils";
-import { Badge } from "../badge";
+import * as React from 'react';
+import { Text, Caption, Title } from '../typography';
+import { cn } from '../utils';
+import { Badge } from '../badge';
 
 export interface PostItemProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -37,7 +37,7 @@ export const PostItem = React.forwardRef<HTMLDivElement, PostItemProps>(
     return (
       <div
         {...props}
-        className={cn(props.className, "cursor-pointer")}
+        className={cn(props.className, 'cursor-pointer')}
         ref={ref}
       >
         <div className="flex gap-4 relative md:static">
@@ -57,10 +57,10 @@ export const PostItem = React.forwardRef<HTMLDivElement, PostItemProps>(
                 ))}
               </div>
             )}
-            <Title className="text-gray-contrast md:text-[unset] my-1">
+            <Title className="text-neutral-900 dark:text-neutral-900 md:text-[unset] my-1">
               {title}
             </Title>
-            <Caption className="text-gray-contrast md:text-[unset]">
+            <Caption className="text-neutral-700 dark:text-neutral-700 md:text-[unset]">
               {date}
             </Caption>
             <Text className="hidden md:block mt-4">{summary}</Text>
@@ -68,9 +68,9 @@ export const PostItem = React.forwardRef<HTMLDivElement, PostItemProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
-PostItem.displayName = "PostItem";
+PostItem.displayName = 'PostItem';
 
-PostItem.displayName = "PostItem";
+PostItem.displayName = 'PostItem';

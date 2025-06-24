@@ -1,9 +1,14 @@
-"use client";
+'use client';
 
-import { forwardRef, useState, useRef, useEffect } from "react";
-import { FiChevronDown, FiX } from "react-icons/fi";
-import { FormLabel } from "../form";
-import { cn } from "../utils";
+import { forwardRef, useState, useRef, useEffect } from 'react';
+import { FiChevronDown, FiX } from 'react-icons/fi';
+import { FormLabel } from '../form';
+import { cn } from '../utils';
+import {
+  TEXT_COLORS,
+  SURFACE_COLORS,
+  BORDER_COLORS,
+} from '../utils/component-colors';
 
 export interface SelectProps {
   /**
@@ -47,7 +52,7 @@ export interface SelectProps {
    * Size of the select component
    * @default "md"
    */
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
 
   /**
    * Error message
@@ -79,17 +84,17 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
     {
       error,
       required,
-      size = "md",
+      size = 'md',
       value,
       onChange,
       label,
       description,
       options,
-      placeholder = "Please select an option",
+      placeholder = 'Please select an option',
       clearable = true,
       className,
     },
-    ref
+    ref,
   ) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -106,9 +111,9 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
         }
       };
 
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
       return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
+        document.removeEventListener('mousedown', handleClickOutside);
       };
     }, [dropdownRef]);
 
@@ -119,23 +124,25 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 
     // Size classes based on size prop
     const sizeClasses = {
-      sm: "py-1 px-2 text-sm",
-      md: "py-2 px-3",
-      lg: "py-3 px-4 text-lg",
+      sm: 'py-1 px-2 text-sm',
+      md: 'py-2 px-3',
+      lg: 'py-3 px-4 text-lg',
     };
 
     return (
       <div className="flex flex-col gap-1" ref={ref}>
         <FormLabel label={label} required={required} />
-        {description && <p className="text-sm text-gray-500">{description}</p>}
+        {description && (
+          <p className={cn('text-sm', TEXT_COLORS.muted)}>{description}</p>
+        )}
         <div className="relative" ref={dropdownRef}>
           <div
             className={cn(
-              "flex items-center justify-between border rounded-md cursor-pointer transition-colors",
-              "hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-600",
+              'flex items-center justify-between border rounded-md cursor-pointer transition-colors',
+              'hover:border-neutral-400 dark:border-neutral-300 dark:hover:border-neutral-400',
               sizeClasses[size],
-              error ? "border-red-500" : "border-gray-300",
-              className
+              error ? 'border-error-500' : BORDER_COLORS.default,
+              className,
             )}
             onClick={() => setIsOpen(!isOpen)}
           >
@@ -143,35 +150,42 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
               {value ? (
                 selectedOption?.label || value
               ) : (
-                <span className="text-gray-500">{placeholder}</span>
+                <span className={TEXT_COLORS.muted}>{placeholder}</span>
               )}
             </div>
             <div className="flex items-center">
               {clearable && value && (
                 <FiX
-                  className="cursor-pointer mr-1 text-gray-400 hover:text-gray-600"
+                  className="cursor-pointer mr-1 text-neutral-400 hover:text-neutral-600"
                   onClick={handleClear}
                 />
               )}
               <FiChevronDown
                 className={cn(
-                  "transition-transform",
-                  isOpen ? "transform rotate-180" : ""
+                  'transition-transform',
+                  isOpen ? 'transform rotate-180' : '',
                 )}
               />
             </div>
           </div>
 
           {isOpen && (
-            <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg max-h-60 overflow-auto">
+            <div
+              className={cn(
+                'absolute z-10 w-full mt-1 rounded-md shadow-lg max-h-60 overflow-auto',
+                SURFACE_COLORS.surfaceElevated,
+                'border',
+                BORDER_COLORS.default,
+              )}
+            >
               {options?.map((option) => (
                 <div
                   key={option.value}
                   className={cn(
-                    "px-3 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700",
+                    'px-3 py-2 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-200',
                     value === option.value
-                      ? "bg-blue-50 dark:bg-blue-900/30"
-                      : ""
+                      ? 'bg-blue-50 dark:bg-blue-900/30'
+                      : '',
                   )}
                   onClick={() => {
                     onChange?.(option.value);
@@ -182,7 +196,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
                 </div>
               ))}
               {(!options || options.length === 0) && (
-                <div className="px-3 py-2 text-gray-500">
+                <div className={cn('px-3 py-2', TEXT_COLORS.muted)}>
                   No options available
                 </div>
               )}
@@ -192,7 +206,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
         {error && <p className="text-sm text-red-500">{error}</p>}
       </div>
     );
-  }
+  },
 );
 
-Select.displayName = "Select";
+Select.displayName = 'Select';

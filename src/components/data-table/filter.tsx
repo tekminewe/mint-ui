@@ -1,15 +1,16 @@
-"use client";
+'use client';
 
-import { MixerHorizontalIcon } from "@radix-ui/react-icons";
-import { Button } from "../button";
-import { Drawer, DrawerRoot, DrawerTrigger } from "../drawer";
-import { Select } from "../select";
-import { FormEvent, useState } from "react";
-import { useMediaQuery } from "usehooks-ts";
-import { DateInput } from "../date-input";
-import { cn } from "../utils";
-import { Badge } from "../badge";
-import { DrawerTitle } from "../drawer/drawer-title";
+import { MixerHorizontalIcon } from '@radix-ui/react-icons';
+import { Button } from '../button';
+import { Drawer, DrawerRoot, DrawerTrigger } from '../drawer';
+import { Select } from '../select';
+import { FormEvent, useState } from 'react';
+import { useMediaQuery } from 'usehooks-ts';
+import { DateInput } from '../date-input';
+import { cn } from '../utils';
+import { Badge } from '../badge';
+import { DrawerTitle } from '../drawer/drawer-title';
+import { SURFACE_COLORS } from '../utils/component-colors';
 
 interface IDataTableFilterColumnOption {
   value: string;
@@ -18,14 +19,14 @@ interface IDataTableFilterColumnOption {
 
 interface IDataTableFilterColumn<T> {
   label: string;
-  type: "date";
+  type: 'date';
   key: keyof T;
   value?: string;
 }
 
 interface IDataTableFilterColumnSelect<T> {
   label: string;
-  type: "select";
+  type: 'select';
   key: keyof T;
   value?: string;
   options: IDataTableFilterColumnOption[];
@@ -55,9 +56,9 @@ export const Filter = <T extends IDataTableFilterState>({
     }, {} as T);
   });
   const [open, setOpen] = useState(false);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const isDesktop = useMediaQuery('(min-width: 768px)');
   const filterCount = columns.filter(
-    (column) => column.value !== undefined
+    (column) => column.value !== undefined,
   ).length;
   const hasFilter = filterCount > 0;
 
@@ -71,14 +72,14 @@ export const Filter = <T extends IDataTableFilterState>({
     <DrawerRoot
       open={open}
       onOpenChange={setOpen}
-      direction={isDesktop ? "right" : "bottom"}
+      direction={isDesktop ? 'right' : 'bottom'}
     >
       <div className="flex">
         <DrawerTrigger asChild>
           <Button
             variant="ghost"
             className={cn({
-              "!bg-[--focus-a3] ": hasFilter,
+              '!bg-[--focus-a3] ': hasFilter,
             })}
           >
             <MixerHorizontalIcon /> Filter
@@ -86,7 +87,12 @@ export const Filter = <T extends IDataTableFilterState>({
           </Button>
         </DrawerTrigger>
       </div>
-      <Drawer className="bg-white fixed bottom-0 left-0 md:left-auto md:h-screen md:w-80 right-0 p-4 rounded-t-2 md:rounded-none">
+      <Drawer
+        className={cn(
+          SURFACE_COLORS.surfaceElevated,
+          'fixed bottom-0 left-0 md:left-auto md:h-screen md:w-80 right-0 p-4 rounded-t-2 md:rounded-none',
+        )}
+      >
         <DrawerTitle>
           <MixerHorizontalIcon width="18" height="18" />
           Filter
@@ -95,7 +101,7 @@ export const Filter = <T extends IDataTableFilterState>({
         <form className="space-y-4" onSubmit={handleSubmit}>
           {columns.map((column, index) => {
             switch (column.type) {
-              case "select":
+              case 'select':
                 return (
                   <Select
                     onChange={(value) =>
@@ -111,7 +117,7 @@ export const Filter = <T extends IDataTableFilterState>({
                   />
                 );
 
-              case "date":
+              case 'date':
                 return (
                   <DateInput
                     onChange={(value) =>
@@ -122,7 +128,7 @@ export const Filter = <T extends IDataTableFilterState>({
                     }
                     value={
                       filterState[column.key]
-                        ? new Date(filterState[column.key] ?? "")
+                        ? new Date(filterState[column.key] ?? '')
                         : undefined
                     }
                     label={column.label}
