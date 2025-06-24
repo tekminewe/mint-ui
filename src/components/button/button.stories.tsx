@@ -1,27 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from './button';
-
-// Define modes directly since Storybook will use the global modes configuration
-const modes = {
-  light: {
-    backgrounds: { value: '#ffffff' },
-    theme: 'light',
-  },
-  dark: {
-    backgrounds: { value: '#0c0a09' },
-    theme: 'dark',
-  },
-  'light desktop': {
-    backgrounds: { value: '#ffffff' },
-    theme: 'light',
-    viewport: 'responsive',
-  },
-  'dark desktop': {
-    backgrounds: { value: '#0c0a09' },
-    theme: 'dark',
-    viewport: 'responsive',
-  },
-};
+import { allModes } from '../../storybook-modes';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -31,8 +10,8 @@ const meta: Meta<typeof Button> = {
     chromatic: {
       // Single comprehensive story for both light and dark themes
       modes: {
-        light: modes.light,
-        dark: modes.dark,
+        'light desktop': allModes['light desktop'],
+        'dark desktop': allModes['dark desktop'],
       },
     },
   },

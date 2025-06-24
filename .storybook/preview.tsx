@@ -8,7 +8,7 @@ import './storybook.css';
 
 // Custom decorator to sync background with theme
 const withThemeBackground = (Story: any, context: any) => {
-  const theme = context.globals.theme || 'light';
+  const theme = context.globals.theme || context.parameters.theme || 'light';
 
   useEffect(() => {
     // Set the background based on the current theme
@@ -19,6 +19,13 @@ const withThemeBackground = (Story: any, context: any) => {
 
     // Also update the html element for full coverage
     document.documentElement.style.backgroundColor = backgroundColor;
+
+    // Ensure the dark class is applied/removed for proper theme switching
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   }, [theme]);
 
   return (
@@ -44,10 +51,10 @@ const preview: Preview = {
       ],
     },
     chromatic: {
-      // Apply light and dark modes to all stories by default
+      // Apply light desktop and dark desktop modes to all stories by default
       modes: {
-        light: allModes.light,
-        dark: allModes.dark,
+        'light desktop': allModes['light desktop'],
+        'dark desktop': allModes['dark desktop'],
       },
     },
   },

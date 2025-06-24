@@ -1,18 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { Card } from './card';
-
-// Define modes directly since Storybook will use the global modes configuration
-const modes = {
-  light: {
-    backgrounds: { value: '#ffffff' },
-    theme: 'light',
-  },
-  dark: {
-    backgrounds: { value: '#0c0a09' },
-    theme: 'dark',
-  },
-};
+import { allModes } from '../../storybook-modes';
 
 const meta = {
   title: 'Common/Card',
@@ -22,8 +11,8 @@ const meta = {
     chromatic: {
       // Single comprehensive story for both light and dark themes
       modes: {
-        light: modes.light,
-        dark: modes.dark,
+        'light desktop': allModes['light desktop'],
+        'dark desktop': allModes['dark desktop'],
       },
     },
   },

@@ -1,40 +1,29 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "../button";
-import { Card } from "../card";
-import { RadiusProvider } from "../utils/radius-provider";
-
-// Define modes directly since Storybook will use the global modes configuration
-const modes = {
-  light: {
-    backgrounds: { value: "#ffffff" },
-    theme: "light",
-  },
-  dark: {
-    backgrounds: { value: "#0c0a09" },
-    theme: "dark",
-  },
-};
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Button } from '../button';
+import { Card } from '../card';
+import { RadiusProvider } from '../utils/radius-provider';
+import { allModes } from '../../storybook-modes';
 
 const meta: Meta<typeof RadiusProvider> = {
-  title: "Design System/Radius System",
+  title: 'Design System/Radius System',
   component: RadiusProvider,
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
     chromatic: {
       modes: {
-        light: modes.light,
-        dark: modes.dark,
+        'light desktop': allModes['light desktop'],
+        'dark desktop': allModes['dark desktop'],
       },
     },
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     defaultRadius: {
-      control: "select",
-      options: ["none", "sm", "md", "lg", "xl", "full"],
-      description: "Global default radius for all components",
+      control: 'select',
+      options: ['none', 'sm', 'md', 'lg', 'xl', 'full'],
+      description: 'Global default radius for all components',
       table: {
-        defaultValue: { summary: "md" },
+        defaultValue: { summary: 'md' },
       },
     },
   },
@@ -95,12 +84,12 @@ export const RadiusSystemDemo: Story = {
         </p>
 
         <div className="space-y-8">
-          {(["none", "sm", "lg", "xl"] as const).map((globalRadius) => (
+          {(['none', 'sm', 'lg', 'xl'] as const).map((globalRadius) => (
             <div key={globalRadius} className="space-y-4">
               <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                Global Radius:{" "}
-                {globalRadius === "none"
-                  ? "Square"
+                Global Radius:{' '}
+                {globalRadius === 'none'
+                  ? 'Square'
                   : globalRadius.toUpperCase()}
               </h3>
               <RadiusProvider defaultRadius={globalRadius}>
@@ -155,14 +144,14 @@ export const RadiusSystemDemo: Story = {
 
         <div className="space-y-6">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {(["none", "sm", "md", "lg", "xl", "full"] as const).map(
+            {(['none', 'sm', 'md', 'lg', 'xl', 'full'] as const).map(
               (radius) => (
                 <div key={radius} className="space-y-3">
                   <h4 className="text-center font-medium text-gray-700 dark:text-gray-300">
-                    {radius === "none"
-                      ? "Square"
-                      : radius === "full"
-                      ? "Pill"
+                    {radius === 'none'
+                      ? 'Square'
+                      : radius === 'full'
+                      ? 'Pill'
                       : radius.toUpperCase()}
                   </h4>
                   <Card
@@ -183,7 +172,7 @@ export const RadiusSystemDemo: Story = {
                     Button
                   </Button>
                 </div>
-              )
+              ),
             )}
           </div>
         </div>
@@ -277,7 +266,7 @@ export const RadiusSystemDemo: Story = {
  */
 export const InteractiveGlobalRadius: Story = {
   args: {
-    defaultRadius: "md",
+    defaultRadius: 'md',
   },
   render: (args) => (
     <RadiusProvider defaultRadius={args.defaultRadius}>
