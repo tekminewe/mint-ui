@@ -3,6 +3,7 @@
 import { Command } from 'cmdk';
 import { forwardRef, ReactNode, useContext } from 'react';
 import { cn } from '../utils';
+import { TEXT_COLORS } from '../utils/component-colors';
 import { SearchContext } from './search-root';
 
 export interface SearchResultListItemProps
@@ -77,21 +78,28 @@ export const SearchResultListItem = forwardRef<
         ref={ref}
         {...props}
         onSelect={handleSelect}
-        className={cn('search-result-list-item group', className)}
+        className={cn(
+          // Search result list item styles (converted from globals.css)
+          'flex items-center p-2 cursor-pointer gap-3 rounded-md group',
+          'hover:bg-primary-50 dark:hover:bg-primary-100 transition-colors',
+          className,
+        )}
       >
         {imageUrl && (
-          <div className="search-result-list-item-image-container">
-            <img
-              src={imageUrl}
-              alt={title}
-              className="search-result-list-item-image"
-            />
+          <div className="w-[50px] h-[50px] rounded-md overflow-hidden flex items-center justify-center border border-neutral-200 dark:border-neutral-300">
+            <img src={imageUrl} alt={title} className="w-full" />
           </div>
         )}
         <div>
-          <div className="search-result-list-item-title">{title}</div>
+          <div className={cn('font-semibold text-lg', TEXT_COLORS.primary)}>
+            {title}
+          </div>
           {subtitle && (
-            <div className="search-result-list-item-subtitle">{subtitle}</div>
+            <div
+              className={cn(TEXT_COLORS.muted, 'group-hover:text-primary-700')}
+            >
+              {subtitle}
+            </div>
           )}
         </div>
       </Command.Item>

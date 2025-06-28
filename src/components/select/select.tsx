@@ -1,7 +1,7 @@
 'use client';
 
 import { forwardRef, useState, useRef, useEffect } from 'react';
-import { FiChevronDown, FiX } from 'react-icons/fi';
+import { FiChevronDown, FiX, FiCheck } from 'react-icons/fi';
 import { FormLabel } from '../form';
 import { cn } from '../utils';
 import {
@@ -77,6 +77,12 @@ export interface SelectProps {
    * @default undefined
    */
   className?: string;
+
+  /**
+   * Whether the dropdown should be open by default
+   * @default false
+   */
+  defaultOpen?: boolean;
 }
 
 export const Select = forwardRef<HTMLDivElement, SelectProps>(
@@ -93,12 +99,15 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
       placeholder = 'Please select an option',
       clearable = true,
       className,
+      defaultOpen = false,
     },
     ref,
   ) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(defaultOpen);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const selectedOption = options?.find((option) => option.value === value);
+
+    // Use the current isOpen state directly
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -130,8 +139,8 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
     };
 
     return (
-      <div className="flex flex-col gap-1" ref={ref}>
-        <FormLabel label={label} required={required} />
+      <div className={cn('flex flex-col', label && 'gap-1')} ref={ref}>
+        {label && <FormLabel label={label} required={required} />}
         {description && (
           <p className={cn('text-sm', TEXT_COLORS.muted)}>{description}</p>
         )}
@@ -139,30 +148,37 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
           <div
             className={cn(
               'flex items-center justify-between border rounded-md cursor-pointer transition-colors',
-              'hover:border-neutral-400 dark:border-neutral-300 dark:hover:border-neutral-400',
+              SURFACE_COLORS.surface,
+              TEXT_COLORS.primary,
+              'hover:border-neutral-400',
               sizeClasses[size],
               error ? 'border-error-500' : BORDER_COLORS.default,
               className,
             )}
             onClick={() => setIsOpen(!isOpen)}
           >
-            <div className="flex-1 truncate">
+            <div className="flex-1 truncate whitespace-nowrap overflow-hidden">
               {value ? (
                 selectedOption?.label || value
               ) : (
                 <span className={TEXT_COLORS.muted}>{placeholder}</span>
               )}
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center flex-shrink-0">
               {clearable && value && (
                 <FiX
-                  className="cursor-pointer mr-1 text-neutral-400 hover:text-neutral-600"
+                  className={cn(
+                    'cursor-pointer mr-1 transition-colors',
+                    TEXT_COLORS.muted,
+                    'hover:' + TEXT_COLORS.secondary,
+                  )}
                   onClick={handleClear}
                 />
               )}
               <FiChevronDown
                 className={cn(
                   'transition-transform',
+                  TEXT_COLORS.secondary,
                   isOpen ? 'transform rotate-180' : '',
                 )}
               />
@@ -173,7 +189,8 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
             <div
               className={cn(
                 'absolute z-10 w-full mt-1 rounded-md shadow-lg max-h-60 overflow-auto',
-                SURFACE_COLORS.surfaceElevated,
+                SURFACE_COLORS.surface,
+                TEXT_COLORS.primary,
                 'border',
                 BORDER_COLORS.default,
               )}
@@ -182,17 +199,23 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
                 <div
                   key={option.value}
                   className={cn(
-                    'px-3 py-2 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-200',
+                    'px-3 py-2 cursor-pointer transition-colors duration-150 flex items-center',
+                    'hover:bg-primary-50 hover:text-primary-700',
                     value === option.value
-                      ? 'bg-blue-50 dark:bg-blue-900/30'
-                      : '',
+                      ? TEXT_COLORS.primary
+                      : TEXT_COLORS.primary,
                   )}
                   onClick={() => {
                     onChange?.(option.value);
                     setIsOpen(false);
                   }}
                 >
-                  {option.label}
+                  <div className="w-4 mr-2 flex-shrink-0 flex justify-center">
+                    {value === option.value && (
+                      <FiCheck className={cn(TEXT_COLORS.primary)} size={16} />
+                    )}
+                  </div>
+                  <span>{option.label}</span>
                 </div>
               ))}
               {(!options || options.length === 0) && (

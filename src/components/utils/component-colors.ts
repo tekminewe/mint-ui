@@ -51,6 +51,30 @@ export const BORDER_COLORS = {
 } as const;
 
 /**
+ * Accent colors for brand theming and call-to-action elements
+ * These can be overridden by consuming applications via CSS custom properties
+ */
+export const ACCENT_COLORS = {
+  /** Primary accent color for CTAs and brand elements */
+  primary: 'bg-accent-500 text-accent-contrast',
+
+  /** Secondary accent color for less prominent actions */
+  secondary: 'bg-accent-400 text-accent-contrast',
+
+  /** Subtle accent background with accent text */
+  subtle: 'bg-accent-100 text-accent-800',
+
+  /** Accent text color */
+  text: 'text-accent-600 dark:text-accent-400',
+
+  /** Accent border color */
+  border: 'border-accent-300 dark:border-accent-600',
+
+  /** Accent hover states */
+  hover: 'hover:bg-accent-600 hover:text-accent-contrast',
+} as const;
+
+/**
  * Complete card styling with consistent background, text, and border
  */
 export const CARD_COLORS = {

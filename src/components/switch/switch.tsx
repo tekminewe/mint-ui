@@ -27,7 +27,13 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     ref,
   ) => {
     return (
-      <div className={cn('flex flex-col w-full gap-1', containerClassName)}>
+      <div
+        className={cn(
+          'flex flex-col w-full',
+          label && 'gap-1',
+          containerClassName,
+        )}
+      >
         {label && (
           <FormLabel
             className={labelClassName}

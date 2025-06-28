@@ -1,4 +1,4 @@
-@import "react-toastify/dist/ReactToastify.css";
+@import 'react-toastify/dist/ReactToastify.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -28,35 +28,35 @@
     @apply shadow-2 w-full p-4 flex items-center border-b rounded-lg;
     @apply min-h-[4rem];
   }
-  .navbar[data-breakpoint="xs"] .mt-navMenu {
+  .navbar[data-breakpoint='xs'] .mt-navMenu {
     @apply hidden xs:flex;
   }
-  .navbar[data-breakpoint="sm"] .mt-navMenu {
+  .navbar[data-breakpoint='sm'] .mt-navMenu {
     @apply hidden sm:flex;
   }
-  .navbar[data-breakpoint="md"] .mt-navMenu {
+  .navbar[data-breakpoint='md'] .mt-navMenu {
     @apply hidden md:flex;
   }
-  .navbar[data-breakpoint="lg"] .mt-navMenu {
+  .navbar[data-breakpoint='lg'] .mt-navMenu {
     @apply hidden lg:flex;
   }
-  .navbar[data-breakpoint="xl"] .mt-navMenu {
+  .navbar[data-breakpoint='xl'] .mt-navMenu {
     @apply hidden xl:flex;
   }
 
-  .navbar[data-breakpoint="xs"] .mt-mobileNavMenu {
+  .navbar[data-breakpoint='xs'] .mt-mobileNavMenu {
     @apply xs:hidden;
   }
-  .navbar[data-breakpoint="sm"] .mt-mobileNavMenu {
+  .navbar[data-breakpoint='sm'] .mt-mobileNavMenu {
     @apply sm:hidden;
   }
-  .navbar[data-breakpoint="md"] .mt-mobileNavMenu {
+  .navbar[data-breakpoint='md'] .mt-mobileNavMenu {
     @apply md:hidden;
   }
-  .navbar[data-breakpoint="lg"] .mt-mobileNavMenu {
+  .navbar[data-breakpoint='lg'] .mt-mobileNavMenu {
     @apply lg:hidden;
   }
-  .navbar[data-breakpoint="xl"] .mt-mobileNavMenu {
+  .navbar[data-breakpoint='xl'] .mt-mobileNavMenu {
     @apply xl:hidden;
   }
   /**
@@ -177,7 +177,7 @@
     @apply grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr;
-    grid-template-areas: "sidebar navbar" "sidebar content";
+    grid-template-areas: 'sidebar navbar' 'sidebar content';
   }
   /**
   * Admin Navbar styles
@@ -220,7 +220,7 @@
     @apply p-3 rounded-md cursor-pointer font-medium flex items-center gap-3;
     @apply hover:bg-primary-600 hover:text-neutral-50;
   }
-  .sidebar-menu-item[data-selected="true"] {
+  .sidebar-menu-item[data-selected='true'] {
     @apply bg-primary-600 text-neutral-50;
   }
   .sidebar-menu-item + .sidebar-menu-item {
@@ -229,9 +229,6 @@
   /**
   * Search styles
   */
-  .search-input input {
-    @apply cursor-pointer;
-  }
   .search-dialog {
     @apply w-screen h-svh md:h-[50vh] overflow-hidden;
   }
@@ -239,44 +236,19 @@
     @apply outline-1 outline outline-neutral-300 focus:outline-2 focus:outline-primary-600 rounded-md p-2 w-full;
     @apply mb-2;
   }
-  .search-result-list {
-    @apply overflow-y-auto h-[calc(100svh-72px)];
-  }
-  .search-result-list-item {
-    @apply flex items-center p-2 cursor-pointer gap-3 rounded-md;
-    @apply hover:bg-primary-600 hover:text-neutral-50;
-  }
-  .search-result-list-item-skeleton {
-    @apply animate-pulse;
-    @apply h-6 w-full bg-neutral-300 rounded-md mb-2;
-  }
-  .search-result-list-item-title {
-    @apply font-semibold text-lg;
-  }
-  .search-result-list-item-subtitle {
-    @apply text-neutral-500;
-    @apply group-hover:text-neutral-50;
-  }
-  .search-result-list-item-image {
-    @apply w-full;
-  }
-  .search-result-list-item-image-container {
-    @apply w-[50px] h-[50px] rounded-md overflow-hidden flex items-center justify-center border;
-  }
-
   /**
   * Drawer styles
   */
   .drawer {
     @apply bg-neutral-50 flex flex-col w-[var(--mt-w-drawer)] fixed outline-none p-4;
   }
-  .drawer[data-vaul-drawer-direction="right"] {
+  .drawer[data-vaul-drawer-direction='right'] {
     @apply right-0 top-0 h-screen;
   }
-  .drawer[data-vaul-drawer-direction="left"] {
+  .drawer[data-vaul-drawer-direction='left'] {
     @apply left-0 top-0 h-screen;
   }
-  .drawer[data-vaul-drawer-direction="bottom"] {
+  .drawer[data-vaul-drawer-direction='bottom'] {
     @apply bottom-0 left-0 w-screen;
   }
 
@@ -287,7 +259,7 @@
     @apply p-3 rounded-md cursor-pointer font-medium flex items-center gap-2;
     @apply hover:bg-neutral-200;
   }
-  .list-item-row[data-selected="true"] {
+  .list-item-row[data-selected='true'] {
     @apply bg-primary-600 text-neutral-50;
   }
   .list-item-row + .list-item-row {

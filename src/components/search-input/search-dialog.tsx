@@ -5,6 +5,11 @@ import { forwardRef, ReactNode, useContext, useEffect, useState } from 'react';
 import { SearchContext } from './search-root';
 import { useDebouncedCallback } from 'use-debounce';
 import { cn } from '../utils';
+import {
+  SURFACE_COLORS,
+  TEXT_COLORS,
+  BORDER_COLORS,
+} from '../utils/component-colors';
 
 export interface SearchDialogProps
   extends Pick<React.HTMLAttributes<HTMLDivElement>, 'className'> {
@@ -70,7 +75,17 @@ export const SearchDialog = forwardRef<HTMLDivElement, SearchDialogProps>(
         overlayClassName="overlay"
       >
         <Command.Input
-          className="search-result-input"
+          className={cn(
+            // NOTE: Keep these styles synchronized with TextInput component
+            // When updating TextInput styles, also update this SearchDialog input
+            // Both should use the same: SURFACE_COLORS, TEXT_COLORS, BORDER_COLORS, focus states
+            'w-full border rounded-md py-2 px-3 mb-2',
+            SURFACE_COLORS.surface,
+            TEXT_COLORS.primary,
+            BORDER_COLORS.default,
+            'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent',
+            'appearance-none',
+          )}
           placeholder={searchInputPlaceholder}
           value={query}
           onValueChange={setQuery}

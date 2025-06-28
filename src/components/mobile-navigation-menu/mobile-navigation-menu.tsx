@@ -4,6 +4,7 @@ import { forwardRef } from 'react';
 import { Drawer, DrawerRoot, DrawerRootProps, DrawerTrigger } from '../drawer';
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 import { cn } from '../utils';
+import { TEXT_COLORS, SURFACE_COLORS } from '../utils/component-colors';
 
 export type MobileNavigationMenuProps = {
   /**
@@ -26,7 +27,9 @@ export const MobileNavigationMenu = forwardRef<
       <DrawerTrigger className="mt-mobileNavMenu">
         <HamburgerMenuIcon width={28} height={28} />
       </DrawerTrigger>
-      <Drawer className="bg-accent-1 text-gray-11 fixed top-0 bottom-0 h-screen w-80">
+      <Drawer
+        className={`${SURFACE_COLORS.surface} ${TEXT_COLORS.primary} fixed top-0 bottom-0 h-screen w-80`}
+      >
         <nav
           ref={ref}
           {...props}

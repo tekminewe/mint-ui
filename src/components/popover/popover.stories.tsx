@@ -1,14 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Popover } from "./popover";
-import { Button } from "../button";
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Popover } from './popover';
+import { Button } from '../button';
+import { SURFACE_COLORS, TEXT_COLORS } from '../utils/component-colors';
 
 const meta: Meta<typeof Popover.Root> = {
-  title: "Overlay/Popover",
+  title: 'Overlay/Popover',
   component: Popover.Root,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 };
 
 export default meta;
@@ -45,7 +46,9 @@ export const WithArrow: Story = {
             This popover has an arrow pointing to the trigger.
           </p>
         </div>
-        <Popover.Arrow className="fill-white dark:fill-neutral-900" />
+        <Popover.Arrow
+          className={`fill-current ${SURFACE_COLORS.surfaceElevated}`}
+        />
       </Popover.Content>
     </Popover.Root>
   ),
@@ -107,7 +110,7 @@ export const CustomWidth: Story = {
 
 export const DarkMode: Story = {
   parameters: {
-    backgrounds: { default: "dark" },
+    backgrounds: { default: 'dark' },
   },
   render: () => (
     <div className="dark p-8 bg-neutral-900">
@@ -117,8 +120,8 @@ export const DarkMode: Story = {
         </Popover.Trigger>
         <Popover.Content>
           <div className="space-y-2">
-            <h3 className="font-medium text-white">Dark Mode</h3>
-            <p className="text-sm text-neutral-400">
+            <h3 className={`font-medium ${TEXT_COLORS.primary}`}>Dark Mode</h3>
+            <p className={`text-sm ${TEXT_COLORS.muted}`}>
               This is a popover displayed in dark mode.
             </p>
           </div>

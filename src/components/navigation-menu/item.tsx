@@ -1,5 +1,6 @@
 import { AnchorHTMLAttributes, forwardRef } from 'react';
 import { cn } from '../utils';
+import { TEXT_COLORS } from '../utils/component-colors';
 import { Slot } from '@radix-ui/react-slot';
 
 export interface NavigationMenuItemProps
@@ -16,7 +17,7 @@ export const NavigationMenuItem = forwardRef<
     <Comp
       ref={ref}
       {...props}
-      className={cn('text-gray-11', props.className)}
+      className={cn(TEXT_COLORS.primary, props.className)}
     />
   );
 });

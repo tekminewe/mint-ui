@@ -74,3 +74,74 @@ import {
   BORDER_COLORS,
 } from '../utils/component-colors';
 ```
+
+## 🎨 Available Color Palettes
+
+Mint-UI provides these color palettes for components:
+
+```typescript
+// PRIMARY COLORS (Blue-based brand color)
+className = 'bg-primary-500'; // Primary brand color
+className = 'text-primary-600'; // Primary text color
+className = 'border-primary-300'; // Primary borders
+className = 'hover:bg-primary-50'; // Subtle hover states
+className = 'hover:bg-primary-600'; // Strong hover states
+
+// STATUS COLORS
+className = 'bg-success-500'; // Success states
+className = 'bg-error-500'; // Error states
+className = 'bg-warning-500'; // Warning states
+className = 'bg-info-500'; // Info states
+```
+
+### Complete Color Scales
+
+```css
+/* PRIMARY (Blue-based brand colors) */
+primary-50     /* Lightest - subtle backgrounds, hover states */
+primary-100    /* Very light - backgrounds, subtle UI */
+primary-200    /* Light - hover states, selected items */
+primary-300    /* Medium light - focus rings, borders */
+primary-400    /* Medium - secondary buttons, icons */
+primary-500    /* Base - primary buttons, key UI elements */
+primary-600    /* Medium dark - hover states, active elements */
+primary-700    /* Dark - text, active states */
+primary-800    /* Very dark - text on light backgrounds */
+primary-900    /* Darkest - highest contrast text */
+
+/* NEUTRAL (Gray scale for UI framework) */
+neutral-50     /* Cards & surfaces - main backgrounds */
+neutral-100    /* Elevated surfaces - subtle backgrounds */
+neutral-200    /* Default borders - standard borders, dividers */
+neutral-300    /* Strong borders - emphasized borders */
+neutral-400    /* Disabled text - placeholders, very low contrast */
+neutral-500    /* Muted text - secondary text, icons */
+neutral-600    /* Medium text - primary text, headings */
+neutral-700    /* Secondary text - important secondary text */
+neutral-800    /* High contrast - very important text */
+neutral-900    /* Primary text - main text color, highest contrast */
+
+/* STATUS COLORS */
+success-*      /* Green - success states, confirmations */
+error-*        /* Red - errors, destructive actions */
+warning-*      /* Yellow - warnings, caution */
+info-*         /* Cyan - information, help */
+```
+
+### Override Primary Colors in Your Application
+
+You can customize the primary color palette by overriding CSS custom properties:
+
+```css
+/* In your globals.css */
+:root {
+  --color-primary-500: 245 158 11; /* Your brand color (orange) */
+  --color-primary-600: 217 119 6; /* Hover state */
+  /* ... complete scale 50-900 */
+}
+
+.dark {
+  --color-primary-500: 251 146 60; /* Brighter for dark mode */
+  /* ... complete dark mode overrides */
+}
+```

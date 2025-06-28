@@ -4,6 +4,11 @@ import { forwardRef, useId, InputHTMLAttributes } from 'react';
 import { Caption } from '../typography';
 import { FormLabel } from '../form';
 import { cn } from '../utils';
+import {
+  SURFACE_COLORS,
+  TEXT_COLORS,
+  BORDER_COLORS,
+} from '../utils/component-colors';
 
 export interface TextInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -64,6 +69,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       id,
       type,
       onChange,
+      className,
       ...props
     },
     ref,
@@ -111,12 +117,17 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             }}
             type={inputType as string}
             className={cn(
-              'w-full border border-neutral-300 rounded-md',
+              'w-full border rounded-md',
+              SURFACE_COLORS.surface,
+              TEXT_COLORS.primary,
+              BORDER_COLORS.default,
               'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent',
-              'dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-100',
+              'appearance-none', // Remove default browser styling
+              '[&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none', // Remove number input spinners
               error && 'border-error-500 focus:ring-error-500',
               sizeClass,
               icon && 'pl-10',
+              className,
             )}
             {...props}
           />
@@ -129,13 +140,21 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       );
     };
     return (
-      <label className={cn('flex flex-col w-full gap-1', containerClassName)}>
-        <FormLabel
-          className={labelClassName}
-          htmlFor={inputId}
-          label={label}
-          required={required}
-        />
+      <label
+        className={cn(
+          'flex flex-col w-full',
+          label && 'gap-1',
+          containerClassName,
+        )}
+      >
+        {label && (
+          <FormLabel
+            className={labelClassName}
+            htmlFor={inputId}
+            label={label}
+            required={required}
+          />
+        )}
         {renderTextField()}
         {renderDescription()}
       </label>

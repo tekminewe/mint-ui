@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from './button';
 import { allModes } from '../../storybook-modes';
+import { TEXT_COLORS } from '../utils/component-colors';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -67,7 +68,7 @@ export const AllVariants: Story = {
     <div className="p-8 space-y-6 max-w-7xl mx-auto">
       {/* Variants Section */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+        <h2 className={`text-2xl font-bold ${TEXT_COLORS.primary}`}>
           Variants
         </h2>
         <div className="flex flex-wrap gap-4">
@@ -91,13 +92,13 @@ export const AllVariants: Story = {
 
       {/* Colors Section */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-          Colors
-        </h2>
+        <h2 className={`text-2xl font-bold ${TEXT_COLORS.primary}`}>Colors</h2>
         <div className="space-y-4">
           {(['solid', 'soft', 'outline', 'ghost'] as const).map((variant) => (
             <div key={variant} className="space-y-2">
-              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 capitalize">
+              <h3
+                className={`text-lg font-semibold ${TEXT_COLORS.secondary} capitalize`}
+              >
                 {variant}
               </h3>
               <div className="flex flex-wrap gap-3">
@@ -127,9 +128,7 @@ export const AllVariants: Story = {
 
       {/* Sizes Section */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-          Sizes
-        </h2>
+        <h2 className={`text-2xl font-bold ${TEXT_COLORS.primary}`}>Sizes</h2>
         <div className="flex flex-wrap items-center gap-4">
           <Button size="sm" variant="solid" color="primary">
             Small
@@ -145,7 +144,7 @@ export const AllVariants: Story = {
 
       {/* Radius Section */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+        <h2 className={`text-2xl font-bold ${TEXT_COLORS.primary}`}>
           Border Radius
         </h2>
         <div className="flex flex-wrap gap-4">
@@ -168,13 +167,13 @@ export const AllVariants: Story = {
 
       {/* States Section */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-          States
-        </h2>
+        <h2 className={`text-2xl font-bold ${TEXT_COLORS.primary}`}>States</h2>
         <div className="space-y-4">
           {(['solid', 'outline', 'soft'] as const).map((variant) => (
             <div key={variant} className="space-y-2">
-              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 capitalize">
+              <h3
+                className={`text-lg font-semibold ${TEXT_COLORS.secondary} capitalize`}
+              >
                 {variant} States
               </h3>
               <div className="flex flex-wrap gap-3">
@@ -198,13 +197,13 @@ export const AllVariants: Story = {
 
       {/* Size Combinations */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+        <h2 className={`text-2xl font-bold ${TEXT_COLORS.primary}`}>
           Size Combinations
         </h2>
         <div className="space-y-4">
           {(['sm', 'md', 'lg'] as const).map((size) => (
             <div key={size} className="space-y-2">
-              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+              <h3 className={`text-lg font-semibold ${TEXT_COLORS.secondary}`}>
                 Size: {size}
               </h3>
               <div className="flex flex-wrap gap-3">

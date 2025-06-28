@@ -1,26 +1,27 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Switch } from "./switch";
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Switch } from './switch';
+import { getCardColors } from '../utils/component-colors';
 
 const meta: Meta<typeof Switch> = {
-  title: "Form / Switch",
+  title: 'Form / Switch',
   component: Switch,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    checked: { 
+    checked: {
       control: 'boolean',
-      description: 'Whether the switch is checked or not'
+      description: 'Whether the switch is checked or not',
     },
     label: {
       control: 'text',
-      description: 'Label for the switch'
+      description: 'Label for the switch',
     },
     description: {
       control: 'text',
-      description: 'Description text to display below the switch'
+      description: 'Description text to display below the switch',
     },
     error: {
       control: 'text',
-      description: 'Error message to display'
+      description: 'Error message to display',
     },
   },
   decorators: [
@@ -37,8 +38,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: "Active",
-    description: "Switch to activate awesomeness",
+    label: 'Active',
+    description: 'Switch to activate awesomeness',
   },
 };
 
@@ -52,13 +53,13 @@ export const Checked: Story = {
 export const WithError: Story = {
   args: {
     ...Default.args,
-    error: "This field is required",
+    error: 'This field is required',
   },
 };
 
 export const WithoutLabel: Story = {
   args: {
-    description: "Switch without a label",
+    description: 'Switch without a label',
   },
 };
 
@@ -68,7 +69,7 @@ export const DarkMode: Story = {
   },
   parameters: {
     backgrounds: { default: 'dark' },
-    themes: { themeOverride: 'dark' }
+    themes: { themeOverride: 'dark' },
   },
 };
 
@@ -82,19 +83,37 @@ export const AllVariants: Story = {
           <Switch label="Unchecked" description="Default unchecked state" />
           <Switch label="Checked" description="Default checked state" checked />
           <Switch label="Disabled" description="Disabled state" disabled />
-          <Switch label="Disabled Checked" description="Disabled checked state" disabled checked />
-          <Switch label="With Error" description="Error state" error="This field is required" />
+          <Switch
+            label="Disabled Checked"
+            description="Disabled checked state"
+            disabled
+            checked
+          />
+          <Switch
+            label="With Error"
+            description="Error state"
+            error="This field is required"
+          />
         </div>
       </div>
-      
-      <div className="space-y-4 p-4 bg-gray-900 text-white rounded-lg">
+
+      <div className={`space-y-4 p-4 rounded-lg ${getCardColors('elevated')}`}>
         <h3 className="text-lg font-medium">Dark Mode</h3>
         <div className="space-y-2">
           <Switch label="Unchecked" description="Default unchecked state" />
           <Switch label="Checked" description="Default checked state" checked />
           <Switch label="Disabled" description="Disabled state" disabled />
-          <Switch label="Disabled Checked" description="Disabled checked state" disabled checked />
-          <Switch label="With Error" description="Error state" error="This field is required" />
+          <Switch
+            label="Disabled Checked"
+            description="Disabled checked state"
+            disabled
+            checked
+          />
+          <Switch
+            label="With Error"
+            description="Error state"
+            error="This field is required"
+          />
         </div>
       </div>
     </div>

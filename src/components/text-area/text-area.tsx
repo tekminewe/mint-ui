@@ -35,8 +35,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, ITextAreaProps>(
     ref,
   ) => {
     return (
-      <label className="flex flex-col gap-1">
-        <FormLabel label={label} required={required} />
+      <label className={cn('flex flex-col', label && 'gap-1')}>
+        {label && <FormLabel label={label} required={required} />}
         {description && <Caption>{description}</Caption>}
         <textarea
           placeholder={placeholder}

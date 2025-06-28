@@ -1,5 +1,6 @@
 import { AnchorHTMLAttributes, forwardRef } from 'react';
 import { cn } from '../utils';
+import { TEXT_COLORS } from '../utils/component-colors';
 
 export interface SubMenuItemProps
   extends AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -17,7 +18,8 @@ export const SubMenuItem = forwardRef<HTMLAnchorElement, SubMenuItemProps>(
         {...props}
         data-selected={selected}
         className={cn(
-          'text-gray-11 flex items-center gap-2 p-2 hover:bg-accent-9 hover:text-accent-contrast cursor-pointer rounded-3',
+          `flex items-center gap-2 p-2 hover:bg-accent-9 hover:text-accent-contrast cursor-pointer rounded-3`,
+          TEXT_COLORS.primary,
           "data-[selected='true']:bg-accent-9 data-[selected='true']:text-accent-contrast",
           props.className,
         )}

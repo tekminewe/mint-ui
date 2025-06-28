@@ -2,6 +2,11 @@ import { forwardRef, InputHTMLAttributes, useId } from 'react';
 import { FormLabel } from '../form';
 import { Caption } from '../typography';
 import { cn } from '../utils';
+import {
+  SURFACE_COLORS,
+  TEXT_COLORS,
+  BORDER_COLORS,
+} from '../utils/component-colors';
 
 export interface ImageInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -22,7 +27,7 @@ export interface ImageInputProps
   /**
    * Class name for the label element.
    * @default undefined
-   * @example "text-white"
+   * @example "text-red-500"
    */
   labelClassName?: string;
 
@@ -80,13 +85,21 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
     };
 
     return (
-      <label className={cn('flex w-full flex-col gap-1', containerClassName)}>
-        <FormLabel
-          className={labelClassName}
-          htmlFor={inputId}
-          label={label}
-          required={required}
-        />
+      <label
+        className={cn(
+          'flex w-full flex-col',
+          label && 'gap-1',
+          containerClassName,
+        )}
+      >
+        {label && (
+          <FormLabel
+            className={labelClassName}
+            htmlFor={inputId}
+            label={label}
+            required={required}
+          />
+        )}
         <input
           type="file"
           accept={accept}
@@ -102,7 +115,14 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
             className="w-full aspect-auto"
           />
         ) : (
-          <div className="flex justify-center items-center w-full cursor-pointer h-9 text-gray-8 bg-gray-2 border-dashed border rounded-2">
+          <div
+            className={cn(
+              'flex justify-center items-center w-full cursor-pointer h-9 border-dashed border rounded-2',
+              TEXT_COLORS.muted,
+              SURFACE_COLORS.surfaceSubtle,
+              BORDER_COLORS.default,
+            )}
+          >
             Upload an image
           </div>
         )}

@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Card } from './card';
 import { allModes } from '../../storybook-modes';
+import { TEXT_COLORS } from '../utils/component-colors';
 
 const meta = {
   title: 'Common/Card',
@@ -146,7 +146,9 @@ export const AllVariations: Story = {
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-                    <span className="text-white font-semibold">A</span>
+                    <span className={`font-semibold ${TEXT_COLORS.primary}`}>
+                      A
+                    </span>
                   </div>
                   <div>
                     <h4 className="text-lg font-medium">Article Card</h4>
@@ -186,7 +188,9 @@ export const AllVariations: Story = {
                     <span>Feature C coming soon</span>
                   </div>
                 </div>
-                <button className="w-full mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors">
+                <button
+                  className={`w-full mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md transition-colors ${TEXT_COLORS.primary}`}
+                >
                   Learn More
                 </button>
               </div>

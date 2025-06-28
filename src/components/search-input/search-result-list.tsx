@@ -1,8 +1,10 @@
-"use client";
+'use client';
 
-import { Command } from "cmdk";
-import { forwardRef, ReactNode } from "react";
-import { SearchResultListItemSkeleton } from "./search-result-list-item-skeleton";
+import { Command } from 'cmdk';
+import { forwardRef, ReactNode } from 'react';
+import { SearchResultListItemSkeleton } from './search-result-list-item-skeleton';
+import { TEXT_COLORS } from '../utils/component-colors';
+import { cn } from '../utils';
 
 export interface SearchResultListProps {
   /**
@@ -34,27 +36,36 @@ export interface SearchResultListProps {
 export const SearchResultList = forwardRef<
   HTMLDivElement,
   SearchResultListProps
->(({ emptyText = "Sorry, no results found.", children, isLoading = false }, ref) => {
-  return (
-    <Command.List
-      ref={ref}
-      data-state={isLoading ? "loading" : "loaded"}
-      className="search-result-list scrollbar-none"
-    >
-      {isLoading ? (
-        <Command.Loading>
-          <SearchResultListItemSkeleton />
-          <SearchResultListItemSkeleton />
-          <SearchResultListItemSkeleton />
-        </Command.Loading>
-      ) : (
-        <>
-          <Command.Empty>{emptyText}</Command.Empty>
-          {children}
-        </>
-      )}
-    </Command.List>
-  );
-});
+>(
+  (
+    { emptyText = 'Sorry, no results found.', children, isLoading = false },
+    ref,
+  ) => {
+    return (
+      <Command.List
+        ref={ref}
+        data-state={isLoading ? 'loading' : 'loaded'}
+        className="overflow-y-auto h-[calc(100svh-72px)] scrollbar-none"
+      >
+        {isLoading ? (
+          <Command.Loading>
+            <SearchResultListItemSkeleton />
+            <SearchResultListItemSkeleton />
+            <SearchResultListItemSkeleton />
+          </Command.Loading>
+        ) : (
+          <>
+            <Command.Empty
+              className={cn('p-4 text-center text-sm', TEXT_COLORS.muted)}
+            >
+              {emptyText}
+            </Command.Empty>
+            {children}
+          </>
+        )}
+      </Command.List>
+    );
+  },
+);
 
-SearchResultList.displayName = "SearchResultList";
+SearchResultList.displayName = 'SearchResultList';

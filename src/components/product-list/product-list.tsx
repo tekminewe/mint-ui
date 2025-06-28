@@ -1,5 +1,5 @@
 import { Grid } from '../grid';
-import { cn } from '../../utils';
+import { cn } from '../utils';
 
 export interface ProductListProps extends React.HTMLAttributes<HTMLDivElement> {
   /**

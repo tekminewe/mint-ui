@@ -8,6 +8,11 @@ import { Command } from '../command';
 import { Badge } from '../badge';
 import { Spinner } from '../spinner';
 import { useDebouncedCallback } from 'use-debounce';
+import {
+  TEXT_COLORS,
+  SURFACE_COLORS,
+  BORDER_COLORS,
+} from '../utils/component-colors';
 import { LuSearch, LuX } from 'react-icons/lu';
 import { Popover } from '../popover';
 import { Checkbox } from '../checkbox';
@@ -159,16 +164,19 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
           <Popover.Trigger asChild>
             <div
               className={cn(
-                'flex text-sm items-center gap-1 border border-gray-300 w-full min-h-[36px] pl-3 pr-2 rounded',
+                'flex text-sm items-center gap-1 border w-full min-h-[36px] pl-3 pr-2 rounded',
                 'focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:outline-none',
-                'dark:border-gray-600 dark:bg-gray-800',
+                BORDER_COLORS.default,
+                SURFACE_COLORS.surfaceElevated,
                 {
                   'py-1': value.length > 0,
                 },
               )}
               ref={ref}
             >
-              <span className="flex-1 text-gray-900 dark:text-gray-100 flex items-center gap-1 flex-wrap">
+              <span
+                className={`flex-1 flex items-center gap-1 flex-wrap ${TEXT_COLORS.primary}`}
+              >
                 {value.length > 0 ? (
                   <>
                     {selectedValues
@@ -201,9 +209,7 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
                     )}
                   </>
                 ) : (
-                  <span className="text-gray-500 dark:text-gray-400">
-                    {placeholder}
-                  </span>
+                  <span className={TEXT_COLORS.muted}>{placeholder}</span>
                 )}
               </span>
               <ChevronDownIcon />
@@ -212,7 +218,9 @@ export const MultiSelect = forwardRef<HTMLDivElement, MultiSelectProps>(
         </div>
         <Popover.Content className="p-0 w-[var(--radix-popover-trigger-width)] max-h-[300px] overflow-auto">
           <Command>
-            <div className="flex items-center gap-2 px-3 h-6 w-full border-b dark:border-gray-700">
+            <div
+              className={`flex items-center gap-2 px-3 h-6 w-full border-b ${BORDER_COLORS.subtle}`}
+            >
               <LuSearch size={16} />
               <Command.Input
                 className="text-sm w-full outline-none bg-transparent"
