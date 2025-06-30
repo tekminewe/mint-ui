@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { cn } from '../utils';
+import { SKELETON_COLORS } from '../utils/component-colors';
 
 export interface SkeletonProps {
   /**
@@ -27,7 +28,8 @@ export function Skeleton({
   return (
     <div
       className={cn(
-        'animate-pulse rounded-md bg-neutral-200 dark:bg-neutral-800',
+        'animate-pulse rounded-md',
+        SKELETON_COLORS.primary,
         className,
       )}
       style={{

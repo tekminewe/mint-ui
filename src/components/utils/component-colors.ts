@@ -44,34 +44,46 @@ export const BORDER_COLORS = {
   default: 'border-neutral-200 dark:border-neutral-300',
 
   /** Subtle border color for less prominent divisions */
-  subtle: 'border-neutral-100 dark:text-neutral-200',
+  subtle: 'border-neutral-100 dark:border-neutral-200',
 
   /** Strong border color for emphasis */
   strong: 'border-neutral-300 dark:border-neutral-400',
 } as const;
 
 /**
- * Accent colors for brand theming and call-to-action elements
- * These can be overridden by consuming applications via CSS custom properties
+ * Interactive state colors for hover, focus, and active states
  */
-export const ACCENT_COLORS = {
-  /** Primary accent color for CTAs and brand elements */
-  primary: 'bg-accent-500 text-accent-contrast',
+export const INTERACTION_COLORS = {
+  /** Hover background color for interactive elements */
+  hover: 'hover:bg-neutral-100 dark:hover:bg-neutral-200',
 
-  /** Secondary accent color for less prominent actions */
-  secondary: 'bg-accent-400 text-accent-contrast',
+  /** Focus ring color for accessibility */
+  focus: 'focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
 
-  /** Subtle accent background with accent text */
-  subtle: 'bg-accent-100 text-accent-800',
+  /** Active/pressed state background */
+  active: 'active:bg-neutral-200 dark:active:bg-neutral-300',
+} as const;
 
-  /** Accent text color */
-  text: 'text-accent-600 dark:text-accent-400',
+/**
+ * Loading skeleton colors that are visible in both light and dark modes
+ */
+export const SKELETON_COLORS = {
+  /** Primary skeleton background with good visibility */
+  primary: 'bg-neutral-200 dark:bg-neutral-300',
 
-  /** Accent border color */
-  border: 'border-accent-300 dark:border-accent-600',
+  /** Secondary skeleton background for nested elements */
+  secondary: 'bg-neutral-100 dark:bg-neutral-200',
+} as const;
 
-  /** Accent hover states */
-  hover: 'hover:bg-accent-600 hover:text-accent-contrast',
+/**
+ * Common interactive element colors for navigation items, list items, etc.
+ */
+export const NAVIGATION_COLORS = {
+  /** Default navigation item styling */
+  item: `${TEXT_COLORS.secondary} ${INTERACTION_COLORS.hover} hover:text-neutral-900 dark:hover:text-neutral-50`,
+
+  /** Disabled navigation item styling */
+  itemDisabled: `${TEXT_COLORS.disabled} cursor-not-allowed pointer-events-none`,
 } as const;
 
 /**
@@ -89,6 +101,72 @@ export const CARD_COLORS = {
 } as const;
 
 /**
+ * Button color system for consistent interactive button styling
+ */
+export const BUTTON_COLORS = {
+  solid: {
+    primary:
+      'bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-primary-400 dark:bg-primary-200 dark:text-primary-900 dark:hover:bg-primary-100',
+    neutral: `${SURFACE_COLORS.surface} ${TEXT_COLORS.secondary} ${INTERACTION_COLORS.hover} focus:ring-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50`,
+    success:
+      'bg-success-100 text-success-700 hover:bg-success-200 focus:ring-success-500 dark:bg-success-200 dark:text-success-900 dark:hover:bg-success-100',
+    error:
+      'bg-error-100 text-error-700 hover:bg-error-200 focus:ring-error-500 dark:bg-error-200 dark:text-error-900 dark:hover:bg-error-100',
+    warning:
+      'bg-warning-100 text-warning-700 hover:bg-warning-200 focus:ring-warning-500 dark:bg-warning-200 dark:text-warning-900 dark:hover:bg-warning-100',
+    info: 'bg-info-100 text-info-700 hover:bg-info-200 focus:ring-info-500 dark:bg-info-200 dark:text-info-900 dark:hover:bg-info-100',
+  },
+  soft: {
+    primary:
+      'bg-primary-50 text-primary-600 hover:bg-primary-100 focus:ring-primary-400 dark:bg-primary-100 dark:text-primary-700 dark:hover:bg-primary-200',
+    neutral: `${SURFACE_COLORS.surfaceSubtle} text-neutral-600 ${INTERACTION_COLORS.hover} focus:ring-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-700`,
+    success:
+      'bg-success-50 text-success-600 hover:bg-success-100 focus:ring-success-500 dark:bg-success-100 dark:text-success-700 dark:hover:bg-success-200',
+    error:
+      'bg-error-50 text-error-600 hover:bg-error-100 focus:ring-error-500 dark:bg-error-100 dark:text-error-700 dark:hover:bg-error-200',
+    warning:
+      'bg-warning-50 text-warning-600 hover:bg-warning-100 focus:ring-warning-500 dark:bg-warning-100 dark:text-warning-700 dark:hover:bg-warning-200',
+    info: 'bg-info-50 text-info-600 hover:bg-info-100 focus:ring-info-500 dark:bg-info-100 dark:text-info-700 dark:hover:bg-info-200',
+  },
+  outline: {
+    primary:
+      'border-2 border-primary-600 text-primary-700 hover:bg-primary-100 focus:ring-primary-500 dark:border-primary-300 dark:text-primary-300 dark:hover:bg-primary-100',
+    neutral: `border-2 ${BORDER_COLORS.strong} ${TEXT_COLORS.secondary} ${INTERACTION_COLORS.hover} focus:ring-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50`,
+    success:
+      'border-2 border-success-600 text-success-700 hover:bg-success-100 focus:ring-success-500 dark:border-success-300 dark:text-success-300 dark:hover:bg-success-100',
+    error:
+      'border-2 border-error-600 text-error-700 hover:bg-error-100 focus:ring-error-500 dark:border-error-300 dark:text-error-300 dark:hover:bg-error-100',
+    warning:
+      'border-2 border-warning-600 text-warning-700 hover:bg-warning-100 focus:ring-warning-500 dark:border-warning-300 dark:text-warning-300 dark:hover:bg-warning-100',
+    info: 'border-2 border-info-600 text-info-700 hover:bg-info-100 focus:ring-info-500 dark:border-info-300 dark:text-info-300 dark:hover:bg-info-100',
+  },
+  ghost: {
+    primary:
+      'text-primary-700 hover:bg-primary-100 focus:ring-primary-500 dark:text-primary-300 dark:hover:bg-primary-100',
+    neutral: `${TEXT_COLORS.secondary} ${INTERACTION_COLORS.hover} focus:ring-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50`,
+    success:
+      'text-success-700 hover:bg-success-100 focus:ring-success-500 dark:text-success-300 dark:hover:bg-success-100',
+    error:
+      'text-error-700 hover:bg-error-100 focus:ring-error-500 dark:text-error-300 dark:hover:bg-error-100',
+    warning:
+      'text-warning-700 hover:bg-warning-100 focus:ring-warning-500 dark:text-warning-300 dark:hover:bg-warning-100',
+    info: 'text-info-700 hover:bg-info-100 focus:ring-info-500 dark:text-info-300 dark:hover:bg-info-100',
+  },
+  link: {
+    primary:
+      'text-primary-700 hover:underline focus:ring-0 dark:text-primary-300 p-0 font-semibold',
+    neutral: `${TEXT_COLORS.secondary} hover:underline focus:ring-0 dark:text-neutral-300 p-0 font-semibold`,
+    success:
+      'text-success-700 hover:underline focus:ring-0 dark:text-success-300 p-0 font-semibold',
+    error:
+      'text-error-700 hover:underline focus:ring-0 dark:text-error-300 p-0 font-semibold',
+    warning:
+      'text-warning-700 hover:underline focus:ring-0 dark:text-warning-300 p-0 font-semibold',
+    info: 'text-info-700 hover:underline focus:ring-0 dark:text-info-300 p-0 font-semibold',
+  },
+} as const;
+
+/**
  * Helper function to get consistent card colors
  * @param variant - The card variant
  * @returns Tailwind classes string
@@ -97,4 +175,64 @@ export function getCardColors(
   variant: keyof typeof CARD_COLORS = 'default',
 ): string {
   return CARD_COLORS[variant];
+}
+
+/**
+ * IconButton color system for consistent icon button styling
+ */
+export const ICON_BUTTON_COLORS = {
+  solid: {
+    gray: `bg-neutral-900 text-neutral-50 hover:bg-neutral-800 ${SURFACE_COLORS.surfaceElevated} dark:text-neutral-900 dark:hover:text-neutral-50`,
+    red: 'bg-error-600 text-neutral-50 hover:bg-error-700 dark:bg-error-700 dark:hover:bg-error-600',
+    green:
+      'bg-success-600 text-neutral-50 hover:bg-success-700 dark:bg-success-700 dark:hover:bg-success-600',
+    blue: 'bg-primary text-neutral-50 hover:bg-primary-700 dark:bg-primary-700 dark:hover:bg-primary-600',
+  },
+  outline: {
+    gray: `border ${BORDER_COLORS.default} ${TEXT_COLORS.secondary} hover:border-neutral-400 ${INTERACTION_COLORS.hover} hover:text-neutral-900 dark:hover:text-neutral-50`,
+    red: 'border border-red-300 text-red-700 hover:border-red-400 hover:bg-red-50 dark:border-red-700 dark:text-red-300 dark:hover:border-red-600 dark:hover:bg-red-950',
+    green:
+      'border border-green-300 text-green-700 hover:border-green-400 hover:bg-green-50 dark:border-green-700 dark:text-green-300 dark:hover:border-green-600 dark:hover:bg-green-950',
+    blue: 'border border-blue-300 text-blue-700 hover:border-blue-400 hover:bg-blue-50 dark:border-blue-700 dark:text-blue-300 dark:hover:border-blue-600 dark:hover:bg-blue-950',
+  },
+  soft: {
+    gray: `${SURFACE_COLORS.surface} text-neutral-900 ${INTERACTION_COLORS.hover} hover:text-neutral-900 dark:hover:text-neutral-50`,
+    red: 'bg-red-100 text-red-900 hover:bg-red-200 dark:bg-red-950 dark:text-red-100 dark:hover:bg-red-900',
+    green:
+      'bg-green-100 text-green-900 hover:bg-green-200 dark:bg-green-950 dark:text-green-100 dark:hover:bg-green-900',
+    blue: 'bg-blue-100 text-blue-900 hover:bg-blue-200 dark:bg-blue-950 dark:text-blue-100 dark:hover:bg-blue-900',
+  },
+  ghost: {
+    gray: `${TEXT_COLORS.secondary} ${INTERACTION_COLORS.hover} hover:text-neutral-900 dark:hover:text-neutral-50`,
+    red: 'text-red-700 hover:bg-red-100 dark:text-red-300 dark:hover:bg-red-950',
+    green:
+      'text-green-700 hover:bg-green-100 dark:text-green-300 dark:hover:bg-green-950',
+    blue: 'text-blue-700 hover:bg-blue-100 dark:text-blue-300 dark:hover:bg-blue-950',
+  },
+} as const;
+
+/**
+ * Helper function to get consistent button colors
+ * @param variant - The button variant
+ * @param color - The button color
+ * @returns Tailwind classes string
+ */
+export function getButtonColors(
+  variant: keyof typeof BUTTON_COLORS,
+  color: keyof typeof BUTTON_COLORS.solid,
+): string {
+  return BUTTON_COLORS[variant][color];
+}
+
+/**
+ * Helper function to get consistent icon button colors
+ * @param variant - The icon button variant
+ * @param color - The icon button color
+ * @returns Tailwind classes string
+ */
+export function getIconButtonColors(
+  variant: keyof typeof ICON_BUTTON_COLORS,
+  color: keyof typeof ICON_BUTTON_COLORS.solid,
+): string {
+  return ICON_BUTTON_COLORS[variant][color];
 }

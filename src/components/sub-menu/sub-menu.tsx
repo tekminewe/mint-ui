@@ -1,15 +1,27 @@
 import { forwardRef, HTMLAttributes } from 'react';
 import { cn } from '../utils';
+import { getCardColors } from '../utils/component-colors';
 
-export interface SubMenuProps extends HTMLAttributes<HTMLDivElement> {}
+export interface SubMenuProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * The visual variant of the sub menu
+   * @default 'default'
+   * @example 'elevated'
+   */
+  variant?: 'default' | 'elevated' | 'subtle';
+}
 
 export const SubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
-  ({ ...props }, ref) => {
+  ({ variant = 'default', ...props }, ref) => {
     return (
       <aside
         ref={ref}
         {...props}
-        className={cn('shadow-3 rounded-3 p-2 space-y-2', props.className)}
+        className={cn(
+          'rounded-lg p-2 space-y-1 border',
+          getCardColors(variant),
+          props.className,
+        )}
       />
     );
   },

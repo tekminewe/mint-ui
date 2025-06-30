@@ -85,7 +85,7 @@ export default () => {
           // • Subtle borders: border-neutral-100 (barely visible divisions)
           //
           '--color-neutral-50':
-            '253 253 253' /* CARDS & SURFACES: Main card/panel backgrounds in light mode - very close to white */,
+            '255 255 255' /* CARDS & SURFACES: Main card/panel backgrounds in light mode - very close to white */,
           '--color-neutral-100':
             '245 245 245' /* ELEVATED SURFACES: Subtle backgrounds, very light dividers */,
           '--color-neutral-200':
@@ -352,6 +352,7 @@ export default () => {
       handler(args);
     },
     {
+      darkMode: 'class', // Enable class-based dark mode for mint-ui components
       ...config,
       theme: {
         ...config.theme,

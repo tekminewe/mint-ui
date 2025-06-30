@@ -25,7 +25,7 @@
   * Navbar styles
   */
   .navbar {
-    @apply shadow-2 w-full p-4 flex items-center border-b rounded-lg;
+    @apply w-full p-4 flex items-center border-b border-neutral-200 dark:border-neutral-300;
     @apply min-h-[4rem];
   }
   .navbar[data-breakpoint='xs'] .mt-navMenu {
@@ -155,22 +155,6 @@
   }
 
   /**
-  * Dropdown styles
-  */
-  .dropdown-menu-content {
-    @apply shadow-3 rounded-md overflow-hidden p-3 mt-1 bg-neutral-50;
-  }
-  .dropdown-menu-trigger {
-    @apply outline-none;
-  }
-  .dropdown-menu-item {
-    @apply py-2 px-3 divide-y outline-none cursor-pointer rounded-md flex items-center gap-2;
-    @apply hover:bg-primary-600 hover:text-neutral-50;
-  }
-  .dropdown-menu-separator {
-    @apply h-[1px] bg-neutral-300 my-3;
-  }
-  /**
   * Admin Layout styles
   */
   .admin-layout {
@@ -216,16 +200,6 @@
   .sidebar-menu-group-title {
     @apply text-sm font-semibold uppercase text-neutral-500 mb-3;
   }
-  .sidebar-menu-item {
-    @apply p-3 rounded-md cursor-pointer font-medium flex items-center gap-3;
-    @apply hover:bg-primary-600 hover:text-neutral-50;
-  }
-  .sidebar-menu-item[data-selected='true'] {
-    @apply bg-primary-600 text-neutral-50;
-  }
-  .sidebar-menu-item + .sidebar-menu-item {
-    @apply mt-1;
-  }
   /**
   * Search styles
   */
@@ -250,25 +224,5 @@
   }
   .drawer[data-vaul-drawer-direction='bottom'] {
     @apply bottom-0 left-0 w-screen;
-  }
-
-  /**
-  * List styles
-  */
-  .list-item-row {
-    @apply p-3 rounded-md cursor-pointer font-medium flex items-center gap-2;
-    @apply hover:bg-neutral-200;
-  }
-  .list-item-row[data-selected='true'] {
-    @apply bg-primary-600 text-neutral-50;
-  }
-  .list-item-row + .list-item-row {
-    @apply mt-1;
-  }
-  .list-group + .list-group {
-    @apply mt-6;
-  }
-  .list-group-title {
-    @apply text-sm font-semibold uppercase text-neutral-500 mb-3 ml-3;
   }
 }

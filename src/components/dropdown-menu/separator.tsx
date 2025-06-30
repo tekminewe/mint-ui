@@ -13,7 +13,10 @@ export const DropdownMenuSeparator = forwardRef<
     <DropdownMenuPrimitives.Separator
       ref={ref}
       {...props}
-      className={cn('dropdown-menu-separator', className)}
+      className={cn(
+        'h-[1px] bg-neutral-200 dark:bg-neutral-300 my-2 mx-1',
+        className,
+      )}
     ></DropdownMenuPrimitives.Separator>
   );
 });

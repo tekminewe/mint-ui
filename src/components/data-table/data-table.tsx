@@ -19,6 +19,8 @@ import {
   SURFACE_COLORS,
   TEXT_COLORS,
   BORDER_COLORS,
+  INTERACTION_COLORS,
+  SKELETON_COLORS,
 } from '../utils/component-colors';
 
 export type IDataTableColumn<T> =
@@ -58,6 +60,16 @@ export interface IDataTableProps<T, F> {
   showAddButton?: boolean;
   addButtonLabel?: string;
   onAddButtonClick?: MouseEventHandler<HTMLButtonElement>;
+  /**
+   * Maximum height for the table container. When content exceeds this height, vertical scrolling will be enabled.
+   * @example "400px" | "50vh"
+   */
+  maxHeight?: string;
+  /**
+   * Enable sticky header when scrolling vertically
+   * @default true
+   */
+  stickyHeader?: boolean;
 }
 
 export const DataTable = <T extends object, F extends IDataTableFilterState>({
@@ -81,6 +93,8 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
   showAddButton = false,
   addButtonLabel = 'Add',
   onAddButtonClick,
+  maxHeight,
+  stickyHeader = true,
 }: IDataTableProps<T, F>) => {
   const colummDefs = useMemo(() => {
     const columnHelper = createColumnHelper<T>();
@@ -188,7 +202,10 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
         </div>
       )}
       <Card>
-        <div className="overflow-x-auto">
+        <div
+          className={cn('overflow-x-auto', maxHeight && 'overflow-y-auto')}
+          style={{ maxHeight }}
+        >
           <table
             className={cn(
               'w-full border-collapse',
@@ -197,12 +214,23 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
                 : SURFACE_COLORS.surfaceElevated,
             )}
           >
-            <thead>
+            <thead
+              className={cn(stickyHeader && maxHeight && 'sticky top-0 z-10')}
+            >
               {table.getHeaderGroups().map((headerGroup) => {
                 return (
                   <tr
                     key={headerGroup.id}
-                    className={cn('border-b', BORDER_COLORS.default)}
+                    className={cn(
+                      'border-b',
+                      BORDER_COLORS.default,
+                      stickyHeader &&
+                        maxHeight && [
+                          variant === 'ghost'
+                            ? 'bg-white dark:bg-neutral-950'
+                            : SURFACE_COLORS.surfaceElevated,
+                        ],
+                    )}
                   >
                     {headerGroup.headers.map((header) => {
                       return (
@@ -237,19 +265,19 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
                       <div
                         className={cn(
                           'animate-pulse w-full h-6 rounded',
-                          SURFACE_COLORS.surfaceSubtle,
+                          SKELETON_COLORS.primary,
                         )}
                       ></div>
                       <div
                         className={cn(
                           'animate-pulse w-full h-6 rounded',
-                          SURFACE_COLORS.surfaceSubtle,
+                          SKELETON_COLORS.primary,
                         )}
                       ></div>
                       <div
                         className={cn(
                           'animate-pulse w-full h-6 rounded',
-                          SURFACE_COLORS.surfaceSubtle,
+                          SKELETON_COLORS.primary,
                         )}
                       ></div>
                     </div>
@@ -269,7 +297,10 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
                   return (
                     <tr
                       key={row.id}
-                      className="hover:bg-neutral-100 dark:hover:bg-neutral-200 transition-colors"
+                      className={cn(
+                        INTERACTION_COLORS.hover,
+                        'transition-colors',
+                      )}
                     >
                       {row.getVisibleCells().map((cell, i) => {
                         const isFirstCell = i === 0;

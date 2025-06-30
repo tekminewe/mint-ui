@@ -13,7 +13,7 @@ export const DropdownMenuTrigger = forwardRef<
     <DropdownMenuPrimitives.Trigger
       ref={ref}
       {...props}
-      className={cn('dropdown-menu-trigger', className)}
+      className={cn('outline-none', className)}
     />
   );
 });

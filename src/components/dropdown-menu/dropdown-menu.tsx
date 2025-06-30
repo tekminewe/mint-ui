@@ -18,7 +18,13 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
         <DropdownMenuPrimitives.Content
           ref={ref}
           {...props}
-          className={cn('dropdown-menu-content', className)}
+          className={cn(
+            'shadow-lg rounded-md overflow-hidden p-1 mt-1',
+            'bg-neutral-50 dark:bg-neutral-200',
+            'text-neutral-900 dark:text-neutral-900',
+            'border border-neutral-200 dark:border-neutral-300',
+            className,
+          )}
         ></DropdownMenuPrimitives.Content>
       </DropdownMenuPrimitives.Portal>
     );
