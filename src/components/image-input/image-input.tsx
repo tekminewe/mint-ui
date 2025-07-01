@@ -1,12 +1,9 @@
 import { forwardRef, InputHTMLAttributes, useId } from 'react';
 import { FormLabel } from '../form';
 import { Caption } from '../typography';
+import { Button } from '../button';
 import { cn } from '../utils';
-import {
-  SURFACE_COLORS,
-  TEXT_COLORS,
-  BORDER_COLORS,
-} from '../utils/component-colors';
+import { BORDER_COLORS } from '../utils/component-colors';
 
 export interface ImageInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -85,7 +82,7 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
     };
 
     return (
-      <label
+      <div
         className={cn(
           'flex w-full flex-col',
           label && 'gap-1',
@@ -100,6 +97,7 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
             required={required}
           />
         )}
+
         <input
           type="file"
           accept={accept}
@@ -108,26 +106,36 @@ export const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
           className="hidden"
           {...props}
         />
-        {value ? (
-          <img
-            src={value}
-            alt="featured-image-upload"
-            className="w-full aspect-auto"
-          />
-        ) : (
-          <div
-            className={cn(
-              'flex justify-center items-center w-full cursor-pointer h-9 border-dashed border rounded-2',
-              TEXT_COLORS.muted,
-              SURFACE_COLORS.surfaceSubtle,
-              BORDER_COLORS.default,
-            )}
+
+        <div className="space-y-3">
+          {/* Current Image Preview */}
+          {value && (
+            <div className="relative">
+              <img
+                src={value}
+                alt="Uploaded image preview"
+                className={cn(
+                  'w-full max-w-xs h-32 object-cover rounded-lg border',
+                  BORDER_COLORS.default,
+                )}
+              />
+            </div>
+          )}
+
+          {/* Upload Button */}
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => document.getElementById(inputId)?.click()}
+            className="w-fit"
           >
-            Upload an image
-          </div>
-        )}
+            {value ? 'Change Image' : 'Choose File'}
+          </Button>
+        </div>
+
         {renderDescription()}
-      </label>
+      </div>
     );
   },
 );
