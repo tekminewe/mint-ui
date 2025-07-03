@@ -225,4 +225,53 @@
   .drawer[data-vaul-drawer-direction='bottom'] {
     @apply bottom-0 left-0 w-screen;
   }
+  /**
+  * Prose styles for dark mode compatibility
+  */
+  .prose {
+    color: rgb(var(--color-neutral-900));
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    color: rgb(var(--color-neutral-900));
+  }
+
+  .prose p,
+  .prose li,
+  .prose blockquote {
+    color: rgb(var(--color-neutral-800));
+  }
+
+  .prose strong {
+    color: rgb(var(--color-neutral-900));
+  }
+
+  .prose a {
+    color: rgb(var(--color-primary-600));
+  }
+
+  .prose blockquote {
+    border-left-color: rgb(var(--color-primary-600));
+    color: rgb(var(--color-neutral-800));
+  }
+
+  .prose code {
+    color: rgb(var(--color-neutral-900));
+    background-color: rgb(var(--color-neutral-100));
+  }
+
+  .prose pre {
+    background-color: rgb(var(--color-neutral-100));
+    color: rgb(var(--color-neutral-900));
+  }
+
+  .prose pre code {
+    background-color: transparent;
+    color: inherit;
+  }
 }
