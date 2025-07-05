@@ -1,6 +1,11 @@
 import * as DropdownMenuPrimitives from '@radix-ui/react-dropdown-menu';
 import { cn } from '../utils';
 import { forwardRef } from 'react';
+import {
+  SURFACE_COLORS,
+  BORDER_COLORS,
+  TEXT_COLORS,
+} from '../utils/component-colors';
 
 export const DropdownMenuRoot = DropdownMenuPrimitives.Root;
 
@@ -20,9 +25,9 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
           {...props}
           className={cn(
             'shadow-lg rounded-md overflow-hidden p-1 mt-1',
-            'bg-neutral-50 dark:bg-neutral-200',
-            'text-neutral-900 dark:text-neutral-900',
-            'border border-neutral-200 dark:border-neutral-300',
+            SURFACE_COLORS.surfaceElevated,
+            TEXT_COLORS.primary,
+            BORDER_COLORS.default,
             className,
           )}
         ></DropdownMenuPrimitives.Content>

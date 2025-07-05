@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Text, Caption, Title } from '../typography';
 import { cn } from '../utils';
 import { Badge } from '../badge';
+import { BORDER_COLORS } from '../utils/component-colors';
 
 export interface PostItemProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -41,7 +42,12 @@ export const PostItem = React.forwardRef<HTMLDivElement, PostItemProps>(
         ref={ref}
       >
         <div className="flex gap-4 relative md:static">
-          <div className="relative flex-shrink-0 w-full aspect-[1] md:w-[256px] overflow-hidden rounded-md border border-neutral-200 dark:border-neutral-800">
+          <div
+            className={cn(
+              'relative flex-shrink-0 w-full aspect-[1] md:w-[256px] overflow-hidden rounded-md',
+              BORDER_COLORS.default,
+            )}
+          >
             <img
               src={imageUrl}
               alt={title}

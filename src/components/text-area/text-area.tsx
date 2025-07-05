@@ -2,6 +2,12 @@ import { forwardRef, TextareaHTMLAttributes } from 'react';
 import { Caption } from '../typography';
 import { FormLabel } from '../form';
 import { cn } from '../utils';
+import {
+  SURFACE_COLORS,
+  BORDER_COLORS,
+  TEXT_COLORS,
+  INTERACTION_COLORS,
+} from '../utils/component-colors';
 
 export interface ITextAreaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -42,11 +48,13 @@ export const TextArea = forwardRef<HTMLTextAreaElement, ITextAreaProps>(
           placeholder={placeholder}
           required={required}
           className={cn(
-            'w-full p-2 rounded-md border border-neutral-300 focus:outline-none focus:ring-2 focus:border-transparent',
+            'w-full p-2 rounded-md border focus:outline-none focus:ring-2 focus:border-transparent',
+            SURFACE_COLORS.surface,
+            BORDER_COLORS.default,
+            TEXT_COLORS.primary,
             error
               ? 'border-error-500 focus:ring-error-500'
-              : 'focus:ring-primary-500',
-            'dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-100',
+              : INTERACTION_COLORS.focus,
             'min-h-[80px] resize-y',
             className,
           )}

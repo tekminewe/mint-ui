@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { TextInput, ControlledTextInput } from './index';
 import { allModes } from '../../storybook-modes';
-import { TEXT_COLORS } from '../utils/component-colors';
+import { TEXT_COLORS, BORDER_COLORS } from '../utils/component-colors';
 import { ControlledForm } from '../form';
 
 const meta: Meta<typeof TextInput> = {
@@ -398,7 +398,7 @@ export const AllVariants: Story = {
         <h2 className={`text-2xl font-bold ${TEXT_COLORS.primary}`}>
           Controlled Form Example
         </h2>
-        <div className="p-6 border border-neutral-200 dark:border-neutral-700 rounded-lg">
+        <div className={`p-6 border rounded-lg ${BORDER_COLORS.default}`}>
           <FormExample />
         </div>
       </section>

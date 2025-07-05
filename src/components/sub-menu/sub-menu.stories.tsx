@@ -15,6 +15,7 @@ import {
   LuTrendingUp,
   LuUsers,
 } from 'react-icons/lu';
+import { SURFACE_COLORS } from '../utils/component-colors';
 
 const meta = {
   title: 'Navigation / SubMenu',
@@ -257,7 +258,7 @@ export const AllVariants: Story = {
       </section>
 
       {/* Accessibility Features */}
-      <section className="bg-neutral-50 p-4 rounded-lg">
+      <section className={`p-4 rounded-lg ${SURFACE_COLORS.surfaceSubtle}`}>
         <h3 className="text-lg font-semibold mb-2">Accessibility Features</h3>
         <ul className="text-sm text-neutral-600 space-y-1">
           <li>• Selected items have aria-current="page" attribute</li>

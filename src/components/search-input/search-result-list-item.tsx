@@ -3,7 +3,7 @@
 import { Command } from 'cmdk';
 import { forwardRef, ReactNode, useContext } from 'react';
 import { cn } from '../utils';
-import { TEXT_COLORS } from '../utils/component-colors';
+import { TEXT_COLORS, BORDER_COLORS } from '../utils/component-colors';
 import { SearchContext } from './search-root';
 
 export interface SearchResultListItemProps
@@ -86,7 +86,12 @@ export const SearchResultListItem = forwardRef<
         )}
       >
         {imageUrl && (
-          <div className="w-[50px] h-[50px] rounded-md overflow-hidden flex items-center justify-center border border-neutral-200 dark:border-neutral-300">
+          <div
+            className={cn(
+              'w-[50px] h-[50px] rounded-md overflow-hidden flex items-center justify-center',
+              BORDER_COLORS.default,
+            )}
+          >
             <img src={imageUrl} alt={title} className="w-full" />
           </div>
         )}

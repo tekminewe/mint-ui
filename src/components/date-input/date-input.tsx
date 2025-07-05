@@ -13,7 +13,7 @@ import 'react-day-picker/dist/style.css';
 import { Button, ButtonProps } from '../button';
 import { forwardRef, useState } from 'react';
 import { TextInput } from '../text-input';
-import { SURFACE_COLORS } from '../utils/component-colors';
+import { SURFACE_COLORS, BORDER_COLORS } from '../utils/component-colors';
 import { Caption, Text } from '../typography';
 import { FormLabel } from '../form';
 import { cn } from '../utils';
@@ -181,7 +181,11 @@ export const DateInput = forwardRef<HTMLButtonElement, DateInputProps>(
 
           <PopoverPrimitive.Portal>
             <PopoverPrimitive.Content
-              className="bg-neutral-50 dark:bg-neutral-100 p-4 rounded-md shadow-md z-50 border border-neutral-200 dark:border-neutral-300"
+              className={cn(
+                'p-4 rounded-md shadow-md z-50',
+                SURFACE_COLORS.surfaceElevated,
+                BORDER_COLORS.default,
+              )}
               sideOffset={5}
             >
               <DayPicker

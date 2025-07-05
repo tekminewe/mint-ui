@@ -8,6 +8,7 @@ import {
   TEXT_COLORS,
   SURFACE_COLORS,
   BORDER_COLORS,
+  INTERACTION_COLORS,
 } from '../utils/component-colors';
 
 export interface SelectProps {
@@ -150,7 +151,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
               'flex items-center justify-between border rounded-md cursor-pointer transition-colors',
               SURFACE_COLORS.surface,
               TEXT_COLORS.primary,
-              'hover:border-neutral-400',
+              INTERACTION_COLORS.hover,
               sizeClasses[size],
               error ? 'border-error-500' : BORDER_COLORS.default,
               className,

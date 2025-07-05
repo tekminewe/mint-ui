@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { Select } from './select';
 import { useState } from 'react';
+import { SURFACE_COLORS } from '../utils/component-colors';
 
 const defaultOptions = [
   {
@@ -286,7 +287,9 @@ export const OpenByDefault: Story = {
             />
           </div>
 
-          <div className="mt-8 p-4 bg-neutral-50 rounded-lg">
+          <div
+            className={`mt-8 p-4 rounded-lg ${SURFACE_COLORS.surfaceSubtle}`}
+          >
             <h3 className="text-sm font-medium text-neutral-700 mb-2">
               Features Demonstrated:
             </h3>

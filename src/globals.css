@@ -157,8 +157,11 @@
   /**
   * Admin Layout styles
   */
+  /**
+  * Admin Layout styles
+  */
   .admin-layout {
-    @apply grid;
+    @apply grid h-screen;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr;
     grid-template-areas: 'sidebar navbar' 'sidebar content';
@@ -167,38 +170,40 @@
   * Admin Navbar styles
   */
   .admin-navbar {
-    @apply border-b h-9 flex items-center;
+    @apply border-b border-neutral-200 dark:border-neutral-300 bg-white dark:bg-neutral-100 h-12 flex items-center px-4;
     grid-area: navbar;
   }
   /**
   * Admin Content styles
   */
   .admin-content {
-    @apply p-4 bg-neutral-50;
+    @apply p-6 bg-neutral-50 dark:bg-neutral-50 overflow-auto;
     grid-area: content;
   }
   /**
   * Sidebar styles
   */
   .sidebar {
-    @apply w-[350px] h-screen border-r px-3;
+    @apply w-[280px] h-screen border-r border-neutral-200 dark:border-neutral-300 bg-white dark:bg-neutral-100 px-4 py-6 flex flex-col;
     grid-area: sidebar;
   }
   .sidebar-header {
-    @apply flex items-center gap-3 font-bold text-3xl py-3;
+    @apply flex items-center gap-3 font-bold text-xl text-neutral-900 dark:text-neutral-900 pb-6 border-b border-neutral-100 dark:border-neutral-200 mb-6;
   }
   .sidebar-header img {
-    @apply w-9 rounded-full;
+    @apply w-8 h-8 rounded-lg object-contain;
   }
   .sidebar-menu {
+    @apply flex-1;
   }
   .sidebar-menu-group {
+    @apply mb-6;
   }
   .sidebar-menu-group + .sidebar-menu-group {
-    @apply mt-3;
+    @apply mt-8;
   }
   .sidebar-menu-group-title {
-    @apply text-sm font-semibold uppercase text-neutral-500 mb-3;
+    @apply text-xs font-semibold uppercase text-neutral-500 dark:text-neutral-500 mb-3 px-3;
   }
   /**
   * Search styles

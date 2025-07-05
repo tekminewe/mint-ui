@@ -20,6 +20,13 @@ export interface CalloutProps extends React.HTMLAttributes<HTMLDivElement> {
   type?: 'info' | 'warning' | 'error' | 'success';
 
   /**
+   * The visual variant of the callout.
+   * @default "inline"
+   * @example "card"
+   */
+  variant?: 'inline' | 'card';
+
+  /**
    * Additional CSS class names.
    */
   className?: string;
@@ -28,21 +35,62 @@ export interface CalloutProps extends React.HTMLAttributes<HTMLDivElement> {
 export function Callout({
   children,
   type = 'info',
+  variant = 'inline',
   className,
   ...props
 }: CalloutProps) {
   const renderIcon = () => {
+    const iconSize = variant === 'card' ? 'h-16 w-16' : 'h-4 w-4';
+    const iconColor = variant === 'card' ? getIconColor() : '';
+
     switch (type) {
       case 'info':
-        return <InfoCircledIcon className="h-4 w-4 flex-shrink-0" />;
+        return (
+          <InfoCircledIcon
+            className={`${iconSize} ${iconColor} flex-shrink-0`}
+          />
+        );
       case 'warning':
-        return <ExclamationTriangleIcon className="h-4 w-4 flex-shrink-0" />;
+        return (
+          <ExclamationTriangleIcon
+            className={`${iconSize} ${iconColor} flex-shrink-0`}
+          />
+        );
       case 'error':
-        return <CrossCircledIcon className="h-4 w-4 flex-shrink-0" />;
+        return (
+          <CrossCircledIcon
+            className={`${iconSize} ${iconColor} flex-shrink-0`}
+          />
+        );
       case 'success':
-        return <CheckCircledIcon className="h-4 w-4 flex-shrink-0" />;
+        return (
+          <CheckCircledIcon
+            className={`${iconSize} ${iconColor} flex-shrink-0`}
+          />
+        );
       default:
-        return <InfoCircledIcon className="h-4 w-4 flex-shrink-0" />;
+        return (
+          <InfoCircledIcon
+            className={`${iconSize} ${iconColor} flex-shrink-0`}
+          />
+        );
+    }
+  };
+
+  const getIconColor = () => {
+    if (variant === 'inline') return '';
+
+    switch (type) {
+      case 'info':
+        return 'text-info-600 dark:text-info-400';
+      case 'warning':
+        return 'text-warning-600 dark:text-warning-400';
+      case 'error':
+        return 'text-error-600 dark:text-error-400';
+      case 'success':
+        return 'text-success-600 dark:text-success-400';
+      default:
+        return 'text-info-600 dark:text-info-400';
     }
   };
 
@@ -64,14 +112,25 @@ export function Callout({
   return (
     <div
       className={cn(
-        'flex items-center gap-2 rounded-md border p-4',
+        variant === 'card'
+          ? 'flex flex-col items-center justify-center text-center p-6 md:p-8 space-y-4 rounded-xl shadow-sm max-w-xl mx-auto'
+          : 'flex items-center gap-2 rounded-md border p-4',
         getStyles(),
         className,
       )}
       {...props}
     >
-      <div className="mt-0.5">{renderIcon()}</div>
-      <div>{children}</div>
+      {variant === 'card' ? (
+        <>
+          <div>{renderIcon()}</div>
+          <div className="space-y-2">{children}</div>
+        </>
+      ) : (
+        <>
+          <div className="mt-0.5">{renderIcon()}</div>
+          <div>{children}</div>
+        </>
+      )}
     </div>
   );
 }

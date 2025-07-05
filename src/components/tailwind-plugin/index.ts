@@ -24,10 +24,10 @@ export default () => {
           // 📋 QUICK REFERENCE FOR COMPONENTS:
           //
           // 🔲 SURFACES (Backgrounds):
-          //   • Cards/Panels: bg-neutral-50 dark:bg-neutral-100
-          //   • Page background: bg-white dark:bg-neutral-50
+          //   • Cards/Panels: bg-white dark:bg-neutral-100
+          //   • Page background: bg-neutral-50 dark:bg-neutral-50
           //   • Elevated surfaces: bg-white dark:bg-neutral-200
-          //   • Subtle surfaces: bg-neutral-100 dark:bg-neutral-200
+          //   • Subtle surfaces: bg-neutral-50 dark:bg-neutral-50
           //
           // 📝 TEXT:
           //   • Primary text: text-neutral-900 dark:text-neutral-900
@@ -73,8 +73,8 @@ export default () => {
           // Use for: Text, backgrounds, dividers, cards, secondary UI elements
           //
           // ⭐ COMPONENT USAGE GUIDE:
-          // • Cards/Surfaces: bg-neutral-50 (light subtle background)
-          // • Page backgrounds: bg-white (pure white) or bg-neutral-25 (if exists)
+          // • Cards/Surfaces: bg-white (elevated white backgrounds)
+          // • Page backgrounds: bg-neutral-50 (subtle off-white backgrounds)
           // • Elevated surfaces: bg-white (dropdowns, modals, popovers)
           // • Primary text: text-neutral-900 (high contrast)
           // • Secondary text: text-neutral-700 (medium contrast)
@@ -85,7 +85,7 @@ export default () => {
           // • Subtle borders: border-neutral-100 (barely visible divisions)
           //
           '--color-neutral-50':
-            '255 255 255' /* CARDS & SURFACES: Main card/panel backgrounds in light mode - very close to white */,
+            '252 252 252' /* PAGE BACKGROUNDS: Subtle page backgrounds, slightly off-white */,
           '--color-neutral-100':
             '245 245 245' /* ELEVATED SURFACES: Subtle backgrounds, very light dividers */,
           '--color-neutral-200':
@@ -360,6 +360,9 @@ export default () => {
           ...config.colors,
           'panel-solid': 'var(--color-panel-solid)',
 
+          // Basic color utilities
+          white: '#ffffff', // Pure white for elevated surfaces and backgrounds
+
           // Main color palettes with semantic naming
           primary: {
             50: 'rgb(var(--color-primary-50) / <alpha-value>)', // Use for: Subtle backgrounds, hover states
@@ -376,7 +379,7 @@ export default () => {
           },
 
           neutral: {
-            50: 'rgb(var(--color-neutral-50) / <alpha-value>)', // Use for: Page backgrounds, cards
+            50: 'rgb(var(--color-neutral-50) / <alpha-value>)', // Use for: Page backgrounds, subtle surfaces
             100: 'rgb(var(--color-neutral-100) / <alpha-value>)', // Use for: Card backgrounds, subtle UI
             200: 'rgb(var(--color-neutral-200) / <alpha-value>)', // Use for: Borders, dividers, disabled elements
             300: 'rgb(var(--color-neutral-300) / <alpha-value>)', // Use for: Strong borders, disabled elements

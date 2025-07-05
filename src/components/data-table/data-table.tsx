@@ -227,7 +227,7 @@ export const DataTable = <T extends object, F extends IDataTableFilterState>({
                       stickyHeader &&
                         maxHeight && [
                           variant === 'ghost'
-                            ? 'bg-white dark:bg-neutral-950'
+                            ? SURFACE_COLORS.surface
                             : SURFACE_COLORS.surfaceElevated,
                         ],
                     )}

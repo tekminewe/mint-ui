@@ -21,8 +21,8 @@ This document outlines the plan to remove the dependency on @radix-ui/themes and
 - ✅ Box: Replaced with styled div
 - ✅ Callout: Created custom component
 - ✅ IconButton: Replaced with button + styling
-- ✅ InfoCard: Replaced with custom component
-- ✅ SuccessCard: Replaced with custom component
+- ✅ InfoCard: REMOVED - Use Callout with variant="card" and type="info"
+- ✅ SuccessCard: REMOVED - Use Callout with variant="card" and type="success"
 - ✅ PostItem: Replaced with custom component
 - ✅ ProductItem: Replaced with custom component
 - ✅ DataTable: Replaced with native HTML table implementation

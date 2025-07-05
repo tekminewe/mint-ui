@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { cn } from '../utils';
 import { Caption, Text } from '../typography';
+import { getCardColors, SURFACE_COLORS } from '../utils/component-colors';
 
 export interface ProductItemProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -57,12 +58,16 @@ export const ProductItem = React.forwardRef<HTMLDivElement, ProductItemProps>(
         style={{ maxWidth }}
         {...props}
       >
-        <div className="h-full rounded-md border border-neutral-200 bg-neutral-50 overflow-hidden shadow-sm dark:border-neutral-300 dark:bg-neutral-100">
+        <div
+          className={`h-full rounded-md overflow-hidden shadow-sm ${getCardColors(
+            'default',
+          )}`}
+        >
           <div className="w-full overflow-hidden">
             <img
               src={imageUrl}
               alt={title}
-              className="block object-cover w-full h-[140px] bg-neutral-100 dark:bg-neutral-800"
+              className={`block object-cover w-full h-[140px] ${SURFACE_COLORS.surfaceSubtle}`}
             />
           </div>
           <div className="p-4">

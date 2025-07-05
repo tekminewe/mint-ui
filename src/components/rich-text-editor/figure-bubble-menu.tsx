@@ -6,6 +6,7 @@ import { DialogRoot, DialogTrigger, DialogClose } from '../dialog';
 import { TextInput } from '../text-input';
 import { useState } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
+import { SURFACE_COLORS, BORDER_COLORS } from '../utils/component-colors';
 
 interface FigureBubbleMenuProps {
   editor: Editor;
@@ -24,7 +25,9 @@ export const FigureBubbleMenu = ({ editor }: FigureBubbleMenuProps) => {
         }}
       >
         <DialogRoot open={open} onOpenChange={setOpen}>
-          <div className="bg-neutral-50 dark:bg-neutral-100 shadow-lg p-1 space-x-1 rounded-lg border border-neutral-200 dark:border-neutral-300">
+          <div
+            className={`shadow-lg p-1 space-x-1 rounded-lg ${SURFACE_COLORS.surfaceElevated} ${BORDER_COLORS.default}`}
+          >
             <DialogTrigger asChild>
               <Button variant="ghost" size="sm">
                 Details
@@ -33,7 +36,9 @@ export const FigureBubbleMenu = ({ editor }: FigureBubbleMenuProps) => {
           </div>
           <RadixDialog.Portal>
             <RadixDialog.Overlay className="fixed inset-0 bg-black/50 z-[99998]" />
-            <RadixDialog.Content className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] bg-neutral-50 dark:bg-neutral-100 p-6 rounded-lg shadow-xl max-w-md w-full z-[99999] space-y-4">
+            <RadixDialog.Content
+              className={`fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] p-6 rounded-lg shadow-xl max-w-md w-full z-[99999] space-y-4 ${SURFACE_COLORS.surfaceElevated}`}
+            >
               <RadixDialog.Title className="text-lg font-semibold text-neutral-900 dark:text-neutral-900">
                 Image Details
               </RadixDialog.Title>

@@ -6,11 +6,9 @@ export interface SidebarProps extends HTMLAttributes<HTMLDivElement> {}
 export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
   (props, ref) => {
     return (
-      <aside
-        {...props}
-        className={cn('sidebar', props.className)}
-        ref={ref}
-      ></aside>
+      <aside {...props} className={cn('sidebar', props.className)} ref={ref} />
     );
   },
 );
+
+Sidebar.displayName = 'Sidebar';

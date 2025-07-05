@@ -10,13 +10,13 @@
  */
 export const SURFACE_COLORS = {
   /** Main surface background (cards, panels, modals) */
-  surface: 'bg-neutral-50 dark:bg-neutral-100',
+  surface: 'bg-white dark:bg-neutral-100',
 
   /** Elevated surface background (dropdowns, popovers, tooltips) */
   surfaceElevated: 'bg-white dark:bg-neutral-200',
 
   /** Subtle surface background (section backgrounds, subtle cards) */
-  surfaceSubtle: 'bg-neutral-25 dark:bg-neutral-50',
+  surfaceSubtle: 'bg-neutral-50 dark:bg-neutral-50',
 } as const;
 
 /**

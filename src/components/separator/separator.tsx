@@ -1,4 +1,5 @@
 import { cn } from '../utils';
+import { BORDER_COLORS } from '../utils/component-colors';
 
 export interface SeparatorProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -21,8 +22,9 @@ export function Separator({
   return (
     <div
       className={cn(
-        'shrink-0 bg-neutral-300 dark:bg-neutral-700',
+        'shrink-0',
         orientation === 'horizontal' ? 'h-[1px] w-full' : 'h-full w-[1px]',
+        BORDER_COLORS.default,
         className,
       )}
       {...props}
