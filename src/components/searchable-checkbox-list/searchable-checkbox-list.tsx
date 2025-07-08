@@ -80,6 +80,18 @@ export interface SearchableCheckboxListProps {
    * Custom filter function for search
    */
   filterFn?: (item: SearchableCheckboxListItem, query: string) => boolean;
+
+  /**
+   * Text for "Select All" button
+   * @default "Select All"
+   */
+  selectAllText?: string;
+
+  /**
+   * Text for "Clear All" button when items are selected
+   * @default "Clear All"
+   */
+  clearAllText?: string;
 }
 
 export const SearchableCheckboxList = ({
@@ -92,6 +104,8 @@ export const SearchableCheckboxList = ({
   className,
   showActions = true,
   filterFn,
+  selectAllText = 'Select All',
+  clearAllText = 'Clear All',
 }: SearchableCheckboxListProps) => {
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -150,7 +164,7 @@ export const SearchableCheckboxList = ({
               'hover:text-neutral-900 dark:hover:text-neutral-900',
             )}
           >
-            {allFilteredSelected ? 'Clear All' : 'Select All'}
+            {allFilteredSelected ? clearAllText : selectAllText}
           </button>
           {selectedItems.length > 0 && (
             <span className={cn('text-xs', TEXT_COLORS.muted)}>
