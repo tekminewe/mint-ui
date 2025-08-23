@@ -9,7 +9,7 @@ export default () => {
 
   return plugin(
     (args) => {
-      const { addBase, theme } = args;
+      const { addBase, addUtilities, theme } = args;
       addBase({
         ':root': {
           '--mt-w-drawer': '350px',
@@ -47,27 +47,27 @@ export default () => {
           //   • BORDER_COLORS.default - Individual border colors
           //
 
-          // PRIMARY: Main brand color (blue-based)
+          // PRIMARY: Main brand color (yellow-based)
           // Use for: Buttons, links, focus states, selections, and primary actions
           '--color-primary-50':
-            '248 250 255' /* Lightest - backgrounds, hover states */,
+            '255 254 240' /* Lightest - backgrounds, hover states */,
           '--color-primary-100':
-            '239 246 255' /* Very light - backgrounds, borders */,
+            '254 249 195' /* Very light - backgrounds, borders */,
           '--color-primary-200':
-            '191 219 254' /* Light - hover states, subtle UI */,
+            '254 240 138' /* Light - hover states, subtle UI */,
           '--color-primary-300':
-            '147 197 253' /* Medium light - borders, focus rings */,
+            '253 224 71' /* Medium light - borders, focus rings */,
           '--color-primary-400':
-            '96 165 250' /* Medium - secondary buttons, icons */,
+            '250 204 21' /* Medium - secondary buttons, icons */,
           '--color-primary-500':
-            '59 130 246' /* Base - main brand color, primary buttons */,
+            '234 179 8' /* Base - main brand color, primary buttons */,
           '--color-primary-600':
-            '37 99 235' /* Medium dark - hover states, active states */,
-          '--color-primary-700': '29 78 216' /* Dark - active states, text */,
+            '202 138 4' /* Medium dark - hover states, active states */,
+          '--color-primary-700': '161 98 7' /* Dark - active states, text */,
           '--color-primary-800':
-            '30 64 175' /* Very dark - text, concentrated UI */,
+            '133 77 14' /* Very dark - text, concentrated UI */,
           '--color-primary-900':
-            '30 58 138' /* Darkest - text against light backgrounds */,
+            '113 63 18' /* Darkest - text against light backgrounds */,
 
           // NEUTRAL: Gray scale for UI framework
           // Use for: Text, backgrounds, dividers, cards, secondary UI elements
@@ -233,24 +233,24 @@ export default () => {
         '.dark': {
           // PRIMARY: Brighter in dark mode for better visibility
           '--color-primary-50':
-            '30 58 138' /* Reversed from 900 for dark mode */,
+            '113 63 18' /* Reversed from 900 for dark mode */,
           '--color-primary-100':
-            '30 64 175' /* Reversed from 800 for dark mode */,
+            '133 77 14' /* Reversed from 800 for dark mode */,
           '--color-primary-200':
-            '29 78 216' /* Reversed from 700 for dark mode */,
+            '161 98 7' /* Reversed from 700 for dark mode */,
           '--color-primary-300':
-            '37 99 235' /* Reversed from 600 for dark mode */,
+            '202 138 4' /* Reversed from 600 for dark mode */,
           '--color-primary-400':
-            '59 130 246' /* Reversed from 500 for dark mode */,
-          '--color-primary-500': '96 165 250' /* Brighter in dark mode */,
+            '234 179 8' /* Reversed from 500 for dark mode */,
+          '--color-primary-500': '250 204 21' /* Brighter in dark mode */,
           '--color-primary-600':
-            '147 197 253' /* Reversed from 300 for dark mode */,
+            '253 224 71' /* Reversed from 300 for dark mode */,
           '--color-primary-700':
-            '191 219 254' /* Reversed from 200 for dark mode */,
+            '254 240 138' /* Reversed from 200 for dark mode */,
           '--color-primary-800':
-            '219 234 254' /* Reversed from 100 for dark mode */,
+            '254 249 195' /* Reversed from 100 for dark mode */,
           '--color-primary-900':
-            '239 246 255' /* Reversed from 50 for dark mode */,
+            '255 254 240' /* Reversed from 50 for dark mode */,
 
           // NEUTRAL: Inverted for dark mode
           //
@@ -344,6 +344,13 @@ export default () => {
         body: {
           fontSize: theme('fontSize.base'),
           lineHeight: theme('leading.5'),
+        },
+      });
+
+      // Add custom utilities
+      addUtilities({
+        '.bg-transparent': {
+          'background-color': 'transparent',
         },
       });
 

@@ -59,13 +59,6 @@
   .navbar[data-breakpoint='xl'] .mt-mobileNavMenu {
     @apply xl:hidden;
   }
-  /**
-  * Dialog styles
-  */
-  .dialog-content {
-    @apply rounded-lg bg-neutral-50 p-4 fixed focus:outline-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[600px] shadow-2;
-    animation: dialogContentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
 
   @keyframes overlayShow {
     from {
@@ -131,10 +124,6 @@
 
   .link {
     @apply text-primary-600;
-  }
-
-  .form-label {
-    @apply text-sm font-medium;
   }
 
   /**
@@ -278,5 +267,95 @@
   .prose pre code {
     background-color: transparent;
     color: inherit;
+  }
+
+  /* DateRangePicker light mode styles */
+  .rdp-light-mode {
+    @apply bg-transparent text-neutral-900;
+  }
+
+  .rdp-light-mode .rdp-month {
+    @apply bg-transparent;
+  }
+
+  .rdp-light-mode .rdp-table {
+    @apply bg-transparent;
+  }
+
+  .rdp-light-mode .rdp-caption_label {
+    @apply text-neutral-900 font-semibold;
+  }
+
+  .rdp-light-mode .rdp-weekday {
+    @apply text-neutral-700 text-sm font-medium;
+  }
+
+  .rdp-light-mode .rdp-day {
+    @apply text-neutral-900;
+  }
+
+  .rdp-light-mode .rdp-day_button {
+    @apply text-neutral-900 hover:bg-neutral-100 hover:text-neutral-900;
+  }
+
+  .rdp-light-mode .rdp-day:hover:not(.rdp-disabled):not(.rdp-selected) {
+    @apply bg-neutral-100 text-neutral-900;
+  }
+
+  .rdp-light-mode .rdp-day.rdp-selected {
+    @apply bg-primary-500 text-white;
+  }
+
+  .rdp-light-mode .rdp-day.rdp-disabled {
+    @apply text-neutral-400;
+  }
+
+  .rdp-light-mode .rdp-day.rdp-outside {
+    @apply text-neutral-400;
+  }
+
+  /* DateRangePicker dark mode styles using accessible colors */
+  .rdp-dark-mode {
+    @apply bg-transparent text-neutral-900 dark:text-neutral-900;
+  }
+
+  .rdp-dark-mode .rdp-month {
+    @apply bg-transparent;
+  }
+
+  .rdp-dark-mode .rdp-table {
+    @apply bg-transparent;
+  }
+
+  .rdp-dark-mode .rdp-caption_label {
+    @apply text-neutral-900 font-semibold;
+  }
+
+  .rdp-dark-mode .rdp-weekday {
+    @apply text-neutral-700 text-sm font-medium;
+  }
+
+  .rdp-dark-mode .rdp-day {
+    @apply text-neutral-900;
+  }
+
+  .rdp-dark-mode .rdp-day_button {
+    @apply text-neutral-900 hover:bg-neutral-200 hover:text-neutral-900;
+  }
+
+  .rdp-dark-mode .rdp-day:hover:not(.rdp-disabled):not(.rdp-selected) {
+    @apply bg-neutral-200 text-neutral-900;
+  }
+
+  .rdp-dark-mode .rdp-day.rdp-selected {
+    @apply bg-primary-500 text-white;
+  }
+
+  .rdp-dark-mode .rdp-day.rdp-disabled {
+    @apply text-neutral-600;
+  }
+
+  .rdp-dark-mode .rdp-day.rdp-outside {
+    @apply text-neutral-600;
   }
 }

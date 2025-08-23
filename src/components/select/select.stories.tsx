@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { Select } from './select';
+import { TextInput } from '../text-input';
 import { useState } from 'react';
 
 const defaultOptions = [
@@ -225,6 +226,56 @@ export const AllVariants: Story = {
               onChange={(value) => setMultiValue(value as string[])}
               placeholder="Select from dropdown"
             />
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-xl font-semibold mb-4">
+            Color Consistency with TextInput
+          </h2>
+          <p className="text-sm text-neutral-600 mb-4">
+            Compare Select and TextInput components to verify consistent styling
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-4">
+              <h3 className="font-medium text-sm">Select Component</h3>
+              <Select
+                label="Framework"
+                options={defaultOptions.slice(0, 3)}
+                placeholder="Choose a framework"
+                description="Select your preferred framework"
+              />
+              <Select
+                label="Required Field"
+                required
+                options={defaultOptions.slice(0, 3)}
+                placeholder="This field is required"
+              />
+              <Select
+                label="With Error"
+                options={defaultOptions.slice(0, 3)}
+                error="Please select a valid option"
+                placeholder="Select an option"
+              />
+            </div>
+            <div className="space-y-4">
+              <h3 className="font-medium text-sm">TextInput Component</h3>
+              <TextInput
+                label="Framework"
+                placeholder="Enter a framework"
+                description="Type your preferred framework"
+              />
+              <TextInput
+                label="Required Field"
+                required
+                placeholder="This field is required"
+              />
+              <TextInput
+                label="With Error"
+                error="Please enter a valid value"
+                placeholder="Enter a value"
+              />
+            </div>
           </div>
         </div>
       </div>

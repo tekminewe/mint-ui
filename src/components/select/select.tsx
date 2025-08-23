@@ -15,8 +15,14 @@ import AsyncSelect from 'react-select/async';
 import CreatableSelect from 'react-select/creatable';
 import AsyncCreatableSelect from 'react-select/async-creatable';
 import { FormLabel } from '../form';
+import { Caption } from '../typography';
 import { cn } from '../utils';
-import { TEXT_COLORS } from '../utils/component-colors';
+import {
+  TEXT_COLORS,
+  SURFACE_COLORS,
+  BORDER_COLORS,
+  INTERACTION_COLORS,
+} from '../utils/component-colors';
 
 export interface SelectOption {
   label: string;
@@ -286,68 +292,122 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
       },
     };
 
-    // Custom styles for react-select to match mint-ui theme
+    // ClassNames for react-select to match mint-ui theme and TextInput colors using Tailwind classes
+    const customClassNames = {
+      control: ({
+        isDisabled,
+        isFocused,
+      }: {
+        isDisabled: boolean;
+        isFocused: boolean;
+      }) =>
+        cn(
+          '!rounded-md',
+          // Background: match SURFACE_COLORS.surface
+          SURFACE_COLORS.surface,
+          error
+            ? '!border-error-500'
+            : isFocused
+            ? '!border-primary-500'
+            : BORDER_COLORS.default,
+          // Focus styles: match TextInput focus ring
+          isFocused && '!ring-1 !ring-primary-500',
+          // Hover styles
+          !error && !isFocused && 'hover:!border-neutral-300',
+          // Size-specific height
+          sizeStyles[size].control.minHeight === '32px' && 'min-h-8',
+          sizeStyles[size].control.minHeight === '44px' && 'min-h-11',
+          // Disabled styles
+          isDisabled && 'opacity-60 cursor-not-allowed',
+        ),
+      option: ({
+        isDisabled,
+        isFocused,
+        isSelected,
+      }: {
+        isDisabled: boolean;
+        isFocused: boolean;
+        isSelected: boolean;
+      }) =>
+        cn(
+          // Base styles with size-specific padding
+          size === 'sm'
+            ? 'py-1 px-2'
+            : size === 'lg'
+            ? 'py-3 px-4'
+            : 'py-2 px-3',
+          // Background colors
+          isSelected
+            ? '!bg-primary-500 text-white'
+            : isFocused
+            ? INTERACTION_COLORS.hover.replace('hover:', '')
+            : 'bg-transparent',
+          // Text colors
+          isSelected
+            ? 'text-white'
+            : isDisabled
+            ? TEXT_COLORS.disabled
+            : TEXT_COLORS.primary,
+          // Hover and active states
+          !isDisabled &&
+            (isSelected ? 'active:!bg-primary-600' : 'active:!bg-neutral-200'),
+          // Cursor
+          isDisabled ? 'cursor-not-allowed' : 'cursor-pointer',
+        ),
+      placeholder: () => cn(TEXT_COLORS.muted, 'mx-1'),
+      singleValue: () => cn(TEXT_COLORS.primary, 'mx-1'),
+      input: () => cn(TEXT_COLORS.primary, 'mx-1 py-1'),
+      menu: () =>
+        cn(
+          // Match SURFACE_COLORS.surfaceElevated
+          SURFACE_COLORS.surfaceElevated,
+          'rounded-md shadow-lg my-1 z-50',
+        ),
+      menuList: () => cn('py-1'),
+      multiValue: () =>
+        cn(
+          INTERACTION_COLORS.hover.replace('hover:', ''),
+          'rounded mx-0.5 my-0.5',
+          size === 'sm' ? 'text-xs' : size === 'lg' ? 'text-base' : 'text-sm',
+        ),
+      multiValueLabel: () => cn(TEXT_COLORS.primary, 'px-1.5 py-0.5'),
+      multiValueRemove: ({ isFocused }: { isFocused: boolean }) =>
+        cn(
+          'px-1 py-0.5 rounded-r hover:!bg-error-500 hover:!text-white',
+          TEXT_COLORS.muted,
+          isFocused && '!bg-error-500 !text-white',
+        ),
+      indicatorsContainer: () => cn('flex'),
+      dropdownIndicator: ({ isFocused }: { isFocused: boolean }) =>
+        cn(
+          'p-2',
+          isFocused ? TEXT_COLORS.secondary : TEXT_COLORS.muted,
+          !isFocused && 'hover:text-neutral-600',
+        ),
+      clearIndicator: ({ isFocused }: { isFocused: boolean }) =>
+        cn(
+          'p-2',
+          isFocused ? TEXT_COLORS.secondary : TEXT_COLORS.muted,
+          !isFocused && 'hover:text-neutral-600',
+        ),
+      indicatorSeparator: () => cn('bg-neutral-300 my-2 w-px'),
+      loadingIndicator: () => cn('p-2', TEXT_COLORS.muted),
+      loadingMessage: () => cn(TEXT_COLORS.muted, 'py-2 px-3'),
+      noOptionsMessage: () => cn(TEXT_COLORS.muted, 'py-2 px-3'),
+      valueContainer: () =>
+        cn('grid flex-1 items-center relative overflow-hidden py-1 px-2'),
+    };
+
+    // Minimal styles for specific overrides not handled by classNames
     const customStyles: StylesConfig<
       SelectOption,
       boolean,
       GroupBase<SelectOption>
     > = {
-      control: (provided, state) => ({
-        ...provided,
-        ...sizeStyles[size].control,
-        borderColor: error ? 'rgb(239 68 68)' : 'rgb(209 213 219)',
-        borderRadius: '6px',
-        backgroundColor: 'transparent',
-        boxShadow: state.isFocused ? '0 0 0 2px rgb(59 130 246 / 0.5)' : 'none',
-        '&:hover': {
-          borderColor: error ? 'rgb(239 68 68)' : 'rgb(156 163 175)',
-        },
-      }),
-      option: (provided, state) => ({
-        ...provided,
-        ...sizeStyles[size].option,
-        backgroundColor: state.isFocused ? 'rgb(243 244 246)' : 'transparent',
-        color: state.isSelected ? 'rgb(59 130 246)' : 'rgb(17 24 39)', // Blue text for selected, normal for unselected
-        fontWeight: state.isSelected ? '600' : '400', // Semi-bold for selected options
-        '&:hover': {
-          backgroundColor: 'rgb(243 244 246)',
-        },
-      }),
-      multiValue: (provided) => ({
-        ...provided,
-        ...sizeStyles[size].multiValue,
-        backgroundColor: 'rgb(243 244 246)',
-        borderRadius: '4px',
-      }),
-      multiValueLabel: (provided) => ({
-        ...provided,
-        color: 'rgb(17 24 39)',
-      }),
-      multiValueRemove: (provided) => ({
-        ...provided,
-        color: 'rgb(107 114 128)',
-        '&:hover': {
-          backgroundColor: 'rgb(239 68 68)',
-          color: 'white',
-        },
-      }),
-      placeholder: (provided) => ({
-        ...provided,
-        color: 'rgb(107 114 128)',
-      }),
+      // Only keep essential overrides that can't be done with Tailwind
       menu: (provided) => ({
         ...provided,
-        zIndex: 9999,
-        boxShadow:
-          '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-      }),
-      noOptionsMessage: (provided) => ({
-        ...provided,
-        color: 'rgb(107 114 128)',
-      }),
-      loadingMessage: (provided) => ({
-        ...provided,
-        color: 'rgb(107 114 128)',
+        zIndex: 9999, // Ensure menu appears above other elements
       }),
     };
 
@@ -393,6 +453,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
       maxMenuHeight,
       noOptionsMessage: () => noOptionsMessage,
       loadingMessage: () => loadingMessage,
+      classNames: customClassNames,
       styles: customStyles,
       components: { ...customComponents },
       className: cn('react-select-container', className),
@@ -419,13 +480,11 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
     return (
       <div className={cn('flex flex-col', label && 'gap-1')} ref={ref}>
         {label && <FormLabel label={label} required={required} />}
-        {description && (
-          <p className={cn('text-sm', TEXT_COLORS.muted)}>{description}</p>
-        )}
+        {description && <Caption>{description}</Caption>}
 
         <SelectComponent {...baseProps} {...asyncProps} {...creatableProps} />
 
-        {error && <p className={cn('text-sm text-red-500')}>{error}</p>}
+        {error && <Caption className="text-error">{error}</Caption>}
       </div>
     );
   },

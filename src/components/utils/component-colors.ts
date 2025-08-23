@@ -13,7 +13,7 @@ export const SURFACE_COLORS = {
   surface: 'bg-white dark:bg-neutral-100',
 
   /** Elevated surface background (dropdowns, popovers, tooltips) */
-  surfaceElevated: 'bg-white dark:bg-neutral-200',
+  surfaceElevated: 'bg-white dark:bg-neutral-100',
 
   /** Subtle surface background (section backgrounds, subtle cards) */
   surfaceSubtle: 'bg-neutral-50 dark:bg-neutral-50',
@@ -41,7 +41,7 @@ export const TEXT_COLORS = {
  */
 export const BORDER_COLORS = {
   /** Default border color for cards and surfaces */
-  default: 'border-neutral-200 dark:border-neutral-300',
+  default: '!border-neutral-200 dark:!border-neutral-300',
 
   /** Subtle border color for less prominent divisions */
   subtle: 'border-neutral-100 dark:border-neutral-200',
@@ -73,6 +73,20 @@ export const SKELETON_COLORS = {
 
   /** Secondary skeleton background for nested elements */
   secondary: 'bg-neutral-100 dark:bg-neutral-200',
+} as const;
+
+/**
+ * Overlay colors for modals, dialogs, and backdrops
+ */
+export const OVERLAY_COLORS = {
+  /** Dialog/modal backdrop overlay - subtle in light mode, darker in dark mode */
+  backdrop: 'bg-neutral-900/80 dark:bg-neutral-300/90',
+
+  /** Lighter overlay for less prominent backdrops */
+  light: 'bg-neutral-900/60 dark:bg-neutral-900/70',
+
+  /** Heavy overlay for maximum focus on foreground content */
+  heavy: 'bg-neutral-900/90 dark:bg-neutral-900/95',
 } as const;
 
 /**
@@ -209,6 +223,32 @@ export const ICON_BUTTON_COLORS = {
       'text-green-700 hover:bg-green-100 dark:text-green-300 dark:hover:bg-green-950',
     blue: 'text-blue-700 hover:bg-blue-100 dark:text-blue-300 dark:hover:bg-blue-950',
   },
+} as const;
+
+/**
+ * Calendar/DatePicker specific colors for consistent theming
+ */
+export const CALENDAR_COLORS = {
+  /** Primary text color for calendar dates and labels */
+  text: 'text-neutral-900 dark:text-neutral-200',
+
+  /** Secondary text color for weekday headers */
+  textSecondary: 'text-neutral-600 dark:text-neutral-400',
+
+  /** Muted text color for disabled or outside dates */
+  textMuted: 'text-neutral-400 dark:text-neutral-500',
+
+  /** Hover text color for interactive elements */
+  textHover: 'hover:text-neutral-700 dark:hover:text-neutral-200',
+
+  /** Background color for date hover states */
+  backgroundHover: 'bg-neutral-100 dark:bg-neutral-700',
+
+  /** Background color for selected dates */
+  backgroundSelected: 'bg-primary-500 text-white',
+
+  /** Background color for today's date */
+  backgroundToday: 'bg-neutral-200 dark:bg-neutral-600',
 } as const;
 
 /**
